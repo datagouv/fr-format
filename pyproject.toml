@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "fr-format"
+version = "0.1.0"
+description = ""
+authors = ["Pierre Camilleri <22995923+pierrecamilleri@users.noreply.github.com>"]
+license = "AGPL-3.0"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+python-stdnum = "^1.19"
+shapely = "^2.0.2"
+
+
+[tool.poetry.group.linting.dependencies]
+black = "^23.12.1"
+isort = "^5.13.2"
+pyright = "^1.1.347"
+flake8 = "^7.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
