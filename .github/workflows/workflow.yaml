@@ -25,5 +25,8 @@ jobs:
       - name: install poetry
         run: pip install poetry==1.6
 
+      - name: install dependencies
+        run: poetry install --with linting
+
       - name: linting
         run: make lint
