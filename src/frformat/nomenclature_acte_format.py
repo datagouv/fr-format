@@ -15,6 +15,12 @@ AUTHORIZED_VALUES = [
     "Autres domaines de compétences",
 ]
 
+MISSING_SLASH = "le signe oblique « / » est manquant"
+
+EXTRA_SPACE = "le signe oblique ne doit pas être précédé ni suivi d'espace"
+
+def INVALID_PREFIX(prefix: str) -> str:
+    return f"le préfixe de nomenclature Actes {prefix!r} n'est pas reconnu"
 
 class NomenclatureActe(CustomFormat):
     @classmethod
@@ -66,15 +72,13 @@ class NomenclatureActe(CustomFormat):
         if cls.is_valid(value):
             return (True, None)
         if "/" not in value:
-            details.append("le signe oblique « / » est manquant")
+            details.append(MISSING_SLASH)
         else:
             if norm_str(nomenc.rstrip()) in nomenclatures or "/ " in value:
-                details.append(
-                    "le signe oblique ne doit pas être précédé ni suivi d'espace"
-                )
+                details.append(EXTRA_SPACE)
             if norm_str(nomenc.strip()) not in nomenclatures:
                 details.append(
-                    f"le préfixe de nomenclature Actes {nomenc.strip()!r} n'est pas reconnu"
+                    INVALID_PREFIX(nomenc.strip())
                 )
         return (False, details)
 

@@ -1,4 +1,4 @@
-from frformat.nomenclature_acte_format import AUTHORIZED_VALUES, NomenclatureActe
+from frformat.nomenclature_acte_format import AUTHORIZED_VALUES, EXTRA_SPACE, INVALID_PREFIX, NomenclatureActe, MISSING_SLASH
 
 
 def test_nomenclature_acte_value():
@@ -20,20 +20,20 @@ def test_is_valid_with_details():
         },
         {
             "value": f"{valid_prefix} blabla",
-            "expected": (False, ["le signe oblique « / » est manquant"]),
+            "expected": (False, [MISSING_SLASH]),
         },
         {
             "value": f"{valid_prefix} /blabla",
             "expected": (
                 False,
-                ["le signe oblique ne doit pas être précédé ni suivi d'espace"],
+                [EXTRA_SPACE],
             ),
         },
         {
             "value": f"{valid_prefix}/ blabla",
             "expected": (
                 False,
-                ["le signe oblique ne doit pas être précédé ni suivi d'espace"],
+                [EXTRA_SPACE],
             ),
         },
         {
@@ -41,8 +41,8 @@ def test_is_valid_with_details():
             "expected": (
                 False,
                 [
-                    "le signe oblique ne doit pas être précédé ni suivi d'espace",
-                    f"le préfixe de nomenclature Actes '{invalid_prefix}' n'est pas reconnu",
+                    EXTRA_SPACE,
+                    INVALID_PREFIX(invalid_prefix)                
                 ],
             ),
         },
@@ -51,7 +51,7 @@ def test_is_valid_with_details():
             "expected": (
                 False,
                 [
-                    f"le préfixe de nomenclature Actes '{invalid_prefix}' n'est pas reconnu"
+                    INVALID_PREFIX(invalid_prefix)
                 ],
             ),
         },
