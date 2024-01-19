@@ -1,5 +1,5 @@
 import unicodedata
-from typing import Optional
+from typing import Literal, Tuple, Union
 
 from . import CustomFormat
 
@@ -54,24 +54,26 @@ class NomenclatureActe(CustomFormat):
             return False
 
     @classmethod
-    def _format(cls, value: str) -> str:
-        return value
-
-    @classmethod
-    def detail_unvalid_value(cls, value: str) -> Optional[str]:
-        """Return a note which details why the value is not valid."""
+    def is_valid_with_details(
+        cls, value: str
+    ) -> Union[Tuple[Literal[True], None], Tuple[Literal[False], str]]:
+        """Check the validity, and return details if value is invalid"""
         nomenc = value[: value.find("/")]
         nomenclatures = set(map(norm_str, AUTHORIZED_VALUES))
 
         if cls.is_valid(value):
-            return
+            return (True, None)
         elif "/" not in value:
             note = "le signe oblique « / » est manquant"
         elif norm_str(nomenc.rstrip()) in nomenclatures or "/ " in value:
-            note = "Le signe oblique ne doit pas être précédé ni suivi d'espace"
+            note = "le signe oblique ne doit pas être précédé ni suivi d'espace"
         else:
             note = f"le préfixe de nomenclature Actes {nomenc!r} n'est pas reconnu"
-        return note
+        return (False, note)
+
+    @classmethod
+    def _format(cls, value: str) -> str:
+        return value
 
 
 def norm_str(s):
