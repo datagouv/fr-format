@@ -7,47 +7,41 @@ def test_is_valid_with_details():
     test_cases = [
         {
             "value": f"{valid_prefix}/blabla",
-            "expected": (True, None),
+            "expected_is_valid": True,
+            "expected_details": None,
         },
         {
             "value": f"{valid_prefix} blabla",
-            "expected": (False, [MISSING_SLASH]),
+            "expected_is_valid": False,
+            "expected_details": [MISSING_SLASH],
         },
         {
             "value": f"{valid_prefix} /blabla",
-            "expected": (
-                False,
-                [EXTRA_SPACE],
-            ),
+            "expected_is_valid": False,
+            "expected_details": [EXTRA_SPACE],
         },
         {
             "value": f"{valid_prefix}/ blabla",
-            "expected": (
-                False,
-                [EXTRA_SPACE],
-            ),
+            "expected_is_valid": False,
+            "expected_details": [EXTRA_SPACE],
         },
         {
             "value": f"{invalid_prefix}/ blabla",
-            "expected": (
-                False,
-                [
+            "expected_is_valid": False,
+            "expected_details": [
                     EXTRA_SPACE,
                     INVALID_PREFIX(invalid_prefix)                
                 ],
-            ),
         },
         {
             "value": f"{invalid_prefix}/blabla",
-            "expected": (
-                False,
-                [
+            "expected_is_valid": False,
+            "expected_details": [
                     INVALID_PREFIX(invalid_prefix)
                 ],
-            ),
         },
     ]
 
     for tc in test_cases:
-        assert NomenclatureActe.is_valid(tc["value"]) == tc["expected"][0] 
-        assert NomenclatureActe.is_valid_with_details(tc["value"]) == tc["expected"]
+        assert NomenclatureActe.is_valid(tc["value"]) == tc["expected_is_valid"] 
+        assert NomenclatureActe.is_valid_with_details(tc["value"]) == (tc["expected_is_valid"], tc["expected_details"])
