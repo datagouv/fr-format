@@ -1,0 +1,5 @@
+# Build artifacts
+dist
+
+# Cache
+__pycache__

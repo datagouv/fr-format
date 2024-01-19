@@ -5,6 +5,9 @@ description = ""
 authors = ["Pierre Camilleri <22995923+pierrecamilleri@users.noreply.github.com>"]
 license = "AGPL-3.0"
 readme = "README.md"
+packages = [
+  {include = "fr-format", from = "src"}
+]
 
 [tool.poetry.dependencies]
 python = "^3.9"
