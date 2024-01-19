@@ -1,7 +1,7 @@
 import unicodedata
 from typing import Optional
 
-from .. import CustomFormat
+from . import CustomFormat
 
 AUTHORIZED_VALUES = [
     "Commande publique",
@@ -17,13 +17,12 @@ AUTHORIZED_VALUES = [
 
 
 class NomenclatureActe(CustomFormat):
-    
     @classmethod
-    def name() -> str:
+    def name(cls) -> str:
         return "Nomenclature des actes"
 
     @classmethod
-    def description() -> str:
+    def description(cls) -> str:
         return """
         Document de référence dans les spécifications SCDL :
         http://www.moselle.gouv.fr/content/download/1107/7994/file/nomenclature.pdf
@@ -39,7 +38,7 @@ class NomenclatureActe(CustomFormat):
         Finances locales
         Domaines de compétences par thèmes
         Autres domaines de compétences
-        
+
         La validation devra accepter minuscules et majuscules, accents et sans accents ...
     """
 

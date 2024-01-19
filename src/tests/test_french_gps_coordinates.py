@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from validata_core.custom_formats import FrenchGPSCoordinates
+from frformat import FrenchGPSCoordinates
 
 
 def test_french_gps_coordinates__is_valid():

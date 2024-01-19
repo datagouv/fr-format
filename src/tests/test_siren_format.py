@@ -1,4 +1,4 @@
-from validata_core.custom_formats import Siren
+from frformat import Siren
 
 
 def test_siren_format():
