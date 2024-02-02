@@ -1,4 +1,10 @@
-from frformat.nomenclature_acte_format import AUTHORIZED_VALUES, EXTRA_SPACE, INVALID_PREFIX, NomenclatureActe, MISSING_SLASH
+from frformat.nomenclature_acte_format import (
+    AUTHORIZED_VALUES,
+    EXTRA_SPACE,
+    INVALID_PREFIX,
+    MISSING_SLASH,
+    NomenclatureActe,
+)
 
 
 def test_is_valid_with_details():
@@ -28,20 +34,18 @@ def test_is_valid_with_details():
         {
             "value": f"{invalid_prefix}/ blabla",
             "expected_is_valid": False,
-            "expected_details": [
-                    EXTRA_SPACE,
-                    INVALID_PREFIX(invalid_prefix)                
-                ],
+            "expected_details": [EXTRA_SPACE, INVALID_PREFIX(invalid_prefix)],
         },
         {
             "value": f"{invalid_prefix}/blabla",
             "expected_is_valid": False,
-            "expected_details": [
-                    INVALID_PREFIX(invalid_prefix)
-                ],
+            "expected_details": [INVALID_PREFIX(invalid_prefix)],
         },
     ]
 
     for tc in test_cases:
-        assert NomenclatureActe.is_valid(tc["value"]) == tc["expected_is_valid"] 
-        assert NomenclatureActe.is_valid_with_details(tc["value"]) == (tc["expected_is_valid"], tc["expected_details"])
+        assert NomenclatureActe.is_valid(tc["value"]) == tc["expected_is_valid"]
+        assert NomenclatureActe.is_valid_with_details(tc["value"]) == (
+            tc["expected_is_valid"],
+            tc["expected_details"],
+        )
