@@ -57,11 +57,8 @@ class NomenclatureActe(CustomFormat):
     def is_valid(cls, value: str) -> bool:
         nomenc = value[: value.find("/")]
 
-        # Nomenclature reconnue et pas d'espace avant ni après l'oblique
-        if "/ " not in value and nomenc in AUTHORIZED_VALUES:
-            return True
-        else:
-            return False
+        # Nomenclature reconnue et pas d'espace après l'oblique
+        return "/ " not in value and nomenc in AUTHORIZED_VALUES
 
     @classmethod
     def is_valid_with_details(
