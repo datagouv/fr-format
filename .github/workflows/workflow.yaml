@@ -1,0 +1,32 @@
+name: Pull Request Review & Merge
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, ready_for_review]
+  push:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
+      - name: install poetry
+        run: pip install poetry==1.6
+
+      - name: install dependencies
+        run: poetry install --with linting
+
+      - name: linting
+        run: make lint
