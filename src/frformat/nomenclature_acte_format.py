@@ -3,17 +3,19 @@ from typing import List, Literal, Tuple, Union
 
 from . import CustomFormat
 
-AUTHORIZED_VALUES = [
-    "Commande publique",
-    "Urbanisme",
-    "Domaine et patrimoine",
-    "Fonction publique",
-    "Institutions et vie politique",
-    "Libertés publiques et pouvoirs de police",
-    "Finances locales",
-    "Domaines de compétences par thèmes",
-    "Autres domaines de compétences",
-]
+AUTHORIZED_VALUES = set(
+    [
+        "Commande publique",
+        "Urbanisme",
+        "Domaine et patrimoine",
+        "Fonction publique",
+        "Institutions et vie politique",
+        "Libertés publiques et pouvoirs de police",
+        "Finances locales",
+        "Domaines de compétences par thèmes",
+        "Autres domaines de compétences",
+    ]
+)
 
 MISSING_SLASH = "le signe oblique « / » est manquant"
 
@@ -53,10 +55,10 @@ class NomenclatureActe(CustomFormat):
     @classmethod
     def is_valid(cls, value: str) -> bool:
         nomenc = value[: value.find("/")]
-        nomenclatures = set(map(norm_str, AUTHORIZED_VALUES))
+        nomenclatures = AUTHORIZED_VALUES
 
         # Nomenclature reconnue et pas d'espace avant ni après l'oblique
-        if "/ " not in value and norm_str(nomenc) in nomenclatures:
+        if "/ " not in value and nomenc in nomenclatures:
             return True
         else:
             return False
@@ -67,7 +69,7 @@ class NomenclatureActe(CustomFormat):
     ) -> Union[Tuple[Literal[True], None], Tuple[Literal[False], List[str]]]:
         """Check the validity, and return details if value is invalid"""
         nomenc = value[: value.find("/")]
-        nomenclatures = set(map(norm_str, AUTHORIZED_VALUES))
+        nomenclatures = AUTHORIZED_VALUES
 
         details = []
 
@@ -76,9 +78,9 @@ class NomenclatureActe(CustomFormat):
         if "/" not in value:
             details.append(MISSING_SLASH)
         else:
-            if norm_str(nomenc.rstrip()) in nomenclatures or "/ " in value:
+            if nomenc.rstrip() in nomenclatures or "/ " in value:
                 details.append(EXTRA_SPACE)
-            if norm_str(nomenc.strip()) not in nomenclatures:
+            if nomenc.strip() not in nomenclatures:
                 details.append(INVALID_PREFIX(nomenc.strip()))
         return (False, details)
 
@@ -87,10 +89,10 @@ class NomenclatureActe(CustomFormat):
         return value
 
 
-def norm_str(s):
-    """Normalize string, i.e. removing accents and turning into lowercases"""
-    return "".join(
-        c
-        for c in unicodedata.normalize("NFD", s.lower())
-        if unicodedata.category(c) != "Mn"
-    )
+# def norm_str(s):
+#     """Normalize string, i.e. removing accents and turning into lowercases"""
+#     return "".join(
+#         c
+#         for c in unicodedata.normalize("NFD", s.lower())
+#         if unicodedata.category(c) != "Mn"
+#     )
