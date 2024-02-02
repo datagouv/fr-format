@@ -56,10 +56,9 @@ class NomenclatureActe(CustomFormat):
     @classmethod
     def is_valid(cls, value: str) -> bool:
         nomenc = value[: value.find("/")]
-        nomenclatures = AUTHORIZED_VALUES
 
         # Nomenclature reconnue et pas d'espace avant ni après l'oblique
-        if "/ " not in value and nomenc in nomenclatures:
+        if "/ " not in value and nomenc in AUTHORIZED_VALUES:
             return True
         else:
             return False
@@ -70,19 +69,22 @@ class NomenclatureActe(CustomFormat):
     ) -> Union[ValidWithoutDetails, InvalidWithDetails]:
         """Check the validity, and return details if value is invalid"""
         nomenc = value[: value.find("/")]
-        nomenclatures = AUTHORIZED_VALUES
 
         details = []
 
         if cls.is_valid(value):
             return (True, None)
+
         if "/" not in value:
             details.append(MISSING_SLASH)
+
         else:
-            if nomenc.rstrip() in nomenclatures or "/ " in value:
+            if nomenc.rstrip() in AUTHORIZED_VALUES or "/ " in value:
                 details.append(EXTRA_SPACE)
-            if nomenc.strip() not in nomenclatures:
+
+            if nomenc.strip() not in AUTHORIZED_VALUES:
                 details.append(INVALID_PREFIX(nomenc.strip()))
+
         return (False, details)
 
     @classmethod
