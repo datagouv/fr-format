@@ -23,6 +23,10 @@ def INVALID_PREFIX(prefix: str) -> str:
     return f"le préfixe de nomenclature Actes {prefix!r} n'est pas reconnu"
 
 
+ValidWithoutDetails = Tuple[Literal[True], None]
+InvalidWithDetails = Tuple[Literal[False], List[str]]
+
+
 class NomenclatureActe(CustomFormat):
     @classmethod
     def name(cls) -> str:
@@ -63,7 +67,7 @@ class NomenclatureActe(CustomFormat):
     @classmethod
     def is_valid_with_details(
         cls, value: str
-    ) -> Union[Tuple[Literal[True], None], Tuple[Literal[False], List[str]]]:
+    ) -> Union[ValidWithoutDetails, InvalidWithDetails]:
         """Check the validity, and return details if value is invalid"""
         nomenc = value[: value.find("/")]
         nomenclatures = AUTHORIZED_VALUES
