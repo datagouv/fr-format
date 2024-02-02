@@ -8,7 +8,7 @@ from frformat.nomenclature_acte_format import (
 
 
 def test_is_valid_with_details():
-    valid_prefix = AUTHORIZED_VALUES[0]
+    valid_prefix = next(iter(AUTHORIZED_VALUES))
     invalid_prefix = "invalid"
     test_cases = [
         {

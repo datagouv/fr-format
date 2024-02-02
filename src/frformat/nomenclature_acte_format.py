@@ -2,19 +2,17 @@ from typing import List, Literal, Tuple, Union
 
 from . import CustomFormat
 
-AUTHORIZED_VALUES = set(
-    [
-        "Commande publique",
-        "Urbanisme",
-        "Domaine et patrimoine",
-        "Fonction publique",
-        "Institutions et vie politique",
-        "Libertés publiques et pouvoirs de police",
-        "Finances locales",
-        "Domaines de compétences par thèmes",
-        "Autres domaines de compétences",
-    ]
-)
+AUTHORIZED_VALUES = {
+    "Commande publique",
+    "Urbanisme",
+    "Domaine et patrimoine",
+    "Fonction publique",
+    "Institutions et vie politique",
+    "Libertés publiques et pouvoirs de police",
+    "Finances locales",
+    "Domaines de compétences par thèmes",
+    "Autres domaines de compétences",
+}
 
 MISSING_SLASH = "le signe oblique « / » est manquant"
 
