@@ -1,4 +1,3 @@
-import unicodedata
 from typing import List, Literal, Tuple, Union
 
 from . import CustomFormat
@@ -87,12 +86,3 @@ class NomenclatureActe(CustomFormat):
     @classmethod
     def _format(cls, value: str) -> str:
         return value
-
-
-# def norm_str(s):
-#     """Normalize string, i.e. removing accents and turning into lowercases"""
-#     return "".join(
-#         c
-#         for c in unicodedata.normalize("NFD", s.lower())
-#         if unicodedata.category(c) != "Mn"
-#     )
