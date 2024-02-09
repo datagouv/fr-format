@@ -37,3 +37,9 @@ jobs:
 
       - name: Publish ${{ env.TAG_VERSION }}
         run: poetry publish
+
+      - name: Commit pyproject.toml version bump
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          message: Pyproject.toml version Bump (${{ TAG_VERSION }})
