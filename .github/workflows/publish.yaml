@@ -60,5 +60,5 @@ jobs:
           poetry config pypi-token.pypi ${{ env.TOKEN }}
           poetry config http-basic.pypi multi_coop ${{ env.PASSWORD }}
 
-      - name: Publish ${{ TAG_VERSION }}
+      - name: Publish ${{ env.TAG_VERSION }}
         run: poetry publish
