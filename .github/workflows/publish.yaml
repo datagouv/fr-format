@@ -42,4 +42,4 @@ jobs:
         uses: actions-js/push@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          message: Pyproject.toml version Bump (${{ TAG_VERSION }})
+          message: Pyproject.toml version Bump (${{ env.TAG_VERSION }})
