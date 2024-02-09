@@ -6,12 +6,14 @@ on:
     - 'v[0-9]+.[0-9]+.[0-9]+'
     branches:  [main]
 
+env:
+  TOKEN: ${{ secrets.PYPI_TOKEN }}
+  PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+  TAG_VERSION: ${{ github.ref_name }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    env:
-      TAG_VERSION: ${{ github.ref_name }}
 
     steps:
       - name: Checkout
@@ -37,10 +39,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
 
-    env:
-      TOKEN: ${{ secrets.PYPI_TOKEN }}
-      PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-      VERSION: ${{ github.ref_name }}
+    needs: build
 
     steps:
       - name: Checkout
@@ -58,5 +57,5 @@ jobs:
           poetry config pypi-token.pypi ${{ TOKEN }}
           poetry config http-basic.pypi multi_coop ${{ PASSWORD }}
 
-      - name: Publish ${{ VERSION }}
+      - name: Publish ${{ TAG_VERSION }}
         run: poetry publish
