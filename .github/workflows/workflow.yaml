@@ -30,31 +30,57 @@ jobs:
 
       - name: linting
         run: make lint
-  
+
   build:
-    
+    on:
+      push:
+        tags:
+        - 'v[0-9]+.[0-9]+.[0-9]+'
+    runs-on: ubuntu-latest
+
+    env:
+      VERSION: ${{ github.ref_name }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
+      - name: Build package
+        run: poetry version ${{ VERSION }} && poetry build
+
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+          retention-days: 1
+
+
   publish:
+    runs-on: ubuntu-latest
 
+    env:
+      TOKEN: ${{ secrets.PYPI_TOKEN }}
+      PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+      VERSION: ${{ github.ref_name }}
 
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-Publish on PyPI:
-  stage: deploy-validata-table-package
-  # To use private auto-hosted runner
-  tags:
-    - validata-table
-  image: python:3.9-bullseye
-  only:
-    - tags
-  before_script:
-    - apt update -y && apt install -y rustc cargo # for "opening-hours" extension
-    - pip install poetry
-    - poetry build
-    - pip install twine
-  variables:
-    TWINE_USERNAME: __token__
-    # TWINE_PASSWORD: # Secret variable, see project CI settings.
-  script:
-    - twine upload dist/*
-  environment:
-    name: PyPI
-    url: https://pypi.org/project/validata-table/$CI_COMMIT_TAG
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
+      - name: Download archive
+        uses: actions/download-artifact@v4
+
+      - name: Config repository
+        run: poetry config pypi-token.pypi ${{ TOKEN }} && poetry config http-basic.pypi multi_coop ${{ PASSWORD }}
+
+      - name: Publish ${{ VERSION }}
+        run: poetry publish
