@@ -33,7 +33,7 @@ jobs:
       - name: Config repository
         run: |
           poetry config pypi-token.pypi ${{ env.TOKEN }}
-          poetry config http-basic.pypi multi_coop ${{ env.PASSWORD }}
+          poetry config http-basic.pypi multi_coop "${{ env.PASSWORD }}"
 
       - name: Publish ${{ env.TAG_VERSION }}
         run: poetry publish
