@@ -15,6 +15,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      VERSION: ${{ env.TAG_VERSION }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -25,7 +28,7 @@ jobs:
 
       - name: Build package
         run: |
-          poetry version ${TAG_VERSION#v}
+          poetry version ${VERSION#v}
           poetry build
 
       - name: Archive production artifacts
@@ -54,8 +57,8 @@ jobs:
 
       - name: Config repository
         run: |
-          poetry config pypi-token.pypi ${{ TOKEN }}
-          poetry config http-basic.pypi multi_coop ${{ PASSWORD }}
+          poetry config pypi-token.pypi ${{ env.TOKEN }}
+          poetry config http-basic.pypi multi_coop ${{ env.PASSWORD }}
 
       - name: Publish ${{ TAG_VERSION }}
         run: poetry publish
