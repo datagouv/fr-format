@@ -15,9 +15,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    env:
-      VERSION: ${{ env.TAG_VERSION }}
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -28,7 +25,7 @@ jobs:
 
       - name: Build package
         run: |
-          poetry version ${VERSION#v}
+          poetry version ${TAG_VERSION#v}
           poetry build
 
       - name: Archive production artifacts
