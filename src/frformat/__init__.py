@@ -1,5 +1,6 @@
 # flake8: noqa
 from .custom_format import *
+from .departement import Departement as Departement
 from .french_gps_coordinates import FrenchGPSCoordinates as FrenchGPSCoordinates
 from .insee_city_code import InseeCityCode as InseeCityCode
 from .nomenclature_acte_format import NomenclatureActe as NomenclatureActe
