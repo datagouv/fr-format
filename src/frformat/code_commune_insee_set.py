@@ -1,4 +1,4 @@
-INSEE_CITY_CODE_SET = {
+CODE_COMMUNE_INSEE_SET = {
     "01001",
     "01002",
     "01004",

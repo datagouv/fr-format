@@ -1,7 +1,7 @@
 from shapely.geometry import Point, shape
 
 
-class FrenchGPSCoordinates:
+class CoordonneesGPSFrancaises:
     @classmethod
     def name(cls) -> str:
         return "Coordonnées GPS françaises"

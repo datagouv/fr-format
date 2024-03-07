@@ -1,4 +1,4 @@
-POSTAL_CODE_SET = {
+CODE_POSTAL_SET = {
     "63120",
     "11240",
     "72260",

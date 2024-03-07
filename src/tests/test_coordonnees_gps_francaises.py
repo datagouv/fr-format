@@ -1,9 +1,9 @@
 from dataclasses import dataclass
 
-from frformat import FrenchGPSCoordinates
+from frformat import CoordonneesGPSFrancaises
 
 
-def test_french_gps_coordinates__is_valid():
+def test_coordonnees_gps_francaises__is_valid():
     @dataclass
     class TestCase:
         name: str
@@ -25,5 +25,5 @@ def test_french_gps_coordinates__is_valid():
 
     for tc in test_cases:
         assert (
-            FrenchGPSCoordinates.is_valid(*tc.coordinates) == tc.is_in_france
+            CoordonneesGPSFrancaises.is_valid(*tc.coordinates) == tc.is_in_france
         ), tc.name

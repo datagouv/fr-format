@@ -1,9 +1,9 @@
-from frformat.insee_city_code_set import INSEE_CITY_CODE_SET
+from frformat.code_commune_insee_set import CODE_COMMUNE_INSEE_SET
 
 from . import CustomFormat
 
 
-class InseeCityCode(CustomFormat):
+class CodeCommuneInsee(CustomFormat):
     @classmethod
     def name(cls) -> str:
         return "Code commune INSEE"
@@ -14,4 +14,4 @@ class InseeCityCode(CustomFormat):
 
     @classmethod
     def is_valid(cls, value: str) -> bool:
-        return value in INSEE_CITY_CODE_SET
+        return value in CODE_COMMUNE_INSEE_SET

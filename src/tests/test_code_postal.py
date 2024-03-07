@@ -1,10 +1,10 @@
-from frformat import PostalCode
+from frformat import CodePostal
 
 
-def test_postal_code():
+def test_code_postal():
     value = "05560"
-    assert PostalCode.is_valid(value)
-    assert PostalCode.format(value) == value
+    assert CodePostal.is_valid(value)
+    assert CodePostal.format(value) == value
 
     value = "77777"
-    assert not PostalCode.is_valid(value)
+    assert not CodePostal.is_valid(value)
