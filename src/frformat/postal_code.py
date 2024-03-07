@@ -1,4 +1,4 @@
-from frformat.code_postal_set import CODE_POSTAL_SET
+from frformat.postal_code_set import POSTAL_CODE_SET
 
 from . import CustomFormat
 
@@ -14,7 +14,7 @@ class PostalCode(CustomFormat):
 
     @classmethod
     def is_valid(cls, value: str) -> bool:
-        return value in CODE_POSTAL_SET
+        return value in POSTAL_CODE_SET
 
     @classmethod
     def _format(cls, value: str) -> str:
