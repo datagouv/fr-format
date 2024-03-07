@@ -15,10 +15,6 @@ class FrenchGPSCoordinates:
     def is_valid(cls, lon: float, lat: float) -> bool:
         return is_point_in_france((lon, lat))
 
-    @classmethod
-    def _format(cls, value: str) -> str:
-        return value
-
 
 def is_point_in_france(coordonnees_xy: tuple[float, float]) -> bool:
     """Returns True if the point is in metropolitan France, Guadeloupe, Martinique,

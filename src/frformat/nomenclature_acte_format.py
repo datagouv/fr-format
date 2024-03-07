@@ -85,10 +85,6 @@ class NomenclatureActe(CustomFormat):
 
         return (False, details)
 
-    @classmethod
-    def _format(cls, value: str) -> str:
-        return value
-
     @staticmethod
     def _nomenclature(value: str) -> str:
         return value[: value.find("/")]

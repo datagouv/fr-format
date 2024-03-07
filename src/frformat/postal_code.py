@@ -15,7 +15,3 @@ class PostalCode(CustomFormat):
     @classmethod
     def is_valid(cls, value: str) -> bool:
         return value in POSTAL_CODE_SET
-
-    @classmethod
-    def _format(cls, value: str) -> str:
-        return value
