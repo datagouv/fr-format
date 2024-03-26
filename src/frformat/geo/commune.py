@@ -1,21 +1,12 @@
-from frformat import CustomFormat
-from frformat.common import normalize_text
+from frformat import enum_format
 from frformat.geo.commune_set import COMMUNE_SET
 
+name = "Nom de commune"
+description = (
+    "Vérifie que le nom correspond à un nom de commune française "
+    "(ne vérifie pas l'accentuation, la casse, la ponctuation)"
+)
 
-class Commune(CustomFormat):
-    @classmethod
-    def name(cls) -> str:
-        return "Nom de commune"
+enum = COMMUNE_SET
 
-    @classmethod
-    def description(cls) -> str:
-        return (
-            "Vérifie que le nom correspond à un nom de commune française "
-            "(ne vérifie pas l'accentuation, la casse, la ponctuation)"
-        )
-
-    @classmethod
-    def is_valid(cls, value: str) -> bool:
-        normalized_value = normalize_text(value)
-        return normalized_value in COMMUNE_SET
+Commune = enum_format.new(name, description, enum)
