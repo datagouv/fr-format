@@ -6,7 +6,8 @@ from .geo.code_postal import CodePostal as CodePostal
 from .geo.coordonnees_gps_francaises import (
     CoordonneesGPSFrancaises as CoordonneesGPSFrancaises,
 )
-from .geo.nomenclature_acte_format import NomenclatureActe as NomenclatureActe
 from .geo.numero_departement import NumeroDepartement as NumeroDepartement
+from .geo.region import Region as Region
+from .nomenclature_acte_format import NomenclatureActe as NomenclatureActe
 from .siren import Siren as Siren
 from .siret import Siret as Siret
