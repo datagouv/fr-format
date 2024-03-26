@@ -1,6 +1,5 @@
-from frformat.code_postal_set import CODE_POSTAL_SET
-
-from . import CustomFormat
+from frformat import CustomFormat
+from frformat.geo.code_postal_set import CODE_POSTAL_SET
 
 
 class CodePostal(CustomFormat):

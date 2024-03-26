@@ -1,6 +1,5 @@
-from frformat.code_commune_insee_set import CODE_COMMUNE_INSEE_SET
-
-from . import CustomFormat
+from frformat import CustomFormat
+from frformat.geo.code_commune_insee_set import CODE_COMMUNE_INSEE_SET
 
 
 class CodeCommuneInsee(CustomFormat):

@@ -1,4 +1,4 @@
-from . import CustomFormat
+from frformat import CustomFormat
 
 DEPARTEMENTS_SET = (
     {str(x).zfill(2) for x in range(1, 20)}
