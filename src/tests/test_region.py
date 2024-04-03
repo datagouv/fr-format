@@ -1,30 +1,48 @@
+from typing import List, TypedDict
+
 from frformat import Region
+from tests.testing import validation_test_helper_factory
+
+aux_test_region = validation_test_helper_factory(Region)
 
 
-def test_strict_region():
-    valid_test_cases = ["Centre-Val de Loire", "La Réunion", "Corse"]
-    for tc in valid_test_cases:
-        assert Region.is_valid(tc)
+def test_region():
+    TestCase = TypedDict(
+        "TestCase",
+        {"values": List[str], "isStrictValidation": bool, "expectValid": bool},
+    )
 
-    invalid_test_cases = ["Centre Val de Loire", "La Reunion", "corse"]
-    for tc in invalid_test_cases:
-        assert not Region.is_valid(tc)
-
-
-def test_lenient_region():
-    valid_test_cases = [
-        "Centre-Val de Loire",
-        "La Réunion",
-        "Corse",
-        "Centre Val de Loire",
-        "La Reunion",
-        "corse",
-        "bfc",
-        "aura",
+    test_cases: List[TestCase] = [
+        {
+            "values": ["Centre-Val de Loire", "La Réunion", "Corse"],
+            "isStrictValidation": True,
+            "expectValid": True,
+        },
+        {
+            "values": ["Centre Val de Loire", "La Reunion", "corse"],
+            "isStrictValidation": True,
+            "expectValid": False,
+        },
+        {
+            "values": [
+                "Centre-Val de Loire",
+                "La Réunion",
+                "Corse",
+                "Centre Val de Loire",
+                "La Reunion",
+                "corse",
+                "bfc",
+                "aura",
+            ],
+            "isStrictValidation": False,
+            "expectValid": True,
+        },
+        {
+            "values": ["Haute-Vienne", "Val-de-Marne"],
+            "isStrictValidation": False,
+            "expectValid": False,
+        },
     ]
-    for tc in valid_test_cases:
-        assert Region.is_valid(tc, strict=False)
 
-    invalid_test_cases = ["Haute-Vienne", "Val-de-Marne"]
-    for tc in invalid_test_cases:
-        assert not Region.is_valid(tc, strict=False)
+    for tc in test_cases:
+        aux_test_region(tc["values"], tc["isStrictValidation"], tc["expectValid"])
