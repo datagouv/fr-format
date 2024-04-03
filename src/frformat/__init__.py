@@ -7,6 +7,7 @@ from .geo.commune import Commune as Commune
 from .geo.coordonnees_gps_francaises import (
     CoordonneesGPSFrancaises as CoordonneesGPSFrancaises,
 )
+from .geo.departement import Departement as Departement
 from .geo.numero_departement import NumeroDepartement as NumeroDepartement
 from .geo.region import Region as Region
 from .nomenclature_acte_format import NomenclatureActe as NomenclatureActe

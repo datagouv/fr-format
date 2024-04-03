@@ -22,3 +22,7 @@ flake8:
 .PHONY: pyright
 pyright:
 	@ poetry run pyright ./src
+
+.PHONY: test
+test: ## Runs all tests
+	@ poetry run pytest
