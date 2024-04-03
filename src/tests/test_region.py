@@ -27,4 +27,4 @@ def test_lenient_region():
 
     invalid_test_cases = ["Haute-Vienne", "Val-de-Marne"]
     for tc in invalid_test_cases:
-        assert not Region.is_valid(tc)
+        assert not Region.is_valid(tc, strict=False)

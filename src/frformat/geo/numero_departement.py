@@ -1,4 +1,4 @@
-from frformat import CustomFormat
+from frformat import enum_format
 
 DEPARTEMENTS_SET = (
     {str(x).zfill(2) for x in range(1, 20)}
@@ -7,17 +7,7 @@ DEPARTEMENTS_SET = (
     | {str(x) for x in range(971, 979)}
 )
 
+name = "Numéro du département"
+description = "Vérifie que le numéro de département correspond bien à un numéro de département français"
 
-class NumeroDepartement(CustomFormat):
-    @classmethod
-    def name(cls) -> str:
-        return "Numéro du département"
-
-    @classmethod
-    def description(cls) -> str:
-        return "Vérifie que le numéro de département correspond bien à un numéro de département français \
-            Pour les départements de la Corse, les lettres doivent être en majuscule"
-
-    @classmethod
-    def is_valid(cls, value: str) -> bool:
-        return value in DEPARTEMENTS_SET
+NumeroDepartement = enum_format.new(name, description, DEPARTEMENTS_SET)
