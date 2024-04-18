@@ -9,6 +9,7 @@ from .geo.coordonnees_gps_francaises import (
 )
 from .geo.departement import Departement as Departement
 from .geo.numero_departement import NumeroDepartement as NumeroDepartement
+from .geo.pays import Pays as Pays
 from .geo.region import Region as Region
 from .nomenclature_acte_format import NomenclatureActe as NomenclatureActe
 from .siren import Siren as Siren
