@@ -1,6 +1,6 @@
 from typing import List, Literal, Tuple, Union
 
-from . import CustomFormat
+from frformat import CustomFormat
 
 AUTHORIZED_VALUES = {
     "Commande publique",
@@ -84,10 +84,6 @@ class NomenclatureActe(CustomFormat):
                 details.append(INVALID_PREFIX(nomenc.strip()))
 
         return (False, details)
-
-    @classmethod
-    def _format(cls, value: str) -> str:
-        return value
 
     @staticmethod
     def _nomenclature(value: str) -> str:

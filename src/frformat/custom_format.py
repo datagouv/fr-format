@@ -52,6 +52,6 @@ class CustomFormat(CustomFormatProtocol, WithMetadata, ABC):
         return cls._format(value)
 
     @classmethod
-    @abstractmethod
     def _format(cls, value: str) -> str:
-        ...
+        # Specify the default behaviour
+        return value
