@@ -1,21 +1,9 @@
-from frformat import CustomFormat
-from frformat.common import normalize_text
+from frformat import enum_format
 from frformat.geo.canton_set import CANTON_SET
 
+name = "Nom de canton"
+description = (
+    "Vérifie que le nom de canton est un canton ou pseudo-canton français valide"
+)
 
-class Canton(CustomFormat):
-    @classmethod
-    def name(cls) -> str:
-        return "Nom de canton"
-
-    @classmethod
-    def description(cls) -> str:
-        return (
-            "Vérifie les cantons françaises valides (code officiel géographique 2020) "
-            "(ne vérifie pas l'accentuation, la casse, la ponctuation)"
-        )
-
-    @classmethod
-    def is_valid(cls, value: str) -> bool:
-        normalized_value = normalize_text(value)
-        return normalized_value in CANTON_SET
+Canton = enum_format.new(name, description, CANTON_SET)

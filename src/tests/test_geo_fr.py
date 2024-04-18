@@ -1,4 +1,5 @@
 from frformat import (
+    Canton,
     CodeCommuneInsee,
     CodePostal,
     Commune,
@@ -36,6 +37,16 @@ def test_commune():
     commune_invalid = ["Costa del Sol"]
 
     _test_commune(commune_strict, commune_lenient, commune_invalid)
+
+
+def test_canton():
+    _test_canton = strict_lenient_test_helper_factory(Canton)
+
+    canton_strict = ["Saint-Pierre-1"]
+    canton_lenient = ["le tampon", "saint andre"]
+    canton_invalid = ["Neuchâtel"]
+
+    _test_canton(canton_strict, canton_lenient, canton_invalid)
 
 
 def test_departement():
