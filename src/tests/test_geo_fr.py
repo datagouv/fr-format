@@ -1,6 +1,7 @@
 from frformat import (
     Canton,
     CodeCommuneInsee,
+    CodeFantoir,
     CodePostal,
     Commune,
     Departement,
@@ -9,6 +10,16 @@ from frformat import (
     Region,
 )
 from tests.testing import strict_lenient_test_helper_factory
+
+
+def test_code_fantoire():
+    _test_fantoir = strict_lenient_test_helper_factory(CodeFantoir)
+
+    fantoir_strict = ["ZB03"]
+    fantoir_lenient = ["zb04"]
+    fantoir_invalid = ["AAA"]
+
+    _test_fantoir(fantoir_strict, fantoir_lenient, fantoir_invalid)
 
 
 def test_code_commune_insee():

@@ -1,16 +1,7 @@
-from frformat import CustomFormat
+from frformat import enum_format
 from frformat.geo.code_commune_insee_set import CODE_COMMUNE_INSEE_SET
 
+name = "Code commune INSEE"
+description = "Vérifie que le code commune correspond bien à un code commune INSEE"
 
-class CodeCommuneInsee(CustomFormat):
-    @classmethod
-    def name(cls) -> str:
-        return "Code commune INSEE"
-
-    @classmethod
-    def description(cls) -> str:
-        return "Vérifie que le code commune correspond bien à un code commune INSEE"
-
-    @classmethod
-    def is_valid(cls, value: str) -> bool:
-        return value in CODE_COMMUNE_INSEE_SET
+CodeCommuneInsee = enum_format.new(name, description, CODE_COMMUNE_INSEE_SET)
