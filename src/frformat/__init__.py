@@ -5,6 +5,7 @@ from .geo.canton import Canton as Canton
 from .geo.code_commune_insee import CodeCommuneInsee as CodeCommuneInsee
 from .geo.code_fantoir import CodeFantoir as CodeFantoir
 from .geo.code_postal import CodePostal as CodePostal
+from .geo.code_region import CodeRegion as CodeRegion
 from .geo.commune import Commune as Commune
 from .geo.coordonnees_gps_francaises import (
     CoordonneesGPSFrancaises as CoordonneesGPSFrancaises,

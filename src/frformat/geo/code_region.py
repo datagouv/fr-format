@@ -1,22 +1,4 @@
-from frformat import CustomFormat
-
-
-class CodeRegion(CustomFormat):
-    @classmethod
-    def name(cls) -> str:
-        return "Code région"
-
-    @classmethod
-    def description(cls) -> str:
-        return (
-            "Vérifie qu'il s'agit d'un code région selon le code officiel "
-            "géographique 2020"
-        )
-
-    @classmethod
-    def is_valid(cls, value: str) -> bool:
-        return value in CODE_REGION_SET
-
+from frformat import enum_format
 
 CODE_REGION_SET = {
     "01",
@@ -38,3 +20,10 @@ CODE_REGION_SET = {
     "93",
     "94",
 }
+
+name = "Code région"
+description = (
+    "Vérifie qu'il s'agit d'un code région selon le code officiel géographique 2024"
+)
+
+CodeRegion = enum_format.new(name, description, CODE_REGION_SET)
