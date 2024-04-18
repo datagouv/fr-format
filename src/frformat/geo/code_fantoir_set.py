@@ -26120,5 +26120,5 @@ CODE_FANTOIR_SET = {
     "ZB16",
     "ZB17",
     "ZB18",
-    "ZB19"
+    "ZB19",
 }
