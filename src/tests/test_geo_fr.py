@@ -2,6 +2,8 @@ from frformat import (
     Canton,
     CodeCommuneInsee,
     CodeFantoir,
+    CodePaysISO2,
+    CodePaysISO3,
     CodePostal,
     CodeRegion,
     Commune,
@@ -124,3 +126,21 @@ def test_pays():
     pays_invalid = ["L'Eldorado", "Zubrowska"]
 
     _test_pays(pays_strict, pays_lenient, pays_invalid)
+
+
+def test_code_pays():
+    _test_iso2 = strict_lenient_test_helper_factory(CodePaysISO2)
+
+    iso2_strict = ["FR", "JP"]
+    iso2_lenient = ["Fr", "jp"]
+    iso2_invalid = ["AA", "FRA"]
+
+    _test_iso2(iso2_strict, iso2_lenient, iso2_invalid)
+
+    _test_iso3 = strict_lenient_test_helper_factory(CodePaysISO3)
+
+    iso3_strict = ["FRA", "JPN"]
+    iso3_lenient = ["Fra", "jpn"]
+    iso3_invalid = ["AAA", "FR"]
+
+    _test_iso3(iso3_strict, iso3_lenient, iso3_invalid)

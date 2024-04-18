@@ -4,6 +4,8 @@ from .custom_format import *  # isort:skip
 from .geo.canton import Canton as Canton
 from .geo.code_commune_insee import CodeCommuneInsee as CodeCommuneInsee
 from .geo.code_fantoir import CodeFantoir as CodeFantoir
+from .geo.code_pays import CodePaysISO2 as CodePaysISO2
+from .geo.code_pays import CodePaysISO3 as CodePaysISO3
 from .geo.code_postal import CodePostal as CodePostal
 from .geo.code_region import CodeRegion as CodeRegion
 from .geo.commune import Commune as Commune
