@@ -10,11 +10,11 @@ description = "Vérifie les codes fantoirs valides"
 class CodeFantoir(CustomFormat):
     @classmethod
     def name(cls) -> str:
-        return "SIREN"
+        return name
 
     @classmethod
     def description(cls) -> str:
-        return "Check french SIREN number validity, but does not check if SIREN number exists."
+        return description
 
     @classmethod
     def is_valid(cls, value: str) -> bool:
