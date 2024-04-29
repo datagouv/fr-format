@@ -8,9 +8,11 @@ from frformat import (
     CodeRegion,
     Commune,
     Departement,
+    LatitudeL93,
     NumeroDepartement,
     Pays,
     Region,
+    
 )
 from tests.testing import (
     strict_lenient_test_helper_factory,
@@ -27,6 +29,12 @@ def test_code_fantoir():
     _test_fantoir(fantoir_valid, True)
     _test_fantoir(fantoir_invalid, False)
 
+def test_latitude_l93():
+    assert LatitudeL93.is_valid("6234048.2")
+    assert not LatitudeL93.is_valid("8368889")
+    assert not LatitudeL93.is_valid("3")
+    assert not LatitudeL93.is_valid("E607098")
+    assert not LatitudeL93.is_valid("7093465,334")
 
 def test_code_commune_insee():
     value = "01015"
