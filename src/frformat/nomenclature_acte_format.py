@@ -1,6 +1,6 @@
 from typing import List, Literal, Tuple, Union
 
-from frformat import CustomFormat
+from frformat import CustomStrFormat
 
 AUTHORIZED_VALUES = {
     "Commande publique",
@@ -27,7 +27,7 @@ ValidWithoutDetails = Tuple[Literal[True], None]
 InvalidWithDetails = Tuple[Literal[False], List[str]]
 
 
-class NomenclatureActe(CustomFormat):
+class NomenclatureActe(CustomStrFormat):
     @classmethod
     def name(cls) -> str:
         return "Nomenclature des actes"

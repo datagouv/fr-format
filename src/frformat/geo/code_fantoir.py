@@ -1,13 +1,13 @@
 import re
 
-from frformat import CustomFormat
+from frformat import CustomStrFormat
 from frformat.geo.code_fantoir_set import PARTIAL_CODE_FANTOIR_SET
 
 name = "Code fantoir"
 description = "Vérifie les codes fantoirs valides"
 
 
-class CodeFantoir(CustomFormat):
+class CodeFantoir(CustomStrFormat):
     @classmethod
     def name(cls) -> str:
         return name

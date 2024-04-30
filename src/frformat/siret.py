@@ -1,9 +1,9 @@
 import stdnum.fr.siret
 
-from . import CustomFormat
+from . import CustomStrFormat
 
 
-class Siret(CustomFormat):
+class Siret(CustomStrFormat):
     @classmethod
     def name(cls) -> str:
         return "SIRET"

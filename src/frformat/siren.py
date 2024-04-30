@@ -1,9 +1,9 @@
 import stdnum.fr.siren
 
-from . import CustomFormat
+from . import CustomStrFormat
 
 
-class Siren(CustomFormat):
+class Siren(CustomStrFormat):
     @classmethod
     def name(cls) -> str:
         return "SIREN"

@@ -1,6 +1,6 @@
 from typing import Optional, Set
 
-from frformat import CustomFormat
+from frformat import CustomStrFormat
 from frformat.common import normalize_text
 
 
@@ -13,7 +13,7 @@ def new(
     if not lenient_enum:
         lenient_enum = {normalize_text(e) for e in strict_enum}
 
-    class EnumFormat(CustomFormat):
+    class EnumFormat(CustomStrFormat):
         """Checks if a value is in a given list
 
         May check with or without string normalization with the "strict"
