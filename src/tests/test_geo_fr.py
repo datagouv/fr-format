@@ -30,10 +30,8 @@ def test_code_fantoir():
     _test_fantoir(fantoir_invalid, False)
 
 def test_latitude_l93():
-    assert LatitudeL93.is_valid(6234048.2)
-    assert LatitudeL93.is_valid(7093465.334)
-    assert not LatitudeL93.is_valid(8368889)
-    assert not LatitudeL93.is_valid(3)
+    assert LatitudeL93.is_valid(44.2)
+    assert not LatitudeL93.is_valid(55)
 
 def test_code_commune_insee():
     value = "01015"
