@@ -31,6 +31,8 @@ def test_code_fantoir():
 
 def test_latitude_l93():
     assert LatitudeL93.is_valid(44.2)
+    #À vérifier 
+    assert LatitudeL93.is_valid(42)
     assert not LatitudeL93.is_valid(55)
 
 def test_code_commune_insee():

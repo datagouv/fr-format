@@ -15,5 +15,9 @@ class LatitudeL93(CustomFloatFormat):
 
     @classmethod
     def is_valid(cls, value: float) -> bool : 
-        '''Renvoie True si val en degrés peut etre une latitude en Lambert 93'''
+        '''Renvoie True si value en degrés peut etre une latitude en Lambert 93'''
         return value >= 41 and value <= 51.4
+    
+    @classmethod
+    def _format(cls, value: float) -> str:
+        return f"{value}°"
