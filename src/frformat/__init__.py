@@ -9,11 +9,11 @@ from .geo.code_pays import CodePaysISO3 as CodePaysISO3
 from .geo.code_postal import CodePostal as CodePostal
 from .geo.code_region import CodeRegion as CodeRegion
 from .geo.commune import Commune as Commune
-from .geo.latitude_l93 import LatitudeL93 as LatitudeL93 
 from .geo.coordonnees_gps_francaises import (
     CoordonneesGPSFrancaises as CoordonneesGPSFrancaises,
 )
 from .geo.departement import Departement as Departement
+from .geo.latitude_l93 import LatitudeL93 as LatitudeL93
 from .geo.numero_departement import NumeroDepartement as NumeroDepartement
 from .geo.pays import Pays as Pays
 from .geo.region import Region as Region

@@ -12,7 +12,6 @@ from frformat import (
     NumeroDepartement,
     Pays,
     Region,
-    
 )
 from tests.testing import (
     strict_lenient_test_helper_factory,
@@ -29,11 +28,6 @@ def test_code_fantoir():
     _test_fantoir(fantoir_valid, True)
     _test_fantoir(fantoir_invalid, False)
 
-def test_latitude_l93():
-    assert LatitudeL93.is_valid(44.2)
-    #À vérifier 
-    assert LatitudeL93.is_valid(42)
-    assert not LatitudeL93.is_valid(55)
 
 def test_code_commune_insee():
     value = "01015"
@@ -85,6 +79,13 @@ def test_departement():
     departement_invalid = ["Charente-Inférieure"]
 
     _test_departement(departement_strict, departement_lenient, departement_invalid)
+
+
+def test_latitude_l93():
+    assert LatitudeL93.is_valid(44.2)
+    # À vérifier
+    assert LatitudeL93.is_valid(42)
+    assert not LatitudeL93.is_valid(55)
 
 
 def test_numero_departement():

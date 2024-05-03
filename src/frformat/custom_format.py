@@ -5,13 +5,14 @@ class WithMetadata(ABC):
     @classmethod
     @abstractmethod
     def name(cls) -> str:
-        """ Human-readable name """
+        """Human-readable name"""
         ...
 
     @classmethod
     @abstractmethod
     def description(cls) -> str:
         ...
+
 
 class CustomStrFormat(WithMetadata, ABC):
     @classmethod
@@ -30,6 +31,7 @@ class CustomStrFormat(WithMetadata, ABC):
         # Specify the default behaviour
         return value
 
+
 class CustomFloatFormat(WithMetadata, ABC):
     @classmethod
     @abstractmethod
@@ -46,4 +48,3 @@ class CustomFloatFormat(WithMetadata, ABC):
     def _format(cls, value: float) -> str:
         # Specify the default behaviour
         return str(value)
-
