@@ -3,3 +3,6 @@ dist
 
 # Cache
 __pycache__
+
+# VSCode
+.vscode
