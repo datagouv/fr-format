@@ -1,4 +1,4 @@
-CODE_FANTOIR_SET = {
+PARTIAL_CODE_FANTOIR_SET = {
     "0000",
     "0001",
     "0002",

@@ -12,17 +12,20 @@ from frformat import (
     Pays,
     Region,
 )
-from tests.testing import strict_lenient_test_helper_factory
+from tests.testing import (
+    strict_lenient_test_helper_factory,
+    validation_test_helper_factory,
+)
 
 
-def test_code_fantoire():
-    _test_fantoir = strict_lenient_test_helper_factory(CodeFantoir)
+def test_code_fantoir():
+    _test_fantoir = validation_test_helper_factory(CodeFantoir)
 
-    fantoir_strict = ["ZB03"]
-    fantoir_lenient = ["zb04"]
-    fantoir_invalid = ["AAA"]
+    fantoir_valid = ["ZB03A"]
+    fantoir_invalid = ["1000"]
 
-    _test_fantoir(fantoir_strict, fantoir_lenient, fantoir_invalid)
+    _test_fantoir(fantoir_valid, True)
+    _test_fantoir(fantoir_invalid, False)
 
 
 def test_code_commune_insee():
