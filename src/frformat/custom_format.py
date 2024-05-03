@@ -5,6 +5,7 @@ class WithMetadata(ABC):
     @classmethod
     @abstractmethod
     def name(cls) -> str:
+        """ Human-readable name """
         ...
 
     @classmethod
