@@ -9,6 +9,7 @@ from frformat import (
     Commune,
     Departement,
     LatitudeL93,
+    LongitudeL93,
     NumeroDepartement,
     Pays,
     Region,
@@ -79,6 +80,18 @@ def test_departement():
     departement_invalid = ["Charente-Inférieure"]
 
     _test_departement(departement_strict, departement_lenient, departement_invalid)
+
+
+def test_longitude_l93():
+    assert LongitudeL93.is_valid(0)
+    assert LongitudeL93.is_valid(1234546)
+    assert LongitudeL93.is_valid(1234546.32)
+    assert LongitudeL93.is_valid(-123554)
+    assert LongitudeL93.is_valid(-234.546)
+    assert not LongitudeL93.is_valid(-435522.3)
+    assert not LongitudeL93.is_valid(-554234)
+    assert not LongitudeL93.is_valid(2076524)
+    assert not LongitudeL93.is_valid(5436780.23)
 
 
 def test_latitude_l93():

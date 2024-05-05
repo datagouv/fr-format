@@ -13,6 +13,7 @@ from .geo.coordonnees_gps_francaises import (
     CoordonneesGPSFrancaises as CoordonneesGPSFrancaises,
 )
 from .geo.departement import Departement as Departement
+from .geo.longitude_l93 import LongitudeL93 as LongitudeL93
 from .geo.latitude_l93 import LatitudeL93 as LatitudeL93
 from .geo.numero_departement import NumeroDepartement as NumeroDepartement
 from .geo.pays import Pays as Pays
