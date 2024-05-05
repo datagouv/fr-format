@@ -1,6 +1,7 @@
 # flake8: noqa
 from .custom_format import *  # isort:skip
 
+from .code_rna import CodeRna as CodeRna
 from .geo.canton import Canton as Canton
 from .geo.code_commune_insee import CodeCommuneInsee as CodeCommuneInsee
 from .geo.code_fantoir import CodeFantoir as CodeFantoir
