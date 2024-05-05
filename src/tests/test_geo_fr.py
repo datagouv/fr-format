@@ -95,10 +95,13 @@ def test_longitude_l93():
 
 
 def test_latitude_l93():
-    assert LatitudeL93.is_valid(44.2)
-    assert LatitudeL93.is_valid(43)
-    assert not LatitudeL93.is_valid(55)
-    assert not LatitudeL93.is_valid(-20)
+    assert LatitudeL93.is_valid(6544234.2)
+    assert LatitudeL93.is_valid(7145278)
+    assert not LatitudeL93.is_valid(0)
+    assert not LatitudeL93.is_valid(-6145765.9)
+    assert not LatitudeL93.is_valid(-7234567)
+    assert not LatitudeL93.is_valid(7233478)
+    assert not LatitudeL93.is_valid(6000658.5)
 
 
 def test_numero_departement():
