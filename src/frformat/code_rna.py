@@ -1,4 +1,4 @@
-from typing import List
+from typing import Set
 
 from frformat import CustomStrFormat
 
@@ -18,10 +18,12 @@ class CodeRna(CustomStrFormat):
     @classmethod
     def is_valid(cls, value: str) -> bool:
         """Repere le code RNA"""
-        first_letter: List[str] = ["w", "W"]
-        digits: List[str] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+        digits: Set[str] = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"}
 
-        if len(value) < 10 or not value[9] in digits or not value[0] in first_letter:
+        if len(value) != 10 :
+            return False 
+        
+        if value[0] != "w" and value[0] != "W":
             return False
 
         boolResult: bool = True
