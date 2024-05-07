@@ -1,4 +1,4 @@
-from typing import Set
+import re
 
 from frformat import CustomStrFormat
 
@@ -17,20 +17,4 @@ class CodeRNA(CustomStrFormat):
 
     @classmethod
     def is_valid(cls, value: str) -> bool:
-        digits: Set[str] = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"}
-
-        if len(value) != 10:
-            return False
-
-        if value[0] != "w" and value[0] != "W":
-            return False
-
-        boolResult: bool = True
-        index: int = 1
-        while index <= len(value) - 1:
-            if not value[index] in digits:
-                boolResult = False
-                break
-            index = index + 1
-
-        return boolResult
+        return bool(re.match(r"^[wW]\d{9}$", value))
