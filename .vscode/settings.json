@@ -1,4 +1,0 @@
-{
-    "python.pythonPath": "poetry run python",
-    "python.venvPath": "./"
-}
