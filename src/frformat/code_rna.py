@@ -6,7 +6,7 @@ name = "Code RNA"
 description = "Vérifie les codes RNA valides"
 
 
-class CodeRna(CustomStrFormat):
+class CodeRNA(CustomStrFormat):
     @classmethod
     def name(cls) -> str:
         return name
@@ -17,7 +17,6 @@ class CodeRna(CustomStrFormat):
 
     @classmethod
     def is_valid(cls, value: str) -> bool:
-        """Repere le code RNA"""
         digits: Set[str] = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"}
 
         if len(value) != 10:
