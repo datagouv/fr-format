@@ -1,7 +1,7 @@
 from frformat import CustomFloatFormat
 
 name = "Latitude en Lambert 93"
-description = "Vérifie que la latitude donnée est une latitude en lambert 93"
+description = "Vérifie que la latitude en France métropolitaine donnée est une latitude en lambert 93"
 
 
 class LatitudeL93(CustomFloatFormat):
@@ -15,5 +15,4 @@ class LatitudeL93(CustomFloatFormat):
 
     @classmethod
     def is_valid(cls, value: float) -> bool:
-        """Renvoie True si value en métres peut etre une latitude en Lambert 93"""
         return value >= 6037008 and value <= 7230728
