@@ -7,6 +7,11 @@ help:
 .PHONY: lint
 lint: black isort flake8 pyright ## Check codebase with black, isort, flake8 and pyright
 
+.PHONY: lint-fix
+lint-fix: 
+	@ poetry run black ./src
+	@ poetry run isort ./src
+
 .PHONY: black
 black:
 	@ poetry run black --verbose --check -- ./src
