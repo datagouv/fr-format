@@ -1,23 +1,27 @@
+# Fr-format
 
+A collection of validator to check data against french formats.
 
-This project uses [poetry](https://python-poetry.org/) as a dependency 
-manager. 
+## Installation
 
+The package is published on Pypi. Install with :
+
+`pip install fr-format`
+
+## Usage 
+
+```python
+from frformat import Departement
+
+print(Departement.description())
+Departement.is_valid("Haute-Vienne")
+# True
+Departement.is_valid("Canyon Cosmo")
+# False
 ```
-pip install poetry
-```
 
-# Developping environment
+For better performance on big amount of data, use in conjunction with numpy.
 
-Install developper tools with :
+## Available checks
 
-```
-poetry install --with linting
-```
-
-Code style is checked continuously and enforced with 
-[`black`](https://github.com/psf/black), 
-[`isort`](https://pypi.org/project/isort/), 
-[`flake8`](https://pypi.org/project/flake8/) and 
-[`pyright`](https://github.com/microsoft/pyright).
-
+Checkout [this file](./src/frformat/__init__.py) for a list of available validators.
