@@ -1,12 +1,12 @@
 # Fr-format
 
-A collection of validator to check data against french formats.
+A collection of validators to check data against french formats.
 
 ## Installation
 
-The package is published on Pypi. Install with :
+The package is published on PyPI. Install with :
 
-`pip install fr-format`
+`pip install frformat`
 
 ## Usage 
 
@@ -20,7 +20,7 @@ Departement.is_valid("Canyon Cosmo")
 # False
 ```
 
-For better performance on big amount of data, use in conjunction with numpy.
+For better performance on big amounts of data, use in conjunction with numpy.
 
 ## Available checks
 
