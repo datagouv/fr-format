@@ -95,6 +95,8 @@ def test_longitude_l93():
 
 
 def test_latitude_l93():
+    assert LatitudeL93.format(6757121.337) == "6757121,34"
+
     assert LatitudeL93.is_valid(6544234.2)
     assert LatitudeL93.is_valid(7145278)
     assert not LatitudeL93.is_valid(0)
