@@ -3,7 +3,7 @@ import re
 from frformat import CustomStrFormat
 
 name = "Code RNA"
-description = "Vérifie les codes RNA valides"
+description = "Vérifie les codes RNA (Répertoire National des Associations) valides"
 
 
 class CodeRNA(CustomStrFormat):
