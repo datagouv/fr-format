@@ -17,4 +17,4 @@ class CodeRNA(CustomStrFormat):
 
     @classmethod
     def is_valid(cls, value: str) -> bool:
-        return bool(re.match(r"^[wW]\d{9}$", value))
+        return bool(re.match(r"^W\d{9}$", value))
