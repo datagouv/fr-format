@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
+from typing import Generic, TypeVar, Union
 
 from frformat.formatter import DefaultFormatter, Formatter
 
@@ -10,33 +11,24 @@ class Metadata:
     description: str
 
 
-class CustomStrFormat(ABC):
+ValueType = TypeVar("ValueType", str, float, int, contravariant=True)
+
+
+class CustomFormat(ABC, Generic[ValueType]):
     metadata: Metadata
-    formatter: Formatter = DefaultFormatter[str]()
+    formatter: Formatter = DefaultFormatter[ValueType]()
 
     @classmethod
     @abstractmethod
-    def is_valid(cls, value: str) -> bool:
+    def is_valid(cls, value: ValueType) -> bool:
         ...
 
     @classmethod
-    def format(cls, value: str) -> str:
+    def format(cls, value: ValueType) -> str:
         if not cls.is_valid(value):
             raise ValueError(f"{cls.metadata.name} is not valid")
         return cls.formatter.format(value)
 
 
-class CustomFloatFormat(ABC):
-    metadata: Metadata
-    formatter: Formatter = DefaultFormatter[float]()
-
-    @classmethod
-    @abstractmethod
-    def is_valid(cls, value: float) -> bool:
-        ...
-
-    @classmethod
-    def format(cls, value: float) -> str:
-        if not cls.is_valid(value):
-            raise ValueError(f"{cls.metadata.name} is not valid")
-        return cls.formatter.format(value)
+CustomStrFormat = CustomFormat[str]
+CustomNumericFormat = CustomFormat[Union[float, int]]
