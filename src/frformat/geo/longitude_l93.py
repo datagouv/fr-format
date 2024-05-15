@@ -2,6 +2,7 @@ import locale
 
 from frformat import CustomFloatFormat, Metadata
 from frformat.common import USPACE
+from frformat.geo.latitude_l93 import UnitFormatter
 
 name = "Longitude en Lambert 93"
 description = "Vérifie que la longitude en France métropolitaine donnée est une longitude en lambert 93"
@@ -9,6 +10,7 @@ description = "Vérifie que la longitude en France métropolitaine donnée est u
 
 class LongitudeL93(CustomFloatFormat):
     metadata = Metadata(name, description)
+    formatter = UnitFormatter("m")
 
     @classmethod
     def is_valid(cls, value: float) -> bool:

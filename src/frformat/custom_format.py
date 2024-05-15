@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from typing import Protocol
 
 from frformat.formatter import DefaultFormatter, Formatter
 
@@ -13,7 +12,7 @@ class Metadata:
 
 class CustomStrFormat(ABC):
     metadata: Metadata
-    formatter: Formatter = DefaultFormatter()
+    formatter: Formatter = DefaultFormatter[str]()
 
     @classmethod
     @abstractmethod
@@ -29,6 +28,7 @@ class CustomStrFormat(ABC):
 
 class CustomFloatFormat(ABC):
     metadata: Metadata
+    formatter: Formatter = DefaultFormatter[float]()
 
     @classmethod
     @abstractmethod
@@ -39,9 +39,4 @@ class CustomFloatFormat(ABC):
     def format(cls, value: float) -> str:
         if not cls.is_valid(value):
             raise ValueError(f"{cls.metadata.name} is not valid")
-        return cls._format(value)
-
-    @classmethod
-    def _format(cls, value: float) -> str:
-        # Specify the default behaviour
-        return str(value)
+        return cls.formatter.format(value)
