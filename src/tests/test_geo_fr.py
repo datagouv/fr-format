@@ -14,6 +14,7 @@ from frformat import (
     Pays,
     Region,
 )
+from frformat.common import USPACE, UTSPACE
 from tests.testing import (
     strict_lenient_test_helper_factory,
     validation_test_helper_factory,
@@ -83,7 +84,7 @@ def test_departement():
 
 
 def test_longitude_l93():
-    assert LongitudeL93.format(224234) == "224\u202F234,00\u00A0m"
+    assert LongitudeL93.format(224234) == "224" + UTSPACE + "234,00" + USPACE + "m"
 
     assert LongitudeL93.is_valid(0)
     assert LongitudeL93.is_valid(1234546)

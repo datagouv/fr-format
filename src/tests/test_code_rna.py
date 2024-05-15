@@ -1,10 +1,11 @@
 from frformat import CodeRNA
+from frformat.common import USPACE
 
 
 def test_code_rna():
     value = "W135247934"
     assert CodeRNA.is_valid(value)
-    assert CodeRNA.format(value) == "W135\u00A0247\u00A0934"
+    assert CodeRNA.format(value) == "W135" + USPACE + "247" + USPACE + "934"
 
     assert CodeRNA.is_valid("W231468097")
     assert not CodeRNA.is_valid("W12754")

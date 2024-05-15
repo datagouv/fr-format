@@ -1,6 +1,7 @@
 import locale
 
 from frformat import CustomFloatFormat
+from frformat.common import USPACE
 
 name = "Latitude en Lambert 93"
 description = "Vérifie que la latitude en France métropolitaine donnée est une latitude en lambert 93"
@@ -22,4 +23,4 @@ class LatitudeL93(CustomFloatFormat):
     @classmethod
     def _format(cls, value: float) -> str:
         locale.setlocale(locale.LC_ALL, "fr_FR.UTF-8")
-        return locale.format_string("%.2f", value, True) + "\u00A0m"
+        return locale.format_string("%.2f", value, True) + USPACE + "m"

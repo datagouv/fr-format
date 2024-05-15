@@ -1,5 +1,8 @@
 import re
 
+USPACE = "\u00A0"  # Unbreakable space
+UTSPACE = "\u202F"  # Unbreakable thin space
+
 
 def normalize_text(val: str) -> str:
     val = val.lower()

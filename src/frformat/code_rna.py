@@ -1,6 +1,7 @@
 import re
 
 from frformat import CustomStrFormat
+from frformat.common import USPACE
 
 name = "Code RNA"
 description = "Vérifie les codes RNA (Répertoire National des Associations) valides"
@@ -21,4 +22,4 @@ class CodeRNA(CustomStrFormat):
 
     @classmethod
     def _format(cls, value: str) -> str:
-        return f"{value[0:4]}\u00A0{value[4:7]}\u00A0{value[7:]}"
+        return f"{value[0:4]}{ USPACE }{value[4:7]}{ USPACE }{value[7:]}"
