@@ -8,6 +8,8 @@ def test_code_rna():
     assert CodeRNA.format(value) == "W135" + USPACE + "247" + USPACE + "934"
 
     assert CodeRNA.is_valid("W231468097")
+
+    assert not CodeRNA.is_valid("w231468097")
     assert not CodeRNA.is_valid("W12754")
     assert not CodeRNA.is_valid("W667345")
     assert not CodeRNA.is_valid("a12754")
