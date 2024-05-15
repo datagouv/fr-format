@@ -9,12 +9,17 @@ def test_code_rna():
 
     assert CodeRNA.is_valid("W231468097")
 
-    assert not CodeRNA.is_valid("w231468097")
-    assert not CodeRNA.is_valid("W12754")
-    assert not CodeRNA.is_valid("W667345")
-    assert not CodeRNA.is_valid("a12754")
-    assert not CodeRNA.is_valid("a231468097")
-    assert not CodeRNA.is_valid("W23146809d")
-    assert not CodeRNA.is_valid("W2314sj097")
-    assert not CodeRNA.is_valid("W231468097z")
-    assert not CodeRNA.is_valid("0")
+    invalid_test_cases = [
+        "w231468097",
+        "W12754",
+        "W667345",
+        "a12754",
+        "a231468097",
+        "W23146809d",
+        "W2314sj097",
+        "W231468097z",
+        "0",
+    ]
+
+    for tc in invalid_test_cases:
+        assert not CodeRNA.is_valid(tc)
