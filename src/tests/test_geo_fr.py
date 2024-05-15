@@ -83,7 +83,7 @@ def test_departement():
 
 
 def test_longitude_l93():
-    assert LongitudeL93.format(224234) == "224234,00"
+    assert LongitudeL93.format(224234) == "224\u202F234,00\u00A0m"
 
     assert LongitudeL93.is_valid(0)
     assert LongitudeL93.is_valid(1234546)
@@ -97,7 +97,7 @@ def test_longitude_l93():
 
 
 def test_latitude_l93():
-    assert LatitudeL93.format(6757121.337) == "6757121,34"
+    assert LatitudeL93.format(6757121.337) == "6\u202F757\u202F121,34\u00A0m"
 
     assert LatitudeL93.is_valid(6544234.2)
     assert LatitudeL93.is_valid(7145278)

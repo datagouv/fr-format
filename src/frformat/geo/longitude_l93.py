@@ -22,4 +22,4 @@ class LongitudeL93(CustomFloatFormat):
     @classmethod
     def _format(cls, value: float) -> str:
         locale.setlocale(locale.LC_ALL, "fr_FR.UTF-8")
-        return locale.format_string("%.2f", value)
+        return locale.format_string("%.2f", value, True) + "\u00A0m"
