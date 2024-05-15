@@ -1,6 +1,6 @@
 import re
 
-from frformat import CustomStrFormat
+from frformat import CustomStrFormat, Metadata
 from frformat.common import USPACE
 
 name = "Code RNA"
@@ -8,13 +8,7 @@ description = "Vérifie les codes RNA (Répertoire National des Associations) va
 
 
 class CodeRNA(CustomStrFormat):
-    @classmethod
-    def name(cls) -> str:
-        return name
-
-    @classmethod
-    def description(cls) -> str:
-        return description
+    metadata = Metadata(name, description)
 
     @classmethod
     def is_valid(cls, value: str) -> bool:

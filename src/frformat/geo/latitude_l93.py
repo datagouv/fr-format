@@ -1,6 +1,6 @@
 import locale
 
-from frformat import CustomFloatFormat
+from frformat import CustomFloatFormat, Metadata
 from frformat.common import USPACE
 
 name = "Latitude en Lambert 93"
@@ -8,13 +8,7 @@ description = "Vérifie que la latitude en France métropolitaine donnée est un
 
 
 class LatitudeL93(CustomFloatFormat):
-    @classmethod
-    def name(cls) -> str:
-        return name
-
-    @classmethod
-    def description(cls) -> str:
-        return description
+    metadata = Metadata(name, description)
 
     @classmethod
     def is_valid(cls, value: float) -> bool:

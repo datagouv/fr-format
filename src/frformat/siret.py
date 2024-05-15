@@ -1,16 +1,15 @@
 import stdnum.fr.siret
 
-from . import CustomStrFormat
+from . import CustomStrFormat, Metadata
+
+name = "SIRET"
+description = (
+    "Check french SIRET number validity, but does not check if SIRET number exists."
+)
 
 
 class Siret(CustomStrFormat):
-    @classmethod
-    def name(cls) -> str:
-        return "SIRET"
-
-    @classmethod
-    def description(cls) -> str:
-        return "Check french SIRET number validity, but does not check if SIRET number exists."
+    metadata = Metadata(name, description)
 
     @classmethod
     def is_valid(cls, value: str) -> bool:

@@ -1,6 +1,6 @@
 import re
 
-from frformat import CustomStrFormat
+from frformat import CustomStrFormat, Metadata
 from frformat.geo.code_fantoir_set import PARTIAL_CODE_FANTOIR_SET
 
 name = "Code fantoir"
@@ -8,13 +8,7 @@ description = "Vérifie les codes fantoirs valides"
 
 
 class CodeFantoir(CustomStrFormat):
-    @classmethod
-    def name(cls) -> str:
-        return name
-
-    @classmethod
-    def description(cls) -> str:
-        return description
+    metadata = Metadata(name, description)
 
     @classmethod
     def is_valid(cls, value: str) -> bool:

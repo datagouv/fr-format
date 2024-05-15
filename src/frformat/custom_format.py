@@ -1,20 +1,16 @@
 from abc import ABC, abstractmethod
+from dataclasses import dataclass
 
 
-class WithMetadata(ABC):
-    @classmethod
-    @abstractmethod
-    def name(cls) -> str:
-        """Human-readable name"""
-        ...
-
-    @classmethod
-    @abstractmethod
-    def description(cls) -> str:
-        ...
+@dataclass
+class Metadata:
+    name: str
+    description: str
 
 
-class CustomStrFormat(WithMetadata, ABC):
+class CustomStrFormat(ABC):
+    metadata: Metadata
+
     @classmethod
     @abstractmethod
     def is_valid(cls, value: str) -> bool:
@@ -23,7 +19,7 @@ class CustomStrFormat(WithMetadata, ABC):
     @classmethod
     def format(cls, value: str) -> str:
         if not cls.is_valid(value):
-            raise ValueError(f"{cls.name()} is not valid")
+            raise ValueError(f"{cls.metadata.name} is not valid")
         return cls._format(value)
 
     @classmethod
@@ -32,7 +28,9 @@ class CustomStrFormat(WithMetadata, ABC):
         return value
 
 
-class CustomFloatFormat(WithMetadata, ABC):
+class CustomFloatFormat(ABC):
+    metadata: Metadata
+
     @classmethod
     @abstractmethod
     def is_valid(cls, value: float) -> bool:
@@ -41,7 +39,7 @@ class CustomFloatFormat(WithMetadata, ABC):
     @classmethod
     def format(cls, value: float) -> str:
         if not cls.is_valid(value):
-            raise ValueError(f"{cls.name()} is not valid")
+            raise ValueError(f"{cls.metadata.name} is not valid")
         return cls._format(value)
 
     @classmethod

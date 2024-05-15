@@ -1,16 +1,15 @@
 import stdnum.fr.siren
 
-from . import CustomStrFormat
+from . import CustomStrFormat, Metadata
+
+name = "SIREN"
+description = (
+    "Check french SIREN number validity, but does not check if SIREN number exists."
+)
 
 
 class Siren(CustomStrFormat):
-    @classmethod
-    def name(cls) -> str:
-        return "SIREN"
-
-    @classmethod
-    def description(cls) -> str:
-        return "Check french SIREN number validity, but does not check if SIREN number exists."
+    metadata = Metadata(name, description)
 
     @classmethod
     def is_valid(cls, value: str) -> bool:

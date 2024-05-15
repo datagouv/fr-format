@@ -1,6 +1,6 @@
 from typing import Optional, Set
 
-from frformat import CustomStrFormat
+from frformat import CustomStrFormat, Metadata
 from frformat.common import normalize_text
 
 
@@ -20,13 +20,7 @@ def new(
         validation.
         """
 
-        @classmethod
-        def name(cls) -> str:
-            return name
-
-        @classmethod
-        def description(cls) -> str:
-            return description
+        metadata = Metadata(name, description)
 
         @classmethod
         def is_valid(cls, value: str, strict: bool = True) -> bool:
