@@ -1,5 +1,7 @@
 import stdnum.fr.siret
 
+from frformat.formatter import Formatter
+
 from . import CustomStrFormat, Metadata
 
 name = "SIRET"
@@ -8,13 +10,15 @@ description = (
 )
 
 
+class SiretFormatter(Formatter):
+    def format(self, value: str) -> str:
+        return f"{value[0:9]} {value[9:]}"
+
+
 class Siret(CustomStrFormat):
     metadata = Metadata(name, description)
+    formatter = SiretFormatter()
 
     @classmethod
     def is_valid(cls, value: str) -> bool:
         return stdnum.fr.siret.is_valid(value)
-
-    @classmethod
-    def _format(cls, value: str) -> str:
-        return f"{value[0:9]} {value[9:]}"
