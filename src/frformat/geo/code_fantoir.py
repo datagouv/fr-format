@@ -23,5 +23,5 @@ class CodeFantoir(CustomStrFormat):
     def is_valid(cls, value: str) -> bool:
         if len(value) != 5:
             return False
-          
+
         return value[4] in UPPER_LETTERS and value[:4] in PARTIAL_CODE_FANTOIR_SET
