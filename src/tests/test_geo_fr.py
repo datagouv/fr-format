@@ -87,15 +87,15 @@ def test_longitude_l93():
     assert LongitudeL93.format(224234) == "224" + UTSPACE + "234" + USPACE + "m"
     assert LongitudeL93.format(224234.0) == "224" + UTSPACE + "234,00" + USPACE + "m"
 
-    assert LongitudeL93.is_valid(0)
-    assert LongitudeL93.is_valid(1234546)
-    assert LongitudeL93.is_valid(1234546.32)
-    assert LongitudeL93.is_valid(-123554)
-    assert LongitudeL93.is_valid(-234.546)
-    assert not LongitudeL93.is_valid(-435522.3)
-    assert not LongitudeL93.is_valid(-554234)
-    assert not LongitudeL93.is_valid(2076524)
-    assert not LongitudeL93.is_valid(5436780.23)
+    invalid_test_cases = [-435522.3, -554234, 2076524, 5436780.23]
+
+    for tc in invalid_test_cases:
+        assert not LongitudeL93.is_valid(tc)
+
+    valid_test_cases = [0, 1234546, 1234546.32, -123554, -234.546]
+
+    for tc in valid_test_cases:
+        assert LongitudeL93.is_valid(tc)
 
 
 def test_latitude_l93():
@@ -110,11 +110,11 @@ def test_latitude_l93():
 
     assert LatitudeL93.is_valid(6544234.2)
     assert LatitudeL93.is_valid(7145278)
-    assert not LatitudeL93.is_valid(0)
-    assert not LatitudeL93.is_valid(-6145765.9)
-    assert not LatitudeL93.is_valid(-7234567)
-    assert not LatitudeL93.is_valid(7233478)
-    assert not LatitudeL93.is_valid(6000658.5)
+
+    invalid_test_cases = [0, -6145765.9, -7234567, 7233478, 6000658.5]
+
+    for tc in invalid_test_cases:
+        assert not LatitudeL93.is_valid(tc)
 
 
 def test_numero_departement():
