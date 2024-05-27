@@ -8,7 +8,7 @@ help:
 lint: black isort flake8 pyright ## Check codebase with black, isort, flake8 and pyright
 
 .PHONY: lint-fix
-lint-fix: 
+lint-fix:
 	@ poetry run black ./src
 	@ poetry run isort ./src
 
@@ -33,5 +33,5 @@ test: ## Runs all tests
 	@ poetry run pytest
 
 .PHONY: generate-markdown
-generate-markdown:
-	python3 ./validators_exercice/generate_docs.py
+generate-markdown: ## Generate validators.md documentation
+	python3 ./generate_docs.py
