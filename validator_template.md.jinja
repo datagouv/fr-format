@@ -2,5 +2,5 @@
 | Class Name | Name | Description |
 
 {% for validator in validators %}
-| {{ validator.class_name }} | {{ validator.name }} | {{ validator.description }} |
+| {{ '%-20s' | format(validator.class_name) }} | {{ validator.name }} | {{ validator.description }} |
 {% endfor %}

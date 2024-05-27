@@ -7,4 +7,4 @@ description = (
     "(ne vérifie pas l'accentuation, la casse, la ponctuation)"
 )
 
-Commune = enum_format.new(name, description, COMMUNE_SET)
+Commune = enum_format.new("Commune", name, description, COMMUNE_SET)

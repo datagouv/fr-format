@@ -3,7 +3,6 @@ import jinja2
 from frformat import (
     Canton,
     CodeCommuneInsee,
-    CodeFantoir,
     CodePaysISO2,
     CodePaysISO3,
     CodePostal,
@@ -11,6 +10,7 @@ from frformat import (
     Commune,
     CoordonneesGPSFrancaises,
 )
+from frformat.geo.code_fantoir import CodeFantoir
 from validators import generate_validators_documentation
 
 all_validators = [
