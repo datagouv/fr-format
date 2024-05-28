@@ -1,6 +1,6 @@
 from typing import Optional, Set
 
-from frformat import CustomFormat
+from frformat import CustomStrFormat, Metadata
 from frformat.common import normalize_text
 
 
@@ -13,20 +13,14 @@ def new(
     if not lenient_enum:
         lenient_enum = {normalize_text(e) for e in strict_enum}
 
-    class EnumFormat(CustomFormat):
+    class EnumFormat(CustomStrFormat):
         """Checks if a value is in a given list
 
         May check with or without string normalization with the "strict"
         validation.
         """
 
-        @classmethod
-        def name(cls) -> str:
-            return name
-
-        @classmethod
-        def description(cls) -> str:
-            return description
+        metadata = Metadata(name, description)
 
         @classmethod
         def is_valid(cls, value: str, strict: bool = True) -> bool:

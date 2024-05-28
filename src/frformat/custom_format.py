@@ -1,57 +1,34 @@
 from abc import ABC, abstractmethod
-from typing import Protocol
+from dataclasses import dataclass
+from typing import Generic, TypeVar, Union
+
+from frformat.formatter import DefaultFormatter, Formatter
 
 
-class CustomFormatProtocol(Protocol):
-    @classmethod
-    def name(cls) -> str:
-        """
-        Human-readable name
-        """
-        ...
-
-    @classmethod
-    def description(cls) -> str:
-        ...
-
-    @classmethod
-    def is_valid(cls, value: str) -> bool:
-        ...
-
-    @classmethod
-    def format(cls, value: str) -> str:
-        """Returns value in standard format
-
-        Expects the value to be valid, otherwise raises an `InvalidValueError`
-        """
-        ...
+@dataclass
+class Metadata:
+    name: str
+    description: str
 
 
-class WithMetadata(ABC):
-    @classmethod
-    @abstractmethod
-    def name(cls) -> str:
-        ...
+ValueType = TypeVar("ValueType", str, float, int, contravariant=True)
+
+
+class CustomFormat(ABC, Generic[ValueType]):
+    metadata: Metadata
+    formatter: Formatter = DefaultFormatter[ValueType]()
 
     @classmethod
     @abstractmethod
-    def description(cls) -> str:
-        ...
-
-
-class CustomFormat(CustomFormatProtocol, WithMetadata, ABC):
-    @classmethod
-    @abstractmethod
-    def is_valid(cls, value: str) -> bool:
+    def is_valid(cls, value: ValueType) -> bool:
         ...
 
     @classmethod
-    def format(cls, value: str) -> str:
+    def format(cls, value: ValueType) -> str:
         if not cls.is_valid(value):
-            raise ValueError(f"{cls.name()} is not valid")
-        return cls._format(value)
+            raise ValueError(f"{cls.metadata.name} is not valid")
+        return cls.formatter.format(value)
 
-    @classmethod
-    def _format(cls, value: str) -> str:
-        # Specify the default behaviour
-        return value
+
+CustomStrFormat = CustomFormat[str]
+CustomNumericFormat = CustomFormat[Union[float, int]]

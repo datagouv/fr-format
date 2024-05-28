@@ -1,21 +1,25 @@
 import stdnum.fr.siret
 
-from . import CustomFormat
+from frformat.common import NNBSP
+from frformat.formatter import Formatter
+
+from . import CustomStrFormat, Metadata
+
+name = "SIRET"
+description = (
+    "Check french SIRET number validity, but does not check if SIRET number exists."
+)
 
 
-class Siret(CustomFormat):
-    @classmethod
-    def name(cls) -> str:
-        return "SIRET"
+class SiretFormatter(Formatter):
+    def format(self, value: str) -> str:
+        return f"{value[0:9]}{ NNBSP }{value[9:]}"
 
-    @classmethod
-    def description(cls) -> str:
-        return "Check french SIRET number validity, but does not check if SIRET number exists."
+
+class Siret(CustomStrFormat):
+    metadata = Metadata(name, description)
+    formatter = SiretFormatter()
 
     @classmethod
     def is_valid(cls, value: str) -> bool:
         return stdnum.fr.siret.is_valid(value)
-
-    @classmethod
-    def _format(cls, value: str) -> str:
-        return f"{value[0:9]} {value[9:]}"

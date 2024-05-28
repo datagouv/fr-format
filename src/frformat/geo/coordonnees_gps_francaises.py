@@ -1,15 +1,13 @@
 from shapely.geometry import Point, shape
 
+from frformat import Metadata
+
+name = "Coordonnées GPS françaises"
+description = """Check that GPS coordinates are in a bounding box approximating France (including DOM)"""
+
 
 class CoordonneesGPSFrancaises:
-    @classmethod
-    def name(cls) -> str:
-        return "Coordonnées GPS françaises"
-
-    @classmethod
-    def description(cls) -> str:
-        return """Check that GPS coordinates are in a bounding box approximating
-    France (including DOM)"""
+    metadata = Metadata(name, description)
 
     @classmethod
     def is_valid(cls, lon: float, lat: float) -> bool:

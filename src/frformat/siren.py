@@ -1,21 +1,25 @@
 import stdnum.fr.siren
 
-from . import CustomFormat
+from frformat.common import NNBSP
+from frformat.formatter import Formatter
+
+from . import CustomStrFormat, Metadata
+
+name = "SIREN"
+description = (
+    "Check french SIREN number validity, but does not check if SIREN number exists."
+)
 
 
-class Siren(CustomFormat):
-    @classmethod
-    def name(cls) -> str:
-        return "SIREN"
+class SirenFormatter(Formatter):
+    def format(self, value: str) -> str:
+        return f"{value[0:3]}{ NNBSP }{value[3:6]}{ NNBSP }{value[6:]}"
 
-    @classmethod
-    def description(cls) -> str:
-        return "Check french SIREN number validity, but does not check if SIREN number exists."
+
+class Siren(CustomStrFormat):
+    metadata = Metadata(name, description)
+    formatter = SirenFormatter()
 
     @classmethod
     def is_valid(cls, value: str) -> bool:
         return stdnum.fr.siren.is_valid(value)
-
-    @classmethod
-    def _format(cls, value: str) -> str:
-        return f"{value[0:3]} {value[3:6]} {value[6:]}"

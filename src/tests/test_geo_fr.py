@@ -8,10 +8,13 @@ from frformat import (
     CodeRegion,
     Commune,
     Departement,
+    LatitudeL93,
+    LongitudeL93,
     NumeroDepartement,
     Pays,
     Region,
 )
+from frformat.common import NBSP, NNBSP
 from tests.testing import (
     strict_lenient_test_helper_factory,
     validation_test_helper_factory,
@@ -78,6 +81,39 @@ def test_departement():
     departement_invalid = ["Charente-Inférieure"]
 
     _test_departement(departement_strict, departement_lenient, departement_invalid)
+
+
+def test_longitude_l93():
+    assert LongitudeL93.format(224234) == "224" + NNBSP + "234" + NBSP + "m"
+    assert LongitudeL93.format(224234.0) == "224" + NNBSP + "234,00" + NBSP + "m"
+
+    invalid_test_cases = [-435522.3, -554234, 2076524, 5436780.23]
+
+    for tc in invalid_test_cases:
+        assert not LongitudeL93.is_valid(tc)
+
+    valid_test_cases = [0, 1234546, 1234546.32, -123554, -234.546]
+
+    for tc in valid_test_cases:
+        assert LongitudeL93.is_valid(tc)
+
+
+def test_latitude_l93():
+    assert (
+        LatitudeL93.format(6757121) == "6" + NNBSP + "757" + NNBSP + "121" + NBSP + "m"
+    )
+    assert (
+        LatitudeL93.format(6757121.337)
+        == "6" + NNBSP + "757" + NNBSP + "121,34" + NBSP + "m"
+    )
+
+    assert LatitudeL93.is_valid(6544234.2)
+    assert LatitudeL93.is_valid(7145278)
+
+    invalid_test_cases = [0, -6145765.9, -7234567, 7233478, 6000658.5]
+
+    for tc in invalid_test_cases:
+        assert not LatitudeL93.is_valid(tc)
 
 
 def test_numero_departement():
