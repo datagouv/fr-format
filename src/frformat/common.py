@@ -1,7 +1,7 @@
 import re
 
-USPACE = "\u00A0"  # Unbreakable space
-UTSPACE = "\u202F"  # Unbreakable thin space
+NBSP = "\u00A0"  # Non-breaking space
+NNBSP = "\u202F"  # Narrow non-breaking space
 
 
 def normalize_text(val: str) -> str:

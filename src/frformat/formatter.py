@@ -1,7 +1,7 @@
 import locale
 from typing import Generic, Protocol, TypeVar, Union
 
-from frformat.common import USPACE
+from frformat.common import NBSP
 
 ValueType = TypeVar("ValueType", str, float, int, contravariant=True)
 
@@ -27,7 +27,7 @@ class UnitFormatter(Formatter[float]):
 
     def format(self, value: float) -> str:
         formatted_float = DefaultFormatter[float]().format(value)
-        return formatted_float + USPACE + self.unit
+        return formatted_float + NBSP + self.unit
 
 
 def _format_with_french_locale(value: Union[float, int]) -> str:

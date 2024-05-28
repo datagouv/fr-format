@@ -14,7 +14,7 @@ from frformat import (
     Pays,
     Region,
 )
-from frformat.common import USPACE, UTSPACE
+from frformat.common import NBSP, NNBSP
 from tests.testing import (
     strict_lenient_test_helper_factory,
     validation_test_helper_factory,
@@ -84,8 +84,8 @@ def test_departement():
 
 
 def test_longitude_l93():
-    assert LongitudeL93.format(224234) == "224" + UTSPACE + "234" + USPACE + "m"
-    assert LongitudeL93.format(224234.0) == "224" + UTSPACE + "234,00" + USPACE + "m"
+    assert LongitudeL93.format(224234) == "224" + NNBSP + "234" + NBSP + "m"
+    assert LongitudeL93.format(224234.0) == "224" + NNBSP + "234,00" + NBSP + "m"
 
     invalid_test_cases = [-435522.3, -554234, 2076524, 5436780.23]
 
@@ -100,12 +100,11 @@ def test_longitude_l93():
 
 def test_latitude_l93():
     assert (
-        LatitudeL93.format(6757121)
-        == "6" + UTSPACE + "757" + UTSPACE + "121" + USPACE + "m"
+        LatitudeL93.format(6757121) == "6" + NNBSP + "757" + NNBSP + "121" + NBSP + "m"
     )
     assert (
         LatitudeL93.format(6757121.337)
-        == "6" + UTSPACE + "757" + UTSPACE + "121,34" + USPACE + "m"
+        == "6" + NNBSP + "757" + NNBSP + "121,34" + NBSP + "m"
     )
 
     assert LatitudeL93.is_valid(6544234.2)
