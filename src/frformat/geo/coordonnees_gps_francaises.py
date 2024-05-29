@@ -8,8 +8,7 @@ class CoordonneesGPSFrancaises:
 
     @classmethod
     def description(cls) -> str:
-        return """Check that GPS coordinates are in a bounding box approximating
-    France (including DOM)"""
+        return """Check that GPS coordinates are in a bounding box approximating France (including DOM)"""
 
     @classmethod
     def is_valid(cls, lon: float, lat: float) -> bool:
