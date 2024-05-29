@@ -1,6 +1,6 @@
 from typing import List, Literal, Tuple, Union
 
-from frformat import CustomFormat
+from frformat import CustomStrFormat, Metadata
 
 AUTHORIZED_VALUES = {
     "Commande publique",
@@ -27,14 +27,9 @@ ValidWithoutDetails = Tuple[Literal[True], None]
 InvalidWithDetails = Tuple[Literal[False], List[str]]
 
 
-class NomenclatureActe(CustomFormat):
-    @classmethod
-    def name(cls) -> str:
-        return "Nomenclature des actes"
+name = "Nomenclature des actes"
 
-    @classmethod
-    def description(cls) -> str:
-        return """
+description = """
         Document de référence dans les spécifications SCDL :
         http://www.moselle.gouv.fr/content/download/1107/7994/file/nomenclature.pdf
 
@@ -51,7 +46,11 @@ class NomenclatureActe(CustomFormat):
         Autres domaines de compétences
 
         La validation devra accepter minuscules et majuscules, accents et sans accents ...
-    """
+"""
+
+
+class NomenclatureActe(CustomStrFormat):
+    metadata = Metadata(name, description)
 
     @classmethod
     def is_valid(cls, value: str) -> bool:
