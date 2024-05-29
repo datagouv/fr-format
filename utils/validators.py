@@ -2,7 +2,7 @@ def generate_validators_documentation(all_validators):
     documentation = []
     for validator in all_validators:
         doc = {
-            "class_name": validator.__qualname__,
+            "class_name": validator.__name__,
             "name": validator.name(),
             "description": validator.description(),
         }
