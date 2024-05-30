@@ -32,6 +32,6 @@ NomenclatureActe            Nomenclature des actes
         Autres domaines de compétences
 
         La validation devra accepter minuscules et majuscules, accents et sans accents ...
-    
+
 Siren                       SIREN                            Check french SIREN number validity, but does not check if SIREN number exists.                                          
 Siret                       SIRET                            Check french SIRET number validity, but does not check if SIRET number exists.                                          
