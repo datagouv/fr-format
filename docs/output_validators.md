@@ -15,23 +15,22 @@ Departement                 Nom de département               Vérifie les dépa
 NumeroDepartement           Numéro du département            Vérifie que le numéro de département correspond bien à un numéro de département français                                
 Pays                        Pays et territoires étrangers    Nom de pays et territoires étrangers selon COG2024                                                                      
 Region                      Nom de région                    Vérifie les régions françaises valides (code officiel géographique 2020)                                                
-NomenclatureActe            Nomenclature des actes           
-        Document de référence dans les spécifications SCDL :
-        http://www.moselle.gouv.fr/content/download/1107/7994/file/nomenclature.pdf
+NomenclatureActe            Nomenclature des actes           Document de référence dans les spécifications SCDL :
 
-        Dans la nomenclature Actes, les valeurs avant le '/' sont :
-
-        Commande publique
-        Urbanisme
-        Domaine et patrimoine
-        Fonction publique
-        Institutions et vie politique
-        Libertés publiques et pouvoirs de police
-        Finances locales
-        Domaines de compétences par thèmes
-        Autres domaines de compétences
-
-        La validation devra accepter minuscules et majuscules, accents et sans accents ...
-
+                                                             http://www.moselle.gouv.fr/content/download/1107/7994/file/nomenclature.pdf
+                                                     
+                                                             Dans la nomenclature Actes, les valeurs avant le '/' sont :
+                                                     
+                                                             Commande publique
+                                                             Urbanisme
+                                                             Domaine et patrimoine
+                                                             Fonction publique
+                                                             Institutions et vie politique
+                                                             Libertés publiques et pouvoirs de police
+                                                             Finances locales
+                                                             Domaines de compétences par thèmes
+                                                             Autres domaines de compétences
+                                                     
+                                                             La validation devra accepter minuscules et majuscules, accents et sans accents ...
 Siren                       SIREN                            Check french SIREN number validity, but does not check if SIREN number exists.                                          
 Siret                       SIRET                            Check french SIRET number validity, but does not check if SIRET number exists.                                          
