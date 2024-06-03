@@ -9,9 +9,9 @@ def text_formatting(text):
         
     for line in text_array:
         if line is text_array[0] and line != '':
-            formatted_description =line+"\n"
+            formatted_description =line
         else:
-            formatted_description = formatted_description+"\n"+' '*53+line
+            formatted_description = formatted_description+"<br>"+line
         
     return formatted_description
 
