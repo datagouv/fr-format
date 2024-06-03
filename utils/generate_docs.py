@@ -47,5 +47,5 @@ template = template_env.get_template(template_file)
 
 output_markdown = template.render(validators=documentation)
 
-with open("./docs/output_validators.md", "w") as f:
+with open("./docs/output_validator_list.md", "w") as f:
     f.write(output_markdown)
