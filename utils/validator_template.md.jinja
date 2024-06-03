@@ -1,7 +1,7 @@
 ### Documentation: Validator list
 
-Class Name                 Name                             Description 
-
+| class name     | name | decription    |
+| -------------- | ---- |-------------- |
 {% for validator in validators %}
-{{ '%-25s'%(validator.class_name) }}   {{ '%-30s'%(validator.name) }}   {{ '%-120s'%(validator.description) }}
+| {{ (validator.class_name) }}     | {{ (validator.name) }} |  {{ (validator.description) }}    |
 {% endfor %}
