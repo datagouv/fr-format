@@ -30,3 +30,7 @@ jobs:
 
       - name: linting
         run: make lint
+
+      - name: Doc generation
+        run: |
+          pip install frformat && pip install Jinja2 && make generate-markdown && git add ./docs/output_validator_list.md && git diff --exit-code
