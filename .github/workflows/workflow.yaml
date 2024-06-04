@@ -26,11 +26,11 @@ jobs:
         run: pip install poetry==1.6
 
       - name: install dependencies
-        run: poetry install --with linting
+        run: poetry install --with linting,dev
 
       - name: linting
         run: make lint
 
       - name: Doc generation
         run: |
-          pip install frformat && pip install Jinja2 && make generate-markdown && git add ./docs/output_validator_list.md && git diff --exit-code
+          make generate-markdown && git add ./docs/output_validator_list.md && git diff --exit-code
