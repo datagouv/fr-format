@@ -34,4 +34,4 @@ test: ## Runs all tests
 
 .PHONY: generate-markdown
 generate-markdown: ## Generate validators.md documentation
-	python3 ./utils/generate_docs.py
+	@ poetry run python3 ./utils/generate_docs.py
