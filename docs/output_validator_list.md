@@ -1,7 +1,7 @@
 ### Documentation: Validator list
 
 | class name                   | name                   | decription                    |
-| ---------------------------- | ---------------------- |------------------------------ |
+| ---------------------------- | ---------------------- | ----------------------------- |
 | Canton | Nom de canton | Vérifie que le nom de canton est un canton ou pseudo-canton français valide |
 | CodeCommuneInsee | Code commune INSEE | Vérifie que le code commune correspond bien à un code commune INSEE |
 | CodeFantoir | Code fantoir | Vérifie les codes fantoirs valides |

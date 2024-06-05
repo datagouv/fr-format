@@ -33,4 +33,4 @@ jobs:
 
       - name: Doc generation
         run: |
-          make generate-markdown && git add ./docs/output_validator_list.md && git diff --exit-code
+          make generate-markdown && git add ./docs/output_validator_list.md && git diff --cached --exit-code
