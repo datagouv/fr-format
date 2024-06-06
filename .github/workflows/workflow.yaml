@@ -31,5 +31,11 @@ jobs:
       - name: linting
         run: make lint
 
+      - name: set up locale
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y locales
+          sudo locale-gen fr_FR.UTF-8
+      
       - name: testing
         run: make test
