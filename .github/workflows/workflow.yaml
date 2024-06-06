@@ -31,5 +31,5 @@ jobs:
       - name: linting
         run: make lint
 
-      - name: Testing
+      - name: testing
         run: make test
