@@ -32,6 +32,6 @@ pyright:
 test: ## Runs all tests
 	@ poetry run pytest
 
-.PHONY: generate-markdown
-generate-markdown: ## Generate validators.md documentation
-	@ poetry run python3 ./utils/generate_docs.py
+.PHONY: generate-docs
+generate-docs: ## Generate validators.md documentation
+	@ python3 ./utils/generate_docs.py
