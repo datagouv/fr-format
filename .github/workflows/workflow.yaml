@@ -31,6 +31,6 @@ jobs:
       - name: linting
         run: make lint
 
-      - name: Doc generation
+      - name: Check that documentation is up to date
         run: |
           make generate-markdown && git add ./docs/output_validator_list.md && git diff --cached --exit-code
