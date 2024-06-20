@@ -1,4 +1,4 @@
-# List of all validators
+# List of all available formats
 
 | class name                   | name                   | decription                    |
 | ---------------------------- | ---------------------- | ----------------------------- |
