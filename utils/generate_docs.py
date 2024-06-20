@@ -1,4 +1,5 @@
 import jinja2
+from validators import generate_validators_documentation
 
 from frformat import (
     Canton,
@@ -11,14 +12,13 @@ from frformat import (
     Commune,
     CoordonneesGPSFrancaises,
     Departement,
+    NomenclatureActe,
     NumeroDepartement,
     Pays,
     Region,
-    NomenclatureActe,
     Siren,
-    Siret
+    Siret,
 )
-from validators import generate_validators_documentation
 
 all_validators = [
     Canton,
@@ -36,16 +36,19 @@ all_validators = [
     Region,
     NomenclatureActe,
     Siren,
-    Siret
+    Siret,
 ]
+
+TEMPLATE_FILE = "formats_template.md.jinja"
+OUTPUT_FILE = "./docs/formats.md"
+
 documentation = generate_validators_documentation(all_validators)
 
 template_loader = jinja2.FileSystemLoader(searchpath="./utils/")
 template_env = jinja2.Environment(loader=template_loader, trim_blocks=True)
-template_file = "validator_template.md.jinja"
-template = template_env.get_template(template_file)
+template = template_env.get_template(TEMPLATE_FILE)
 
 output_markdown = template.render(validators=documentation)
 
-with open("./docs/output_validator_list.md", "w") as f:
+with open(OUTPUT_FILE, "w") as f:
     f.write(output_markdown)

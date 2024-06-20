@@ -1,4 +1,4 @@
-### Documentation: Validator list
+# List of all validators
 
 | class name                   | name                   | decription                    |
 | ---------------------------- | ---------------------- | ----------------------------- |
