@@ -33,4 +33,4 @@ jobs:
 
       - name: Check that documentation is up to date
         run: |
-          make generate-docs && git add ./docs/output_validator_list.md && git diff --cached --exit-code
+          make generate-docs && git add ./docs/formats.md && git diff --cached --exit-code
