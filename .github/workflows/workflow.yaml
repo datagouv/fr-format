@@ -39,3 +39,7 @@ jobs:
       
       - name: testing
         run: make test
+
+      - name: Check that documentation is up to date
+        run: |
+          make generate-docs && git add ./docs/formats.md && git diff --cached --exit-code

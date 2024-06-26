@@ -10,4 +10,6 @@ DEPARTEMENTS_SET = (
 name = "Numéro du département"
 description = "Vérifie que le numéro de département correspond bien à un numéro de département français"
 
-NumeroDepartement = enum_format.new(name, description, DEPARTEMENTS_SET)
+NumeroDepartement = enum_format.new(
+    "NumeroDepartement", name, description, DEPARTEMENTS_SET
+)

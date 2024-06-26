@@ -26,4 +26,4 @@ description = (
     "Vérifie qu'il s'agit d'un code région selon le code officiel géographique 2024"
 )
 
-CodeRegion = enum_format.new(name, description, CODE_REGION_SET)
+CodeRegion = enum_format.new("CodeRegion", name, description, CODE_REGION_SET)

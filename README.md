@@ -22,6 +22,6 @@ Departement.is_valid("Canyon Cosmo")
 
 For better performance on big amounts of data, use in conjunction with numpy.
 
-## Available checks
+## Available formats
 
-Checkout [this file](./src/frformat/__init__.py) for a list of available validators.
+Check out [this file](./docs/formats.md) for a list of available formats.

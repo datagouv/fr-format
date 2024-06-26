@@ -29,8 +29,7 @@ InvalidWithDetails = Tuple[Literal[False], List[str]]
 
 name = "Nomenclature des actes"
 
-description = """
-        Document de référence dans les spécifications SCDL :
+description = """Document de référence dans les spécifications SCDL :
         http://www.moselle.gouv.fr/content/download/1107/7994/file/nomenclature.pdf
 
         Dans la nomenclature Actes, les valeurs avant le '/' sont :

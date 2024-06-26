@@ -6,4 +6,4 @@ description = (
     "Vérifie que le nom de canton est un canton ou pseudo-canton français valide"
 )
 
-Canton = enum_format.new(name, description, CANTON_SET)
+Canton = enum_format.new("Canton", name, description, CANTON_SET)
