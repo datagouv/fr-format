@@ -39,41 +39,34 @@ all_validators = [
 ]
 
 
-def text_formatting(text):
-    new_text = text.strip()
-    formatted_description = ""
-    text_array = new_text.splitlines()
-
-    if len(text_array) == 1:
-        formatted_description = text_array[0]
-        return formatted_description
-
-    for line in text_array:
-        if line is text_array[0] and line != "":
-            formatted_description = line
-        else:
-            formatted_description = formatted_description + "<br>" + line
-
-    return formatted_description
-
-
-def generate_validators_documentation(all_validators):
+def generate_formats_documentation(all_formats):
     documentation = []
-    for validator in all_validators:
+    for format in all_formats:
         doc = {
-            "class_name": validator.__name__,
-            "name": validator.metadata.name,
-            "description": text_formatting(validator.metadata.description),
+            "class_name": format.__name__,
+            "name": format.metadata.name,
+            "description": description_formatting(format.metadata.description),
         }
         documentation.append(doc)
     return documentation
+
+
+def description_formatting(description):
+    text_array = description.strip().splitlines()
+
+    formatted_description = text_array[0] if len(text_array) > 0 else ""
+
+    for line in text_array[1:]:
+        formatted_description = formatted_description + "<br>" + line
+
+    return formatted_description
 
 
 if __name__ == "__main__":
     TEMPLATE_FILE = "formats_template.md.jinja"
     OUTPUT_FILE = "./docs/formats.md"
 
-    documentation = generate_validators_documentation(all_validators)
+    documentation = generate_formats_documentation(all_validators)
 
     template_loader = jinja2.FileSystemLoader(searchpath="./utils/")
     template_env = jinja2.Environment(loader=template_loader, trim_blocks=True)
