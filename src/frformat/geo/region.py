@@ -6,4 +6,4 @@ description = (
     "Vérifie les régions françaises valides (code officiel géographique 2020) "
 )
 
-Region = enum_format.new(name, description, REGION_SET, LENIENT_REGION_SET)
+Region = enum_format.new("Region", name, description, REGION_SET, LENIENT_REGION_SET)

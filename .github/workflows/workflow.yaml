@@ -26,7 +26,11 @@ jobs:
         run: pip install poetry==1.6
 
       - name: install dependencies
-        run: poetry install --with linting
+        run: poetry install --with linting,dev
 
       - name: linting
         run: make lint
+
+      - name: Check that documentation is up to date
+        run: |
+          make generate-docs && git add ./docs/formats.md && git diff --cached --exit-code

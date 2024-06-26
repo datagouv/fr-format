@@ -6,4 +6,4 @@ description = (
     "Vérifie les départements français valides (code officiel géographique 2020)"
 )
 
-Departement = enum_format.new(name, description, DEPARTEMENT_SET)
+Departement = enum_format.new("Departement", name, description, DEPARTEMENT_SET)
