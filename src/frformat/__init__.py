@@ -22,3 +22,22 @@ from .geo.region import Region as Region
 from .nomenclature_acte_format import NomenclatureActe as NomenclatureActe
 from .siren import Siren as Siren
 from .siret import Siret as Siret
+
+all_formats = [
+    Canton,
+    CodeCommuneInsee,
+    CodeFantoir,
+    CodePaysISO2,
+    CodePaysISO3,
+    CodePostal,
+    CodeRegion,
+    Commune,
+    CoordonneesGPSFrancaises,
+    Departement,
+    NumeroDepartement,
+    Pays,
+    Region,
+    NomenclatureActe,
+    Siren,
+    Siret,
+]

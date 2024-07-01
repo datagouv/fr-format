@@ -1,42 +1,6 @@
 import jinja2
 
-from frformat import (
-    Canton,
-    CodeCommuneInsee,
-    CodeFantoir,
-    CodePaysISO2,
-    CodePaysISO3,
-    CodePostal,
-    CodeRegion,
-    Commune,
-    CoordonneesGPSFrancaises,
-    Departement,
-    NomenclatureActe,
-    NumeroDepartement,
-    Pays,
-    Region,
-    Siren,
-    Siret,
-)
-
-all_validators = [
-    Canton,
-    CodeCommuneInsee,
-    CodeFantoir,
-    CodePaysISO2,
-    CodePaysISO3,
-    CodePostal,
-    CodeRegion,
-    Commune,
-    CoordonneesGPSFrancaises,
-    Departement,
-    NumeroDepartement,
-    Pays,
-    Region,
-    NomenclatureActe,
-    Siren,
-    Siret,
-]
+from frformat import all_formats
 
 
 def generate_formats_documentation(all_formats):
@@ -66,7 +30,9 @@ if __name__ == "__main__":
     TEMPLATE_FILE = "formats_template.md.jinja"
     OUTPUT_FILE = "./docs/formats.md"
 
-    documentation = generate_formats_documentation(all_validators)
+    # Sort by class name
+    sorted_formats = sorted(all_formats, key=lambda x: x.__name__)
+    documentation = generate_formats_documentation(sorted_formats)
 
     template_loader = jinja2.FileSystemLoader(searchpath="./utils/")
     template_env = jinja2.Environment(loader=template_loader, trim_blocks=True)
