@@ -23,7 +23,7 @@ from .nomenclature_acte_format import NomenclatureActe as NomenclatureActe
 from .siren import Siren as Siren
 from .siret import Siret as Siret
 
-all_validators = [
+all_formats = [
     Canton,
     CodeCommuneInsee,
     CodeFantoir,
