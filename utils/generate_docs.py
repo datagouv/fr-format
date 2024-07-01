@@ -1,42 +1,6 @@
 import jinja2
 
-from frformat import (
-    Canton,
-    CodeCommuneInsee,
-    CodeFantoir,
-    CodePaysISO2,
-    CodePaysISO3,
-    CodePostal,
-    CodeRegion,
-    Commune,
-    CoordonneesGPSFrancaises,
-    Departement,
-    NomenclatureActe,
-    NumeroDepartement,
-    Pays,
-    Region,
-    Siren,
-    Siret,
-)
-
-all_validators = [
-    Canton,
-    CodeCommuneInsee,
-    CodeFantoir,
-    CodePaysISO2,
-    CodePaysISO3,
-    CodePostal,
-    CodeRegion,
-    Commune,
-    CoordonneesGPSFrancaises,
-    Departement,
-    NumeroDepartement,
-    Pays,
-    Region,
-    NomenclatureActe,
-    Siren,
-    Siret,
-]
+from frformat import all_validators
 
 
 def generate_formats_documentation(all_formats):
