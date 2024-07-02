@@ -1,44 +1,24 @@
-from typing import Optional, Set, Type
+from typing import Set, Type
 
 from frformat import CustomStrFormat, Metadata
-from frformat.common import normalize_text
+from frformat.common import normalize_value
 from frformat.options import Options
 
 
-def new(
-    class_name: str,
-    name: str,
-    description: str,
-    strict_enum: Set[str],
-    lenient_enum: Optional[Set[str]] = None,
-) -> Type:
-    if not lenient_enum:
-        options = Options(
-            ignore_case=True,
-            ignore_punctuation=True,
-            ignore_underscore=True,
-            ignore_fullwidth_apostrophe=True,
-            ignore_space=True,
-            ignore_accents=True,
-        )
-        lenient_enum = {normalize_text(e, options) for e in strict_enum}
-
+def new(class_name: str, name: str, description: str, enum: Set[str]) -> Type:
     class EnumFormat(CustomStrFormat):
         """Checks if a value is in a given list
 
-        May check with or without string normalization with the "strict"
-        validation.
-        """
+        May check with string normalization with the "options" of validation."""
 
         metadata = Metadata(name, description)
 
         @classmethod
-        def is_valid(cls, value: str, option_items: Optional[Options] = None) -> bool:
-            if option_items is not None:
-                norm_value = normalize_text(value, option_items)
-                return norm_value in lenient_enum
-            else:
-                return value in strict_enum
+        def is_valid(cls, value: str, options: Options = Options()) -> bool:
+            normalized_enum = {normalize_value(e, options) for e in enum}
+            normalized_value = normalize_value(value, options)
+
+            return normalized_value in normalized_enum
 
     EnumFormat.__name__ = class_name
     EnumFormat.__qualname__ = class_name
