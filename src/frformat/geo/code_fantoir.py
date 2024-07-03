@@ -3,6 +3,7 @@ import string
 from frformat import CustomStrFormat, Metadata
 from frformat.formatter import Formatter
 from frformat.geo.code_fantoir_set import PARTIAL_CODE_FANTOIR_SET
+from frformat.options import Options
 
 name = "Code fantoir"
 description = "Vérifie les codes fantoirs valides"
@@ -20,7 +21,7 @@ class CodeFantoir(CustomStrFormat):
     formatter = CodeFantoirFormatter()
 
     @classmethod
-    def is_valid(cls, value: str) -> bool:
+    def is_valid(cls, value: str, options: Options = Options()) -> bool:
         if len(value) != 5:
             return False
 

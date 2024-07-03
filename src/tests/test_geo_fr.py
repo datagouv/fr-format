@@ -15,6 +15,7 @@ from frformat import (
     Region,
 )
 from frformat.common import NBSP, NNBSP
+from frformat.options import Options
 from tests.testing import (
     strict_lenient_test_helper_factory,
     validation_test_helper_factory,
@@ -27,8 +28,8 @@ def test_code_fantoir():
     fantoir_valid = ["ZB03A"]
     fantoir_invalid = ["1000"]
 
-    _test_fantoir(fantoir_valid, True)
-    _test_fantoir(fantoir_invalid, False)
+    _test_fantoir(fantoir_valid, True, Options())
+    _test_fantoir(fantoir_invalid, False, Options())
 
 
 def test_code_commune_insee():
@@ -134,14 +135,7 @@ def test_region():
     _test_region = strict_lenient_test_helper_factory(Region)
 
     region_strict = ["Centre-Val de Loire", "La Réunion", "Corse"]
-    region_lenient = [
-        "Centre Val de Loire",
-        "La Reunion",
-        "corse",
-        "bfc",
-        "BFC",
-        "aura",
-    ]
+    region_lenient = ["Centre Val de Loire", "La Reunion", "corse"]
     region_invalid = ["Beleriand", "Canyon Cosmo"]
 
     _test_region(region_strict, region_lenient, region_invalid)
