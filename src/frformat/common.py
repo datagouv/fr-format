@@ -16,7 +16,7 @@ def normalize_value(val: str, options: Options) -> str:
     if options.replace_non_alphanumeric_with_space is True:
         val = re.sub(r"[^a-zA-Z0-9]", " ", val)
 
-    if options.ignore_extra_white_space is True:
+    if options.ignore_extra_whitespace is True:
         val = val.strip()
         val = re.sub(r"[\s\xa0]+", " ", val)
     return val
