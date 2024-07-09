@@ -9,7 +9,7 @@ def new(class_name: str, name: str, description: str, enum: Set[str]) -> Type:
     class EnumFormat(CustomStrFormat):
         """Checks if a value is in a given list
 
-        May check with string normalization with the "options" of validation."""
+        May preprocess the input and valid values according to given "options"."""
 
         metadata = Metadata(name, description)
 
