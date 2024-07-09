@@ -34,7 +34,7 @@ def strict_lenient_test_helper_factory(Class):
         optionsTrue = Options(
             ignore_case=True,
             ignore_accents=True,
-            ignore_non_alphanumeric=True,
+            replace_non_alphanumeric_with_space=True,
             ignore_extra_white_space=True,
         )
         _test_class(strict_test_cases, expectValid=True, options=Options())

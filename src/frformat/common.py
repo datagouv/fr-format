@@ -13,7 +13,7 @@ def normalize_value(val: str, options: Options) -> str:
     if options.ignore_accents is True:
         val = _replace_accented_letters(val)
 
-    if options.ignore_non_alphanumeric is True:
+    if options.replace_non_alphanumeric_with_space is True:
         val = re.sub(r"[^a-zA-Z0-9]", " ", val)
 
     if options.ignore_extra_white_space is True:

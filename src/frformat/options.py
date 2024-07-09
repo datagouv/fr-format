@@ -16,7 +16,7 @@ class Options:
             When set to True, characters with accents will be replaced with their non-accented counterparts.
             Example: 'à' will be replaced by 'a'.
 
-        ignore_non_alphanumeric: Boolean
+        replace_non_alphanumeric_with_space: Boolean
             Indicates if non-alphanumeric characters should be ignored.
             When set to True, punctuation marks and symbols will be replaced by a space.
 
@@ -32,6 +32,6 @@ class Options:
 
     ignore_case: bool = False
     ignore_accents: bool = False
-    ignore_non_alphanumeric: bool = False
+    replace_non_alphanumeric_with_space: bool = False
     ignore_extra_white_space: bool = False
     extra_valid_values: set = field(default_factory=set)
