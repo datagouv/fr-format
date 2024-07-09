@@ -4,7 +4,7 @@ from dataclasses import dataclass, field
 @dataclass
 class Options:
     """
-       The class Options is used to represent a list of necessary options to validate a French format.
+       The class Options is used to represent a list of options to validate a French format.
 
     Attributes:
         ignore_case: Boolean
