@@ -18,8 +18,7 @@ def normalize_value(val: str, options: Options) -> str:
 
     if options.ignore_extra_white_space is True:
         val = val.strip()
-        val = val.replace("  ", " ")
-
+        val = re.sub(r"[\s\xa0]+", " ", val)
     return val
 
 
