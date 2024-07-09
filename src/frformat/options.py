@@ -20,7 +20,7 @@ class Options:
             Indicates if non-alphanumeric characters should be ignored.
             When set to True, punctuation marks and symbols will be replaced by a space.
 
-        ignore_extra_white_space: Boolean
+        ignore_extra_whitespace: Boolean
             Indicates if extra white space should be ignored.
             When set to True, multiple consecutive spaces will be treated as a single space, and leading or trailing spaces will be removed.
 
@@ -33,5 +33,5 @@ class Options:
     ignore_case: bool = False
     ignore_accents: bool = False
     replace_non_alphanumeric_with_space: bool = False
-    ignore_extra_white_space: bool = False
+    ignore_extra_whitespace: bool = False
     extra_valid_values: set = field(default_factory=set)
