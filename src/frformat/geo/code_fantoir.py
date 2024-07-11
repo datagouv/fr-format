@@ -20,8 +20,7 @@ class CodeFantoir(CustomStrFormat):
     metadata = Metadata(name, description)
     formatter = CodeFantoirFormatter()
 
-    @classmethod
-    def is_valid(cls, value: str, options: Options = Options()) -> bool:
+    def is_valid(self, value: str, options: Options = Options()) -> bool:
         if len(value) != 5:
             return False
 

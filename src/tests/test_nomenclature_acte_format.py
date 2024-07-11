@@ -5,6 +5,7 @@ from frformat.nomenclature_acte_format import (
     MISSING_SLASH,
     NomenclatureActe,
 )
+from frformat.options import Options
 
 
 def test_is_valid_with_details():
@@ -43,9 +44,10 @@ def test_is_valid_with_details():
         },
     ]
 
+    nomenclature_acte = NomenclatureActe(Options())
     for tc in test_cases:
-        assert NomenclatureActe.is_valid(tc["value"]) == tc["expected_is_valid"]
-        assert NomenclatureActe.is_valid_with_details(tc["value"]) == (
+        assert nomenclature_acte.is_valid(tc["value"]) == tc["expected_is_valid"]
+        assert nomenclature_acte.is_valid_with_details(tc["value"]) == (
             tc["expected_is_valid"],
             tc["expected_details"],
         )

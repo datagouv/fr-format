@@ -1,6 +1,7 @@
 from typing import List, Literal, Tuple, Union
 
 from frformat import CustomStrFormat, Metadata
+from frformat.common import Options
 
 AUTHORIZED_VALUES = {
     "Commande publique",
@@ -51,9 +52,8 @@ description = """Document de référence dans les spécifications SCDL :
 class NomenclatureActe(CustomStrFormat):
     metadata = Metadata(name, description)
 
-    @classmethod
-    def is_valid(cls, value: str) -> bool:
-        nomenc = cls._nomenclature(value)
+    def is_valid(self, value: str) -> bool:
+        nomenc = self._nomenclature(value)
 
         # Nomenclature reconnue et pas d'espace après l'oblique
         return "/ " not in value and nomenc in AUTHORIZED_VALUES
@@ -65,8 +65,8 @@ class NomenclatureActe(CustomStrFormat):
         """Check the validity, and return details if value is invalid"""
 
         details = []
-
-        if cls.is_valid(value):
+        instance = cls(Options())
+        if instance.is_valid(value):
             return (True, None)
 
         if "/" not in value:

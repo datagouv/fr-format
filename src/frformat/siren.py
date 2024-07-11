@@ -20,6 +20,5 @@ class Siren(CustomStrFormat):
     metadata = Metadata(name, description)
     formatter = SirenFormatter()
 
-    @classmethod
-    def is_valid(cls, value: str) -> bool:
+    def is_valid(self, value: str) -> bool:
         return stdnum.fr.siren.is_valid(value)
