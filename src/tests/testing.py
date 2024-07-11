@@ -14,7 +14,7 @@ def validation_test_helper_factory(Class):
 
         for tc in test_cases:
             assert (
-                Class.is_valid(tc, options) == expectValid
+                Class(options).is_valid(tc) == expectValid
             ), f"Check that { Class.__name__ } { tc } is { adjective } { validKeywoard }"
 
     return test_helper

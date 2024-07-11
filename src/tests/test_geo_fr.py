@@ -34,20 +34,22 @@ def test_code_fantoir():
 
 def test_code_commune_insee():
     value = "01015"
-    assert CodeCommuneInsee.is_valid(value)
+    code_commune_insee = CodeCommuneInsee(Options())
+    assert code_commune_insee.is_valid(value)
     assert CodeCommuneInsee.format(value) == value
 
-    assert CodeCommuneInsee.is_valid("2B002")
-    assert not CodeCommuneInsee.is_valid("77777")
+    assert code_commune_insee.is_valid("2B002")
+    assert not code_commune_insee.is_valid("77777")
 
 
 def test_code_postal():
     value = "05560"
-    assert CodePostal.is_valid(value)
+    code_postal = CodePostal(Options())
+    assert code_postal.is_valid(value)
     assert CodePostal.format(value) == value
 
-    assert not CodePostal.is_valid("77777")
-    assert not CodePostal.is_valid("2B002")
+    assert not code_postal.is_valid("77777")
+    assert not code_postal.is_valid("2B002")
 
 
 def test_commune():
