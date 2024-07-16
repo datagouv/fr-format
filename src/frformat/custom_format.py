@@ -2,7 +2,6 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from typing import Generic, TypeVar, Union
 
-from frformat.common import Options
 from frformat.formatter import DefaultFormatter, Formatter
 
 
@@ -18,9 +17,6 @@ ValueType = TypeVar("ValueType", str, float, int, contravariant=True)
 class CustomFormat(ABC, Generic[ValueType]):
     metadata: Metadata
     formatter: Formatter = DefaultFormatter[ValueType]()
-
-    def __init__(self, options: Options):
-        self.options = options
 
     @abstractmethod
     def is_valid(self, value: ValueType) -> bool:

@@ -1,11 +1,10 @@
 from frformat import CodeRNA
 from frformat.common import NNBSP
-from frformat.options import Options
 
 
 def test_code_rna():
     value = "W135247934"
-    code_rna = CodeRNA(Options())
+    code_rna = CodeRNA()
     assert code_rna.is_valid(value)
     assert code_rna.format(value) == "W135" + NNBSP + "247" + NNBSP + "934"
 

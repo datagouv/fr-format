@@ -16,20 +16,15 @@ from frformat import (
 )
 from frformat.common import NBSP, NNBSP
 from frformat.options import Options
-from tests.testing import (
-    strict_lenient_test_helper_factory,
-    validation_test_helper_factory,
-)
+from tests.testing import strict_lenient_test_helper_factory
 
 
 def test_code_fantoir():
-    _test_fantoir = validation_test_helper_factory(CodeFantoir)
-
-    fantoir_valid = ["ZB03A"]
-    fantoir_invalid = ["1000"]
-
-    _test_fantoir(fantoir_valid, True, Options())
-    _test_fantoir(fantoir_invalid, False, Options())
+    fantoir_valid = "ZB03A"
+    fantoir_invalid = "1000"
+    code_fantoir = CodeFantoir()
+    assert code_fantoir.is_valid(fantoir_valid)
+    assert not code_fantoir.is_valid(fantoir_invalid)
 
 
 def test_code_commune_insee():
@@ -87,7 +82,7 @@ def test_departement():
 
 
 def test_longitude_l93():
-    longitudel93 = LongitudeL93(Options())
+    longitudel93 = LongitudeL93()
     assert longitudel93.format(224234) == "224" + NNBSP + "234" + NBSP + "m"
     assert longitudel93.format(224234.0) == "224" + NNBSP + "234,00" + NBSP + "m"
 
@@ -103,7 +98,7 @@ def test_longitude_l93():
 
 
 def test_latitude_l93():
-    latitudel93 = LatitudeL93(Options())
+    latitudel93 = LatitudeL93()
     assert (
         latitudel93.format(6757121) == "6" + NNBSP + "757" + NNBSP + "121" + NBSP + "m"
     )
