@@ -5,11 +5,11 @@ from frformat.common import NNBSP
 
 
 def test_siret_format():
-    siret_example = "83014132100034"
+    valid_siret = "83014132100034"
     expected_format = f"830141321{ NNBSP }00034"
 
     siret = Siret()
-    assert siret.format(siret_example) == expected_format
+    assert siret.format(valid_siret) == expected_format
 
     for siret_value in ["123", ""]:
         with pytest.raises(ValueError):
@@ -17,7 +17,7 @@ def test_siret_format():
 
 
 def test_siren_format():
-    siren_example = "830141321"
+    valid_siren = "830141321"
     expected_format = f"830{ NNBSP }141{ NNBSP }321"
     siren = Siren()
-    assert siren.format(siren_example) == expected_format
+    assert siren.format(valid_siren) == expected_format
