@@ -9,6 +9,5 @@ class LatitudeL93(CustomNumericFormat):
     metadata = Metadata(name, description)
     formatter = UnitFormatter("m")
 
-    @classmethod
-    def is_valid(cls, value: float) -> bool:
+    def is_valid(self, value: float) -> bool:
         return value >= 6037008 and value <= 7230728

@@ -1,6 +1,5 @@
 # flake8: noqa
 from .custom_format import *  # isort:skip
-
 from .code_rna import CodeRNA as CodeRNA
 from .geo.canton import Canton as Canton
 from .geo.code_commune_insee import CodeCommuneInsee as CodeCommuneInsee
@@ -20,6 +19,7 @@ from .geo.numero_departement import NumeroDepartement as NumeroDepartement
 from .geo.pays import Pays as Pays
 from .geo.region import Region as Region
 from .nomenclature_acte_format import NomenclatureActe as NomenclatureActe
+from .options import Options
 from .siren import Siren as Siren
 from .siret import Siret as Siret
 

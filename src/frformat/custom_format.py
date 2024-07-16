@@ -18,16 +18,14 @@ class CustomFormat(ABC, Generic[ValueType]):
     metadata: Metadata
     formatter: Formatter = DefaultFormatter[ValueType]()
 
-    @classmethod
     @abstractmethod
-    def is_valid(cls, value: ValueType) -> bool:
+    def is_valid(self, value: ValueType) -> bool:
         ...
 
-    @classmethod
-    def format(cls, value: ValueType) -> str:
-        if not cls.is_valid(value):
-            raise ValueError(f"{cls.metadata.name} is not valid")
-        return cls.formatter.format(value)
+    def format(self, value: ValueType) -> str:
+        if not self.is_valid(value):
+            raise ValueError(f"{self.metadata.name} is not valid")
+        return self.formatter.format(value)
 
 
 CustomStrFormat = CustomFormat[str]

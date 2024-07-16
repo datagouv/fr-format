@@ -20,6 +20,5 @@ class Siret(CustomStrFormat):
     metadata = Metadata(name, description)
     formatter = SiretFormatter()
 
-    @classmethod
-    def is_valid(cls, value: str) -> bool:
+    def is_valid(self, value: str) -> bool:
         return stdnum.fr.siret.is_valid(value)

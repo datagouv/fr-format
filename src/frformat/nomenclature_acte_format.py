@@ -51,29 +51,26 @@ description = """Document de référence dans les spécifications SCDL :
 class NomenclatureActe(CustomStrFormat):
     metadata = Metadata(name, description)
 
-    @classmethod
-    def is_valid(cls, value: str) -> bool:
-        nomenc = cls._nomenclature(value)
+    def is_valid(self, value: str) -> bool:
+        nomenc = self._nomenclature(value)
 
         # Nomenclature reconnue et pas d'espace après l'oblique
         return "/ " not in value and nomenc in AUTHORIZED_VALUES
 
-    @classmethod
     def is_valid_with_details(
-        cls, value: str
+        self, value: str
     ) -> Union[ValidWithoutDetails, InvalidWithDetails]:
         """Check the validity, and return details if value is invalid"""
 
         details = []
-
-        if cls.is_valid(value):
+        if self.is_valid(value):
             return (True, None)
 
         if "/" not in value:
             details.append(MISSING_SLASH)
 
         else:
-            nomenc = cls._nomenclature(value)
+            nomenc = self._nomenclature(value)
 
             if nomenc.rstrip() in AUTHORIZED_VALUES or "/ " in value:
                 details.append(EXTRA_SPACE)

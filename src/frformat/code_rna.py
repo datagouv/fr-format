@@ -16,6 +16,5 @@ class CodeRNA(CustomStrFormat):
     metadata = Metadata(name, description)
     formatter = RNAFormatter()
 
-    @classmethod
-    def is_valid(cls, value: str) -> bool:
+    def is_valid(self, value: str) -> bool:
         return bool(re.match(r"^W\d{9}$", value))

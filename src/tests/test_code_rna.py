@@ -4,10 +4,11 @@ from frformat.common import NNBSP
 
 def test_code_rna():
     value = "W135247934"
-    assert CodeRNA.is_valid(value)
-    assert CodeRNA.format(value) == "W135" + NNBSP + "247" + NNBSP + "934"
+    code_rna = CodeRNA()
+    assert code_rna.is_valid(value)
+    assert code_rna.format(value) == "W135" + NNBSP + "247" + NNBSP + "934"
 
-    assert CodeRNA.is_valid("W231468097")
+    assert code_rna.is_valid("W231468097")
 
     invalid_test_cases = [
         "w231468097",
@@ -22,4 +23,4 @@ def test_code_rna():
     ]
 
     for tc in invalid_test_cases:
-        assert not CodeRNA.is_valid(tc)
+        assert not code_rna.is_valid(tc)
