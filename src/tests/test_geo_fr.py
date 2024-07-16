@@ -36,7 +36,7 @@ def test_code_commune_insee():
     value = "01015"
     code_commune_insee = CodeCommuneInsee(Options())
     assert code_commune_insee.is_valid(value)
-    assert CodeCommuneInsee.format(value) == value
+    assert code_commune_insee.format(value) == value
 
     assert code_commune_insee.is_valid("2B002")
     assert not code_commune_insee.is_valid("77777")
@@ -46,7 +46,7 @@ def test_code_postal():
     value = "05560"
     code_postal = CodePostal(Options())
     assert code_postal.is_valid(value)
-    assert CodePostal.format(value) == value
+    assert code_postal.format(value) == value
 
     assert not code_postal.is_valid("77777")
     assert not code_postal.is_valid("2B002")
@@ -87,12 +87,12 @@ def test_departement():
 
 
 def test_longitude_l93():
-    assert LongitudeL93.format(224234) == "224" + NNBSP + "234" + NBSP + "m"
-    assert LongitudeL93.format(224234.0) == "224" + NNBSP + "234,00" + NBSP + "m"
+    longitudel93 = LongitudeL93(Options())
+    assert longitudel93.format(224234) == "224" + NNBSP + "234" + NBSP + "m"
+    assert longitudel93.format(224234.0) == "224" + NNBSP + "234,00" + NBSP + "m"
 
     invalid_test_cases = [-435522.3, -554234, 2076524, 5436780.23]
 
-    longitudel93 = LongitudeL93(Options())
     for tc in invalid_test_cases:
         assert not longitudel93.is_valid(tc)
 
@@ -103,15 +103,15 @@ def test_longitude_l93():
 
 
 def test_latitude_l93():
+    latitudel93 = LatitudeL93(Options())
     assert (
-        LatitudeL93.format(6757121) == "6" + NNBSP + "757" + NNBSP + "121" + NBSP + "m"
+        latitudel93.format(6757121) == "6" + NNBSP + "757" + NNBSP + "121" + NBSP + "m"
     )
     assert (
-        LatitudeL93.format(6757121.337)
+        latitudel93.format(6757121.337)
         == "6" + NNBSP + "757" + NNBSP + "121,34" + NBSP + "m"
     )
 
-    latitudel93 = LatitudeL93(Options())
     assert latitudel93.is_valid(6544234.2)
     assert latitudel93.is_valid(7145278)
 
