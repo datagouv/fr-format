@@ -1,7 +1,6 @@
 from typing import List, Literal, Tuple, Union
 
 from frformat import CustomStrFormat, Metadata
-from frformat.common import Options
 
 AUTHORIZED_VALUES = {
     "Commande publique",
