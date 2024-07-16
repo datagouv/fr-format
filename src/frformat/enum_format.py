@@ -13,13 +13,13 @@ def new(class_name: str, name: str, description: str, enum: Set[str]) -> Type:
 
         def __init__(self, options: Options):
             self._options = options
-            self._normalized_extra_values = {
+            _normalized_extra_values = {
                 normalize_value(e, self._options)
                 for e in self._options.extra_valid_values
             }
             self._normalized_enum = {
                 normalize_value(e, self._options) for e in enum
-            }.union(self._normalized_extra_values)
+            }.union(_normalized_extra_values)
 
         metadata = Metadata(name, description)
 
