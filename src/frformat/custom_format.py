@@ -18,6 +18,9 @@ class CustomFormat(ABC, Generic[ValueType]):
     metadata: Metadata
     formatter: Formatter = DefaultFormatter[ValueType]()
 
+    def __init__(self):
+        ...
+
     @abstractmethod
     def is_valid(self, value: ValueType) -> bool:
         ...
