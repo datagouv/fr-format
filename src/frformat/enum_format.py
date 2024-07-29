@@ -11,8 +11,8 @@ def new(class_name: str, name: str, description: str, enum: Set[str]) -> Type:
 
         May preprocess the input and valid values according to given "options"."""
 
-        def __init__(self, options: Optional[Options] = None):
-            self.options = options if options is not None else Options()
+        def __init__(self, options: Options = Options()):
+            self.options = options
 
             _normalized_extra_values = {
                 normalize_value(e, self.options)
