@@ -1,4 +1,4 @@
-from typing import Optional, Set, Type
+from typing import Set, Type
 
 from frformat import CustomStrFormat, Metadata
 from frformat.common import normalize_value
