@@ -15,7 +15,6 @@ from frformat import (
     Region,
 )
 from frformat.common import NBSP, NNBSP
-from frformat.options import Options
 from tests.testing import strict_lenient_test_helper_factory
 
 
@@ -29,7 +28,7 @@ def test_code_fantoir():
 
 def test_code_commune_insee():
     value = "01015"
-    code_commune_insee = CodeCommuneInsee(Options())
+    code_commune_insee = CodeCommuneInsee()
     assert code_commune_insee.is_valid(value)
     assert code_commune_insee.format(value) == value
 
@@ -39,7 +38,7 @@ def test_code_commune_insee():
 
 def test_code_postal():
     value = "05560"
-    code_postal = CodePostal(Options())
+    code_postal = CodePostal()
     assert code_postal.is_valid(value)
     assert code_postal.format(value) == value
 

@@ -11,12 +11,14 @@ def new(class_name: str, name: str, description: str, enum: Set[str]) -> Type:
 
         May preprocess the input and valid values according to given "options"."""
 
-        def __init__(self, options: Options):
+        def __init__(self, options: Options = Options()):
             self._options = options
+
             _normalized_extra_values = {
                 normalize_value(e, self._options)
                 for e in self._options.extra_valid_values
             }
+
             self._normalized_enum = {
                 normalize_value(e, self._options) for e in enum
             }.union(_normalized_extra_values)
