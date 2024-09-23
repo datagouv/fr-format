@@ -1,4 +1,5 @@
 from shapely.geometry import Point, shape
+from shapely.geometry.base import BaseGeometry
 
 from frformat import Metadata
 
@@ -10,20 +11,25 @@ class CoordonneesGPSFrancaises:
     metadata = Metadata(name, description)
 
     @classmethod
-    def is_valid(cls, lon: float, lat: float) -> bool:
-        return is_point_in_france((lon, lat))
+    def is_valid(cls, lon: float, lat: float, polys: list[BaseGeometry]) -> bool:
+        return is_point_in_france((lon, lat), polys)
+
+    @classmethod
+    def create_polygone(cls) -> list[BaseGeometry]:
+        geoms = [region["geometry"] for region in FRANCE_BOUNDING_BOXES]
+        polys = [shape(geom) for geom in geoms]
+        return polys
 
 
-def is_point_in_france(coordonnees_xy: tuple[float, float]) -> bool:
+def is_point_in_france(
+    coordonnees_xy: tuple[float, float], polys: list[BaseGeometry]
+) -> bool:
     """Returns True if the point is in metropolitan France, Guadeloupe, Martinique,
     Guyane, la Réunion or Mayotte. As we are using bounding boxes (with a small margin),
     locations outside of France but quite close by may return True.
     """
     p = Point(*coordonnees_xy)
 
-    # Create a Polygon
-    geoms = [region["geometry"] for region in FRANCE_BOUNDING_BOXES]
-    polys = [shape(geom) for geom in geoms]
     return any([p.within(poly) for poly in polys])
 
 

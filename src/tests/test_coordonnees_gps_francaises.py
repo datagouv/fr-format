@@ -22,8 +22,8 @@ def test_coordonnees_gps_francaises__is_valid():
         TestCase("Berlin", (13.3982663, 52.5075445), False),
         TestCase("Valence", (-0.4439106, 39.4078888), False),
     ]
-
+    polys = CoordonneesGPSFrancaises.create_polygone()
     for tc in test_cases:
         assert (
-            CoordonneesGPSFrancaises.is_valid(*tc.coordinates) == tc.is_in_france
+            CoordonneesGPSFrancaises.is_valid(*tc.coordinates, polys) == tc.is_in_france
         ), tc.name
