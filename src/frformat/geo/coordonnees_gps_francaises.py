@@ -30,7 +30,7 @@ def is_point_in_france(
     """
     p = Point(*coordonnees_xy)
 
-    return any([p.within(poly) for poly in polys])
+    return any(p.within(poly) for poly in polys)
 
 
 FRANCE_BOUNDING_BOXES = [
