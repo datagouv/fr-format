@@ -6,33 +6,6 @@ from frformat import Metadata
 name = "Coordonnées GPS françaises"
 description = """Check that GPS coordinates are in a bounding box approximating France (including DOM)"""
 
-
-class CoordonneesGPSFrancaises:
-    metadata = Metadata(name, description)
-
-    @classmethod
-    def is_valid(cls, lon: float, lat: float, polys: list[BaseGeometry]) -> bool:
-        return is_point_in_france((lon, lat), polys)
-
-    @classmethod
-    def create_polygons(cls) -> list[BaseGeometry]:
-        geoms = [region["geometry"] for region in FRANCE_BOUNDING_BOXES]
-        polys = [shape(geom) for geom in geoms]
-        return polys
-
-
-def is_point_in_france(
-    coordonnees_xy: tuple[float, float], polys: list[BaseGeometry]
-) -> bool:
-    """Returns True if the point is in metropolitan France, Guadeloupe, Martinique,
-    Guyane, la Réunion or Mayotte. As we are using bounding boxes (with a small margin),
-    locations outside of France but quite close by may return True.
-    """
-    p = Point(*coordonnees_xy)
-
-    return any(p.within(poly) for poly in polys)
-
-
 FRANCE_BOUNDING_BOXES = [
     {
         "nom": "Guadeloupe",
@@ -155,3 +128,29 @@ FRANCE_BOUNDING_BOXES = [
         },
     },
 ]
+
+
+def create_polygons() -> list[BaseGeometry]:
+    geoms = [region["geometry"] for region in FRANCE_BOUNDING_BOXES]
+    polys = [shape(geom) for geom in geoms]
+    return polys
+
+
+polygons: list[BaseGeometry] = create_polygons()
+
+
+def is_point_in_france(coordonnees_xy: tuple[float, float]) -> bool:
+    """Returns True if the point is in metropolitan France, Guadeloupe, Martinique,
+    Guyane, la Réunion or Mayotte. As we are using bounding boxes (with a small margin),
+    locations outside of France but quite close by may return True.
+    """
+    p = Point(*coordonnees_xy)
+    return any(p.within(poly) for poly in polygons)
+
+
+class CoordonneesGPSFrancaises:
+    metadata = Metadata(name, description)
+
+    @classmethod
+    def is_valid(cls, lon: float, lat: float) -> bool:
+        return is_point_in_france((lon, lat))
