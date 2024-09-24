@@ -15,7 +15,7 @@ class CoordonneesGPSFrancaises:
         return is_point_in_france((lon, lat), polys)
 
     @classmethod
-    def create_polygone(cls) -> list[BaseGeometry]:
+    def create_polygons(cls) -> list[BaseGeometry]:
         geoms = [region["geometry"] for region in FRANCE_BOUNDING_BOXES]
         polys = [shape(geom) for geom in geoms]
         return polys
