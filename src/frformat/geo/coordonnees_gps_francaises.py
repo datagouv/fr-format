@@ -145,7 +145,7 @@ def is_point_in_france(coordonnees_xy: tuple[float, float]) -> bool:
     locations outside of France but quite close by may return True.
     """
     p = Point(*coordonnees_xy)
-    return any(p.within(poly) for poly in polygons)
+    return any(p.within(poly) for poly in POLYGONS)
 
 
 class CoordonneesGPSFrancaises:
