@@ -136,7 +136,7 @@ def create_polygons() -> list[BaseGeometry]:
     return polys
 
 
-polygons: list[BaseGeometry] = create_polygons()
+POLYGONS: list[BaseGeometry] = create_polygons()
 
 
 def is_point_in_france(coordonnees_xy: tuple[float, float]) -> bool:
