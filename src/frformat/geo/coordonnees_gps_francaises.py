@@ -1,31 +1,10 @@
 from shapely.geometry import Point, shape
+from shapely.geometry.base import BaseGeometry
 
 from frformat import Metadata
 
 name = "Coordonnées GPS françaises"
 description = """Check that GPS coordinates are in a bounding box approximating France (including DOM)"""
-
-
-class CoordonneesGPSFrancaises:
-    metadata = Metadata(name, description)
-
-    @classmethod
-    def is_valid(cls, lon: float, lat: float) -> bool:
-        return is_point_in_france((lon, lat))
-
-
-def is_point_in_france(coordonnees_xy: tuple[float, float]) -> bool:
-    """Returns True if the point is in metropolitan France, Guadeloupe, Martinique,
-    Guyane, la Réunion or Mayotte. As we are using bounding boxes (with a small margin),
-    locations outside of France but quite close by may return True.
-    """
-    p = Point(*coordonnees_xy)
-
-    # Create a Polygon
-    geoms = [region["geometry"] for region in FRANCE_BOUNDING_BOXES]
-    polys = [shape(geom) for geom in geoms]
-    return any([p.within(poly) for poly in polys])
-
 
 FRANCE_BOUNDING_BOXES = [
     {
@@ -149,3 +128,29 @@ FRANCE_BOUNDING_BOXES = [
         },
     },
 ]
+
+
+def create_polygons() -> list[BaseGeometry]:
+    geoms = [region["geometry"] for region in FRANCE_BOUNDING_BOXES]
+    polys = [shape(geom) for geom in geoms]
+    return polys
+
+
+POLYGONS: list[BaseGeometry] = create_polygons()
+
+
+def is_point_in_france(coordonnees_xy: tuple[float, float]) -> bool:
+    """Returns True if the point is in metropolitan France, Guadeloupe, Martinique,
+    Guyane, la Réunion or Mayotte. As we are using bounding boxes (with a small margin),
+    locations outside of France but quite close by may return True.
+    """
+    p = Point(*coordonnees_xy)
+    return any(p.within(poly) for poly in POLYGONS)
+
+
+class CoordonneesGPSFrancaises:
+    metadata = Metadata(name, description)
+
+    @classmethod
+    def is_valid(cls, lon: float, lat: float) -> bool:
+        return is_point_in_france((lon, lat))
