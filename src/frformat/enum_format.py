@@ -4,7 +4,10 @@ from frformat import CustomStrFormat, Metadata
 from frformat.common import normalize_value
 from frformat.options import Options
 
-def new(class_name: str, name: str, description: str, geographical_enum: Dict[str, Set[str]]) -> Type:
+
+def new(
+    class_name: str, name: str, description: str, geographical_enum: Dict[str, Set[str]]
+) -> Type:
     class EnumFormat(CustomStrFormat):
         """Checks if a value is in a given list
 
@@ -19,7 +22,9 @@ def new(class_name: str, name: str, description: str, geographical_enum: Dict[st
             }
 
             self._normalized_geo_enum_value = {
-                normalize_value(e, self._options) for e in geographical_enum
+                normalize_value(code, self._options)
+                for e in geographical_enum.values()
+                for code in e
             }.union(_normalized_extra_values)
 
         metadata = Metadata(name, description)
