@@ -1,4 +1,4 @@
-from enum import Enum
+from enum import Enum, auto
 from typing import Dict, Set, Type
 
 from frformat import CustomStrFormat, Metadata
@@ -6,20 +6,21 @@ from frformat.common import normalize_value
 from frformat.options import Options
 
 
+class Millésime(Enum):
+    Y2023 = auto()
+    Y2024 = auto()
+
+
 def new(
     class_name: str, name: str, description: str, geographical_enum: Dict[str, Set[str]]
 ) -> Type:
-    class GeographicalEnum(Enum):
-        COG_2023 = 2023
-        COG_2024 = 2024
-
     class EnumFormat(CustomStrFormat):
         """Checks if a value is in a given list
 
         May preprocess the input and valid values according to given "options" and the "Official Geographic Code"
         """
 
-        def __init__(self, cog: GeographicalEnum, options: Options = Options()):
+        def __init__(self, cog: Millésime, options: Options = Options()):
             self._options = options
 
             _normalized_extra_values = {
