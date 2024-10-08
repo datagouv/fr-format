@@ -12,7 +12,10 @@ class Millésime(Enum):
 
 
 def new(
-    class_name: str, name: str, description: str, geographical_enum: Dict[str, Set[str]]
+    class_name: str,
+    name: str,
+    description: str,
+    geographical_enums: Dict[str, Set[str]],
 ) -> Type:
     class EnumFormat(CustomStrFormat):
         """Checks if a value is in a given list
@@ -28,13 +31,13 @@ def new(
                 for e in self._options.extra_valid_values
             }
 
-            if cog.name not in geographical_enum.keys():
+            if cog.name != geographical_enums.keys():
                 raise ValueError(f"Invalid geographical enum: {cog.name}")
 
             self._normalized_geo_enum_value = {
                 normalize_value(code, self._options)
-                for value in geographical_enum.values()
-                for code in value
+                for code_set in geographical_enums.values()
+                for code in code_set
             }.union(_normalized_extra_values)
 
         metadata = Metadata(name, description)
