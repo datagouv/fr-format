@@ -34,10 +34,10 @@ def new(
             if cog.name not in geographical_enums.keys():
                 raise ValueError(f"Invalid given cog: {cog.name}")
 
+            _code_set = geographical_enums[cog.name]
+
             self._normalized_geo_enum_value = {
-                normalize_value(code, self._options)
-                for code_set in geographical_enums.values()
-                for code in code_set
+                normalize_value(code, self._options) for code in _code_set
             }.union(_normalized_extra_values)
 
         metadata = Metadata(name, description)
