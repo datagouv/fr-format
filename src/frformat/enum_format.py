@@ -31,8 +31,8 @@ def new(
                 for e in self._options.extra_valid_values
             }
 
-            if cog.name != geographical_enums.keys():
-                raise ValueError(f"Invalid geographical enum: {cog.name}")
+            if cog.name not in geographical_enums.keys():
+                raise ValueError(f"Invalid given cog: {cog.name}")
 
             self._normalized_geo_enum_value = {
                 normalize_value(code, self._options)
