@@ -1,4 +1,5 @@
-from frformat import CodeRegion, Region
+from frformat import CodeRegion, Commune, Region
+from frformat.geo_enum_format import Millesime
 from tests.new_testing import strict_lenient_test_helper_factory
 
 
@@ -20,3 +21,40 @@ def test_region():
     region_invalid = ["Beleriand", "Canyon Cosmo"]
 
     _test_region(region_strict, region_lenient, region_invalid)
+
+
+def test_commune():
+    commune_2023 = Commune(Millesime.Y2023)
+    commune_2024 = Commune(Millesime.Y2024)
+
+    valid_test_cases_cog_2023 = [
+        "Bellac",
+        "Beaumont-les-Nonains",
+        "La Moncelle",
+        "Urdès",
+    ]
+    invalid_test_cases_cog_2023 = [
+        "Costa del Sol",
+        "Val-d’Usiers",
+        "La Chapelle-Fleurigné",
+    ]
+
+    valid_test_cases_cog_2024 = [
+        "Beaumont-les-Nonains",
+        "Bellac",
+        "Val-d’Usiers",
+        "La Chapelle-Fleurigné",
+    ]
+    invalid_test_cases_cog_2024 = ["Costa del Sol", "La Moncelle", "Urdès"]
+
+    for tc in valid_test_cases_cog_2023:
+        assert commune_2023.is_valid(tc)
+
+    for tc in invalid_test_cases_cog_2023:
+        assert not commune_2023.is_valid(tc)
+
+    for tc in valid_test_cases_cog_2024:
+        assert commune_2024.is_valid(tc)
+
+    for tc in invalid_test_cases_cog_2024:
+        assert not commune_2024.is_valid(tc)

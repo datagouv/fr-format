@@ -5,7 +5,6 @@ from frformat import (
     CodePaysISO2,
     CodePaysISO3,
     CodePostal,
-    Commune,
     Departement,
     LatitudeL93,
     LongitudeL93,
@@ -42,16 +41,6 @@ def test_code_postal():
 
     assert not code_postal.is_valid("77777")
     assert not code_postal.is_valid("2B002")
-
-
-def test_commune():
-    _test_commune = strict_lenient_test_helper_factory(Commune)
-
-    commune_strict = ["Bellac", "Le Dorat", "Petite-Île", "L'Isle-Adam"]
-    commune_lenient = ["bellac", "le dorat", "Petite-Ile", "l'isle adam"]
-    commune_invalid = ["Costa del Sol"]
-
-    _test_commune(commune_strict, commune_lenient, commune_invalid)
 
 
 def test_canton():

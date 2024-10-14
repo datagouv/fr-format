@@ -1,4 +1,4 @@
-COMMUNE_SET = {
+COMMUNE_SET_COG_2023 = {
     "L'Abergement-Clémenciat",
     "L'Abergement-de-Varey",
     "Ambérieu-en-Bugey",
@@ -37901,3 +37901,48 @@ COMMUNE_SET = {
     "Sada",
     "Tsingoni",
 }
+
+COMMUNE_SET_COG_2023_COPY = COMMUNE_SET_COG_2023.copy()
+REMOVE_COMMUNE_SET_COG_2024 = COMMUNE_SET_COG_2023_COPY - {
+    "La Moncelle",
+    "Cherves-Richemont",
+    "Saint-Sulpice-de-Cognac",
+    "Lugny-Bourbonnais",
+    "Bians-les-Usiers",
+    "Goux-les-Usiers",
+    "Sombacour",
+    "La Chapelle-Janson",
+    "Fleurigné",
+    "Ingrandes-Le Fresne sur Loire",
+    "Saint-Sigismond",
+    "Urdès",
+    "Oullins",
+    "Pierre-Bénite",
+    "Cezais",
+    "Saint-Sulpice-en-Pareds",
+    "Thouarsais-Bouildroux",
+    "Saint-Macoux",
+    "Saint-Saviol",
+    "Gouzangrez",
+    "Escures-sur-Favières",
+    "Grisy",
+    "Richemont",
+    "Saint-Estèphe",
+    "Jugon-les-Lacs - Commune nouvelle" "Saint-Pompont",
+    "Cahaignes",
+    "Civières",
+    "Fours-en-Vexin",
+    "Beaumont-la-Ronce" "Louestault",
+}
+COMMUNE_SET_COG_2024 = REMOVE_COMMUNE_SET_COG_2024.union(
+    {
+        "Val-de-Cognac",
+        "Val-d’Usiers",
+        "La Chapelle-Fleurigné",
+        "Ingrandes-le-Fresne-sur-Loire",
+        "Oullins-Pierre-Bénite",
+        "Rives-du-Fougerais",
+        "Val-de-Comporté",
+        "Saint-Pompon",
+    }
+)
