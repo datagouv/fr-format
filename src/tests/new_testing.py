@@ -40,74 +40,40 @@ def strict_lenient_test_helper_factory(Class):
             replace_non_alphanumeric_with_space=True,
             ignore_extra_whitespace=True,
         )
-        _test_class(
-            strict_test_cases, expectValid=True, cog=Millesime.Y2023, options=Options()
-        )
-        _test_class(
-            lenient_test_cases,
-            expectValid=False,
-            cog=Millesime.Y2023,
-            options=Options(),
-        )
-        _test_class(
-            invalid_test_cases,
-            expectValid=False,
-            cog=Millesime.Y2023,
-            options=Options(),
-        )
+        all_cogs = [Millesime.Y2023, Millesime.Y2024]
 
-        _test_class(
-            strict_test_cases,
-            expectValid=True,
-            cog=Millesime.Y2023,
-            options=optionsTrue,
-        )
-        _test_class(
-            lenient_test_cases,
-            expectValid=True,
-            cog=Millesime.Y2023,
-            options=optionsTrue,
-        )
-        _test_class(
-            invalid_test_cases,
-            expectValid=False,
-            cog=Millesime.Y2023,
-            options=optionsTrue,
-        )
+        for cog in all_cogs:
+            _test_class(strict_test_cases, expectValid=True, cog=cog, options=Options())
+            _test_class(
+                lenient_test_cases,
+                expectValid=False,
+                cog=cog,
+                options=Options(),
+            )
+            _test_class(
+                invalid_test_cases,
+                expectValid=False,
+                cog=cog,
+                options=Options(),
+            )
 
-        _test_class(
-            strict_test_cases, expectValid=True, cog=Millesime.Y2024, options=Options()
-        )
-        _test_class(
-            lenient_test_cases,
-            expectValid=False,
-            cog=Millesime.Y2024,
-            options=Options(),
-        )
-        _test_class(
-            invalid_test_cases,
-            expectValid=False,
-            cog=Millesime.Y2024,
-            options=Options(),
-        )
-
-        _test_class(
-            strict_test_cases,
-            expectValid=True,
-            cog=Millesime.Y2024,
-            options=optionsTrue,
-        )
-        _test_class(
-            lenient_test_cases,
-            expectValid=True,
-            cog=Millesime.Y2024,
-            options=optionsTrue,
-        )
-        _test_class(
-            invalid_test_cases,
-            expectValid=False,
-            cog=Millesime.Y2024,
-            options=optionsTrue,
-        )
+            _test_class(
+                strict_test_cases,
+                expectValid=True,
+                cog=cog,
+                options=optionsTrue,
+            )
+            _test_class(
+                lenient_test_cases,
+                expectValid=True,
+                cog=cog,
+                options=optionsTrue,
+            )
+            _test_class(
+                invalid_test_cases,
+                expectValid=False,
+                cog=cog,
+                options=optionsTrue,
+            )
 
     return test_helper
