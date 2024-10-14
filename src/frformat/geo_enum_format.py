@@ -15,7 +15,7 @@ def new(
     class_name: str,
     name: str,
     description: str,
-    geographical_enums: Dict[str, Set[str]],
+    geographical_enums: Dict[Millesime, Set[str]],
 ) -> Type:
     class EnumFormat(CustomStrFormat):
         """Checks if a value is in a given list
@@ -31,10 +31,10 @@ def new(
                 for e in self._options.extra_valid_values
             }
 
-            if cog.name not in geographical_enums.keys():
+            if cog not in geographical_enums.keys():
                 raise ValueError(f"Invalid given cog: {cog.name}")
 
-            _code_set = geographical_enums[cog.name]
+            _code_set = geographical_enums[cog]
 
             self._normalized_geo_enum_value = {
                 normalize_value(code, self._options) for code in _code_set

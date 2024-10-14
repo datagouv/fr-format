@@ -2,6 +2,8 @@ from typing import Dict, Set
 
 from frformat import geo_enum_format
 
+from ..geo_enum_format import Millesime
+
 CODE_REGION_SET_COG_2023 = {
     "01",
     "02",
@@ -28,8 +30,8 @@ name = "Code région"
 description = (
     "Vérifie qu'il s'agit d'un code région selon le code officiel géographique donné"
 )
-all_cog_version: Dict[str, Set[str]] = {
-    "COG_2024": CODE_REGION_SET_COG_2024,
-    "COG_2023": CODE_REGION_SET_COG_2023,
+all_cog_version: Dict[Millesime, Set[str]] = {
+    Millesime.Y2024: CODE_REGION_SET_COG_2024,
+    Millesime.Y2023: CODE_REGION_SET_COG_2023,
 }
 CodeRegion = geo_enum_format.new("CodeRegion", name, description, all_cog_version)
