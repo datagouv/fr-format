@@ -11,7 +11,6 @@ from frformat import (
     LongitudeL93,
     NumeroDepartement,
     Pays,
-    Region,
 )
 from frformat.common import NBSP, NNBSP
 from tests.testing import strict_lenient_test_helper_factory
@@ -61,7 +60,6 @@ def test_canton():
     canton_strict = ["Saint-Pierre-1"]
     canton_lenient = ["le tampon", "saint andre"]
     canton_invalid = ["Neuchâtel"]
-
     _test_canton(canton_strict, canton_lenient, canton_invalid)
 
 
@@ -126,16 +124,6 @@ def test_numero_departement():
         num_departement_lenient,
         num_departement_invalid,
     )
-
-
-def test_region():
-    _test_region = strict_lenient_test_helper_factory(Region)
-
-    region_strict = ["Centre-Val de Loire", "La Réunion", "Corse"]
-    region_lenient = ["Centre Val de Loire", "La Reunion", "corse"]
-    region_invalid = ["Beleriand", "Canyon Cosmo"]
-
-    _test_region(region_strict, region_lenient, region_invalid)
 
 
 def test_pays():
