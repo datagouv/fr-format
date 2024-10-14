@@ -31,7 +31,7 @@ description = (
     "Vérifie qu'il s'agit d'un code région selon le code officiel géographique donné"
 )
 all_cog_version: Dict[Millesime, Set[str]] = {
-    Millesime.Y2024: CODE_REGION_SET_COG_2024,
     Millesime.Y2023: CODE_REGION_SET_COG_2023,
+    Millesime.Y2024: CODE_REGION_SET_COG_2024,
 }
 CodeRegion = geo_enum_format.new("CodeRegion", name, description, all_cog_version)
