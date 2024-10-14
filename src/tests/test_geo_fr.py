@@ -5,7 +5,6 @@ from frformat import (
     CodePaysISO2,
     CodePaysISO3,
     CodePostal,
-    CodeRegion,
     Commune,
     Departement,
     LatitudeL93,
@@ -137,16 +136,6 @@ def test_region():
     region_invalid = ["Beleriand", "Canyon Cosmo"]
 
     _test_region(region_strict, region_lenient, region_invalid)
-
-
-def test_code_region():
-    _test_code_region = strict_lenient_test_helper_factory(CodeRegion)
-
-    code_region_strict = ["01", "75"]
-    code_region_lenient = []
-    code_region_invalid = ["AA", "00"]
-
-    _test_code_region(code_region_strict, code_region_lenient, code_region_invalid)
 
 
 def test_pays():

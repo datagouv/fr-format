@@ -1,6 +1,6 @@
 from typing import Dict, Set
 
-from frformat import enum_format
+from frformat import geo_enum_format
 
 CODE_REGION_SET_COG_2023 = {
     "01",
@@ -32,4 +32,4 @@ all_cog_version: Dict[str, Set[str]] = {
     "COG_2024": CODE_REGION_SET_COG_2024,
     "COG_2023": CODE_REGION_SET_COG_2023,
 }
-CodeRegion = enum_format.new("CodeRegion", name, description, all_cog_version)
+CodeRegion = geo_enum_format.new("CodeRegion", name, description, all_cog_version)
