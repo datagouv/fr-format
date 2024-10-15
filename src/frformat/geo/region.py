@@ -8,7 +8,7 @@ name = "Nom de région"
 description = "Vérifie les régions françaises valides"
 
 all_cog_version: Dict[Millesime, Set[str]] = {
-    Millesime.Y2023: REGION_SET_COG_2023,
-    Millesime.Y2024: REGION_SET_COG_2024,
+    Millesime.A2023: REGION_SET_COG_2023,
+    Millesime.A2024: REGION_SET_COG_2024,
 }
 Region = geo_enum_format.new("Region", name, description, all_cog_version)

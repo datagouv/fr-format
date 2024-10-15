@@ -11,7 +11,7 @@ description = (
 )
 
 all_cog_version: Dict[Millesime, Set[str]] = {
-    Millesime.Y2023: COMMUNE_SET_COG_2023,
-    Millesime.Y2024: COMMUNE_SET_COG_2024,
+    Millesime.A2023: COMMUNE_SET_COG_2023,
+    Millesime.A2024: COMMUNE_SET_COG_2024,
 }
 Commune = geo_enum_format.new("Commune", name, description, all_cog_version)

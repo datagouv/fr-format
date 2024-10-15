@@ -7,8 +7,8 @@ from frformat.options import Options
 
 
 class Millesime(Enum):
-    Y2023 = auto()
-    Y2024 = auto()
+    A2023 = auto()
+    A2024 = auto()
 
 
 def new(
@@ -17,10 +17,10 @@ def new(
     description: str,
     geographical_enums: Dict[Millesime, Set[str]],
 ) -> Type:
-    class EnumFormat(CustomStrFormat):
-        """Checks if a value is in a given list
+    class GeoEnumFormat(CustomStrFormat):
+        """Checks if a value is in a given geographical referential, with validation for the vintage of choice
 
-        May preprocess the input and valid values according to given "options" and the "Official Geographic Code"
+        Geographical data in France is revised once a year, with new valid values set given by the "Code Officiel Géographique" (cog).
         """
 
         def __init__(self, cog: Millesime, options: Options = Options()):
@@ -32,12 +32,14 @@ def new(
             }
 
             if cog not in geographical_enums.keys():
-                raise ValueError(f"Invalid given cog: {cog.name}")
+                raise ValueError(
+                    f"No data available for official geographical code (cog): {cog.name}"
+                )
 
-            _code_set = geographical_enums[cog]
+            _valid_values = geographical_enums[cog]
 
             self._normalized_geo_enum_value = {
-                normalize_value(code, self._options) for code in _code_set
+                normalize_value(val, self._options) for val in _valid_values
             }.union(_normalized_extra_values)
 
         metadata = Metadata(name, description)
@@ -46,7 +48,7 @@ def new(
             normalized_value = normalize_value(value, self._options)
             return normalized_value in self._normalized_geo_enum_value
 
-    EnumFormat.__name__ = class_name
-    EnumFormat.__qualname__ = class_name
+    GeoEnumFormat.__name__ = class_name
+    GeoEnumFormat.__qualname__ = class_name
 
-    return EnumFormat
+    return GeoEnumFormat

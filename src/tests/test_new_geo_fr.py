@@ -1,6 +1,6 @@
 from frformat import CodeRegion, Commune, Region
 from frformat.geo_enum_format import Millesime
-from tests.new_testing import strict_lenient_test_helper_factory
+from tests.geo_testing import strict_lenient_test_helper_factory
 
 
 def test_code_region():
@@ -24,8 +24,8 @@ def test_region():
 
 
 def test_commune():
-    commune_2023 = Commune(Millesime.Y2023)
-    commune_2024 = Commune(Millesime.Y2024)
+    commune_2023 = Commune(Millesime.A2023)
+    commune_2024 = Commune(Millesime.A2024)
 
     valid_test_cases_cog_2023 = [
         "Bellac",

@@ -40,7 +40,7 @@ def strict_lenient_test_helper_factory(Class):
             replace_non_alphanumeric_with_space=True,
             ignore_extra_whitespace=True,
         )
-        all_cogs = [Millesime.Y2023, Millesime.Y2024]
+        all_cogs = [Millesime.A2023, Millesime.A2024]
 
         for cog in all_cogs:
             _test_class(strict_test_cases, expectValid=True, cog=cog, options=Options())
