@@ -1,4 +1,4 @@
-from frformat import CodeRegion, Commune, Region
+from frformat import Canton, CodeRegion, Commune, Region
 from frformat.geo_enum_format import Millesime
 from tests.geo_testing import strict_lenient_test_helper_factory
 
@@ -64,3 +64,31 @@ def test_commune():
 
     for tc in invalid_test_cases_cog_2024:
         assert not commune_2024.is_valid(tc)
+
+
+def test_canton():
+    canton_2023 = Canton(Millesime.A2023)
+    canton_2024 = Canton(Millesime.A2024)
+
+    valid_test_cases_cog_2023 = [
+        "Lagnieu",
+        "Meximieux",
+    ]
+    invalid_test_cases_cog_2023 = ["Paris", "Lyon"]
+
+    valid_test_cases_cog_2024 = ["Paris", "Lyon"]
+    invalid_test_cases_cog_2024 = [
+        "Saint Quentin",
+    ]
+
+    for tc in valid_test_cases_cog_2023:
+        assert canton_2023.is_valid(tc)
+
+    for tc in invalid_test_cases_cog_2023:
+        assert not canton_2023.is_valid(tc)
+
+    for tc in valid_test_cases_cog_2024:
+        assert canton_2024.is_valid(tc)
+
+    for tc in invalid_test_cases_cog_2024:
+        assert not canton_2024.is_valid(tc)

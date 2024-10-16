@@ -1,5 +1,4 @@
 from frformat import (
-    Canton,
     CodeCommuneInsee,
     CodeFantoir,
     CodePaysISO2,
@@ -41,15 +40,6 @@ def test_code_postal():
 
     assert not code_postal.is_valid("77777")
     assert not code_postal.is_valid("2B002")
-
-
-def test_canton():
-    _test_canton = strict_lenient_test_helper_factory(Canton)
-
-    canton_strict = ["Saint-Pierre-1"]
-    canton_lenient = ["le tampon", "saint andre"]
-    canton_invalid = ["Neuchâtel"]
-    _test_canton(canton_strict, canton_lenient, canton_invalid)
 
 
 def test_departement():
