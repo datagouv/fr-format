@@ -28,24 +28,30 @@ def test_commune():
     commune_2024 = Commune(Millesime.A2024)
 
     valid_test_cases_cog_2023 = [
-        "Bellac",
+        "La Chapelle-Achard",
         "Beaumont-les-Nonains",
         "La Moncelle",
-        "Urdès",
+        "Montestrucq",
     ]
     invalid_test_cases_cog_2023 = [
         "Costa del Sol",
-        "Val-d’Usiers",
+        "Val-d'Usiers",
         "La Chapelle-Fleurigné",
+        "Oullins-Pierre-Bénite",
     ]
 
     valid_test_cases_cog_2024 = [
-        "Beaumont-les-Nonains",
+        "Oullins-Pierre-Bénite",
         "Bellac",
-        "Val-d’Usiers",
+        "Val-d'Usiers",
         "La Chapelle-Fleurigné",
     ]
-    invalid_test_cases_cog_2024 = ["Costa del Sol", "La Moncelle", "Urdès"]
+    invalid_test_cases_cog_2024 = [
+        "Costa del Sol",
+        "Montestrucq",
+        "La Chapelle-Achard",
+        "Senonville",
+    ]
 
     for tc in valid_test_cases_cog_2023:
         assert commune_2023.is_valid(tc)
