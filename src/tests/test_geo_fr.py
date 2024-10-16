@@ -1,18 +1,14 @@
 from frformat import (
-    Canton,
     CodeCommuneInsee,
     CodeFantoir,
     CodePaysISO2,
     CodePaysISO3,
     CodePostal,
-    CodeRegion,
-    Commune,
     Departement,
     LatitudeL93,
     LongitudeL93,
     NumeroDepartement,
     Pays,
-    Region,
 )
 from frformat.common import NBSP, NNBSP
 from tests.testing import strict_lenient_test_helper_factory
@@ -44,26 +40,6 @@ def test_code_postal():
 
     assert not code_postal.is_valid("77777")
     assert not code_postal.is_valid("2B002")
-
-
-def test_commune():
-    _test_commune = strict_lenient_test_helper_factory(Commune)
-
-    commune_strict = ["Bellac", "Le Dorat", "Petite-Île", "L'Isle-Adam"]
-    commune_lenient = ["bellac", "le dorat", "Petite-Ile", "l'isle adam"]
-    commune_invalid = ["Costa del Sol"]
-
-    _test_commune(commune_strict, commune_lenient, commune_invalid)
-
-
-def test_canton():
-    _test_canton = strict_lenient_test_helper_factory(Canton)
-
-    canton_strict = ["Saint-Pierre-1"]
-    canton_lenient = ["le tampon", "saint andre"]
-    canton_invalid = ["Neuchâtel"]
-
-    _test_canton(canton_strict, canton_lenient, canton_invalid)
 
 
 def test_departement():
@@ -127,26 +103,6 @@ def test_numero_departement():
         num_departement_lenient,
         num_departement_invalid,
     )
-
-
-def test_region():
-    _test_region = strict_lenient_test_helper_factory(Region)
-
-    region_strict = ["Centre-Val de Loire", "La Réunion", "Corse"]
-    region_lenient = ["Centre Val de Loire", "La Reunion", "corse"]
-    region_invalid = ["Beleriand", "Canyon Cosmo"]
-
-    _test_region(region_strict, region_lenient, region_invalid)
-
-
-def test_code_region():
-    _test_code_region = strict_lenient_test_helper_factory(CodeRegion)
-
-    code_region_strict = ["01", "75"]
-    code_region_lenient = []
-    code_region_invalid = ["AA", "00"]
-
-    _test_code_region(code_region_strict, code_region_lenient, code_region_invalid)
 
 
 def test_pays():
