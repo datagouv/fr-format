@@ -1,4 +1,12 @@
-from frformat import Canton, CodePaysISO2, CodePaysISO3, CodeRegion, Commune, Region
+from frformat import (
+    Canton,
+    CodeCommuneInsee,
+    CodePaysISO2,
+    CodePaysISO3,
+    CodeRegion,
+    Commune,
+    Region,
+)
 from frformat.geo_enum_format import Millesime
 
 
@@ -144,3 +152,22 @@ def test_code_pays():
 
     for tc in invalid_test_cases_iso3_cog_2024:
         assert not code_pays_2024_IS03.is_valid(tc)
+
+
+def test_code_commune_insee():
+    code_commune_insee_cog_2023 = CodeCommuneInsee(Millesime.A2023)
+    code_commune_insee_cog_2024 = CodeCommuneInsee(Millesime.A2024)
+
+    cog_2023_value = "01015"
+    assert code_commune_insee_cog_2023.is_valid(cog_2023_value)
+    assert code_commune_insee_cog_2023.format(cog_2023_value) == cog_2023_value
+    assert code_commune_insee_cog_2023.is_valid("2B002")
+
+    assert not code_commune_insee_cog_2023.is_valid("77777")
+
+    cog_2024_value = "64300"
+    assert code_commune_insee_cog_2024.is_valid(cog_2024_value)
+    assert code_commune_insee_cog_2024.format(cog_2024_value) == cog_2024_value
+    assert code_commune_insee_cog_2024.is_valid("2A331")
+
+    assert not code_commune_insee_cog_2024.is_valid("64402")

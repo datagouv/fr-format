@@ -1,5 +1,4 @@
 from frformat import (
-    CodeCommuneInsee,
     CodeFantoir,
     CodePostal,
     Departement,
@@ -18,16 +17,6 @@ def test_code_fantoir():
     code_fantoir = CodeFantoir()
     assert code_fantoir.is_valid(fantoir_valid)
     assert not code_fantoir.is_valid(fantoir_invalid)
-
-
-def test_code_commune_insee():
-    value = "01015"
-    code_commune_insee = CodeCommuneInsee()
-    assert code_commune_insee.is_valid(value)
-    assert code_commune_insee.format(value) == value
-
-    assert code_commune_insee.is_valid("2B002")
-    assert not code_commune_insee.is_valid("77777")
 
 
 def test_code_postal():
