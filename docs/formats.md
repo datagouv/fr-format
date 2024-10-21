@@ -5,8 +5,8 @@
 | Canton | Nom de canton | Vérifie que le nom de canton est un canton ou pseudo-canton français valide |
 | CodeCommuneInsee | Code commune INSEE | Vérifie que le code commune correspond bien à un code commune INSEE |
 | CodeFantoir | Code fantoir | Vérifie les codes fantoirs valides |
-| CodePaysISO2 | Codes ISO2 Pays | Code ISO 2 de pays selon COG2024 |
-| CodePaysISO3 | Codes ISO3 Pays | Code ISO 3 de pays selon COG2024 |
+| CodePaysISO2 | Codes ISO2 Pays | Code ISO 2 de pays selon COG2023 et COG2024 |
+| CodePaysISO3 | Codes ISO3 Pays | Code ISO 3 de pays selon COG2023 et COG2024 |
 | CodePostal | Code postal | Vérifie que le code postal est bien un code postal français |
 | CodeRegion | Code région | Vérifie qu'il s'agit d'un code région selon le code officiel géographique (cog) donné |
 | Commune | Nom de commune | Vérifie que le nom correspond à un nom de commune française ( depuis le Code Officiel Géographique 2023) (ne vérifie pas l'accentuation, la casse, la ponctuation) |
