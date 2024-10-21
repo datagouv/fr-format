@@ -3,7 +3,7 @@
 | class name                   | name                   | decription                    |
 | ---------------------------- | ---------------------- | ----------------------------- |
 | Canton | Nom de canton | Vérifie que le nom de canton est un canton ou pseudo-canton français valide |
-| CodeCommuneInsee | Code commune INSEE | Vérifie que le code commune correspond bien à un code commune INSEE |
+| CodeCommuneInsee | Code commune INSEE | Vérifie que le code commune correspond bien à un code commune INSEE selon Cpde Officiel géographique de 2023 et 2024 |
 | CodeFantoir | Code fantoir | Vérifie les codes fantoirs valides |
 | CodePaysISO2 | Codes ISO2 Pays | Code ISO 2 de pays selon COG2023 et COG2024 |
 | CodePaysISO3 | Codes ISO3 Pays | Code ISO 3 de pays selon COG2023 et COG2024 |
