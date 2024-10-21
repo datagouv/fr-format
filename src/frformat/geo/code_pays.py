@@ -1,6 +1,12 @@
 from typing import Dict, Set
+
 from frformat import geo_enum_format
-from frformat.geo.code_pays_set import CODE_PAYS_ISO2_SET_COG_2024, CODE_PAYS_ISO3_SET_COG_2024, CODE_PAYS_ISO3_SET_COG_2023, CODE_PAYS_ISO2_SET_COG_2023
+from frformat.geo.code_pays_set import (
+    CODE_PAYS_ISO2_SET_COG_2023,
+    CODE_PAYS_ISO2_SET_COG_2024,
+    CODE_PAYS_ISO3_SET_COG_2023,
+    CODE_PAYS_ISO3_SET_COG_2024,
+)
 from frformat.geo_enum_format import Millesime
 
 name = "Codes ISO2 Pays"
