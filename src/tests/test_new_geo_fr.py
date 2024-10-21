@@ -1,4 +1,4 @@
-from frformat import Canton, CodeRegion, Commune, Region
+from frformat import Canton, CodePaysISO2, CodePaysISO3, CodeRegion, Commune, Region
 from frformat.geo_enum_format import Millesime
 
 
@@ -101,3 +101,46 @@ def test_canton():
 
     for tc in invalid_test_cases_cog_2024:
         assert not canton_2024.is_valid(tc)
+
+
+def test_code_pays():
+    code_pays_2023_IS02 = CodePaysISO2(Millesime.A2023)
+    code_pays_2024_IS02 = CodePaysISO2(Millesime.A2024)
+    code_pays_2023_IS03 = CodePaysISO3(Millesime.A2023)
+    code_pays_2024_IS03 = CodePaysISO3(Millesime.A2024)
+
+    valid_test_cases_iso2_cog_2023 = ["BV", "SJ"]
+    invalid_test_cases_iso2_cog_2023 = ["RWA", "TCD"]
+
+    valid_test_cases_iso2_cog_2024 = ["FR", "JP"]
+    invalid_test_cases_iso2_cog_2024 = ["BV", "SJ"]
+
+    valid_test_cases_iso3_cog_2023 = ["BVT", "SJM"]
+    invalid_test_cases_iso3_cog_2023 = ["BF", "GH"]
+
+    valid_test_cases_iso3_cog_2024 = ["FRA", "JPN"]
+    invalid_test_cases_iso3_cog_2024 = ["BVT", "SJM"]
+
+    for tc in valid_test_cases_iso2_cog_2023:
+        assert code_pays_2023_IS02.is_valid(tc)
+
+    for tc in invalid_test_cases_iso2_cog_2023:
+        assert not code_pays_2023_IS02.is_valid(tc)
+
+    for tc in valid_test_cases_iso2_cog_2024:
+        assert code_pays_2024_IS02.is_valid(tc)
+
+    for tc in invalid_test_cases_iso2_cog_2024:
+        assert not code_pays_2024_IS02.is_valid(tc)
+
+    for tc in valid_test_cases_iso3_cog_2023:
+        assert code_pays_2023_IS03.is_valid(tc)
+
+    for tc in invalid_test_cases_iso3_cog_2023:
+        assert not code_pays_2023_IS03.is_valid(tc)
+
+    for tc in valid_test_cases_iso3_cog_2024:
+        assert code_pays_2024_IS03.is_valid(tc)
+
+    for tc in invalid_test_cases_iso3_cog_2024:
+        assert not code_pays_2024_IS03.is_valid(tc)
