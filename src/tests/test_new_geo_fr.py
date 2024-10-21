@@ -6,6 +6,7 @@ from frformat import (
     CodeRegion,
     Commune,
     Departement,
+    Pays,
     Region,
 )
 from frformat.geo_enum_format import Millesime
@@ -188,3 +189,26 @@ def test_departement():
     for tc in invalid_test_cases:
         assert not departement_cog_2023.is_valid(tc)
         assert not departement_cog_2024.is_valid(tc)
+
+
+def test_pays():
+    pays_cog_2023 = Pays(Millesime.A2023)
+    pays_cog_2024 = Pays(Millesime.A2024)
+
+    valid_pays_cog_2024 = ["France", "Pays-Bas", "Bosnie-Herzégovine"]
+    invalid_pays_cog_2024 = ["L'Eldorado", "Zubrowska"]
+
+    valid_pays_cog_2023 = ["DANEMARK", "ROUMANIE"]
+    invalid_pays_cog_2023 = ["Irlande", "Monaco"]
+
+    for tc in valid_pays_cog_2023:
+        assert pays_cog_2023.is_valid(tc)
+
+    for tc in invalid_pays_cog_2023:
+        assert not pays_cog_2023.is_valid(tc)
+
+    for tc in valid_pays_cog_2024:
+        assert pays_cog_2024.is_valid(tc)
+
+    for tc in invalid_pays_cog_2024:
+        assert not pays_cog_2024.is_valid(tc)

@@ -4,7 +4,6 @@ from frformat import (
     LatitudeL93,
     LongitudeL93,
     NumeroDepartement,
-    Pays,
 )
 from frformat.common import NBSP, NNBSP
 from tests.testing import strict_lenient_test_helper_factory
@@ -75,13 +74,3 @@ def test_numero_departement():
         num_departement_lenient,
         num_departement_invalid,
     )
-
-
-def test_pays():
-    _test_pays = strict_lenient_test_helper_factory(Pays)
-
-    pays_strict = ["France", "Pays-Bas", "Bosnie-Herzégovine"]
-    pays_lenient = ["france", "Pays Bas", "bosnie herzegovine"]
-    pays_invalid = ["L'Eldorado", "Zubrowska"]
-
-    _test_pays(pays_strict, pays_lenient, pays_invalid)
