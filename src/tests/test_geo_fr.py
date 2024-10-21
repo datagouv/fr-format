@@ -1,7 +1,6 @@
 from frformat import (
     CodeFantoir,
     CodePostal,
-    Departement,
     LatitudeL93,
     LongitudeL93,
     NumeroDepartement,
@@ -27,20 +26,6 @@ def test_code_postal():
 
     assert not code_postal.is_valid("77777")
     assert not code_postal.is_valid("2B002")
-
-
-def test_departement():
-    _test_departement = strict_lenient_test_helper_factory(Departement)
-
-    departement_strict = ["Alpes-Maritimes", "Gard", "Mayotte", "Vendée"]
-    departement_lenient = [
-        "Alpes Maritimes",
-        "gard",
-        "Vendee",
-    ]
-    departement_invalid = ["Charente-Inférieure"]
-
-    _test_departement(departement_strict, departement_lenient, departement_invalid)
 
 
 def test_longitude_l93():

@@ -5,6 +5,7 @@ from frformat import (
     CodePaysISO3,
     CodeRegion,
     Commune,
+    Departement,
     Region,
 )
 from frformat.geo_enum_format import Millesime
@@ -171,3 +172,19 @@ def test_code_commune_insee():
     assert code_commune_insee_cog_2024.is_valid("2A331")
 
     assert not code_commune_insee_cog_2024.is_valid("64402")
+
+
+def test_departement():
+    departement_cog_2023 = Departement(Millesime.A2023)
+    departement_cog_2024 = Departement(Millesime.A2024)
+
+    valid_test_cases = ["Alpes-Maritimes", "Gard", "Mayotte", "Vendée"]
+    invalid_test_cases = ["Charente-Inférieure"]
+
+    for tc in valid_test_cases:
+        assert departement_cog_2023.is_valid(tc)
+        assert departement_cog_2024.is_valid(tc)
+
+    for tc in invalid_test_cases:
+        assert not departement_cog_2023.is_valid(tc)
+        assert not departement_cog_2024.is_valid(tc)
