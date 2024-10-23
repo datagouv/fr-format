@@ -10,8 +10,8 @@ description = (
     "(ne vérifie pas l'accentuation, la casse, la ponctuation)"
 )
 
-all_cog_version: Dict[Millesime, Set[str]] = {
+all_cog_versions: Dict[Millesime, Set[str]] = {
     Millesime.A2023: COMMUNE_SET_COG_2023,
     Millesime.A2024: COMMUNE_SET_COG_2024,
 }
-Commune = geo_enum_format.new("Commune", name, description, all_cog_version)
+Commune = geo_enum_format.new("Commune", name, description, all_cog_versions)
