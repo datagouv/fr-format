@@ -1,6 +1,5 @@
 from frformat import CodeFantoir, CodePostal, LatitudeL93, LongitudeL93
 from frformat.common import NBSP, NNBSP
-from tests.testing import strict_lenient_test_helper_factory
 
 
 def test_code_fantoir():
