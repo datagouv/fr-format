@@ -1,4 +1,4 @@
-DEPARTEMENT_SET = {
+DEPARTEMENT_SET_COG_2023 = {
     "Ain",
     "Aisne",
     "Allier",
@@ -101,3 +101,5 @@ DEPARTEMENT_SET = {
     "La Réunion",
     "Mayotte",
 }
+
+DEPARTEMENT_SET_COG_2024 = DEPARTEMENT_SET_COG_2023
