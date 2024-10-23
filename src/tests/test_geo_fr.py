@@ -1,10 +1,4 @@
-from frformat import (
-    CodeFantoir,
-    CodePostal,
-    LatitudeL93,
-    LongitudeL93,
-    NumeroDepartement,
-)
+from frformat import CodeFantoir, CodePostal, LatitudeL93, LongitudeL93
 from frformat.common import NBSP, NNBSP
 from tests.testing import strict_lenient_test_helper_factory
 
@@ -60,17 +54,3 @@ def test_latitude_l93():
 
     for tc in invalid_test_cases:
         assert not latitudel93.is_valid(tc)
-
-
-def test_numero_departement():
-    _test_num_departement = strict_lenient_test_helper_factory(NumeroDepartement)
-
-    num_departement_strict = ["05", "2B", "974"]
-    num_departement_lenient = ["2a", "2b"]
-    num_departement_invalid = ["99", "051"]
-
-    _test_num_departement(
-        num_departement_strict,
-        num_departement_lenient,
-        num_departement_invalid,
-    )

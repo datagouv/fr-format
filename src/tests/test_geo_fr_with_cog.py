@@ -6,6 +6,7 @@ from frformat import (
     CodeRegion,
     Commune,
     Departement,
+    NumeroDepartement,
     Pays,
     Region,
 )
@@ -202,3 +203,19 @@ def test_pays():
 
     for tc in invalid_pays_cog_2024:
         assert not pays_cog_2024.is_valid(tc)
+
+
+def test_numero_departement():
+    num_departement_cog_2023 = NumeroDepartement(Millesime.A2023)
+    num_departement_cog_2024 = NumeroDepartement(Millesime.A2024)
+
+    num_departement_valid = ["05", "2B", "974"]
+    num_departement_invalid = ["99", "051"]
+
+    for tc in num_departement_valid:
+        assert num_departement_cog_2023.is_valid(tc)
+        assert num_departement_cog_2024.is_valid(tc)
+
+    for tc in num_departement_invalid:
+        assert not num_departement_cog_2023.is_valid(tc)
+        assert not num_departement_cog_2024.is_valid(tc)
