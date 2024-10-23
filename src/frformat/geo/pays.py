@@ -1,14 +1,13 @@
 from typing import Dict, Set
 
 from frformat import geo_enum_format
-from frformat.geo.pays_set import PAYS_SET_COG_2023, PAYS_SET_COG_2024
+from frformat.geo.pays_set import PAYS_SET_COG_2024
 from frformat.geo_enum_format import Millesime
 
 name = "Pays et territoires étrangers"
 description = "Nom de pays et territoires étrangers selon COG2024 et COG2023"
 
 all_cog_versions: Dict[Millesime, Set[str]] = {
-    Millesime.A2023: PAYS_SET_COG_2023,
     Millesime.A2024: PAYS_SET_COG_2024,
 }
 
