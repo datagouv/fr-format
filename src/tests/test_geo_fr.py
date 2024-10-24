@@ -4,10 +4,12 @@ from frformat.common import NBSP, NNBSP
 
 def test_code_fantoir():
     fantoir_valid = "ZB03A"
-    fantoir_invalid = "1000"
+    fantoir_invalid = ["1000", "zB03A"]
+
     code_fantoir = CodeFantoir()
     assert code_fantoir.is_valid(fantoir_valid)
-    assert not code_fantoir.is_valid(fantoir_invalid)
+    for fi in fantoir_invalid:
+        assert not code_fantoir.is_valid(fi)
 
 
 def test_code_postal():
@@ -15,9 +17,9 @@ def test_code_postal():
     code_postal = CodePostal()
     assert code_postal.is_valid(value)
     assert code_postal.format(value) == value
-
-    assert not code_postal.is_valid("77777")
-    assert not code_postal.is_valid("2B002")
+    codes_postales_invalides = ["77777", "2B002"]
+    for cpi in codes_postales_invalides:
+        assert not code_postal.is_valid(cpi)
 
 
 def test_longitude_l93():
