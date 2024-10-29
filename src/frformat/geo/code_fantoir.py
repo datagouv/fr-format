@@ -2,7 +2,7 @@ import string
 
 from frformat import CustomStrFormat, Metadata
 from frformat.formatter import Formatter
-from frformat.geo.code_fantoir_set import PARTIAL_CODE_FANTOIR_SET
+from frformat.geo.code_fantoir_set import PARTIAL_CODE_FANTOIR_FROZEN_SET
 
 name = "Code fantoir"
 description = "Vérifie les codes fantoirs valides"
@@ -23,4 +23,6 @@ class CodeFantoir(CustomStrFormat):
         if len(value) != 5:
             return False
 
-        return value[4] in UPPER_LETTERS and value[:4] in PARTIAL_CODE_FANTOIR_SET
+        return (
+            value[4] in UPPER_LETTERS and value[:4] in PARTIAL_CODE_FANTOIR_FROZEN_SET
+        )

@@ -1,4 +1,5 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass
+from typing import FrozenSet
 
 
 @dataclass
@@ -24,7 +25,7 @@ class Options:
             Indicates if extra white space should be ignored.
             When set to True, multiple consecutive spaces will be treated as a single space, and leading or trailing spaces will be removed.
 
-        extra_valid_values: set of string
+        extra_valid_values: Frozenset of string
             A collection of additional valid values.
             This set includes any extra values that should be considered valid during the validation process, beyond the original set of valid values.
             This allows for customized validation rules to accommodate special cases or exceptions.
@@ -34,4 +35,4 @@ class Options:
     ignore_accents: bool = False
     replace_non_alphanumeric_with_space: bool = False
     ignore_extra_whitespace: bool = False
-    extra_valid_values: set = field(default_factory=set)
+    extra_valid_values: FrozenSet = frozenset()

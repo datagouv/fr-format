@@ -1,5 +1,5 @@
 from enum import Enum, auto
-from typing import Dict, Set, Type
+from typing import Dict, FrozenSet, Type
 
 from frformat import CustomStrFormat, Metadata
 from frformat.common import normalize_value
@@ -15,7 +15,7 @@ def new(
     class_name: str,
     name: str,
     description: str,
-    geographical_enums: Dict[Millesime, Set[str]],
+    geographical_enums: Dict[Millesime, FrozenSet[str]],
 ) -> Type:
     class GeoEnumFormat(CustomStrFormat):
         """Checks if a value is in a given geographical referential, with validation for the vintage of choice
