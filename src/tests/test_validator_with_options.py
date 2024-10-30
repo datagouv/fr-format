@@ -32,9 +32,9 @@ def test_validator():
             for valid_ele in valid_c:
                 assert _Validator(tc["options"]).is_valid(
                     valid_ele
-                ), f"Check that {valid_ele} is valid"
+                ), f"Check that {valid_ele} is not valid"
 
             for invalid_ele in invalid_c:
                 assert not _Validator(tc["options"]).is_valid(
                     invalid_ele
-                ), f"Check that {invalid_ele} is not valid"
+                ), f"Check that {invalid_ele} is valid"
