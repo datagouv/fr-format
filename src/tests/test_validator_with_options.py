@@ -1,4 +1,4 @@
-from typing import Dict, FrozenSet, List
+from typing import Dict, FrozenSet, List, Union
 
 from frformat import enum_format
 from frformat.options import Options
@@ -13,7 +13,7 @@ def test_validator():
         "Validator", "validator", "Test validator", _valid_values_enum
     )
 
-    _test_cases: List[Dict[str, Options | List[str]]] = [
+    _test_cases: List[Dict[str, Union[Options,List[str]] ]] = [
         {
             "options": Options(ignore_case=True),
             "valid_cases": ["bonjour"],
