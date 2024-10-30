@@ -100,6 +100,14 @@ DEPARTEMENT_SET_COG_2023 = {
     "Guyane",
     "La Réunion",
     "Mayotte",
+    "Saint-Pierre-et-Miquelon",
+    "Saint-Barthélemy",
+    "Saint-Martin",
+    "Terres australes et antarctiques françaises",
+    "Wallis-et-Futuna",
+    "Polynésie française",
+    "Nouvelle-Calédonie",
+    "Île de Clipperton",
 }
 
 DEPARTEMENT_SET_COG_2024 = DEPARTEMENT_SET_COG_2023

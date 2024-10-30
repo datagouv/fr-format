@@ -8,9 +8,7 @@ from frformat.geo.departement_set import (
 from frformat.geo_enum_format import Millesime
 
 name = "Nom de département"
-description = (
-    "Vérifie les départements français valides pour un Code Officiel Géographique donné"
-)
+description = "Vérifie les départements français, collectivités et territoires d'outre-mer valides pour un Code Officiel Géographique donné"
 
 all_cog_versions: Dict[Millesime, Set[str]] = {
     Millesime.A2023: DEPARTEMENT_SET_COG_2023,
