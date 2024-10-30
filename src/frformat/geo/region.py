@@ -5,7 +5,9 @@ from frformat.geo.region_set import REGION_SET_COG_2023, REGION_SET_COG_2024
 from frformat.geo_enum_format import Millesime
 
 name = "Nom de région"
-description = "Vérifie les régions françaises valides"
+description = (
+    "Vérifie les régions françaises valides pour un Code Officiel Géographique donné"
+)
 
 all_cog_versions: Dict[Millesime, Set[str]] = {
     Millesime.A2023: REGION_SET_COG_2023,

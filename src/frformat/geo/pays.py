@@ -5,7 +5,9 @@ from frformat.geo.pays_set import PAYS_SET_COG_2024
 from frformat.geo_enum_format import Millesime
 
 name = "Pays et territoires étrangers"
-description = "Nom de pays et territoires étrangers selon COG2024 et COG2023"
+description = (
+    "Nom de pays et territoires étrangers pour un Code Officiel Géographique donné"
+)
 
 all_cog_versions: Dict[Millesime, Set[str]] = {
     Millesime.A2024: PAYS_SET_COG_2024,

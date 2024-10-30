@@ -27,7 +27,9 @@ CODE_REGION_SET_COG_2023 = {
 CODE_REGION_SET_COG_2024 = CODE_REGION_SET_COG_2023
 
 name = "Code région"
-description = "Vérifie qu'il s'agit d'un code région selon le code officiel géographique (cog) donné"
+description = (
+    "Vérifie qu'il s'agit d'un code région pour un Code Officiel Géographique donné"
+)
 all_cog_versions: Dict[Millesime, Set[str]] = {
     Millesime.A2023: CODE_REGION_SET_COG_2023,
     Millesime.A2024: CODE_REGION_SET_COG_2024,

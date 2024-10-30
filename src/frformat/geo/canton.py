@@ -5,9 +5,7 @@ from frformat.geo.canton_set import CANTON_SET_COG_2023, CANTON_SET_COG_2024
 from frformat.geo_enum_format import Millesime
 
 name = "Nom de canton"
-description = (
-    "Vérifie que le nom de canton est un canton ou pseudo-canton français valide"
-)
+description = "Vérifie que le nom de canton est un canton ou pseudo-canton français valide pour un Code Officiel Géographique donné"
 all_cog_versions: Dict[Millesime, Set[str]] = {
     Millesime.A2023: CANTON_SET_COG_2023,
     Millesime.A2024: CANTON_SET_COG_2024,

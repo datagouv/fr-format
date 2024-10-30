@@ -6,7 +6,7 @@ from frformat.geo_enum_format import Millesime
 
 name = "Nom de commune"
 description = (
-    "Vérifie que le nom correspond à un nom de commune française ( depuis le Code Officiel Géographique 2023) "
+    "Vérifie que le nom correspond à un nom de commune française pour un Code Officiel Géographique donné"
     "(ne vérifie pas l'accentuation, la casse, la ponctuation)"
 )
 

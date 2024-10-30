@@ -8,7 +8,7 @@ from frformat.geo.code_commune_insee_set import (
 from frformat.geo_enum_format import Millesime
 
 name = "Code commune INSEE"
-description = "Vérifie que le code commune correspond bien à un code commune INSEE selon Cpde Officiel géographique de 2023 et 2024"
+description = "Vérifie que le code commune correspond bien à un code commune INSEE pour un Code Officiel Géographique donné"
 
 all_cog_versions: Dict[Millesime, Set[str]] = {
     Millesime.A2023: CODE_COMMUNE_INSEE_SET_COG_2023,
