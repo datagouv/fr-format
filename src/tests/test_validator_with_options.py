@@ -5,7 +5,7 @@ from frformat.options import Options
 
 
 def test_validator():
-    _valid_values_enum: FrozenSet[str] = frozenset({"Bonjour"})
+    _valid_values_enum: FrozenSet[str] = frozenset({"Bonjour", "Réunion"})
 
     _Validator = enum_format.new(
         "Validator", "validator", "Test validator", _valid_values_enum
@@ -16,7 +16,12 @@ def test_validator():
             "options": Options(ignore_case=True),
             "valid_cases": ["bonjour"],
             "invalid_cases": ["Bonjour  "],
-        }
+        },
+        {
+            "options": Options(ignore_accents=True),
+            "valid_cases": ["Reunion"],
+            "invalid_cases": ["réunion"],
+        },
     ]
 
     for tc in _test_cases:
