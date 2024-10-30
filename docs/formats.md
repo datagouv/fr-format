@@ -2,7 +2,7 @@
 
 | class name                   | name                   | decription                    |
 | ---------------------------- | ---------------------- | ----------------------------- |
-| Canton | Nom de canton | Vérifie que le nom de canton est un canton ou pseudo-canton français valide |
+| Canton | Nom de canton | Vérifie que le nom de canton est un canton ou pseudo-canton français valide pour un Code Officiel Géographique donné |
 | CodeCommuneInsee | Code commune INSEE | Vérifie que le code commune correspond bien à un code commune INSEE pour un Code Officiel Géographique donné |
 | CodeFantoir | Code fantoir | Vérifie les codes fantoirs valides |
 | CodePaysISO2 | Codes ISO2 Pays | Code ISO 2 de pays pour un Code Officiel Géographique donné |
