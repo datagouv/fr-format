@@ -41,6 +41,16 @@ def test_validator():
             "valid_cases": ["hello", "Réunion"],
             "invalid_cases": ["Hello!!", " réunion"],
         },
+        {
+            "options": Options(
+                ignore_accents=True,
+                replace_non_alphanumeric_with_space=True,
+                ignore_extra_whitespace=True,
+                extra_valid_values=frozenset({"#  paramétre "}),
+            ),
+            "valid_cases": ["paramétre", "parametre", "Plane"],
+            "invalid_cases": ["plane", "#  Paramétre "],
+        },
     ]
 
     for tc in _test_cases:
