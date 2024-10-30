@@ -34,6 +34,13 @@ def test_validator():
             "valid_cases": [" Fly   "],
             "invalid_cases": ["fly  "],
         },
+        {
+            "options": Options(
+                ignore_case=True, extra_valid_values=frozenset({"Hello"})
+            ),
+            "valid_cases": ["hello", "Réunion"],
+            "invalid_cases": ["Hello!!", " réunion"],
+        },
     ]
 
     for tc in _test_cases:
