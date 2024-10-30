@@ -13,7 +13,7 @@ def test_validator():
         "Validator", "validator", "Test validator", _valid_values_enum
     )
 
-    _test_cases: List[Dict[str, Union[Options,List[str]] ]] = [
+    _test_cases: List[Dict[str, Union[Options, List[str]]]] = [
         {
             "options": Options(ignore_case=True),
             "valid_cases": ["bonjour"],
