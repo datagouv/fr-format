@@ -12,7 +12,7 @@ DEPARTEMENTS_SET_COG_2023 = (
 DEPARTEMENTS_SET_COG_2024 = DEPARTEMENTS_SET_COG_2023
 
 name = "Numéro du département"
-description = "Vérifie que le numéro de département correspond bien à un numéro de département français pour un Code Officiel Géographique donné"
+description = "Vérifie que le numéro de département correspond bien à un numéro de département français, collectivités et territoires d'outre-mer pour un Code Officiel Géographique donné"
 
 all_cog_versions: Dict[Millesime, Set[str]] = {
     Millesime.A2023: DEPARTEMENTS_SET_COG_2023,
