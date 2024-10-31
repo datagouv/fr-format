@@ -1,7 +1,7 @@
 from typing import Dict, FrozenSet
 
 from frformat import geo_enum_format
-from frformat.geo.code_commune_insee_set import (
+from frformat.geo.code_commune_insee_frozenset import (
     CODE_COMMUNE_INSEE_FROZEN_SET_COG_2023,
     CODE_COMMUNE_INSEE_FROZEN_SET_COG_2024,
 )

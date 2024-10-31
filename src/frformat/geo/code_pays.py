@@ -1,7 +1,7 @@
 from typing import Dict, FrozenSet
 
 from frformat import geo_enum_format
-from frformat.geo.code_pays_set import (
+from frformat.geo.code_pays_frozenset import (
     CODE_PAYS_ISO2_FROZEN_SET_COG_2023,
     CODE_PAYS_ISO2_FROZEN_SET_COG_2024,
     CODE_PAYS_ISO3_FROZEN_SET_COG_2023,

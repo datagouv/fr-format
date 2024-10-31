@@ -1,5 +1,5 @@
 from frformat import enum_format
-from frformat.geo.code_postal_set import CODE_POSTAL_FROZEN_SET
+from frformat.geo.code_postal_frozenset import CODE_POSTAL_FROZEN_SET
 
 name = "Code postal"
 description = "Vérifie que le code postal est bien un code postal français"
