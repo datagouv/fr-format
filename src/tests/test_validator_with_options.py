@@ -26,7 +26,7 @@ def test_validator():
         },
         {
             "options": Options(replace_non_alphanumeric_with_space=True),
-            "valid_cases": ["Plane "],
+            "valid_cases": ["Plane!", "Plane "],
             "invalid_cases": [" Plane! "],
         },
         {
