@@ -6,7 +6,7 @@ from frformat.options import Options
 
 def test_validator():
     _valid_values_enum: FrozenSet[str] = frozenset(
-        {"Bonjour", "Réunion", "Plane!", "Fly   "}
+        {"Bonjour", "Réunion", "Plane!", "Fly   ", "La liste"}
     )
 
     _Validator = enum_format.new(
@@ -50,6 +50,17 @@ def test_validator():
             ),
             "valid_cases": ["paramétre", "parametre", "Plane"],
             "invalid_cases": ["plane", "#  Paramétre "],
+        },
+        {
+            "options": Options(
+                ignore_case=True,
+                ignore_accents=True,
+                replace_non_alphanumeric_with_space=True,
+                ignore_extra_whitespace=True,
+                extra_valid_values=frozenset({"Coordonnées"}),
+            ),
+            "valid_cases": ["coordonnées", "coordonnees", "la  liste ", "La$$liste"],
+            "invalid_cases": ["Coord onnées"],
         },
     ]
 
