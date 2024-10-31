@@ -1,6 +1,10 @@
-from frformat import enum_format
+from typing import Dict, Set
 
-CODE_REGION_SET = {
+from frformat import geo_enum_format
+
+from ..geo_enum_format import Millesime
+
+CODE_REGION_SET_COG_2023 = {
     "01",
     "02",
     "03",
@@ -20,10 +24,14 @@ CODE_REGION_SET = {
     "93",
     "94",
 }
+CODE_REGION_SET_COG_2024 = CODE_REGION_SET_COG_2023
 
 name = "Code région"
 description = (
-    "Vérifie qu'il s'agit d'un code région selon le code officiel géographique 2024"
+    "Vérifie qu'il s'agit d'un code région pour un Code Officiel Géographique donné"
 )
-
-CodeRegion = enum_format.new("CodeRegion", name, description, CODE_REGION_SET)
+all_cog_versions: Dict[Millesime, Set[str]] = {
+    Millesime.A2023: CODE_REGION_SET_COG_2023,
+    Millesime.A2024: CODE_REGION_SET_COG_2024,
+}
+CodeRegion = geo_enum_format.new("CodeRegion", name, description, all_cog_versions)

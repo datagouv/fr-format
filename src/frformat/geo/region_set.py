@@ -1,4 +1,4 @@
-REGION_SET = {
+REGION_SET_COG_2023 = {
     "Guadeloupe",
     "Martinique",
     "Guyane",
@@ -18,3 +18,5 @@ REGION_SET = {
     "Provence-Alpes-Côte d'Azur",
     "Corse",
 }
+
+REGION_SET_COG_2024 = REGION_SET_COG_2023

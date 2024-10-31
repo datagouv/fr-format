@@ -1,4 +1,4 @@
-PAYS_SET = {
+PAYS_SET_COG_2024 = {
     "France",
     "Danemark",
     "Islande",
