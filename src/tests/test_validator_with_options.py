@@ -62,6 +62,15 @@ def test_validator():
             "valid_cases": ["coordonnées", "coordonnees", "la  liste ", "La$$liste"],
             "invalid_cases": ["Coord onnées"],
         },
+        {
+            "options": Options(
+                ignore_case=True,
+                replace_non_alphanumeric_with_space=True,
+                ignore_extra_whitespace=True,
+            ),
+            "valid_cases": [" la  liste  ", "bonjour!"],
+            "invalid_cases": ["Bon jour", "reunion "],
+        },
     ]
 
     for tc in _test_cases:
