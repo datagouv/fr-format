@@ -1,4 +1,4 @@
-CODE_POSTAL_FROZEN_SET = frozenset(
+CODES_POSTAUX = frozenset(
     {
         "63120",
         "11240",

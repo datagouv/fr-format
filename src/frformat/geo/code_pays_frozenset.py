@@ -1,4 +1,4 @@
-CODE_PAYS_ISO2_FROZEN_SET_COG_2023 = frozenset(
+CODES_PAYS_ISO2_COG_2023 = frozenset(
     {
         "DK",
         "FO",
@@ -250,7 +250,7 @@ CODE_PAYS_ISO2_FROZEN_SET_COG_2023 = frozenset(
         "BL",
     }
 )
-CODE_PAYS_ISO3_FROZEN_SET_COG_2023 = frozenset(
+CODES_PAYS_ISO3_COG_2023 = frozenset(
     {
         "DNK",
         "FRO",
@@ -498,7 +498,7 @@ CODE_PAYS_ISO3_FROZEN_SET_COG_2023 = frozenset(
         "BLM",
     }
 )
-CODE_PAYS_ISO2_FROZEN_SET_COG_2024 = frozenset(
+CODES_PAYS_ISO2_COG_2024 = frozenset(
     {
         "FR",
         "DK",
@@ -717,7 +717,7 @@ CODE_PAYS_ISO2_FROZEN_SET_COG_2024 = frozenset(
         "AQ",
     }
 )
-CODE_PAYS_ISO3_FROZEN_SET_COG_2024 = frozenset(
+CODES_PAYS_ISO3_COG_2024 = frozenset(
     {
         "FRA",
         "DNK",

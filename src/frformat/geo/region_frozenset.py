@@ -1,4 +1,4 @@
-REGION_FROZEN_SET_COG_2023 = frozenset(
+REGIONS_COG_2023 = frozenset(
     {
         "Guadeloupe",
         "Martinique",
@@ -21,4 +21,4 @@ REGION_FROZEN_SET_COG_2023 = frozenset(
     }
 )
 
-REGION_FROZEN_SET_COG_2024 = REGION_FROZEN_SET_COG_2023
+REGIONS_COG_2024 = REGIONS_COG_2023

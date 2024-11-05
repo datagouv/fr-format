@@ -1,4 +1,4 @@
-PARTIAL_CODE_FANTOIR_FROZEN_SET = frozenset(
+PARTIAL_CODE_FANTOIR = frozenset(
     {
         "0000",
         "0001",

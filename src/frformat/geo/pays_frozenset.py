@@ -1,4 +1,4 @@
-PAYS_FROZEN_SET_COG_2024 = frozenset(
+PAYS_COG_2024 = frozenset(
     {
         "France",
         "Danemark",

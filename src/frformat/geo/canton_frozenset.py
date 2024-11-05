@@ -1,4 +1,4 @@
-CANTON_FROZEN_SET_COG_2023 = frozenset(
+CANTON_COG_2023 = frozenset(
     {
         "Ambérieu-en-Bugey",
         "Attignat",
@@ -2292,7 +2292,7 @@ CANTON_FROZEN_SET_COG_2023 = frozenset(
         "Mamoudzou",
     }
 )
-CANTON_FROZEN_SET_COG_2024 = frozenset(
+CANTON_COG_2024 = frozenset(
     {
         "Ambérieu-en-Bugey",
         "Attignat",

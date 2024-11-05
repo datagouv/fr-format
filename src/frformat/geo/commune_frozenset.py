@@ -1,4 +1,4 @@
-COMMUNE_FROZEN_SET_COG_2023 = frozenset(
+COMMUNES_COG_2023 = frozenset(
     {
         "L'Abergement-Clémenciat",
         "L'Abergement-de-Varey",
@@ -37903,7 +37903,7 @@ COMMUNE_FROZEN_SET_COG_2023 = frozenset(
         "Tsingoni",
     }
 )
-COMMUNE_FROZEN_SET_COG_2024 = frozenset(
+COMMUNES_COG_2024 = frozenset(
     {
         "L'Abergement-Clémenciat",
         "L'Abergement-de-Varey",

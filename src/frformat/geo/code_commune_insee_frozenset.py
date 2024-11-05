@@ -1,4 +1,4 @@
-CODE_COMMUNE_INSEE_FROZEN_SET_COG_2023 = frozenset(
+CODES_COMMUNES_INSEE_COG_2023 = frozenset(
     {
         "01001",
         "01002",
@@ -37602,7 +37602,7 @@ CODE_COMMUNE_INSEE_FROZEN_SET_COG_2023 = frozenset(
         "97617",
     }
 )
-CODE_COMMUNE_INSEE_FROZEN_SET_COG_2024 = frozenset(
+CODES_COMMUNES_INSEE_COG_2024 = frozenset(
     {
         "01001",
         "01002",
