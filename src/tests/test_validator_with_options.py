@@ -1,11 +1,9 @@
-from typing import Dict, FrozenSet, List, Union
-
 from frformat import enum_format
 from frformat.options import Options
 
 
 def test_validator():
-    valid_values_enum: FrozenSet[str] = frozenset(
+    valid_values_enum = frozenset(
         {"Bonjour", "Réunion", "Plane!", "Fly   ", "La liste"}
     )
 
@@ -13,7 +11,7 @@ def test_validator():
         "Validator", "validator", "Test validator", valid_values_enum
     )
 
-    test_cases: List[Dict[str, Union[Options, List[str]]]] = [
+    test_cases = [
         {
             "options": Options(ignore_case=True),
             "valid_cases": ["bonjour"],
@@ -77,13 +75,12 @@ def test_validator():
         invalid_c = tc["invalid_cases"]
         valid_c = tc["valid_cases"]
 
-        if isinstance(valid_c, List) and isinstance(invalid_c, List):
-            for valid_ele in valid_c:
-                assert Validator(tc["options"]).is_valid(
-                    valid_ele
-                ), f"Check that {valid_ele} is not valid"
+        for valid_ele in valid_c:
+            assert Validator(tc["options"]).is_valid(
+                valid_ele
+            ), f"Check that {valid_ele} is not valid"
 
-            for invalid_ele in invalid_c:
-                assert not Validator(tc["options"]).is_valid(
-                    invalid_ele
-                ), f"Check that {invalid_ele} is valid"
+        for invalid_ele in invalid_c:
+            assert not Validator(tc["options"]).is_valid(
+                invalid_ele
+            ), f"Check that {invalid_ele} is valid"
