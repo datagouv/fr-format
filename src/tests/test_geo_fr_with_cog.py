@@ -6,11 +6,11 @@ from frformat import (
     CodeRegion,
     Commune,
     Departement,
+    Millesime,
     NumeroDepartement,
     Pays,
     Region,
 )
-from frformat.geo_enum_format import Millesime
 
 
 def test_code_region():

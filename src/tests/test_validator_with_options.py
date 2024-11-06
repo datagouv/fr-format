@@ -1,5 +1,4 @@
-from frformat import enum_format
-from frformat.options import Options
+from frformat import Options, enum_format
 
 
 def test_validator():
