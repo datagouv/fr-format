@@ -1,11 +1,11 @@
-from typing import Set, Type
+from typing import FrozenSet, Type
 
 from frformat import CustomStrFormat, Metadata
 from frformat.common import normalize_value
 from frformat.options import Options
 
 
-def new(class_name: str, name: str, description: str, enum: Set[str]) -> Type:
+def new(class_name: str, name: str, description: str, enum: FrozenSet[str]) -> Type:
     class EnumFormat(CustomStrFormat):
         """Checks if a value is in a given list
 
