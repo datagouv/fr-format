@@ -10,6 +10,8 @@ class Millesime(Enum):
     A2023 = auto()
     A2024 = auto()
 
+    LATEST = A2024
+
 
 def new(
     class_name: str,
