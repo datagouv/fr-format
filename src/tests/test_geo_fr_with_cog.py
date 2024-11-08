@@ -14,8 +14,8 @@ from frformat import (
 
 
 def test_code_region():
-    code_region_2023 = CodeRegion(Millesime.A2023)
-    code_region_2024 = CodeRegion(Millesime.A2024)
+    code_region_2023 = CodeRegion(Millesime.M2023)
+    code_region_2024 = CodeRegion(Millesime.M2024)
     last_code_region = CodeRegion(Millesime.LATEST)
 
     valid_test_cases = ["01", "75"]
@@ -32,8 +32,8 @@ def test_code_region():
 
 
 def test_region():
-    region_2023 = Region(Millesime.A2023)
-    region_2024 = Region(Millesime.A2024)
+    region_2023 = Region(Millesime.M2023)
+    region_2024 = Region(Millesime.M2024)
     last_region = Region(Millesime.LATEST)
 
     valid_test_cases = ["Centre-Val de Loire", "La Réunion", "Corse"]
@@ -56,8 +56,8 @@ def test_region():
 
 
 def test_commune():
-    commune_2023 = Commune(Millesime.A2023)
-    commune_2024 = Commune(Millesime.A2024)
+    commune_2023 = Commune(Millesime.M2023)
+    commune_2024 = Commune(Millesime.M2024)
     last_commune = Commune(Millesime.LATEST)
 
     valid_test_cases_cog_2023 = [
@@ -115,8 +115,8 @@ def test_commune():
 
 
 def test_canton():
-    canton_2023 = Canton(Millesime.A2023)
-    canton_2024 = Canton(Millesime.A2024)
+    canton_2023 = Canton(Millesime.M2023)
+    canton_2024 = Canton(Millesime.M2024)
     last_canton = Canton(Millesime.LATEST)
 
     valid_test_cases_cog_2023 = [
@@ -151,12 +151,12 @@ def test_canton():
 
 
 def test_code_pays():
-    code_pays_2023_IS02 = CodePaysISO2(Millesime.A2023)
-    code_pays_2024_IS02 = CodePaysISO2(Millesime.A2024)
+    code_pays_2023_IS02 = CodePaysISO2(Millesime.M2023)
+    code_pays_2024_IS02 = CodePaysISO2(Millesime.M2024)
     last_code_pays_IS02 = CodePaysISO2(Millesime.LATEST)
 
-    code_pays_2023_IS03 = CodePaysISO3(Millesime.A2023)
-    code_pays_2024_IS03 = CodePaysISO3(Millesime.A2024)
+    code_pays_2023_IS03 = CodePaysISO3(Millesime.M2023)
+    code_pays_2024_IS03 = CodePaysISO3(Millesime.M2024)
     last_code_pays_IS03 = CodePaysISO3(Millesime.LATEST)
 
     valid_test_cases_iso2_cog_2023 = ["BV", "SJ"]
@@ -215,8 +215,8 @@ def test_code_pays():
 
 
 def test_code_commune_insee():
-    code_commune_insee_cog_2023 = CodeCommuneInsee(Millesime.A2023)
-    code_commune_insee_cog_2024 = CodeCommuneInsee(Millesime.A2024)
+    code_commune_insee_cog_2023 = CodeCommuneInsee(Millesime.M2023)
+    code_commune_insee_cog_2024 = CodeCommuneInsee(Millesime.M2024)
     last_code_commune_insee = CodeCommuneInsee(Millesime.LATEST)
 
     cog_2023_value = "01015"
@@ -249,8 +249,8 @@ def test_code_commune_insee():
 
 
 def test_departement():
-    departement_cog_2023 = Departement(Millesime.A2023)
-    departement_cog_2024 = Departement(Millesime.A2024)
+    departement_cog_2023 = Departement(Millesime.M2023)
+    departement_cog_2024 = Departement(Millesime.M2024)
     last_departement_cog = Departement(Millesime.LATEST)
 
     valid_test_cases = ["Alpes-Maritimes", "Gard", "Mayotte", "Vendée"]
@@ -268,7 +268,7 @@ def test_departement():
 
 
 def test_pays():
-    pays_cog_2024 = Pays(Millesime.A2024)
+    pays_cog_2024 = Pays(Millesime.M2024)
     last_pays_cog = Pays(Millesime.LATEST)
 
     valid_pays_cog_2024 = ["France", "Pays-Bas", "Bosnie-Herzégovine"]
@@ -291,8 +291,8 @@ def test_pays():
 
 
 def test_numero_departement():
-    num_departement_cog_2023 = NumeroDepartement(Millesime.A2023)
-    num_departement_cog_2024 = NumeroDepartement(Millesime.A2024)
+    num_departement_cog_2023 = NumeroDepartement(Millesime.M2023)
+    num_departement_cog_2024 = NumeroDepartement(Millesime.M2024)
     last_num_departement_cog = NumeroDepartement(Millesime.LATEST)
 
     num_departement_valid = ["05", "2B", "974"]

@@ -17,8 +17,8 @@ name = "Numéro du département"
 description = "Vérifie que le numéro de département correspond bien à un numéro de département français, collectivités et territoires d'outre-mer pour un Code Officiel Géographique donné"
 
 all_cog_versions: Dict[Millesime, FrozenSet[str]] = {
-    Millesime.A2023: NUMEROS_DEPARTEMENTS_COG_2023,
-    Millesime.A2024: NUMEROS_DEPARTEMENTS_COG_2024,
+    Millesime.M2023: NUMEROS_DEPARTEMENTS_COG_2023,
+    Millesime.M2024: NUMEROS_DEPARTEMENTS_COG_2024,
 }
 NumeroDepartement = geo_enum_format.new(
     "NumeroDepartement", name, description, all_cog_versions

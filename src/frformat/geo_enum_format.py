@@ -7,10 +7,10 @@ from frformat.options import Options
 
 
 class Millesime(Enum):
-    A2023 = auto()
-    A2024 = auto()
+    M2023 = auto()
+    M2024 = auto()
 
-    LATEST = A2024
+    LATEST = M2024
 
 
 def new(

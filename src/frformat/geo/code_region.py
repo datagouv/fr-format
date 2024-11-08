@@ -31,7 +31,7 @@ CODES_REGIONS_COG_2024 = CODES_REGIONS_COG_2023
 name = "Code région"
 description = "Vérifie qu'il s'agit d'un code région selon le Code Officiel Géographique (cog) donné"
 all_cog_versions: Dict[Millesime, FrozenSet[str]] = {
-    Millesime.A2023: CODES_REGIONS_COG_2023,
-    Millesime.A2024: CODES_REGIONS_COG_2024,
+    Millesime.M2023: CODES_REGIONS_COG_2023,
+    Millesime.M2024: CODES_REGIONS_COG_2024,
 }
 CodeRegion = geo_enum_format.new("CodeRegion", name, description, all_cog_versions)
