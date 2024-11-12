@@ -10,7 +10,7 @@ description = (
 )
 
 all_cog_versions: Dict[Millesime, FrozenSet[str]] = {
-    Millesime.A2023: REGIONS_COG_2023,
-    Millesime.A2024: REGIONS_COG_2024,
+    Millesime.M2023: REGIONS_COG_2023,
+    Millesime.M2024: REGIONS_COG_2024,
 }
 Region = geo_enum_format.new("Region", name, description, all_cog_versions)

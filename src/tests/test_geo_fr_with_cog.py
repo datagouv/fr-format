@@ -14,8 +14,8 @@ from frformat import (
 
 
 def test_code_region():
-    code_region_2023 = CodeRegion(Millesime.A2023)
-    code_region_2024 = CodeRegion(Millesime.A2024)
+    code_region_2023 = CodeRegion(Millesime.M2023)
+    code_region_2024 = CodeRegion(Millesime.M2024)
 
     valid_test_cases = ["01", "75"]
     invalid_test_cases = ["AA", "00", "7 5"]
@@ -29,8 +29,8 @@ def test_code_region():
 
 
 def test_region():
-    region_2023 = Region(Millesime.A2023)
-    region_2024 = Region(Millesime.A2024)
+    region_2023 = Region(Millesime.M2023)
+    region_2024 = Region(Millesime.M2024)
 
     valid_test_cases = ["Centre-Val de Loire", "La Réunion", "Corse"]
     invalid_test_cases = [
@@ -50,8 +50,8 @@ def test_region():
 
 
 def test_commune():
-    commune_2023 = Commune(Millesime.A2023)
-    commune_2024 = Commune(Millesime.A2024)
+    commune_2023 = Commune(Millesime.M2023)
+    commune_2024 = Commune(Millesime.M2024)
 
     valid_test_cases_cog_2023 = [
         "La Chapelle-Achard",
@@ -74,6 +74,7 @@ def test_commune():
         "Val-d'Usiers",
         "La Chapelle-Fleurigné",
     ]
+
     invalid_test_cases_cog_2024 = [
         "Costa del Sol",
         "Montestrucq",
@@ -97,8 +98,8 @@ def test_commune():
 
 
 def test_canton():
-    canton_2023 = Canton(Millesime.A2023)
-    canton_2024 = Canton(Millesime.A2024)
+    canton_2023 = Canton(Millesime.M2023)
+    canton_2024 = Canton(Millesime.M2024)
 
     valid_test_cases_cog_2023 = [
         "Lagnieu",
@@ -107,6 +108,7 @@ def test_canton():
     invalid_test_cases_cog_2023 = ["Paris", "Lyon", "paris"]
 
     valid_test_cases_cog_2024 = ["Paris", "Lyon"]
+
     invalid_test_cases_cog_2024 = ["Saint Quentin", "saint  quentin"]
 
     for tc in valid_test_cases_cog_2023:
@@ -123,10 +125,11 @@ def test_canton():
 
 
 def test_code_pays():
-    code_pays_2023_IS02 = CodePaysISO2(Millesime.A2023)
-    code_pays_2024_IS02 = CodePaysISO2(Millesime.A2024)
-    code_pays_2023_IS03 = CodePaysISO3(Millesime.A2023)
-    code_pays_2024_IS03 = CodePaysISO3(Millesime.A2024)
+    code_pays_2023_IS02 = CodePaysISO2(Millesime.M2023)
+    code_pays_2024_IS02 = CodePaysISO2(Millesime.M2024)
+
+    code_pays_2023_IS03 = CodePaysISO3(Millesime.M2023)
+    code_pays_2024_IS03 = CodePaysISO3(Millesime.M2024)
 
     valid_test_cases_iso2_cog_2023 = ["BV", "SJ"]
     invalid_test_cases_iso2_cog_2023 = ["RWA", "TCD", "rwa"]
@@ -166,8 +169,8 @@ def test_code_pays():
 
 
 def test_code_commune_insee():
-    code_commune_insee_cog_2023 = CodeCommuneInsee(Millesime.A2023)
-    code_commune_insee_cog_2024 = CodeCommuneInsee(Millesime.A2024)
+    code_commune_insee_cog_2023 = CodeCommuneInsee(Millesime.M2023)
+    code_commune_insee_cog_2024 = CodeCommuneInsee(Millesime.M2024)
 
     cog_2023_value = "01015"
     assert code_commune_insee_cog_2023.is_valid(cog_2023_value)
@@ -179,18 +182,20 @@ def test_code_commune_insee():
         assert not code_commune_insee_cog_2023.is_valid(iv)
 
     cog_2024_value = "64300"
+
     assert code_commune_insee_cog_2024.is_valid(cog_2024_value)
     assert code_commune_insee_cog_2024.format(cog_2024_value) == cog_2024_value
     assert code_commune_insee_cog_2024.is_valid("2A331")
 
     cog_2024_invalid_values = ["64402", "64  300"]
+
     for iv in cog_2024_invalid_values:
         assert not code_commune_insee_cog_2024.is_valid(iv)
 
 
 def test_departement():
-    departement_cog_2023 = Departement(Millesime.A2023)
-    departement_cog_2024 = Departement(Millesime.A2024)
+    departement_cog_2023 = Departement(Millesime.M2023)
+    departement_cog_2024 = Departement(Millesime.M2024)
 
     valid_test_cases = ["Alpes-Maritimes", "Gard", "Mayotte", "Vendée"]
     invalid_test_cases = ["Charente-Inférieure", "Vendee", "Alpes  maritimes"]
@@ -205,7 +210,7 @@ def test_departement():
 
 
 def test_pays():
-    pays_cog_2024 = Pays(Millesime.A2024)
+    pays_cog_2024 = Pays(Millesime.M2024)
 
     valid_pays_cog_2024 = ["France", "Pays-Bas", "Bosnie-Herzégovine"]
     invalid_pays_cog_2024 = ["L'Eldorado", "Zubrowska", "Pays Bas", "france"]
@@ -218,8 +223,8 @@ def test_pays():
 
 
 def test_numero_departement():
-    num_departement_cog_2023 = NumeroDepartement(Millesime.A2023)
-    num_departement_cog_2024 = NumeroDepartement(Millesime.A2024)
+    num_departement_cog_2023 = NumeroDepartement(Millesime.M2023)
+    num_departement_cog_2024 = NumeroDepartement(Millesime.M2024)
 
     num_departement_valid = ["05", "2B", "974"]
     num_departement_invalid = ["99", "051", "2b", "  97 4"]

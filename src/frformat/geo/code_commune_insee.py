@@ -11,8 +11,8 @@ name = "Code commune INSEE"
 description = "Vérifie que le code commune correspond bien à un code commune INSEE pour un Code Officiel Géographique donné"
 
 all_cog_versions: Dict[Millesime, FrozenSet[str]] = {
-    Millesime.A2023: CODES_COMMUNES_INSEE_COG_2023,
-    Millesime.A2024: CODES_COMMUNES_INSEE_COG_2024,
+    Millesime.M2023: CODES_COMMUNES_INSEE_COG_2023,
+    Millesime.M2024: CODES_COMMUNES_INSEE_COG_2024,
 }
 CodeCommuneInsee = geo_enum_format.new(
     "CodeCommuneInsee", name, description, all_cog_versions
