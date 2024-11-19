@@ -22,7 +22,7 @@ _options = Options(
 )
 Departement(Millesime.LATEST, _options).is_valid("haute-vienne")
 # True
-Departement(Millesime.LATEST, _options).is_valid("Canyon Cosmo")
+Departement(Millesime.M2023, _options).is_valid("Canyon Cosmo")
 # False
 ```
 
