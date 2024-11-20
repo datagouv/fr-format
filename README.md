@@ -25,7 +25,7 @@ Departement(Millesime.LATEST, _options).is_valid("haute-vienne")
 Departement(Millesime.M2023, _options).is_valid("Canyon Cosmo")
 # False
 ```
-For more details about the [Options](./src/frformat/options.py) data class.
+For more details, consult the [Options](./src/frformat/options.py) data class.
 
 For better performance on big amounts of data, use in conjunction with numpy.
 
