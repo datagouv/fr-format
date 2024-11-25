@@ -76,59 +76,53 @@ def test_all_validator():
                 ],
             },
         },
+        {
+            "name": "Commune",
+            "cog": Millesime.M2023,
+            "formatClass": Commune,
+            "test_cases": {
+                "valid": [
+                    "La Chapelle-Achard",
+                    "Beaumont-les-Nonains",
+                    "La Moncelle",
+                    "Montestrucq",
+                ],
+                "invalid": [
+                    "Costa del Sol",
+                    "Val-d'Usiers",
+                    "La Chapelle-Fleurigné",
+                    "Oullins-Pierre-Bénite",
+                    "la chapelle Fleurigne",
+                    "Costa-del Sol",
+                ],
+            },
+        },
+        {
+            "name": "Commune",
+            "cog": Millesime.M2024,
+            "formatClass": Commune,
+            "test_cases": {
+                "valid": [
+                    "Oullins-Pierre-Bénite",
+                    "Bellac",
+                    "Val-d'Usiers",
+                    "La Chapelle-Fleurigné",
+                ],
+                "invalid": [
+                    "Costa del Sol",
+                    "Montestrucq",
+                    "La Chapelle-Achard",
+                    "Senonville",
+                    "montestrucq",
+                    "La Chapelle     Achard",
+                ],
+            },
+        },
     ]
 
     for vd in validator_details:
         validatorTest = ValidatorTest(vd["cog"], vd["test_cases"], vd["formatClass"])
         validatorTest.run_all_tests()
-
-
-def test_commune():
-    commune_2023 = Commune(Millesime.M2023)
-    commune_2024 = Commune(Millesime.M2024)
-
-    valid_test_cases_cog_2023 = [
-        "La Chapelle-Achard",
-        "Beaumont-les-Nonains",
-        "La Moncelle",
-        "Montestrucq",
-    ]
-    invalid_test_cases_cog_2023 = [
-        "Costa del Sol",
-        "Val-d'Usiers",
-        "La Chapelle-Fleurigné",
-        "Oullins-Pierre-Bénite",
-        "la chapelle Fleurigne",
-        "Costa-del Sol",
-    ]
-
-    valid_test_cases_cog_2024 = [
-        "Oullins-Pierre-Bénite",
-        "Bellac",
-        "Val-d'Usiers",
-        "La Chapelle-Fleurigné",
-    ]
-
-    invalid_test_cases_cog_2024 = [
-        "Costa del Sol",
-        "Montestrucq",
-        "La Chapelle-Achard",
-        "Senonville",
-        "montestrucq",
-        "La Chapelle     Achard",
-    ]
-
-    for tc in valid_test_cases_cog_2023:
-        assert commune_2023.is_valid(tc)
-
-    for tc in invalid_test_cases_cog_2023:
-        assert not commune_2023.is_valid(tc)
-
-    for tc in valid_test_cases_cog_2024:
-        assert commune_2024.is_valid(tc)
-
-    for tc in invalid_test_cases_cog_2024:
-        assert not commune_2024.is_valid(tc)
 
 
 def test_canton():
