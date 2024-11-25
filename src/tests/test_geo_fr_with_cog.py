@@ -46,48 +46,41 @@ def test_all_validator():
             "formatClass": CodeRegion,
             "test_cases": {"valid": ["01", "75"], "invalid": ["AA", "00", "7 5"]},
         },
+        {
+            "name": "Region",
+            "cog": Millesime.M2023,
+            "formatClass": Region,
+            "test_cases": {
+                "valid": ["Centre-Val de Loire", "La Réunion", "Corse"],
+                "invalid": [
+                    "Beleriand",
+                    "Canyon Cosmo",
+                    "corse",
+                    "Centre val de Loire",
+                    "la reunion",
+                ],
+            },
+        },
+        {
+            "name": "Region",
+            "cog": Millesime.M2024,
+            "formatClass": Region,
+            "test_cases": {
+                "valid": ["Centre-Val de Loire", "La Réunion", "Corse"],
+                "invalid": [
+                    "Beleriand",
+                    "Canyon Cosmo",
+                    "corse",
+                    "Centre val de Loire",
+                    "la reunion",
+                ],
+            },
+        },
     ]
 
     for vd in validator_details:
         validatorTest = ValidatorTest(vd["cog"], vd["test_cases"], vd["formatClass"])
         validatorTest.run_all_tests()
-
-
-""" def test_code_region():
-    validatorTest2023 = ValidatorTest(
-        Millesime.M2023, ["01", "75"], ["AA", "00", "7 5"], CodeRegion
-    )
-
-    validatorTest2024 = ValidatorTest(
-        Millesime.M2024, ["01", "75"], ["AA", "00", "7 5"], CodeRegion
-    )
-
-    validatorTest2023.test_valid_cases()
-    validatorTest2023.test_invalid_cases()
-
-    validatorTest2024.test_valid_cases()
-    validatorTest2024.test_invalid_cases() """
-
-
-def test_region():
-    region_2023 = Region(Millesime.M2023)
-    region_2024 = Region(Millesime.M2024)
-
-    valid_test_cases = ["Centre-Val de Loire", "La Réunion", "Corse"]
-    invalid_test_cases = [
-        "Beleriand",
-        "Canyon Cosmo",
-        "corse",
-        "Centre val de Loire",
-        "la reunion",
-    ]
-    for tc in valid_test_cases:
-        assert region_2023.is_valid(tc)
-        assert region_2024.is_valid(tc)
-
-    for tc in invalid_test_cases:
-        assert not region_2023.is_valid(tc)
-        assert not region_2024.is_valid(tc)
 
 
 def test_commune():
