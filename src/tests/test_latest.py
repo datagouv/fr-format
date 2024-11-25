@@ -1,4 +1,4 @@
-from frformat.geo_enum_format import Millesime
+from frformat import Millesime
 
 
 def test_is_latest():
