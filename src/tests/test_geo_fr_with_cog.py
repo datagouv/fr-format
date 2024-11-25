@@ -181,6 +181,15 @@ def test_all_validator():
                 "invalid": ["Charente-Inférieure", "Vendee", "Alpes  maritimes"],
             },
         },
+        {
+            "name": "Pays",
+            "cog": Millesime.M2024,
+            "formatClass": Pays,
+            "test_cases": {
+                "valid": ["France", "Pays-Bas", "Bosnie-Herzégovine"],
+                "invalid": ["L'Eldorado", "Zubrowska", "Pays Bas", "france"],
+            },
+        },
     ]
 
     for vd in validator_details:
@@ -211,19 +220,6 @@ def test_code_commune_insee():
 
     for iv in cog_2024_invalid_values:
         assert not code_commune_insee_cog_2024.is_valid(iv)
-
-
-def test_pays():
-    pays_cog_2024 = Pays(Millesime.M2024)
-
-    valid_pays_cog_2024 = ["France", "Pays-Bas", "Bosnie-Herzégovine"]
-    invalid_pays_cog_2024 = ["L'Eldorado", "Zubrowska", "Pays Bas", "france"]
-
-    for tc in valid_pays_cog_2024:
-        assert pays_cog_2024.is_valid(tc)
-
-    for tc in invalid_pays_cog_2024:
-        assert not pays_cog_2024.is_valid(tc)
 
 
 def test_numero_departement():
