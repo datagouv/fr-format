@@ -7,4 +7,4 @@ def test_is_latest():
 
     assert (
         Millesime.LATEST == recent_millesime
-    ), "LATEST is not the most recent Millesime"
+    ), "LATEST is not the most recent available Millesime"
