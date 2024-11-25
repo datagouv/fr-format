@@ -13,19 +13,36 @@ from frformat import (
 )
 
 
+class ValidatorTest:
+    def __init__(self, cog, validtc, invalidtc, formatclass):
+        self.cog = cog
+        self.validtc = validtc
+        self.invalidtc = invalidtc
+        self.formatclass = formatclass
+
+    def test_valid_cases(self):
+        for tc in self.validtc:
+            assert self.formatclass(self.cog).is_valid(tc)
+
+    def test_invalid_cases(self):
+        for tc in self.invalidtc:
+            assert not self.formatclass(self.cog).is_valid(tc)
+
+
 def test_code_region():
-    code_region_2023 = CodeRegion(Millesime.M2023)
-    code_region_2024 = CodeRegion(Millesime.M2024)
+    validatorTest2023 = ValidatorTest(
+        Millesime.M2023, ["01", "75"], ["AA", "00", "7 5"], CodeRegion
+    )
 
-    valid_test_cases = ["01", "75"]
-    invalid_test_cases = ["AA", "00", "7 5"]
-    for tc in valid_test_cases:
-        assert code_region_2023.is_valid(tc)
-        assert code_region_2024.is_valid(tc)
+    validatorTest2024 = ValidatorTest(
+        Millesime.M2024, ["01", "75"], ["AA", "00", "7 5"], CodeRegion
+    )
 
-    for tc in invalid_test_cases:
-        assert not code_region_2023.is_valid(tc)
-        assert not code_region_2024.is_valid(tc)
+    validatorTest2023.test_valid_cases()
+    validatorTest2023.test_invalid_cases()
+
+    validatorTest2024.test_valid_cases()
+    validatorTest2024.test_invalid_cases()
 
 
 def test_region():
