@@ -190,6 +190,24 @@ def test_all_validator():
                 "invalid": ["L'Eldorado", "Zubrowska", "Pays Bas", "france"],
             },
         },
+        {
+            "name": "NumeroDepartement",
+            "cog": Millesime.M2023,
+            "formatClass": NumeroDepartement,
+            "test_cases": {
+                "valid": ["05", "2B", "974"],
+                "invalid": ["99", "051", "2b", "  97 4"],
+            },
+        },
+        {
+            "name": "NumeroDepartement",
+            "cog": Millesime.M2024,
+            "formatClass": NumeroDepartement,
+            "test_cases": {
+                "valid": ["05", "2B", "974"],
+                "invalid": ["99", "051", "2b", "  97 4"],
+            },
+        },
     ]
 
     for vd in validator_details:
@@ -220,19 +238,3 @@ def test_code_commune_insee():
 
     for iv in cog_2024_invalid_values:
         assert not code_commune_insee_cog_2024.is_valid(iv)
-
-
-def test_numero_departement():
-    num_departement_cog_2023 = NumeroDepartement(Millesime.M2023)
-    num_departement_cog_2024 = NumeroDepartement(Millesime.M2024)
-
-    num_departement_valid = ["05", "2B", "974"]
-    num_departement_invalid = ["99", "051", "2b", "  97 4"]
-
-    for tc in num_departement_valid:
-        assert num_departement_cog_2023.is_valid(tc)
-        assert num_departement_cog_2024.is_valid(tc)
-
-    for tc in num_departement_invalid:
-        assert not num_departement_cog_2023.is_valid(tc)
-        assert not num_departement_cog_2024.is_valid(tc)
