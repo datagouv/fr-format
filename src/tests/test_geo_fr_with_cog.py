@@ -118,38 +118,32 @@ def test_all_validator():
                 ],
             },
         },
+        {
+            "name": "Canton",
+            "cog": Millesime.M2023,
+            "formatClass": Canton,
+            "test_cases": {
+                "valid": [
+                    "Lagnieu",
+                    "Meximieux",
+                ],
+                "invalid": ["Paris", "Lyon", "paris"],
+            },
+        },
+        {
+            "name": "Canton",
+            "cog": Millesime.M2024,
+            "formatClass": Canton,
+            "test_cases": {
+                "valid": ["Paris", "Lyon"],
+                "invalid": ["Saint Quentin", "saint  quentin"],
+            },
+        },
     ]
 
     for vd in validator_details:
         validatorTest = ValidatorTest(vd["cog"], vd["test_cases"], vd["formatClass"])
         validatorTest.run_all_tests()
-
-
-def test_canton():
-    canton_2023 = Canton(Millesime.M2023)
-    canton_2024 = Canton(Millesime.M2024)
-
-    valid_test_cases_cog_2023 = [
-        "Lagnieu",
-        "Meximieux",
-    ]
-    invalid_test_cases_cog_2023 = ["Paris", "Lyon", "paris"]
-
-    valid_test_cases_cog_2024 = ["Paris", "Lyon"]
-
-    invalid_test_cases_cog_2024 = ["Saint Quentin", "saint  quentin"]
-
-    for tc in valid_test_cases_cog_2023:
-        assert canton_2023.is_valid(tc)
-
-    for tc in invalid_test_cases_cog_2023:
-        assert not canton_2023.is_valid(tc)
-
-    for tc in valid_test_cases_cog_2024:
-        assert canton_2024.is_valid(tc)
-
-    for tc in invalid_test_cases_cog_2024:
-        assert not canton_2024.is_valid(tc)
 
 
 def test_code_pays():
