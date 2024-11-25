@@ -14,22 +14,46 @@ from frformat import (
 
 
 class ValidatorTest:
-    def __init__(self, cog, validtc, invalidtc, formatclass):
+    def __init__(self, cog, testCases, formatClass):
         self.cog = cog
-        self.validtc = validtc
-        self.invalidtc = invalidtc
-        self.formatclass = formatclass
+        self.testCases = testCases
+        self.formatClass = formatClass
 
     def test_valid_cases(self):
-        for tc in self.validtc:
-            assert self.formatclass(self.cog).is_valid(tc)
+        for tc in self.testCases.get("valid", []):
+            assert self.formatClass(self.cog).is_valid(tc)
 
     def test_invalid_cases(self):
-        for tc in self.invalidtc:
-            assert not self.formatclass(self.cog).is_valid(tc)
+        for tc in self.testCases.get("invalid", []):
+            assert not self.formatClass(self.cog).is_valid(tc)
+
+    def run_all_tests(self):
+        self.test_valid_cases()
+        self.test_invalid_cases()
 
 
-def test_code_region():
+def test_all_validator():
+    validator_details = [
+        {
+            "name": "CodeRegion",
+            "cog": Millesime.M2023,
+            "formatClass": CodeRegion,
+            "test_cases": {"valid": ["01", "75"], "invalid": ["AA", "00", "7 5"]},
+        },
+        {
+            "name": "CodeRegion",
+            "cog": Millesime.M2024,
+            "formatClass": CodeRegion,
+            "test_cases": {"valid": ["01", "75"], "invalid": ["AA", "00", "7 5"]},
+        },
+    ]
+
+    for vd in validator_details:
+        validatorTest = ValidatorTest(vd["cog"], vd["test_cases"], vd["formatClass"])
+        validatorTest.run_all_tests()
+
+
+""" def test_code_region():
     validatorTest2023 = ValidatorTest(
         Millesime.M2023, ["01", "75"], ["AA", "00", "7 5"], CodeRegion
     )
@@ -42,7 +66,7 @@ def test_code_region():
     validatorTest2023.test_invalid_cases()
 
     validatorTest2024.test_valid_cases()
-    validatorTest2024.test_invalid_cases()
+    validatorTest2024.test_invalid_cases() """
 
 
 def test_region():
