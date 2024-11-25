@@ -139,55 +139,35 @@ def test_all_validator():
                 "invalid": ["Saint Quentin", "saint  quentin"],
             },
         },
+        {
+            "name": "CodePaysISO2",
+            "cog": Millesime.M2023,
+            "formatClass": CodePaysISO2,
+            "test_cases": {"valid": ["BV", "SJ"], "invalid": ["RWA", "TCD", "rwa"]},
+        },
+        {
+            "name": "CodePaysISO2",
+            "cog": Millesime.M2024,
+            "formatClass": CodePaysISO2,
+            "test_cases": {"valid": ["FR", "JP"], "invalid": ["BV", "SJ", "bv"]},
+        },
+        {
+            "name": "CodePaysISO3",
+            "cog": Millesime.M2023,
+            "formatClass": CodePaysISO3,
+            "test_cases": {"valid": ["BVT", "SJM"], "invalid": ["BF", "GH", "gh"]},
+        },
+        {
+            "name": "CodePaysISO3",
+            "cog": Millesime.M2024,
+            "formatClass": CodePaysISO3,
+            "test_cases": {"valid": ["FRA", "JPN"], "invalid": ["BVT", "SJM", "bvt"]},
+        },
     ]
 
     for vd in validator_details:
         validatorTest = ValidatorTest(vd["cog"], vd["test_cases"], vd["formatClass"])
         validatorTest.run_all_tests()
-
-
-def test_code_pays():
-    code_pays_2023_IS02 = CodePaysISO2(Millesime.M2023)
-    code_pays_2024_IS02 = CodePaysISO2(Millesime.M2024)
-
-    code_pays_2023_IS03 = CodePaysISO3(Millesime.M2023)
-    code_pays_2024_IS03 = CodePaysISO3(Millesime.M2024)
-
-    valid_test_cases_iso2_cog_2023 = ["BV", "SJ"]
-    invalid_test_cases_iso2_cog_2023 = ["RWA", "TCD", "rwa"]
-
-    valid_test_cases_iso2_cog_2024 = ["FR", "JP"]
-    invalid_test_cases_iso2_cog_2024 = ["BV", "SJ", "bv"]
-
-    valid_test_cases_iso3_cog_2023 = ["BVT", "SJM"]
-    invalid_test_cases_iso3_cog_2023 = ["BF", "GH", "gh"]
-
-    valid_test_cases_iso3_cog_2024 = ["FRA", "JPN"]
-    invalid_test_cases_iso3_cog_2024 = ["BVT", "SJM", "bvt"]
-
-    for tc in valid_test_cases_iso2_cog_2023:
-        assert code_pays_2023_IS02.is_valid(tc)
-
-    for tc in invalid_test_cases_iso2_cog_2023:
-        assert not code_pays_2023_IS02.is_valid(tc)
-
-    for tc in valid_test_cases_iso2_cog_2024:
-        assert code_pays_2024_IS02.is_valid(tc)
-
-    for tc in invalid_test_cases_iso2_cog_2024:
-        assert not code_pays_2024_IS02.is_valid(tc)
-
-    for tc in valid_test_cases_iso3_cog_2023:
-        assert code_pays_2023_IS03.is_valid(tc)
-
-    for tc in invalid_test_cases_iso3_cog_2023:
-        assert not code_pays_2023_IS03.is_valid(tc)
-
-    for tc in valid_test_cases_iso3_cog_2024:
-        assert code_pays_2024_IS03.is_valid(tc)
-
-    for tc in invalid_test_cases_iso3_cog_2024:
-        assert not code_pays_2024_IS03.is_valid(tc)
 
 
 def test_code_commune_insee():
