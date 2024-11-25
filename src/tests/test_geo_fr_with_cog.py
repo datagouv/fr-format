@@ -163,6 +163,24 @@ def test_all_validator():
             "formatClass": CodePaysISO3,
             "test_cases": {"valid": ["FRA", "JPN"], "invalid": ["BVT", "SJM", "bvt"]},
         },
+        {
+            "name": "Departement",
+            "cog": Millesime.M2023,
+            "formatClass": Departement,
+            "test_cases": {
+                "valid": ["Alpes-Maritimes", "Gard", "Mayotte", "Vendée"],
+                "invalid": ["Charente-Inférieure", "Vendee", "Alpes  maritimes"],
+            },
+        },
+        {
+            "name": "Departement",
+            "cog": Millesime.M2024,
+            "formatClass": Departement,
+            "test_cases": {
+                "valid": ["Alpes-Maritimes", "Gard", "Mayotte", "Vendée"],
+                "invalid": ["Charente-Inférieure", "Vendee", "Alpes  maritimes"],
+            },
+        },
     ]
 
     for vd in validator_details:
@@ -193,22 +211,6 @@ def test_code_commune_insee():
 
     for iv in cog_2024_invalid_values:
         assert not code_commune_insee_cog_2024.is_valid(iv)
-
-
-def test_departement():
-    departement_cog_2023 = Departement(Millesime.M2023)
-    departement_cog_2024 = Departement(Millesime.M2024)
-
-    valid_test_cases = ["Alpes-Maritimes", "Gard", "Mayotte", "Vendée"]
-    invalid_test_cases = ["Charente-Inférieure", "Vendee", "Alpes  maritimes"]
-
-    for tc in valid_test_cases:
-        assert departement_cog_2023.is_valid(tc)
-        assert departement_cog_2024.is_valid(tc)
-
-    for tc in invalid_test_cases:
-        assert not departement_cog_2023.is_valid(tc)
-        assert not departement_cog_2024.is_valid(tc)
 
 
 def test_pays():
