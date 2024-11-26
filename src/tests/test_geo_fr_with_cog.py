@@ -32,8 +32,8 @@ class ValidatorTest:
         self.test_invalid_cases()
 
 
-def test_all_validator():
-    validator_details = [
+def test_all_validators_with_cog():
+    test_cases = [
         {
             "name": "CodeRegion",
             "cog": Millesime.M2023,
@@ -210,8 +210,8 @@ def test_all_validator():
         },
     ]
 
-    for vd in validator_details:
-        validatorTest = ValidatorTest(vd["cog"], vd["test_cases"], vd["formatClass"])
+    for tc in test_cases:
+        validatorTest = ValidatorTest(tc["cog"], tc["test_cases"], tc["formatClass"])
         validatorTest.run_all_tests()
 
 
