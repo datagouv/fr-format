@@ -22,11 +22,15 @@ class ValidatorTest:
 
     def test_valid_cases(self):
         for tc in self.validTestCases:
-            assert self.formatClass(self.cog).is_valid(tc)
+            assert self.formatClass(self.cog).is_valid(
+                tc
+            ), f"Check that {tc} is not valid when the class format is {self.formatClass} and the cog is equal to {self.cog}"
 
     def test_invalid_cases(self):
         for tc in self.invalidTestCases:
-            assert not self.formatClass(self.cog).is_valid(tc)
+            assert not self.formatClass(self.cog).is_valid(
+                tc
+            ), f"Check that {tc} is valid when the class format is {self.formatClass} and the cog is equal to {self.cog}."
 
     def run_all_tests(self):
         self.test_valid_cases()
