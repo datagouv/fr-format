@@ -193,6 +193,20 @@ def test_all_validators_with_cog():
             "validTestCases": ["05", "2B", "974"],
             "invalidTestCases": ["99", "051", "2b", "  97 4"],
         },
+        {
+            "name": "code_commune_insee__millesime2023",
+            "cog": Millesime.M2023,
+            "formatClass": CodeCommuneInsee,
+            "validTestCases": ["01015", "2B002"],
+            "invalidTestCases": ["77777", "  01015"],
+        },
+        {
+            "name": "code_commune_insee_millesime2024",
+            "cog": Millesime.M2024,
+            "formatClass": CodeCommuneInsee,
+            "validTestCases": ["64300", "2A331"],
+            "invalidTestCases": ["64402", "64  300"],
+        },
     ]
 
     for tc in test_cases:
@@ -202,26 +216,13 @@ def test_all_validators_with_cog():
         validatorTest.run_all_tests()
 
 
-def test_code_commune_insee():
+def test_code_commune_insee_format():
     code_commune_insee_cog_2023 = CodeCommuneInsee(Millesime.M2023)
     code_commune_insee_cog_2024 = CodeCommuneInsee(Millesime.M2024)
 
     cog_2023_value = "01015"
-    assert code_commune_insee_cog_2023.is_valid(cog_2023_value)
     assert code_commune_insee_cog_2023.format(cog_2023_value) == cog_2023_value
-    assert code_commune_insee_cog_2023.is_valid("2B002")
-
-    cog_2023_invalid_values = ["77777", "  01015"]
-    for iv in cog_2023_invalid_values:
-        assert not code_commune_insee_cog_2023.is_valid(iv)
 
     cog_2024_value = "64300"
 
-    assert code_commune_insee_cog_2024.is_valid(cog_2024_value)
     assert code_commune_insee_cog_2024.format(cog_2024_value) == cog_2024_value
-    assert code_commune_insee_cog_2024.is_valid("2A331")
-
-    cog_2024_invalid_values = ["64402", "64  300"]
-
-    for iv in cog_2024_invalid_values:
-        assert not code_commune_insee_cog_2024.is_valid(iv)
