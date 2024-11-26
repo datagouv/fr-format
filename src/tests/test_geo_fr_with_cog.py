@@ -36,21 +36,21 @@ class ValidatorTest:
 def test_all_validators_with_cog():
     test_cases = [
         {
-            "name": "CodeRegion",
+            "name": "code_region_millesime2023",
             "cog": Millesime.M2023,
             "formatClass": CodeRegion,
             "validTestCases": ["01", "75"],
             "invalidTestCases": ["AA", "00", "7 5"],
         },
         {
-            "name": "CodeRegion",
+            "name": "code_region_millesime2024",
             "cog": Millesime.M2024,
             "formatClass": CodeRegion,
             "validTestCases": ["01", "75"],
             "invalidTestCases": ["AA", "00", "7 5"],
         },
         {
-            "name": "Region",
+            "name": "region_millesime2023",
             "cog": Millesime.M2023,
             "formatClass": Region,
             "validTestCases": ["Centre-Val de Loire", "La Réunion", "Corse"],
@@ -63,7 +63,7 @@ def test_all_validators_with_cog():
             ],
         },
         {
-            "name": "Region",
+            "name": "region_millesime2024",
             "cog": Millesime.M2024,
             "formatClass": Region,
             "validTestCases": ["Centre-Val de Loire", "La Réunion", "Corse"],
@@ -76,7 +76,7 @@ def test_all_validators_with_cog():
             ],
         },
         {
-            "name": "Commune",
+            "name": "commune_millesime2023",
             "cog": Millesime.M2023,
             "formatClass": Commune,
             "validTestCases": [
@@ -95,7 +95,7 @@ def test_all_validators_with_cog():
             ],
         },
         {
-            "name": "Commune",
+            "name": "commune_millesime2024",
             "cog": Millesime.M2024,
             "formatClass": Commune,
             "validTestCases": [
@@ -114,7 +114,7 @@ def test_all_validators_with_cog():
             ],
         },
         {
-            "name": "Canton",
+            "name": "canton_millesime2023",
             "cog": Millesime.M2023,
             "formatClass": Canton,
             "validTestCases": [
@@ -124,70 +124,70 @@ def test_all_validators_with_cog():
             "invalidTestCases": ["Paris", "Lyon", "paris"],
         },
         {
-            "name": "Canton",
+            "name": "canton_millesime2024",
             "cog": Millesime.M2024,
             "formatClass": Canton,
             "validTestCases": ["Paris", "Lyon"],
             "invalidTestCases": ["Saint Quentin", "saint  quentin"],
         },
         {
-            "name": "CodePaysISO2",
+            "name": "code_paysISO2_millesime2023",
             "cog": Millesime.M2023,
             "formatClass": CodePaysISO2,
             "validTestCases": ["BV", "SJ"],
             "invalidTestCases": ["RWA", "TCD", "rwa"],
         },
         {
-            "name": "CodePaysISO2",
+            "name": "code_paysISO2_millesime2024",
             "cog": Millesime.M2024,
             "formatClass": CodePaysISO2,
             "validTestCases": ["FR", "JP"],
             "invalidTestCases": ["BV", "SJ", "bv"],
         },
         {
-            "name": "CodePaysISO3",
+            "name": "code_paysISO3_millesime2023",
             "cog": Millesime.M2023,
             "formatClass": CodePaysISO3,
             "validTestCases": ["BVT", "SJM"],
             "invalidTestCases": ["BF", "GH", "gh"],
         },
         {
-            "name": "CodePaysISO3",
+            "name": "code_paysISO3_millesime2024",
             "cog": Millesime.M2024,
             "formatClass": CodePaysISO3,
             "validTestCases": ["FRA", "JPN"],
             "invalidTestCases": ["BVT", "SJM", "bvt"],
         },
         {
-            "name": "Departement",
+            "name": "departement_millesime2023",
             "cog": Millesime.M2023,
             "formatClass": Departement,
             "validTestCases": ["Alpes-Maritimes", "Gard", "Mayotte", "Vendée"],
             "invalidTestCases": ["Charente-Inférieure", "Vendee", "Alpes  maritimes"],
         },
         {
-            "name": "Departement",
+            "name": "departement_millesime2024",
             "cog": Millesime.M2024,
             "formatClass": Departement,
             "validTestCases": ["Alpes-Maritimes", "Gard", "Mayotte", "Vendée"],
             "invalidTestCases": ["Charente-Inférieure", "Vendee", "Alpes  maritimes"],
         },
         {
-            "name": "Pays",
+            "name": "pays_millesime2024",
             "cog": Millesime.M2024,
             "formatClass": Pays,
             "validTestCases": ["France", "Pays-Bas", "Bosnie-Herzégovine"],
             "invalidTestCases": ["L'Eldorado", "Zubrowska", "Pays Bas", "france"],
         },
         {
-            "name": "NumeroDepartement",
+            "name": "numero_departement_millesime2023",
             "cog": Millesime.M2023,
             "formatClass": NumeroDepartement,
             "validTestCases": ["05", "2B", "974"],
             "invalidTestCases": ["99", "051", "2b", "  97 4"],
         },
         {
-            "name": "NumeroDepartement",
+            "name": "numero_departement_millesime2024",
             "cog": Millesime.M2024,
             "formatClass": NumeroDepartement,
             "validTestCases": ["05", "2B", "974"],
