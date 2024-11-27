@@ -1,21 +1,32 @@
 from typing import FrozenSet
 
+Data = FrozenSet
 
-class SimpleVersionedSet:
+
+class VersionedSet:
     """
     Allows to store several versions of data and request any of these
     versions.
+
+    version = "latest" ? What behavior ?
     """
 
     def ls():
         """List all available versions"""
         pass
 
-    def add_version(self, version_id: str, data: FrozenSet):
+    def add_version(self, version_id: Version, data: Data):
         pass
 
-    def get_version(self, version_id: str) -> FrozenSet:
+    def get_version(self, version_id: Version) -> Data:
         pass
+
+
+@dataclass
+class Version:
+    self.id: str
+
+    # Functions to be sorted, with default sorting by id
 
 
 """
