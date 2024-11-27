@@ -24,7 +24,7 @@ class VersionedSet:
 
 @dataclass
 class Version:
-    self.id: str
+    id: str
 
     # Functions to be sorted, with default sorting by id
 
