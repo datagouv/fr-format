@@ -5,7 +5,7 @@ from frformat.utils.versioned_set import Version
 def test_canton():
     canton_2023 = Canton(Version("2023"))
     canton_2024 = Canton(Version("2024"))
-    # canton_2025 = Canton(Version("2025"))
+    canton_latest = Canton(Version("latest"))
 
     valid_test_cases_cog_2023 = [
         "Lagnieu",
@@ -29,4 +29,4 @@ def test_canton():
     for tc in invalid_test_cases_cog_2024:
         assert not canton_2024.is_valid(tc)
 
-    # assert canton_2025.is_valid("paris")
+    assert canton_latest.is_valid("Paris")

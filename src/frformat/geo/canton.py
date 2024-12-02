@@ -4611,7 +4611,6 @@ vs.add_version(
         }
     ),
 )
-print(vs.ls())
 Canton = geo_enum_format.new(
     "Canton", name, description, vs
 )  # passer vs au lieu de all cog versions

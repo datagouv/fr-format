@@ -43,14 +43,33 @@ def new(
 
             _valid_values = geographical_enums[cog]
  """
-            if version not in geographical_enums.ls():
-                raise ValueError("No available data for this version : {version}!")
+            versions_list = geographical_enums.ls()
 
-            _valid_values = geographical_enums.get_version(version.id)
+            if version.id == "latest":
+                version_id_list = []
+                for ele in versions_list:
+                    version_id_list.append(ele.id)
 
-            self._normalized_geo_enum_value = {
-                normalize_value(val, self._options) for val in _valid_values
-            }.union(_normalized_extra_values)
+                last_id_version = ""
+                for id in version_id_list:
+                    if id > last_id_version:
+                        last_id_version = id
+
+                _valid_values = geographical_enums.get_version(last_id_version)
+
+                self._normalized_geo_enum_value = {
+                    normalize_value(val, self._options) for val in _valid_values
+                }.union(_normalized_extra_values)
+
+            elif version not in versions_list:
+                raise ValueError("No available data for this version !")
+
+            else:
+                _valid_values = geographical_enums.get_version(version.id)
+
+                self._normalized_geo_enum_value = {
+                    normalize_value(val, self._options) for val in _valid_values
+                }.union(_normalized_extra_values)
 
         metadata = Metadata(name, description)
 
