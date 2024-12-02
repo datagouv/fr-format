@@ -1,17 +1,9 @@
-# from enum import Enum, auto
-# from typing import Dict, FrozenSet, Type
 from typing import Type
 
 from frformat import CustomStrFormat, Metadata
 from frformat.common import normalize_value
 from frformat.options import Options
 from frformat.utils.versioned_set import Version, VersionedSet
-
-""" class Millesime(Enum):
-    M2023 = auto()
-    M2024 = auto()
-
-    LATEST = M2024 """
 
 
 def new(
@@ -36,21 +28,14 @@ def new(
                 for e in self._options.extra_valid_values
             }
 
-            """ if cog not in geographical_enums.keys():
-                raise ValueError(
-                    f"No data available for official geographical code (cog): {cog.name}"
-                )
-
-            _valid_values = geographical_enums[cog]
- """
-            versions_list = geographical_enums.ls()
+            versions_list: list[Version] = geographical_enums.ls()
 
             if version.id == "latest":
-                version_id_list = []
+                version_id_list: list[str] = []
                 for ele in versions_list:
                     version_id_list.append(ele.id)
 
-                last_id_version = ""
+                last_id_version: str = ""
                 for id in version_id_list:
                     if id > last_id_version:
                         last_id_version = id
