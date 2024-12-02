@@ -1,6 +1,14 @@
-from typing import FrozenSet
+from dataclasses import dataclass
+from typing import Dict, FrozenSet, List
 
 Data = FrozenSet
+
+
+@dataclass(frozen=True)
+class Version:
+    id: str
+
+    # Functions to be sorted, with default sorting by id
 
 
 class VersionedSet:
@@ -11,23 +19,48 @@ class VersionedSet:
     version = "latest" ? What behavior ?
     """
 
-    def ls():
+    def __init__(self):
+        self._version: Dict[Version, Data] = {}
+
+    def ls(self) -> List[Version]:
         """List all available versions"""
-        pass
+        all_versions: list[Version] = []
+        for version in self._version.keys():
+            all_versions.append(version)
 
-    def add_version(self, version_id: Version, data: Data):
-        pass
+        return all_versions
 
-    def get_version(self, version_id: Version) -> Data:
-        pass
+    def add_version(self, version_id: str, data: Data):
+        if (version_id).isnumeric():
+            if self._version.get(Version(version_id)) is None:
+                return self._version.update({Version(version_id): data})
+            else:
+                print("The version_id is already exist!")
+        else:
+            print("Your version_id should be numeric!")
+
+    # get_data_version ??
+    def get_version(self, version_id: str) -> Data:
+        if (self._version.get(Version(version_id))) is not None:
+            data = self._version[Version(version_id)]
+        else:
+            print("This version_id doesn't exist !")
+            data = frozenset({})
+
+        return data
 
 
-@dataclass
-class Version:
-    id: str
+""" vs = VersionedSet()
+vs.add_version("2025", frozenset({"coucou"}))  # ok
+vs.add_version("2025", frozenset({"one"}))  # not ok
+vs.add_version("string", frozenset({"Hi"}))  # not ok
 
-    # Functions to be sorted, with default sorting by id
+print(vs.ls())
 
+vs_getted = vs.get_version("2025")  # ok
+print("returned data: ", vs_getted)
+vs.get_version("204")  # not ok
+ """
 
 """
 OPEN

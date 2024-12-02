@@ -1,23 +1,24 @@
-from enum import Enum, auto
-from typing import Dict, FrozenSet, Type
+# from enum import Enum, auto
+# from typing import Dict, FrozenSet, Type
+from typing import Type
 
 from frformat import CustomStrFormat, Metadata
 from frformat.common import normalize_value
 from frformat.options import Options
+from frformat.utils.versioned_set import Version, VersionedSet
 
-
-class Millesime(Enum):
+""" class Millesime(Enum):
     M2023 = auto()
     M2024 = auto()
 
-    LATEST = M2024
+    LATEST = M2024 """
 
 
 def new(
     class_name: str,
     name: str,
     description: str,
-    geographical_enums: Dict[Millesime, FrozenSet[str]],
+    geographical_enums: VersionedSet,
 ) -> Type:
     class GeoEnumFormat(CustomStrFormat):
         """Checks if a value is in a given geographical referential, with validation for the vintage of choice
@@ -25,7 +26,9 @@ def new(
         Geographical data in France is revised once a year, with new valid values set given by the "Code Officiel Géographique" (cog).
         """
 
-        def __init__(self, cog: Millesime, options: Options = Options()):
+        def __init__(
+            self, version: Version, options: Options = Options()
+        ):  # Version au lieu de Millesime ??)
             self._options = options
 
             _normalized_extra_values = {
@@ -33,12 +36,17 @@ def new(
                 for e in self._options.extra_valid_values
             }
 
-            if cog not in geographical_enums.keys():
+            """ if cog not in geographical_enums.keys():
                 raise ValueError(
                     f"No data available for official geographical code (cog): {cog.name}"
                 )
 
             _valid_values = geographical_enums[cog]
+ """
+            if version not in geographical_enums.ls():
+                raise ValueError("No available data for this version : {version}!")
+
+            _valid_values = geographical_enums.get_version(version.id)
 
             self._normalized_geo_enum_value = {
                 normalize_value(val, self._options) for val in _valid_values

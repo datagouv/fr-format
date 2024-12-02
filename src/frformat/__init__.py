@@ -2,7 +2,8 @@
 from .custom_format import *  # isort:skip
 from .code_rna import CodeRNA as CodeRNA
 from .geo.canton import Canton as Canton
-from .geo.code_commune_insee import CodeCommuneInsee as CodeCommuneInsee
+
+""" from .geo.code_commune_insee import CodeCommuneInsee as CodeCommuneInsee
 from .geo.code_fantoir import CodeFantoir as CodeFantoir
 from .geo.code_pays import CodePaysISO2 as CodePaysISO2
 from .geo.code_pays import CodePaysISO3 as CodePaysISO3
@@ -19,12 +20,12 @@ from .geo.numero_departement import NumeroDepartement as NumeroDepartement
 from .geo.pays import Pays as Pays
 from .geo.region import Region as Region
 from .geo_enum_format import Millesime as Millesime
-from .nomenclature_acte_format import NomenclatureActe as NomenclatureActe
+from .nomenclature_acte_format import NomenclatureActe as NomenclatureActe """
 from .options import Options as Options
 from .siren import Siren as Siren
 from .siret import Siret as Siret
 
-all_formats = [
+""" all_formats = [
     Canton,
     CodeCommuneInsee,
     CodeFantoir,
@@ -41,4 +42,4 @@ all_formats = [
     NomenclatureActe,
     Siren,
     Siret,
-]
+] """
