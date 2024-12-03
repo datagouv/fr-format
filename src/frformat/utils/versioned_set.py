@@ -59,7 +59,7 @@ class VersionedSet:
         return self._version[latest_version]
 
 
-vs = VersionedSet()
+""" vs = VersionedSet()
 vs.add_version("2025", frozenset({"coucou"}))  # ok
 vs.add_version("2024", frozenset({"one"}))  # ok
 # vs.add_version("2024", frozenset({"two"}))  # not ok
@@ -70,7 +70,7 @@ print(vs.ls())
 vs_getted = vs.get_version("2025")  # ok
 print("returned data: ", vs_getted)
 # vs.get_version("204")  # not ok
-
+ """
 """
 OPEN
 J'ai un Versionned set, comment je sais quelle 'version_id' je peux utiliser
