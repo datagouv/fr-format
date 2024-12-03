@@ -4,7 +4,7 @@ from typing import Dict, FrozenSet, List
 Data = FrozenSet
 
 
-@dataclass(frozen=True)
+@dataclass(frozen=True, order=True)
 class Version:
     id: str
 
@@ -24,11 +24,7 @@ class VersionedSet:
 
     def ls(self) -> List[Version]:
         """List all available versions"""
-        all_versions: list[Version] = []
-        for version in self._version.keys():
-            all_versions.append(version)
-
-        return all_versions
+        return sorted(self._version.keys())
 
     def add_version(self, version_id: str, data: Data):
         if (version_id).isnumeric():
@@ -50,14 +46,14 @@ class VersionedSet:
         return data
 
 
-""" vs = VersionedSet()
+vs = VersionedSet()
 vs.add_version("2025", frozenset({"coucou"}))  # ok
-vs.add_version("2025", frozenset({"one"}))  # not ok
+vs.add_version("2024", frozenset({"one"}))  # not ok
 vs.add_version("string", frozenset({"Hi"}))  # not ok
 
 print(vs.ls())
 
-vs_getted = vs.get_version("2025")  # ok
+"""vs_getted = vs.get_version("2025")  # ok
 print("returned data: ", vs_getted)
 vs.get_version("204")  # not ok
  """
