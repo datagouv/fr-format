@@ -18,9 +18,7 @@ def new(
         Geographical data in France is revised once a year, with new valid values set given by the "Code Officiel Géographique" (cog).
         """
 
-        def __init__(
-            self, version: Version, options: Options = Options()
-        ):  # Version au lieu de Millesime ??)
+        def __init__(self, version: Version, options: Options = Options()):
             self._options = options
 
             _normalized_extra_values = {
@@ -28,33 +26,24 @@ def new(
                 for e in self._options.extra_valid_values
             }
 
-            versions_list: list[Version] = geographical_enums.ls()
+            if not version.id.isnumeric():
+                lower_version_id = version.id.lower()
 
-            if version.id == "latest":
-                version_id_list: list[str] = []
-                for ele in versions_list:
-                    version_id_list.append(ele.id)
+                if lower_version_id == "latest":
+                    _valid_values = geographical_enums.get_latest_version_data()
 
-                last_id_version: str = ""
-                for id in version_id_list:
-                    if id > last_id_version:
-                        last_id_version = id
-
-                _valid_values = geographical_enums.get_version(last_id_version)
-
-                self._normalized_geo_enum_value = {
-                    normalize_value(val, self._options) for val in _valid_values
-                }.union(_normalized_extra_values)
-
-            elif version not in versions_list:
-                raise ValueError("No available data for this version !")
-
+                    if _valid_values is None:
+                        raise ValueError("No available data for the latest version!")
+                else:
+                    raise ValueError(f"Invalid version id {version.id}")
             else:
                 _valid_values = geographical_enums.get_version(version.id)
+                if _valid_values is None:
+                    raise ValueError(f"No available data this version {version.id}!")
 
-                self._normalized_geo_enum_value = {
-                    normalize_value(val, self._options) for val in _valid_values
-                }.union(_normalized_extra_values)
+            self._normalized_geo_enum_value = {
+                normalize_value(val, self._options) for val in _valid_values
+            }.union(_normalized_extra_values)
 
         metadata = Metadata(name, description)
 
