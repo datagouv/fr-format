@@ -51,6 +51,13 @@ class VersionedSet:
 
         return data
 
+    def get_latest_version_data(self) -> Data | None:
+        if len(self._version) == 0:
+            return None
+        latest_version = max(self._version.keys())
+
+        return self._version[latest_version]
+
 
 vs = VersionedSet()
 vs.add_version("2025", frozenset({"coucou"}))  # ok
