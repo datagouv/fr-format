@@ -27,13 +27,15 @@ class VersionedSet:
         return sorted(self._version.keys())
 
     def add_version(self, version_id: str, data: Data):
-        if (version_id).isnumeric():
-            if self._version.get(Version(version_id)) is None:
-                return self._version.update({Version(version_id): data})
-            else:
-                print("The version_id is already exist!")
-        else:
-            print("Your version_id should be numeric!")
+        if not version_id.isnumeric():
+            raise ValueError(f"Version id {version_id} should be numeric")
+
+        new_version = Version(version_id)
+
+        if new_version in self._version.keys():
+            raise ValueError(f"The version id {version_id} already exists!")
+
+        self._version.update({new_version: data})
 
     # get_data_version ??
     def get_version(self, version_id: str) -> Data:
@@ -48,8 +50,9 @@ class VersionedSet:
 
 vs = VersionedSet()
 vs.add_version("2025", frozenset({"coucou"}))  # ok
-vs.add_version("2024", frozenset({"one"}))  # not ok
-vs.add_version("string", frozenset({"Hi"}))  # not ok
+vs.add_version("2024", frozenset({"one"}))  # ok
+# vs.add_version("2024", frozenset({"two"}))  # not ok
+# vs.add_version("string", frozenset({"Hi"}))  # not ok
 
 print(vs.ls())
 
