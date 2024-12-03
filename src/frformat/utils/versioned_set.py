@@ -38,11 +38,15 @@ class VersionedSet:
         self._version.update({new_version: data})
 
     # get_data_version ??
+    # type de résultat: Data ou None si cette data n'existe pas ??
+
     def get_version(self, version_id: str) -> Data:
-        if (self._version.get(Version(version_id))) is not None:
-            data = self._version[Version(version_id)]
+        version = Version(version_id)
+
+        if (self._version.get(version)) is not None:
+            data = self._version[version]
         else:
-            print("This version_id doesn't exist !")
+            print(f"This version id {version_id} doesn't exist !")
             data = frozenset({})
 
         return data
@@ -56,10 +60,9 @@ vs.add_version("2024", frozenset({"one"}))  # ok
 
 print(vs.ls())
 
-"""vs_getted = vs.get_version("2025")  # ok
+vs_getted = vs.get_version("2025")  # ok
 print("returned data: ", vs_getted)
-vs.get_version("204")  # not ok
- """
+# vs.get_version("204")  # not ok
 
 """
 OPEN
