@@ -26,14 +26,9 @@ class VersionedSet:
         """List all available versions"""
         return sorted(self._version.keys())
 
-    def add_version(self, version_id: str, data: Data):
-        if not version_id.isnumeric():
-            raise ValueError(f"Version id {version_id} should be numeric")
-
-        new_version = Version(version_id)
-
+    def add_version(self, new_version: Version, data: Data):
         if new_version in self._version.keys():
-            raise ValueError(f"The version id {version_id} already exists!")
+            raise ValueError(f"The version id {new_version.id} already exists!")
 
         self._version.update({new_version: data})
 
@@ -49,11 +44,9 @@ class VersionedSet:
 
 
 vs = VersionedSet()
-vs.add_version("2025", frozenset({"coucou"}))  # ok
-vs.add_version("2024", frozenset({"one"}))  # ok
-vs.add_version("2024", frozenset({"two"}))  # not ok
-vs.add_version("string", frozenset({"Hi"}))  # not ok
-print("Invalid version id")
+vs.add_version(Version("2025"), frozenset({"coucou"}))  # ok
+vs.add_version(Version("2024"), frozenset({"one"}))  # ok
+vs.add_version(Version("2024"), frozenset({"two"}))  # not ok
 
 print(vs.ls())
 
