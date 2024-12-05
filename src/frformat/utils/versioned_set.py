@@ -33,6 +33,14 @@ class VersionedSet:
         self._version.update({new_version: data})
 
     def get_data(self, version: Version) -> Data | None:
+        """
+        Get the data associated with the given version.
+
+        If the version id is "latest", the method returns the data associated
+        with the version having the highest id. If no data exists for the
+        specified version, or if the VersionedSet is empty, the method returns None.
+
+        """
         if len(self._version) == 0:
             return None
 
@@ -40,7 +48,7 @@ class VersionedSet:
             latest_version = max(self._version.keys())
             return self._version[latest_version]
 
-        return self._version[version]
+        return self._version.get(version)
 
 
 vs = VersionedSet()
