@@ -1,16 +1,23 @@
-from typing import Type
+from enum import Enum, auto
+from typing import Dict, FrozenSet, Type
 
 from frformat import CustomStrFormat, Metadata
 from frformat.common import normalize_value
 from frformat.options import Options
-from frformat.utils.versioned_set import Version, VersionedSet
+
+
+class Millesime(Enum):
+    M2023 = auto()
+    M2024 = auto()
+
+    LATEST = M2024
 
 
 def new(
     class_name: str,
     name: str,
     description: str,
-    geographical_enums: VersionedSet,
+    geographical_enums: Dict[Millesime, FrozenSet[str]],
 ) -> Type:
     class GeoEnumFormat(CustomStrFormat):
         """Checks if a value is in a given geographical referential, with validation for the vintage of choice
@@ -18,7 +25,7 @@ def new(
         Geographical data in France is revised once a year, with new valid values set given by the "Code Officiel Géographique" (cog).
         """
 
-        def __init__(self, version: Version, options: Options = Options()):
+        def __init__(self, cog: Millesime, options: Options = Options()):
             self._options = options
 
             _normalized_extra_values = {
@@ -26,20 +33,12 @@ def new(
                 for e in self._options.extra_valid_values
             }
 
-            if not version.id.isnumeric():
-                lower_version_id = version.id.lower()
+            if cog not in geographical_enums.keys():
+                raise ValueError(
+                    f"No data available for official geographical code (cog): {cog.name}"
+                )
 
-                if lower_version_id == "latest":
-                    _valid_values = geographical_enums.get_latest_version_data()
-
-                    if _valid_values is None:
-                        raise ValueError("No available data for the latest version!")
-                else:
-                    raise ValueError(f"Invalid version id {version.id}")
-            else:
-                _valid_values = geographical_enums.get_version(version.id)
-                if _valid_values is None:
-                    raise ValueError(f"No available data this version {version.id}!")
+            _valid_values = geographical_enums[cog]
 
             self._normalized_geo_enum_value = {
                 normalize_value(val, self._options) for val in _valid_values
