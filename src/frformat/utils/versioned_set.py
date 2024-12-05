@@ -1,7 +1,9 @@
 from dataclasses import dataclass
-from typing import Dict, FrozenSet, List
+from typing import Dict, FrozenSet, Generic, List, TypeVar
 
 Data = FrozenSet
+
+V = TypeVar("V", bound="Version")
 
 
 @dataclass(frozen=True, order=True)
@@ -11,7 +13,7 @@ class Version:
     # Functions to be sorted, with default sorting by id
 
 
-class VersionedSet:
+class VersionedSet(Generic[V]):
     """
     Allows to store several versions of data and request any of these
     versions.
@@ -20,19 +22,19 @@ class VersionedSet:
     """
 
     def __init__(self):
-        self._version: Dict[Version, Data] = {}
+        self._version: Dict[V, Data] = {}
 
-    def ls(self) -> List[Version]:
+    def ls(self) -> List[V]:
         """List all available versions"""
         return sorted(self._version.keys())
 
-    def add_version(self, new_version: Version, data: Data):
+    def add_version(self, new_version: V, data: Data):
         if new_version in self._version.keys():
             raise ValueError(f"The version id {new_version.id} already exists!")
 
         self._version.update({new_version: data})
 
-    def get_data(self, version: Version) -> Data | None:
+    def get_data(self, version: V) -> Data | None:
         """
         Get the data associated with the given version.
 
