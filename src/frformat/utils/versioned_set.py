@@ -37,40 +37,31 @@ class VersionedSet:
 
         self._version.update({new_version: data})
 
-    # get_data_version ??
-    # type de résultat: Data ou None si cette data n'existe pas ??
-
-    def get_version(self, version_id: str) -> Data:
-        version = Version(version_id)
-
-        if (self._version.get(version)) is not None:
-            data = self._version[version]
-        else:
-            print(f"This version id {version_id} doesn't exist !")
-            data = frozenset({})
-
-        return data
-
-    def get_latest_version_data(self) -> Data | None:
+    def get_data(self, version: Version) -> Data | None:
         if len(self._version) == 0:
             return None
-        latest_version = max(self._version.keys())
 
-        return self._version[latest_version]
+        if version.id == "latest":
+            latest_version = max(self._version.keys())
+            return self._version[latest_version]
+
+        return self._version[version]
 
 
-""" vs = VersionedSet()
+vs = VersionedSet()
 vs.add_version("2025", frozenset({"coucou"}))  # ok
 vs.add_version("2024", frozenset({"one"}))  # ok
-# vs.add_version("2024", frozenset({"two"}))  # not ok
-# vs.add_version("string", frozenset({"Hi"}))  # not ok
+vs.add_version("2024", frozenset({"two"}))  # not ok
+vs.add_version("string", frozenset({"Hi"}))  # not ok
+print("Invalid version id")
 
 print(vs.ls())
 
-vs_getted = vs.get_version("2025")  # ok
+vs_getted = vs.get_data(Version("2005"))  # ok
 print("returned data: ", vs_getted)
-# vs.get_version("204")  # not ok
- """
+vs.get_data(Version("204"))  # not ok
+
+
 """
 OPEN
 J'ai un Versionned set, comment je sais quelle 'version_id' je peux utiliser
