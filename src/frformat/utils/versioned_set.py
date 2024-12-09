@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Dict, FrozenSet, Generic, List, TypeVar
+from typing import Dict, FrozenSet, Generic, List, TypeVar, Tuple
 
 Data = FrozenSet
 
@@ -18,51 +18,58 @@ class VersionedSet(Generic[V]):
     Allows to store several versions of data and request any of these
     versions.
 
+    Version IDs should be unique.
+
     version = "latest" ? What behavior ?
     """
 
     def __init__(self):
-        self._version: Dict[V, Data] = {}
+        self._version: Dict[str, Tuple[V, Data]] = {}
 
     def ls(self) -> List[V]:
         """List all available versions"""
-        return sorted(self._version.keys())
+        return sorted(version for version, _ in self._version.values())
 
     def add_version(self, new_version: V, data: Data):
-        if new_version in self._version.keys():
+        """ Adds a version of data
+
+        Adding a version with already existing ID results in a ValueError.
+
+        """
+        if new_version.id in self._version.keys():
             raise ValueError(f"The version id {new_version.id} already exists!")
 
-        self._version.update({new_version: data})
+        self._version.update({new_version.id: (new_version, data)})
 
-    def get_data(self, version: V) -> Data | None:
+    def get_data(self, version_id: str) -> Data | None:
         """
-        Get the data associated with the given version.
+        Get the data associated with the given version ID.
+
+        If no data exists for the specified version, the method returns None.
 
         If the version id is "latest", the method returns the data associated
-        with the version having the highest id. If no data exists for the
-        specified version, or if the VersionedSet is empty, the method returns None.
-
+        with the version having the highest id.
         """
-        if len(self._version) == 0:
-            return None
 
-        if version.id == "latest":
-            latest_version = max(self._version.keys())
-            return self._version[latest_version]
-
-        return self._version.get(version)
+        if version_id == "latest":
+            latest_version = max(self.ls())
+            _, data = self._version[latest_version.id]
+            return data
+        
+        version_data = self._version.get(version_id)
+        return version_data[1] if version_data else None
 
 
 vs = VersionedSet()
 vs.add_version(Version("2025"), frozenset({"coucou"}))  # ok
 vs.add_version(Version("2024"), frozenset({"one"}))  # ok
-vs.add_version(Version("2024"), frozenset({"two"}))  # not ok
+# vs.add_version(Version("2024"), frozenset({"two"}))  # not ok
 
 print(vs.ls())
 
-vs_getted = vs.get_data(Version("2005"))  # ok
+vs_getted = vs.get_data("2025")  # ok
 print("returned data: ", vs_getted)
-vs.get_data(Version("204"))  # not ok
+vs.get_data("204")  # not ok
 
 
 """
