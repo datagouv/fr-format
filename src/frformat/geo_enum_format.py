@@ -1,20 +1,30 @@
 from enum import Enum, auto
+from functools import total_ordering
 from typing import Dict, FrozenSet, Type
 
 from frformat import CustomStrFormat, Metadata
 from frformat.common import normalize_value
 from frformat.options import Options
-from frformat.utils.versioned_set import Version
+from frformat.versioned_set import Version
 
 
+@total_ordering
 class Millesime(Enum, Version):
     M2023 = auto()
     M2024 = auto()
 
+    def __eq__(self, other) -> bool:
+        return self.value == other.value
+
+    def __lt__(self, other) -> bool:
+        return self.value < other.value
+
     def get_id(self) -> str:
         return str(self.value)
-    
-    LATEST = "latest"
+
+    @classmethod
+    def is_sorted(cls) -> bool:
+        return True
 
 
 def new(
