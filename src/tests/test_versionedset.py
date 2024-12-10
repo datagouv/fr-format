@@ -11,3 +11,6 @@ def test_versionedset ():
     
     with pytest.raises(ValueError):
         vs.add_version(BaseVersion("2024"), frozenset({"Marseille"}))  # not ok
+  
+    assert vs.ls() == [BaseVersion("2024"), BaseVersion("2025")]
+    assert not vs.ls() == [BaseVersion("2025"), BaseVersion("2024")]
