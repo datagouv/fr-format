@@ -26,20 +26,25 @@ def test_versionedset():
 
     vs = VersionedSet[BaseVersion]()
 
+    # Test empty versioned_set
+    assert vs.ls() == []
+
+    assert vs.get_data("2021") is None
+
     with pytest.raises(ValueError):
         vs.get_data("latest")
 
     assert vs.add_version(BaseVersion("2025"), frozenset({"Paris"})) is None
     assert vs.add_version(BaseVersion("2024"), frozenset({"Lyon"})) is None
+    assert vs.get_data("2025") == frozenset({"Paris"})
 
-    with pytest.raises(ValueError):
+    # Duplicate id
+    with pytest.raises(ValueError, match="The version id 2024 already exists!"):
         vs.add_version(BaseVersion("2024"), frozenset({"Marseille"}))
 
+    # sorting with version-id
     assert vs.ls() == [BaseVersion("2024"), BaseVersion("2025")]
     assert not vs.ls() == [BaseVersion("2025"), BaseVersion("2024")]
 
-    assert vs.get_data("2025") == frozenset({"Paris"})
-    assert vs.get_data("2021") is None
-
+    # "latest" version-id
     assert vs.get_data("latest") == frozenset({"Paris"})
-    assert not vs.get_data("latest") == frozenset({"Lyon"})
