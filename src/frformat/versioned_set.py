@@ -77,25 +77,19 @@ class VersionedSet(Generic[V]):
         with the version having the highest id.
         """
         version_list = self.ls()
-        if len(version_list) != 0:
-            # Check if versions are sortable and sorted
-            if all(
-                isinstance(v, _SortableVersion) and v.is_sorted() for v in version_list
-            ):
-                if version_id == "latest":
-                    casted_version_list = cast(
-                        List[_SortableVersion], version_list
-                    )  # Be sure that version list have List[_SortableVersion]
-                    latest_version = max(casted_version_list)
-                    _, data = self._versionned_data[latest_version.get_id()]
-                    return data
-            else:
-                raise AttributeError(
-                    "Version class with `is_sorted() == True` should be sortable (see documentation)."
-                )
-
+        # Check if versions are sortable and sorted
+        if all(isinstance(v, _SortableVersion) and v.is_sorted() for v in version_list):
+            if version_id == "latest":
+                casted_version_list = cast(
+                    List[_SortableVersion], version_list
+                )  # Be sure that version list have List[_SortableVersion]
+                latest_version = max(casted_version_list)
+                _, data = self._versionned_data[latest_version.get_id()]
+                return data
         else:
-            raise ValueError("Your version list is empty ! ")
+            raise AttributeError(
+                "Version class with `is_sorted() == True` should be sortable (see documentation)."
+            )
 
         data_with_version = self._versionned_data.get(version_id)
         return data_with_version[1] if data_with_version else None
