@@ -3,7 +3,7 @@ from typing import Type
 from frformat import CustomStrFormat, Metadata
 from frformat.common import normalize_value
 from frformat.options import Options
-from frformat.utils.versioned_set import Version, VersionedSet
+from frformat.versioned_set import Version, VersionedSet
 
 
 def new(
