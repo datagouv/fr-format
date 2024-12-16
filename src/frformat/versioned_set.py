@@ -6,8 +6,8 @@ from typing import (
     List,
     Protocol,
     Tuple,
-    Type,
     TypeVar,
+    cast,
     runtime_checkable,
 )
 
@@ -60,6 +60,11 @@ class BaseVersion(Version):
     def get_id(self) -> str:
         return self.id
 
+    @classmethod
+    def is_sorted(cls) -> bool:
+        return True
+
+    
 
 class VersionedSet(Generic[V]):
     """
@@ -69,8 +74,6 @@ class VersionedSet(Generic[V]):
     Version IDs should be unique.
 
     """
-
-    _version_class: Type[V]
 
     def __init__(self):
         self._versionned_data: Dict[str, Tuple[V, Data]] = {}
@@ -101,14 +104,16 @@ class VersionedSet(Generic[V]):
         If the version id is "latest", the method returns the data associated
         with the version having the highest id.
         """
+        version_list = self.ls()
+        if len(version_list) != 0 and version_id == "latest":  # Replace True with valid V.is_sorted()
+            
 
-        if self._version_class.is_sorted() and version_id == "latest":
-            version_list = self.ls()
-            assert (
-                version_list is List[_SortableVersion]
-            ), "Version class with `is_sorted() == True` shoud be sortable (see documentation)"
-            latest_version = max(version_list)
-            _, data = self._versionned_data[latest_version.id]
+            assert all(isinstance(v, _SortableVersion) for v in version_list), (
+                "Version class with `is_sorted() == True` should be sortable (see documentation)."
+            )
+
+            latest_version = max(version_list)  # Now max() works
+            _, data = self._versionned_data[latest_version.get_id()]
             return data
 
         data_with_version = self._versionned_data.get(version_id)
