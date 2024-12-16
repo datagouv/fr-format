@@ -52,4 +52,8 @@ def test_versionedset():
     # Immutable data
     data = vs.get_data("2025")
     with pytest.raises(AttributeError):
-        assert data.add("Nice")
+        data.add("Nice")
+
+    # non BaseVersion type
+    with pytest.raises(AttributeError):
+        vs.add_version("1234", frozenset({"Lyon"}))
