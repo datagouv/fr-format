@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from functools import total_ordering
 from typing import (
     Dict,
     FrozenSet,
@@ -12,7 +13,6 @@ from typing import (
 )
 
 Data = FrozenSet
-
 V = TypeVar("V", bound="Version")
 
 
@@ -24,7 +24,6 @@ class Version(Protocol):
     def is_sorted(cls) -> bool:
         """If a version class declares itself sorted, it should be sortable by implementing all six
         following comparison operators `__lt__()`, `__le__()`, `__gt__()`, `__ge__()`, `__eq__()` and `__neq__()`.
-        See the `functools.total_ordering` decorator helper documentation.
         """
         return False
 
@@ -40,31 +39,6 @@ class _SortableVersion(Version, Protocol):
     def __le__(self, v) -> bool:
         ...
 
-    def __gt__(self, v) -> bool:
-        ...
-
-    def __ge__(self, v) -> bool:
-        ...
-
-    def __eq__(self, v) -> bool:
-        ...
-
-    def __neq__(self, v) -> bool:
-        ...
-
-
-@dataclass(frozen=True, order=True)
-class BaseVersion(Version):
-    id: str
-
-    def get_id(self) -> str:
-        return self.id
-
-    @classmethod
-    def is_sorted(cls) -> bool:
-        return True
-
-    
 
 class VersionedSet(Generic[V]):
     """
@@ -72,7 +46,6 @@ class VersionedSet(Generic[V]):
     versions.
 
     Version IDs should be unique.
-
     """
 
     def __init__(self):
@@ -88,7 +61,6 @@ class VersionedSet(Generic[V]):
         """Adds a version of data
 
         Adding a version with already existing ID results in a ValueError.
-
         """
         if new_version.get_id() in self._versionned_data.keys():
             raise ValueError(f"The version id {new_version.get_id()} already exists!")
@@ -105,16 +77,25 @@ class VersionedSet(Generic[V]):
         with the version having the highest id.
         """
         version_list = self.ls()
-        if len(version_list) != 0 and version_id == "latest":  # Replace True with valid V.is_sorted()
-            
+        if len(version_list) != 0:
+            # Check if versions are sortable and sorted
+            if all(
+                isinstance(v, _SortableVersion) and v.is_sorted() for v in version_list
+            ):
+                if version_id == "latest":
+                    casted_version_list = cast(
+                        List[_SortableVersion], version_list
+                    )  # Be sure that version list have List[_SortableVersion]
+                    latest_version = max(casted_version_list)
+                    _, data = self._versionned_data[latest_version.get_id()]
+                    return data
+            else:
+                raise AttributeError(
+                    "Version class with `is_sorted() == True` should be sortable (see documentation)."
+                )
 
-            assert all(isinstance(v, _SortableVersion) for v in version_list), (
-                "Version class with `is_sorted() == True` should be sortable (see documentation)."
-            )
-
-            latest_version = max(version_list)  # Now max() works
-            _, data = self._versionned_data[latest_version.get_id()]
-            return data
+        else:
+            raise ValueError("Your version list is empty ! ")
 
         data_with_version = self._versionned_data.get(version_id)
         return data_with_version[1] if data_with_version else None
