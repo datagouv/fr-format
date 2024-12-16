@@ -48,3 +48,8 @@ def test_versionedset():
 
     # "latest" version-id
     assert vs.get_data("latest") == frozenset({"Paris"})
+
+    # Immutable data
+    data = vs.get_data("2025")
+    with pytest.raises(AttributeError):
+        assert data.add("Nice")
