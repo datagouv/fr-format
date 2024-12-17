@@ -31,8 +31,7 @@ def test_versionedset():
 
     assert vs.get_data("2021") is None
 
-    with pytest.raises(ValueError):
-        vs.get_data("latest")
+    assert vs.get_data("latest") is None
 
     assert vs.add_version(BaseVersion("2025"), frozenset({"Paris"})) is None
     assert vs.add_version(BaseVersion("2024"), frozenset({"Lyon"})) is None
