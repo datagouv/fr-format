@@ -76,18 +76,25 @@ class VersionedSet(Generic[V]):
         """
         version_list = self.ls()
         # Check if versions are sortable and sorted
-        if all(isinstance(v, _SortableVersion) and v.is_sorted() for v in version_list):
+        if len(version_list) != 0:
             if version_id == "latest":
-                casted_version_list = cast(
-                    List[_SortableVersion], version_list
-                )  # Be sure that version list have List[_SortableVersion]
-                latest_version = max(casted_version_list)
-                _, data = self._versionned_data[latest_version.get_id()]
-                return data
-        else:
-            raise AttributeError(
-                "Version class with `is_sorted() == True` should be sortable (see documentation)."
-            )
+                version_class = type(version_list[0])
+
+                # be more sure that the class is sorted and all versions in version_list can be compared and sorted.
+                if version_class.is_sorted() and all(
+                    isinstance(v, _SortableVersion) for v in version_list
+                ):
+                    casted_version_list = cast(
+                        List[_SortableVersion], version_list
+                    )  # Be sure that version list have List[_SortableVersion] type
+                    latest_version = max(casted_version_list)
+                    _, data = self._versionned_data[latest_version.get_id()]
+                    return data
+
+                else:
+                    raise AttributeError(
+                        "Version class with `is_sorted() == True` should be sortable (see documentation)."
+                    )
 
         data_with_version = self._versionned_data.get(version_id)
         return data_with_version[1] if data_with_version else None
