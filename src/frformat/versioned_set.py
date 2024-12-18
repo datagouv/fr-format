@@ -75,12 +75,12 @@ class VersionedSet(Generic[V]):
         with the version having the highest id.
         """
         version_list = self.ls()
-        # Check if versions are sortable and sorted
+
         if len(version_list) != 0:
             if version_id == "latest":
                 version_class = type(version_list[0])
 
-                # be more sure that the class is sorted and all versions in version_list can be compared and sorted.
+                # Be sure that the class is sorted and all versions in version_list are sortable and sorted
                 if version_class.is_sorted() and all(
                     isinstance(v, _SortableVersion) for v in version_list
                 ):
