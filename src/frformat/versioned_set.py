@@ -15,8 +15,7 @@ V = TypeVar("V", bound="Version")
 
 
 class Version(Protocol):
-    def get_id(self) -> str:
-        ...
+    def get_id(self) -> str: ...
 
     @classmethod
     def is_sorted(cls) -> bool:
@@ -31,11 +30,9 @@ class _SortableVersion(Version, Protocol):
     """A version subclass that is sortable
     For type checking purposes only"""
 
-    def __lt__(self, v) -> bool:
-        ...
+    def __lt__(self, v) -> bool: ...
 
-    def __le__(self, v) -> bool:
-        ...
+    def __le__(self, v) -> bool: ...
 
 
 class VersionedSet(Generic[V]):
@@ -71,19 +68,15 @@ class VersionedSet(Generic[V]):
 
         If no data exists for the specified version, the method returns None.
 
-        If the version id is "latest", the method returns the data associated
-        with the version having the highest id.
+        If the version is sortable, then "latest" is a reserved ID, which returns the data associated
+        with the version having the highest id. If the version is not sortable, "latest" has no specific meaning.
         """
         version_list = self.ls()
 
         if len(version_list) != 0:
-            if version_id == "latest":
-                version_class = type(version_list[0])
-
-                # Be sure that the class is sorted and all versions in version_list are sortable and sorted
-                if version_class.is_sorted() and all(
-                    isinstance(v, _SortableVersion) for v in version_list
-                ):
+            version_class = type(version_list[0])
+            if version_id == "latest" and version_class.is_sorted():
+                if all(isinstance(v, _SortableVersion) for v in version_list):
                     casted_version_list = cast(
                         List[_SortableVersion], version_list
                     )  # Be sure that version list have List[_SortableVersion] type
