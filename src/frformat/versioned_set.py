@@ -15,11 +15,12 @@ V = TypeVar("V", bound="Version")
 
 
 class Version(Protocol):
-    def get_id(self) -> str: ...
+    def get_id(self) -> str:
+        ...
 
     @classmethod
     def is_sorted(cls) -> bool:
-        """If a version class declares itself sorted, it should be sortable by implementing at least two
+        """If a version class declares itself sorted, it should be sortable by implementing all six
         following comparison operators `__lt__()`, `__le__()`, `__gt__()`, `__ge__()`, `__eq__()` and `__neq__()`.
         """
         return False
@@ -30,9 +31,23 @@ class _SortableVersion(Version, Protocol):
     """A version subclass that is sortable
     For type checking purposes only"""
 
-    def __lt__(self, v) -> bool: ...
+    def __lt__(self, v) -> bool:
+        ...
 
-    def __le__(self, v) -> bool: ...
+    def __le__(self, v) -> bool:
+        ...
+
+    def __gt__(self, v) -> bool:
+        ...
+
+    def __ge__(self, v) -> bool:
+        ...
+
+    def __eq__(self, v) -> bool:
+        ...
+
+    def __neq__(self, v) -> bool:
+        ...
 
 
 class VersionedSet(Generic[V]):
