@@ -1,6 +1,6 @@
 from enum import Enum, auto
 from functools import total_ordering
-from typing import Type
+from typing import Type, Union
 
 from frformat import CustomStrFormat, Metadata
 from frformat.common import normalize_value
@@ -9,9 +9,10 @@ from frformat.versioned_set import Version, VersionedSet
 
 
 @total_ordering
-class Millesime(Enum, Version):
-    M2023 = auto()
-    M2024 = auto()
+class Millesime(Enum):
+    M2023 = "2023"
+    M2024 = "2024"
+    LATEST = "latest"
 
     def __eq__(self, other) -> bool:
         return self.value == other.value
@@ -39,26 +40,31 @@ def new(
         Geographical data in France is revised once a year, with new valid values set given by the "Code Officiel Géographique" (cog).
         """
 
-        def __init__(self, cog: Millesime, options: Options = Options()):
+        def __init__(self, cog: Union[Millesime, str], options: Options = Options()):
             self._options = options
+            try:
+                self._cog = Millesime(cog)
+            except ValueError:
+                raise ValueError(f"cog parameter {cog} is invalid ")
 
             _normalized_extra_values = {
                 normalize_value(e, self._options)
                 for e in self._options.extra_valid_values
             }
 
-            if cog not in versionned_geographical_enums.ls():
+            if self._cog not in versionned_geographical_enums.ls():
                 raise ValueError(
-                    f"No data available for official geographical code (cog): {cog.name}"
+                    f"No data available for official geographical code (cog): {self._cog.value}"
                 )
 
-            _valid_values = versionned_geographical_enums.get_data(cog.get_id())
+            _valid_values = versionned_geographical_enums.get_data(self._cog.get_id())
+
             if _valid_values is not None:
                 self._normalized_geo_enum_value = {
                     normalize_value(val, self._options) for val in _valid_values
                 }.union(_normalized_extra_values)
             else:
-                raise ValueError("There is No valid values! ")
+                raise ValueError("There is No valid values!")
 
         metadata = Metadata(name, description)
 
