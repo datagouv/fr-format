@@ -21,7 +21,7 @@ class Millesime(Enum):
         return self.value < other.value
 
     def get_id(self) -> str:
-        return str(self.value)
+        return self.value
 
     @classmethod
     def is_sorted(cls) -> bool:
@@ -65,7 +65,7 @@ def new(
                     normalize_value(val, self._options) for val in _valid_values
                 }.union(_normalized_extra_values)
             else:
-                raise ValueError("There is No valid values!")
+                raise ValueError("There is no data associated to this cog {} ")
 
         metadata = Metadata(name, description)
 
