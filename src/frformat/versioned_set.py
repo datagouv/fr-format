@@ -90,11 +90,10 @@ class VersionedSet(Generic[V]):
 
         if len(version_list) != 0:
             version_class = type(version_list[0])
+
             if version_id == "latest" and version_class.is_sorted():
                 if all(isinstance(v, _SortableVersion) for v in version_list):
-                    casted_version_list = cast(
-                        List[_SortableVersion], version_list
-                    )  # Be sure that version list have List[_SortableVersion] type
+                    casted_version_list = cast(List[_SortableVersion], version_list)
                     latest_version = max(casted_version_list)
                     _, data = self._versionned_data[latest_version.get_id()]
                     return data
