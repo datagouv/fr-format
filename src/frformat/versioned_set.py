@@ -46,7 +46,7 @@ class _SortableVersion(Version, Protocol):
     def __eq__(self, v) -> bool:
         ...
 
-    def __neq__(self, v) -> bool:
+    def __ne__(self, v) -> bool:
         ...
 
 
