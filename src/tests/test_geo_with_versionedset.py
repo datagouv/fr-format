@@ -16,7 +16,8 @@ def test_geo_enum_format_versionned():
         "FormatTest", "Versionned format", "Versionned format", versioned_data
     )
     format_M2023 = FormatTest(Millesime.M2023)
-    format_M2024= FormatTest(Millesime.M2024)
+    format_M2024 = FormatTest(Millesime.M2024)
+    format_latest = FormatTest(Millesime.LATEST)
 
     # Valid value M2023
     assert format_M2023.is_valid("Ambléon")
@@ -29,5 +30,8 @@ def test_geo_enum_format_versionned():
 
     # Test with a non-existent version
     with pytest.raises(ValueError):
-        FormatTest("2025")  
+        FormatTest("2025")
 
+    # latest
+    assert format_latest.is_valid("Arandas")
+    assert not format_latest.is_valid("Ambléon")
