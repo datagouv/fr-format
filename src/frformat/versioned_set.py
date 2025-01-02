@@ -6,6 +6,7 @@ from typing import (
     Protocol,
     Tuple,
     TypeVar,
+    Union,
     cast,
     runtime_checkable,
 )
@@ -77,7 +78,7 @@ class VersionedSet(Generic[V]):
 
         self._versionned_data.update({new_version.get_id(): (new_version, data)})
 
-    def get_data(self, version_id: str) -> Data | None:
+    def get_data(self, version_id: str) -> Union[Data, None]:
         """
         Get the data associated with the given version ID.
 
