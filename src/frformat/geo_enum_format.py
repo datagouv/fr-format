@@ -53,16 +53,14 @@ def new(
                 for e in self._options.extra_valid_values
             }
 
-            _valid_values = versionned_geographical_enums.get_data(
-                    self._cog.get_id()
-                )
-            if self._cog not in versionned_geographical_enums.ls() or _valid_values == frozenset({}):
+            _valid_values = versionned_geographical_enums.get_data(self._cog.get_id())
+            if _valid_values is None or _valid_values == frozenset({}):
                 raise ValueError(
                     f"No data available for official geographical code (cog): {self._cog.value}"
                 )
             else:
                 self._normalized_geo_enum_value = {
-                    normalize_value(val, self._options) for val in _valid_values # type: ignore
+                    normalize_value(val, self._options) for val in _valid_values  # type: ignore
                 }.union(_normalized_extra_values)
 
         metadata = Metadata(name, description)
