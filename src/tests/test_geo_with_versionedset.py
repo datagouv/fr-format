@@ -27,11 +27,16 @@ def test_geo_enum_format_versionned():
 
     # Valid value M2024
     assert format_M2024.is_valid("Arandas")
-
-    # Test with a non-existent version
-    with pytest.raises(ValueError):
-        FormatTest("2025")
-
+   
     # latest
     assert format_latest.is_valid("Arandas")
     assert not format_latest.is_valid("Ambléon")
+    
+    # Test with a non-existent version
+    with pytest.raises(ValueError):
+        FormatTest("2025")
+    
+
+    
+
+
