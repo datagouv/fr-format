@@ -32,7 +32,7 @@ def test_geo_enum_format_with_versionning():
     assert format_latest.is_valid("Arandas")
     assert not format_latest.is_valid("Ambléon")
 
-    # Test with a non-existent version
+    # Test with a non-existent/invalid version
     with pytest.raises(ValueError):
         FormatTest("2025")
 
