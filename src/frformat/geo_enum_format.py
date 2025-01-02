@@ -42,7 +42,7 @@ def new(
 
         def __init__(self, cog: Union[Millesime, str], options: Options = Options()):
             self._options = options
-            
+
             try:
                 self._cog = Millesime(cog)
             except ValueError:
@@ -53,19 +53,17 @@ def new(
                 for e in self._options.extra_valid_values
             }
 
-            if self._cog not in versionned_geographical_enums.ls():
+            _valid_values = versionned_geographical_enums.get_data(
+                    self._cog.get_id()
+                )
+            if self._cog not in versionned_geographical_enums.ls() or _valid_values == frozenset({}):
                 raise ValueError(
                     f"No data available for official geographical code (cog): {self._cog.value}"
                 )
-
-            _valid_values = versionned_geographical_enums.get_data(self._cog.get_id())
-
-            if _valid_values is not None:
-                self._normalized_geo_enum_value = {
-                    normalize_value(val, self._options) for val in _valid_values
-                }.union(_normalized_extra_values)
             else:
-                raise ValueError("There is no data associated to this cog {} ")
+                self._normalized_geo_enum_value = {
+                    normalize_value(val, self._options) for val in _valid_values # type: ignore
+                }.union(_normalized_extra_values)
 
         metadata = Metadata(name, description)
 
