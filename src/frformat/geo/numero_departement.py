@@ -1,5 +1,3 @@
-from typing import Dict, FrozenSet
-
 from frformat import geo_enum_format
 from frformat.geo_enum_format import Millesime
 from frformat.versioned_set import VersionedSet
