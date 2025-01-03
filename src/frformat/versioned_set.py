@@ -22,7 +22,7 @@ class Version(Protocol):
     @classmethod
     def is_sorted(cls) -> bool:
         """If a version class declares itself sorted, it should be sortable by implementing all six
-        following comparison operators `__lt__()`, `__le__()`, `__gt__()`, `__ge__()`, `__eq__()` and `__neq__()`.
+        following comparison operators `__lt__()`, `__le__()`, `__gt__()`, `__ge__()`, `__eq__()` and `__ne__()`.
         """
         return False
 
