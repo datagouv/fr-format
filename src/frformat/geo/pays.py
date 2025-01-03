@@ -8,7 +8,7 @@ description = (
     "Nom de pays et territoires étrangers pour un Code Officiel Géographique donné"
 )
 
-pays_versioned_data = VersionedSet()
+pays_versioned_data = VersionedSet[Millesime]()
 pays_versioned_data.add_version(Millesime.M2024, PAYS_COG_2024)
 
 Pays = geo_enum_format.new("Pays", name, description, pays_versioned_data)

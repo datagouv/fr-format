@@ -11,7 +11,7 @@ from frformat.versioned_set import VersionedSet
 name = "Codes ISO2 Pays"
 description = "Code ISO 2 de pays pour un Code Officiel Géographique donné"
 
-code_pays_IS02_versioned_data = VersionedSet()
+code_pays_IS02_versioned_data = VersionedSet[Millesime]()
 code_pays_IS02_versioned_data.add_version(Millesime.M2023, CODES_PAYS_ISO2_COG_2023)
 code_pays_IS02_versioned_data.add_version(Millesime.M2024, CODES_PAYS_ISO2_COG_2024)
 
@@ -23,7 +23,7 @@ CodePaysISO2 = geo_enum_format.new(
 name = "Codes ISO3 Pays"
 description = "Code ISO 3 de pays pour un Code Officiel Géographique donné"
 
-code_pays_IS03_versioned_data = VersionedSet()
+code_pays_IS03_versioned_data = VersionedSet[Millesime]()
 code_pays_IS03_versioned_data.add_version(Millesime.M2023, CODES_PAYS_ISO3_COG_2023)
 code_pays_IS03_versioned_data.add_version(Millesime.M2024, CODES_PAYS_ISO3_COG_2024)
 

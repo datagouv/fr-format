@@ -30,7 +30,7 @@ CODES_REGIONS_COG_2024 = CODES_REGIONS_COG_2023
 name = "Code région"
 description = "Vérifie qu'il s'agit d'un code région selon le Code Officiel Géographique (cog) donné"
 
-code_region_versioned_data = VersionedSet()
+code_region_versioned_data = VersionedSet[Millesime]()
 code_region_versioned_data.add_version(Millesime.M2023, CODES_REGIONS_COG_2023)
 code_region_versioned_data.add_version(Millesime.M2024, CODES_REGIONS_COG_2024)
 

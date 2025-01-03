@@ -9,7 +9,7 @@ description = (
     "(ne vérifie pas l'accentuation, la casse, la ponctuation)"
 )
 
-commune_versioned_data = VersionedSet()
+commune_versioned_data = VersionedSet[Millesime]()
 commune_versioned_data.add_version(Millesime.M2023, COMMUNES_COG_2023)
 commune_versioned_data.add_version(Millesime.M2024, COMMUNES_COG_2024)
 

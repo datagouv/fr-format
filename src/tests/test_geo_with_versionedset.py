@@ -5,7 +5,7 @@ from frformat.versioned_set import VersionedSet
 
 
 def test_geo_enum_format_with_versionning():
-    versioned_data = VersionedSet()
+    versioned_data = VersionedSet[Millesime]()
     versioned_data.add_version(
         Millesime.M2023,
         frozenset({"Ambléon", "Ambronay"}),
@@ -38,7 +38,7 @@ def test_geo_enum_format_with_versionning():
 
 
 def test_geo_enum_format_with_empty_data():
-    versioned_data = VersionedSet()
+    versioned_data = VersionedSet[Millesime]()
     versioned_data.add_version(
         Millesime.M2023,
         frozenset({}),

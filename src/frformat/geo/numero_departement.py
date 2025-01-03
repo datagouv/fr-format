@@ -16,7 +16,7 @@ name = "Numéro du département"
 description = "Vérifie que le numéro de département correspond bien à un numéro de département français, collectivités et territoires d'outre-mer pour un Code Officiel Géographique donné"
 
 
-numero_departement_versioned_data = VersionedSet()
+numero_departement_versioned_data = VersionedSet[Millesime]()
 numero_departement_versioned_data.add_version(
     Millesime.M2023, NUMEROS_DEPARTEMENTS_COG_2023
 )
