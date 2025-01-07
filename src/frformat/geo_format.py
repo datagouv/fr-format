@@ -50,21 +50,21 @@ def new(
             except ValueError:
                 raise ValueError(f"cog parameter {cog} is invalid ")
 
-            _normalized_extra_values = {
+            normalized_extra_values = {
                 normalize_value(e, self._options)
                 for e in self._options.extra_valid_values
             }
 
-            _valid_values = versionned_geographical_data.get_data(self._cog.get_id())
+            valid_values = versionned_geographical_data.get_data(self._cog.get_id())
 
-            if _valid_values is None or _valid_values == frozenset({}):
+            if valid_values is None or valid_values == frozenset({}):
                 raise ValueError(
                     f"No data available for official geographical code (cog): {self._cog.value}"
                 )
             else:
                 self._normalized_geo_value = {
-                    normalize_value(val, self._options) for val in _valid_values  # type: ignore
-                }.union(_normalized_extra_values)
+                    normalize_value(val, self._options) for val in valid_values
+                }.union(normalized_extra_values)
 
         metadata = Metadata(name, description)
 
