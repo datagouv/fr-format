@@ -61,10 +61,10 @@ def new(
                 raise ValueError(
                     f"No data available for official geographical code (cog): {self._cog.value}"
                 )
-            else:
-                self._normalized_geo_value = {
-                    normalize_value(val, self._options) for val in valid_values
-                }.union(normalized_extra_values)
+
+            self._normalized_geo_value = {
+                normalize_value(val, self._options) for val in valid_values
+            }.union(normalized_extra_values)
 
         metadata = Metadata(name, description)
 
