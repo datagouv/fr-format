@@ -9,6 +9,7 @@ from frformat.options import Options
 class Millesime(Enum):
     M2023 = auto()
     M2024 = auto()
+    INTERSECTION = auto()
 
     LATEST = M2024
 
@@ -37,8 +38,12 @@ def new(
                 raise ValueError(
                     f"No data available for official geographical code (cog): {cog.name}"
                 )
-
-            _valid_values = geographical_enums[cog]
+            if Millesime.INTERSECTION in geographical_enums.keys():
+                _valid_values = (
+                    geographical_enums[cog] | geographical_enums[Millesime.INTERSECTION]
+                )
+            else:
+                _valid_values = geographical_enums[cog]
 
             self._normalized_geo_enum_value = {
                 normalize_value(val, self._options) for val in _valid_values
