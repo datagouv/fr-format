@@ -1,5 +1,5 @@
-from frformat import geo_enum_format
-from frformat.geo_enum_format import Millesime
+from frformat import geo_format
+from frformat.geo_format import Millesime
 from frformat.versioned_set import VersionedSet
 
 NUMEROS_DEPARTEMENTS_COG_2023 = frozenset(
@@ -24,6 +24,6 @@ numero_departement_versioned_data.add_version(
     Millesime.M2024, NUMEROS_DEPARTEMENTS_COG_2024
 )
 
-NumeroDepartement = geo_enum_format.new(
+NumeroDepartement = geo_format.new(
     "NumeroDepartement", name, description, numero_departement_versioned_data
 )

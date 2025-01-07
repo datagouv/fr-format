@@ -34,9 +34,9 @@ def new(
     class_name: str,
     name: str,
     description: str,
-    versionned_geographical_enums: VersionedSet,
+    versionned_geographical_data: VersionedSet,
 ) -> Type:
-    class GeoEnumFormat(CustomStrFormat):
+    class GeoFormat(CustomStrFormat):
         """Checks if a value is in a given geographical referential, with validation for the vintage of choice
 
         Geographical data in France is revised once a year, with new valid values set given by the "Code Officiel Géographique" (cog).
@@ -55,14 +55,14 @@ def new(
                 for e in self._options.extra_valid_values
             }
 
-            _valid_values = versionned_geographical_enums.get_data(self._cog.get_id())
+            _valid_values = versionned_geographical_data.get_data(self._cog.get_id())
 
             if _valid_values is None or _valid_values == frozenset({}):
                 raise ValueError(
                     f"No data available for official geographical code (cog): {self._cog.value}"
                 )
             else:
-                self._normalized_geo_enum_value = {
+                self._normalized_geo_value = {
                     normalize_value(val, self._options) for val in _valid_values  # type: ignore
                 }.union(_normalized_extra_values)
 
@@ -70,9 +70,9 @@ def new(
 
         def is_valid(self, value: str) -> bool:
             normalized_value = normalize_value(value, self._options)
-            return normalized_value in self._normalized_geo_enum_value
+            return normalized_value in self._normalized_geo_value
 
-    GeoEnumFormat.__name__ = class_name
-    GeoEnumFormat.__qualname__ = class_name
+    GeoFormat.__name__ = class_name
+    GeoFormat.__qualname__ = class_name
 
-    return GeoEnumFormat
+    return GeoFormat

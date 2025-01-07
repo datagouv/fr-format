@@ -1,10 +1,10 @@
 import pytest
 
-from frformat.geo_enum_format import Millesime, new
+from frformat.geo_format import Millesime, new
 from frformat.versioned_set import VersionedSet
 
 
-def test_geo_enum_format_with_versionning():
+def test_geo_format_with_versionning():
     versioned_data = VersionedSet[Millesime]()
     versioned_data.add_version(
         Millesime.M2023,
@@ -37,7 +37,7 @@ def test_geo_enum_format_with_versionning():
         FormatTest("2025")
 
 
-def test_geo_enum_format_with_empty_data():
+def test_geo_format_with_empty_data():
     versioned_data = VersionedSet[Millesime]()
     versioned_data.add_version(
         Millesime.M2023,

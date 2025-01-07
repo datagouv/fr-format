@@ -1,9 +1,9 @@
-from frformat import geo_enum_format
+from frformat import geo_format
 from frformat.geo.code_commune_insee_frozenset import (
     CODES_COMMUNES_INSEE_COG_2023,
     CODES_COMMUNES_INSEE_COG_2024,
 )
-from frformat.geo_enum_format import Millesime
+from frformat.geo_format import Millesime
 from frformat.versioned_set import VersionedSet
 
 name = "Code commune INSEE"
@@ -17,6 +17,6 @@ code_commune_insee_versioned_data.add_version(
     Millesime.M2024, CODES_COMMUNES_INSEE_COG_2024
 )
 
-CodeCommuneInsee = geo_enum_format.new(
+CodeCommuneInsee = geo_format.new(
     "CodeCommuneInsee", name, description, code_commune_insee_versioned_data
 )
