@@ -12,6 +12,21 @@ def test_is_valid_with_details():
     invalid_prefix = "invalid"
     test_cases = [
         {
+            "value": "urbanisme/blabla",
+            "expected_is_valid": True,
+            "expected_details": None,
+        },
+        {
+            "value": "Libertes publiques et pouvoirs de police/blabla",
+            "expected_is_valid": True,
+            "expected_details": None,
+        },
+        {
+            "value": "libertes publiques et pouvoirs de police/blabla",
+            "expected_is_valid": True,
+            "expected_details": None,
+        },
+        {
             "value": f"{valid_prefix}/blabla",
             "expected_is_valid": True,
             "expected_details": None,

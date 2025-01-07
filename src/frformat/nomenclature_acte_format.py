@@ -1,6 +1,8 @@
 from typing import List, Literal, Tuple, Union
 
 from frformat import CustomStrFormat, Metadata
+from frformat.common import normalize_value
+from frformat.options import Options
 
 AUTHORIZED_VALUES = {
     "Commande publique",
@@ -51,11 +53,27 @@ description = """Document de référence dans les spécifications SCDL :
 class NomenclatureActe(CustomStrFormat):
     metadata = Metadata(name, description)
 
-    def is_valid(self, value: str) -> bool:
+    def __init__(
+        self, options: Options = Options(ignore_accents=True, ignore_case=True)
+    ):
+        """Initializes the `NomenclatureActe` class with customizable validation options.
+        By default, the validation is case-insensitive and accent-insensitive, ensuring that values and authorized_values are normalized
+        accordingly before comparison.
+        """
+        self._options = options
+        self._normalized_autho_values = {
+            normalize_value(ae, self._options) for ae in AUTHORIZED_VALUES
+        }
+
+    def is_valid(
+        self,
+        value: str,
+    ) -> bool:
         nomenc = self._nomenclature(value)
+        normalized_nomenc = normalize_value(nomenc, self._options)
 
         # Nomenclature reconnue et pas d'espace après l'oblique
-        return "/ " not in value and nomenc in AUTHORIZED_VALUES
+        return "/ " not in value and normalized_nomenc in self._normalized_autho_values
 
     def is_valid_with_details(
         self, value: str
