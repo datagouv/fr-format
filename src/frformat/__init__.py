@@ -18,7 +18,7 @@ from .geo.longitude_l93 import LongitudeL93 as LongitudeL93
 from .geo.numero_departement import NumeroDepartement as NumeroDepartement
 from .geo.pays import Pays as Pays
 from .geo.region import Region as Region
-from .geo_format import Millesime as Millesime
+from .new_format import Millesime as Millesime
 from .nomenclature_acte_format import NomenclatureActe as NomenclatureActe
 from .options import Options as Options
 from .siren import Siren as Siren

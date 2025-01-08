@@ -1,6 +1,6 @@
 import pytest
 
-from frformat.geo_format import Millesime, new
+from frformat.new_format import Millesime, new
 from frformat.versioned_set import VersionedSet
 
 

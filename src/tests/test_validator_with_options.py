@@ -1,4 +1,4 @@
-from frformat import Options, enum_format
+from frformat import Options, new_format
 
 
 def test_validator():
@@ -6,7 +6,7 @@ def test_validator():
         {"Bonjour", "Réunion", "Plane!", "Fly   ", "La liste"}
     )
 
-    Validator = enum_format.new(
+    Validator = new_format.new(
         "Validator", "validator", "Test validator", valid_values_enum
     )
 

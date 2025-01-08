@@ -1,7 +1,7 @@
-from frformat import geo_format
+from frformat import new_format
 from frformat.versioned_set import VersionedSet
 
-from ..geo_format import Millesime
+from ..new_format import Millesime
 
 CODES_REGIONS_COG_2023 = frozenset(
     {
@@ -34,4 +34,4 @@ code_region_versioned_data = VersionedSet[Millesime]()
 code_region_versioned_data.add_version(Millesime.M2023, CODES_REGIONS_COG_2023)
 code_region_versioned_data.add_version(Millesime.M2024, CODES_REGIONS_COG_2024)
 
-CodeRegion = geo_format.new("CodeRegion", name, description, code_region_versioned_data)
+CodeRegion = new_format.new("CodeRegion", name, description, code_region_versioned_data)
