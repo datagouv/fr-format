@@ -84,8 +84,8 @@ class VersionedSet(Generic[V]):
 
         If no data exists for the specified version, the method returns None.
 
-        If the version is sortable, then "latest" is a reserved ID, which returns the data associated
-        with the version having the highest id. If the version is not sortable, "latest" has no specific meaning.
+        If the version type is sortable, and there is at least one version, then "latest" is a reserved ID, which returns the data associated
+        with the version having the highest id. If the version type is not sortable, or if there is no data, "latest" has no specific meaning.
         """
         version_list = self.ls()
 
