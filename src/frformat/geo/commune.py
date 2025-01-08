@@ -13,4 +13,4 @@ commune_versioned_data = VersionedSet[Millesime]()
 commune_versioned_data.add_version(Millesime.M2023, COMMUNES_COG_2023)
 commune_versioned_data.add_version(Millesime.M2024, COMMUNES_COG_2024)
 
-Commune = new_format.new("Commune", name, description, commune_versioned_data)
+Commune = new_format.new(name, description, commune_versioned_data)

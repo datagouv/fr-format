@@ -13,9 +13,7 @@ def test_geo_data_format():
 
     versioned_data.add_version(Millesime.M2024, frozenset({"Arandas"}))
 
-    FormatTest = new(
-        "FormatTest", "Versionned format", "Versionned format", versioned_data
-    )
+    FormatTest = new("Versionned format", "Versionned format", versioned_data)
 
     test_cases = [
         {

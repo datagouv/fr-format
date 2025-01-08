@@ -31,7 +31,6 @@ class Millesime(Enum):
 
 
 def new(
-    class_name: str,
     name: str,
     description: str,
     data: Union[VersionedSet, FrozenSet[str]],

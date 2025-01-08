@@ -6,9 +6,7 @@ def test_validator():
         {"Bonjour", "Réunion", "Plane!", "Fly   ", "La liste"}
     )
 
-    Validator = new_format.new(
-        "Validator", "validator", "Test validator", valid_values_enum
-    )
+    Validator = new_format.new("validator", "Test validator", valid_values_enum)
 
     test_cases = [
         {
