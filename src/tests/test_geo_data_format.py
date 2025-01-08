@@ -10,28 +10,48 @@ def test_geo_data_format():
         Millesime.M2023,
         frozenset({"Ambléon", "Ambronay"}),
     )
+
     versioned_data.add_version(Millesime.M2024, frozenset({"Arandas"}))
 
     FormatTest = new(
         "FormatTest", "Versionned format", "Versionned format", versioned_data
     )
-    format_M2023 = FormatTest(Millesime.M2023)
-    format_M2024 = FormatTest(Millesime.M2024)
-    format_latest = FormatTest(Millesime.LATEST)
 
-    # Valid value M2023
-    assert format_M2023.is_valid("Ambléon")
+    test_cases = [
+        {
+            "version": Millesime.M2023,
+            "value_to_test": "Ambléon",
+            "expected_valid": True,
+        },
+        {
+            "version": Millesime.M2023,
+            "value_to_test": "Anglefort",
+            "expected_valid": False,
+        },
+        {
+            "version": Millesime.M2024,
+            "value_to_test": "Arandas",
+            "expected_valid": True,
+        },
+        {
+            "version": Millesime.LATEST,
+            "value_to_test": "Arandas",
+            "expected_valid": True,
+        },
+        {
+            "version": Millesime.LATEST,
+            "value_to_test": "Ambléon",
+            "expected_valid": False,
+        },
+        {"version": "2025", "expected_error": ValueError},
+    ]
 
-    # Invalid value M2023
-    assert not format_M2023.is_valid("Anglefort")
-
-    # Valid value M2024
-    assert format_M2024.is_valid("Arandas")
-
-    # latest
-    assert format_latest.is_valid("Arandas")
-    assert not format_latest.is_valid("Ambléon")
-
-    # Test with a non-existent/invalid version
-    with pytest.raises(ValueError):
-        FormatTest("2025")
+    for tc in test_cases:
+        if "expected_error" in tc:
+            with pytest.raises(tc["expected_error"]):
+                FormatTest(tc["version"])
+        else:
+            test_format = FormatTest(tc["version"])
+            assert (
+                test_format.is_valid(tc["value_to_test"]) == tc["expected_valid"]
+            ), f'Error on geo data format definition with version { tc["expected_version"] } and value { tc["value_to_test"] }'
