@@ -62,7 +62,7 @@ def new(
                     f"No data available for official geographical code (cog): {self._cog.value}"
                 )
 
-            self._normalized_geo_value = {
+            self._normalized_geo_values = {
                 normalize_value(val, self._options) for val in valid_values
             }.union(normalized_extra_values)
 
@@ -70,7 +70,7 @@ def new(
 
         def is_valid(self, value: str) -> bool:
             normalized_value = normalize_value(value, self._options)
-            return normalized_value in self._normalized_geo_value
+            return normalized_value in self._normalized_geo_values
 
     GeoFormat.__name__ = class_name
     GeoFormat.__qualname__ = class_name
