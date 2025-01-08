@@ -4,7 +4,7 @@ from frformat.geo_format import Millesime, new
 from frformat.versioned_set import VersionedSet
 
 
-def test_geo_format_with_versionning():
+def test_geo_data_format():
     versioned_data = VersionedSet[Millesime]()
     versioned_data.add_version(
         Millesime.M2023,
