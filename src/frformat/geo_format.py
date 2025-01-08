@@ -10,7 +10,7 @@ from frformat.versioned_set import VersionedSet
 
 @total_ordering
 class Millesime(Enum):
-    """Millesime class implement Version protocol methods"""
+    """Millesime class implements the `Version` protocol methods"""
 
     M2023 = "2023"
     M2024 = "2024"
