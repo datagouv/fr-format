@@ -57,7 +57,7 @@ def new(
 
             valid_values = versionned_geographical_data.get_data(self._cog.get_id())
 
-            if valid_values is None or valid_values == frozenset({}):
+            if valid_values is None:
                 raise ValueError(
                     f"No data available for official geographical code (cog): {self._cog.value}"
                 )

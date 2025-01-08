@@ -35,17 +35,3 @@ def test_geo_format_with_versionning():
     # Test with a non-existent/invalid version
     with pytest.raises(ValueError):
         FormatTest("2025")
-
-
-def test_geo_format_with_empty_data():
-    versioned_data = VersionedSet[Millesime]()
-    versioned_data.add_version(
-        Millesime.M2023,
-        frozenset({}),
-    )
-    FormatTest = new(
-        "FormatTest", "Versionned format", "Versionned format", versioned_data
-    )
-
-    with pytest.raises(ValueError):
-        FormatTest(Millesime.M2023)
