@@ -1,16 +1,14 @@
-from typing import Dict, FrozenSet
-
-from frformat import geo_enum_format
+from frformat import geo_format
 from frformat.geo.pays_frozenset import PAYS_COG_2024
-from frformat.geo_enum_format import Millesime
+from frformat.geo_format import Millesime
+from frformat.versioned_set import VersionedSet
 
 name = "Pays et territoires étrangers"
 description = (
     "Nom de pays et territoires étrangers pour un Code Officiel Géographique donné"
 )
 
-all_cog_versions: Dict[Millesime, FrozenSet[str]] = {
-    Millesime.M2024: PAYS_COG_2024,
-}
+pays_versioned_data = VersionedSet[Millesime]()
+pays_versioned_data.add_version(Millesime.M2024, PAYS_COG_2024)
 
-Pays = geo_enum_format.new("Pays", name, description, all_cog_versions)
+Pays = geo_format.new("Pays", name, description, pays_versioned_data)

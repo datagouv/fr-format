@@ -1,8 +1,7 @@
-from typing import Dict, FrozenSet
+from frformat import geo_format
+from frformat.versioned_set import VersionedSet
 
-from frformat import geo_enum_format
-
-from ..geo_enum_format import Millesime
+from ..geo_format import Millesime
 
 CODES_REGIONS_COG_2023 = frozenset(
     {
@@ -30,8 +29,9 @@ CODES_REGIONS_COG_2024 = CODES_REGIONS_COG_2023
 
 name = "Code région"
 description = "Vérifie qu'il s'agit d'un code région selon le Code Officiel Géographique (cog) donné"
-all_cog_versions: Dict[Millesime, FrozenSet[str]] = {
-    Millesime.M2023: CODES_REGIONS_COG_2023,
-    Millesime.M2024: CODES_REGIONS_COG_2024,
-}
-CodeRegion = geo_enum_format.new("CodeRegion", name, description, all_cog_versions)
+
+code_region_versioned_data = VersionedSet[Millesime]()
+code_region_versioned_data.add_version(Millesime.M2023, CODES_REGIONS_COG_2023)
+code_region_versioned_data.add_version(Millesime.M2024, CODES_REGIONS_COG_2024)
+
+CodeRegion = geo_format.new("CodeRegion", name, description, code_region_versioned_data)
