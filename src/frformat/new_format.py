@@ -85,14 +85,14 @@ def new(
         def __init__(self, options: Options = Options()):
             self._options = options
 
-            _normalized_extra_values = {
+            normalized_extra_values = {
                 normalize_value(e, self._options)
                 for e in self._options.extra_valid_values
             }
 
             self._normalized_enum = {
                 normalize_value(e, self._options) for e in data  # type: ignore
-            }.union(_normalized_extra_values)
+            }.union(normalized_extra_values)
 
         metadata = Metadata(name, description)
 
