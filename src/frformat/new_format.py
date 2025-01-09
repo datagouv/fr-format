@@ -31,7 +31,7 @@ class Millesime(Enum):
 
 
 class BaseFormat(CustomStrFormat):
-    def __init__(self, data: FrozenSet | None, options: Options = Options()):
+    def __init__(self, data: Union[FrozenSet, None], options: Options = Options()):
         self._options = options
         self._data = data
 
@@ -54,7 +54,7 @@ class BaseFormat(CustomStrFormat):
 def new(
     name: str, description: str, valid_data: Union[VersionedSet, FrozenSet[str]]
 ) -> Type:
-    def get_geo_data(cog: Union[Millesime, str]) -> FrozenSet | None:
+    def get_geo_data(cog: Union[Millesime, str]) -> Union[FrozenSet, None]:
         if isinstance(valid_data, VersionedSet):
             try:
                 cog = Millesime(cog)
@@ -82,7 +82,7 @@ def new(
 
         metadata = Metadata(name, description)
 
-    def get_enum_data() -> FrozenSet | None:
+    def get_enum_data() -> Union[FrozenSet, None]:
         return valid_data if isinstance(valid_data, FrozenSet) else None
 
     class EnumFormat(BaseFormat):
