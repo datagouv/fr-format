@@ -30,74 +30,67 @@ class Millesime(Enum):
         return True
 
 
+class BaseFormat(CustomStrFormat):
+    def __init__(self, data: FrozenSet | None, options: Options = Options()):
+        self._options = options
+        self._data = data
+
+        normalized_extra_values = {
+            normalize_value(e, self._options) for e in self._options.extra_valid_values
+        }
+
+        if self._data is None:
+            raise ValueError("There is no data")
+
+        self._normalized_values = {
+            normalize_value(e, self._options) for e in self._data
+        }.union(normalized_extra_values)
+
+    def is_valid(self, value: str) -> bool:
+        normalized_value = normalize_value(value, self._options)
+        return normalized_value in self._normalized_values
+
+
 def new(
-    name: str,
-    description: str,
-    data: Union[VersionedSet, FrozenSet[str]],
+    name: str, description: str, valid_data: Union[VersionedSet, FrozenSet[str]]
 ) -> Type:
-    if type(data) is VersionedSet:
+    def get_geo_data(cog: Union[Millesime, str]) -> FrozenSet | None:
+        if isinstance(valid_data, VersionedSet):
+            try:
+                cog = Millesime(cog)
+            except ValueError:
+                raise ValueError(f"Invalid cog parameter: {cog}")
+            cog_data = valid_data.get_data(cog.get_id())
+            if cog_data is None:
+                raise ValueError(
+                    f"No data available for geographical code: {cog.value}"
+                )
+            return cog_data
+        return None
 
-        class GeoFormat(CustomStrFormat):
-            """Checks if a value is in a given geographical referential, with validation for the vintage of choice
+    class GeoFormat(BaseFormat):
+        def __init__(self, cog: Union[Millesime, str], options: Options = Options()):
+            super().__init__(get_geo_data(cog), options)
 
-            Geographical data in France is revised once a year, with new valid values set given by the "Code Officiel Géographique" (cog).
-            """
-
-            def __init__(
-                self, cog: Union[Millesime, str], options: Options = Options()
-            ):
-                self._options = options
-
-                try:
-                    self._cog = Millesime(cog)
-                except ValueError:
-                    raise ValueError(f"cog parameter {cog} is invalid ")
-
-                normalized_extra_values = {
-                    normalize_value(e, self._options)
-                    for e in self._options.extra_valid_values
-                }
-
-                valid_values = data.get_data(self._cog.get_id())
-
-                if valid_values is None:
-                    raise ValueError(
-                        f"No data available for official geographical code (cog): {self._cog.value}"
-                    )
-
-                self._normalized_values = {
-                    normalize_value(val, self._options) for val in valid_values
-                }.union(normalized_extra_values)
-
-            metadata = Metadata(name, description)
-
-            def is_valid(self, value: str) -> bool:
-                normalized_value = normalize_value(value, self._options)
-                return normalized_value in self._normalized_values
-
-        return GeoFormat
-
-    class EnumFormat(CustomStrFormat):
-        """Checks if a value is in a given list
-
-        May preprocess the input and valid values according to given "options"."""
-
-        def __init__(self, options: Options = Options()):
-            self._options = options
-
-            normalized_extra_values = {
-                normalize_value(e, self._options)
-                for e in self._options.extra_valid_values
-            }
+            data = get_geo_data(cog)
+            if data is None:
+                raise ValueError(f"Geographical data for cog '{cog}' is not available.")
 
             self._normalized_values = {
-                normalize_value(e, self._options) for e in data  # type: ignore
-            }.union(normalized_extra_values)
+                normalize_value(val, self._options) for val in data
+            }
 
         metadata = Metadata(name, description)
 
-        def is_valid(self, value: str) -> bool:
-            normalized_value = normalize_value(value, self._options)
-            return normalized_value in self._normalized_values
+    def get_enum_data() -> FrozenSet | None:
+        return valid_data if isinstance(valid_data, FrozenSet) else None
 
+    class EnumFormat(BaseFormat):
+        def __init__(self, options: Options = Options()):
+            super().__init__(get_enum_data(), options)
+
+        metadata = Metadata(name, description)
+
+    if isinstance(valid_data, VersionedSet):
+        return GeoFormat
     return EnumFormat
