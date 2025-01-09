@@ -98,7 +98,7 @@ def new(
         GeoFormat.__name__ = class_name
         GeoFormat.__qualname__ = class_name
         return GeoFormat
-    
+
     EnumFormat.__name__ = class_name
     EnumFormat.__qualname__ = class_name
     return EnumFormat
