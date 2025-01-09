@@ -34,4 +34,4 @@ code_region_versioned_data = VersionedSet[Millesime]()
 code_region_versioned_data.add_version(Millesime.M2023, CODES_REGIONS_COG_2023)
 code_region_versioned_data.add_version(Millesime.M2024, CODES_REGIONS_COG_2024)
 
-CodeRegion = new_format.new(name, description, code_region_versioned_data)
+CodeRegion = new_format.new("CodeRegion", name, description, code_region_versioned_data)

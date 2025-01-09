@@ -11,4 +11,4 @@ description = (
 pays_versioned_data = VersionedSet[Millesime]()
 pays_versioned_data.add_version(Millesime.M2024, PAYS_COG_2024)
 
-Pays = new_format.new(name, description, pays_versioned_data)
+Pays = new_format.new("Pays", name, description, pays_versioned_data)

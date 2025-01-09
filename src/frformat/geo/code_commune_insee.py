@@ -17,4 +17,6 @@ code_commune_insee_versioned_data.add_version(
     Millesime.M2024, CODES_COMMUNES_INSEE_COG_2024
 )
 
-CodeCommuneInsee = new_format.new(name, description, code_commune_insee_versioned_data)
+CodeCommuneInsee = new_format.new(
+    "CodeCommuneInsee", name, description, code_commune_insee_versioned_data
+)

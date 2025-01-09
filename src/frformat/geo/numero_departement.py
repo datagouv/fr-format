@@ -24,4 +24,6 @@ numero_departement_versioned_data.add_version(
     Millesime.M2024, NUMEROS_DEPARTEMENTS_COG_2024
 )
 
-NumeroDepartement = new_format.new(name, description, numero_departement_versioned_data)
+NumeroDepartement = new_format.new(
+    "NumeroDepartement", name, description, numero_departement_versioned_data
+)

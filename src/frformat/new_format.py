@@ -52,7 +52,10 @@ class BaseFormat(CustomStrFormat):
 
 
 def new(
-    name: str, description: str, valid_data: Union[VersionedSet, FrozenSet[str]]
+    class_name: str,
+    name: str,
+    description: str,
+    valid_data: Union[VersionedSet, FrozenSet[str]],
 ) -> Type:
     def get_geo_data(cog: Union[Millesime, str]) -> Union[FrozenSet, None]:
         if isinstance(valid_data, VersionedSet):
@@ -92,5 +95,10 @@ def new(
         metadata = Metadata(name, description)
 
     if isinstance(valid_data, VersionedSet):
+        GeoFormat.__name__ = class_name
+        GeoFormat.__qualname__ = class_name
         return GeoFormat
+    
+    EnumFormat.__name__ = class_name
+    EnumFormat.__qualname__ = class_name
     return EnumFormat
