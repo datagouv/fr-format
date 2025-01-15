@@ -24,6 +24,6 @@ numero_departement_versioned_data.add_version(
     Millesime.M2024, NUMEROS_DEPARTEMENTS_COG_2024
 )
 
-NumeroDepartement = set_format.new(
+NumeroDepartement = set_format.new_geo(
     "NumeroDepartement", name, description, numero_departement_versioned_data
 )
