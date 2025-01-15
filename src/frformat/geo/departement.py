@@ -1,9 +1,9 @@
-from frformat import new_format
+from frformat import set_format
 from frformat.geo.departement_frozenset import (
     DEPARTEMENTS_COG_2023,
     DEPARTEMENTS_COG_2024,
 )
-from frformat.new_format import Millesime
+from frformat.set_format import Millesime
 from frformat.versioned_set import VersionedSet
 
 name = "Nom de département"
@@ -13,6 +13,6 @@ departement_versioned_data = VersionedSet[Millesime]()
 departement_versioned_data.add_version(Millesime.M2023, DEPARTEMENTS_COG_2023)
 departement_versioned_data.add_version(Millesime.M2024, DEPARTEMENTS_COG_2024)
 
-Departement = new_format.new(
+Departement = set_format.new(
     "Departement", name, description, departement_versioned_data
 )

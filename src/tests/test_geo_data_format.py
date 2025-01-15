@@ -1,6 +1,6 @@
 import pytest
 
-from frformat.new_format import Millesime, new
+from frformat.set_format import Millesime, new
 from frformat.versioned_set import VersionedSet
 
 

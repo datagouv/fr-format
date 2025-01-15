@@ -1,6 +1,6 @@
-from frformat import new_format
+from frformat import set_format
 from frformat.geo.pays_frozenset import PAYS_COG_2024
-from frformat.new_format import Millesime
+from frformat.set_format import Millesime
 from frformat.versioned_set import VersionedSet
 
 name = "Pays et territoires étrangers"
@@ -11,4 +11,4 @@ description = (
 pays_versioned_data = VersionedSet[Millesime]()
 pays_versioned_data.add_version(Millesime.M2024, PAYS_COG_2024)
 
-Pays = new_format.new("Pays", name, description, pays_versioned_data)
+Pays = set_format.new("Pays", name, description, pays_versioned_data)

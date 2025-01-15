@@ -1,9 +1,9 @@
-from frformat import new_format
+from frformat import set_format
 from frformat.geo.code_commune_insee_frozenset import (
     CODES_COMMUNES_INSEE_COG_2023,
     CODES_COMMUNES_INSEE_COG_2024,
 )
-from frformat.new_format import Millesime
+from frformat.set_format import Millesime
 from frformat.versioned_set import VersionedSet
 
 name = "Code commune INSEE"
@@ -17,6 +17,6 @@ code_commune_insee_versioned_data.add_version(
     Millesime.M2024, CODES_COMMUNES_INSEE_COG_2024
 )
 
-CodeCommuneInsee = new_format.new(
+CodeCommuneInsee = set_format.new(
     "CodeCommuneInsee", name, description, code_commune_insee_versioned_data
 )
