@@ -1,6 +1,6 @@
 import pytest
 
-from frformat.geo_format import Millesime, new
+from frformat.set_format import Millesime, new
 from frformat.versioned_set import VersionedSet
 
 
@@ -14,7 +14,7 @@ def test_geo_data_format():
     versioned_data.add_version(Millesime.M2024, frozenset({"Arandas"}))
 
     FormatTest = new(
-        "FormatTest", "Versionned format", "Versionned format", versioned_data
+        "Versionned format", "Versionned format", "Versionned format", versioned_data
     )
 
     test_cases = [
