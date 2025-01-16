@@ -1,5 +1,5 @@
 from frformat import set_format
-from frformat.geo.departement_frozenset import (
+from frformat.formats.departement_frozenset import (
     DEPARTEMENTS_COG_2023,
     DEPARTEMENTS_COG_2024,
 )

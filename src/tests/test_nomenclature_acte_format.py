@@ -1,4 +1,4 @@
-from frformat.nomenclature_acte_format import (
+from frformat.formats.nomenclature_acte_format import (
     AUTHORIZED_VALUES,
     EXTRA_SPACE,
     INVALID_PREFIX,

@@ -1,5 +1,5 @@
 from frformat import set_format
-from frformat.geo.region_frozenset import REGIONS_COG_2023, REGIONS_COG_2024
+from frformat.formats.region_frozenset import REGIONS_COG_2023, REGIONS_COG_2024
 from frformat.set_format import Millesime
 from frformat.versioned_set import VersionedSet
 

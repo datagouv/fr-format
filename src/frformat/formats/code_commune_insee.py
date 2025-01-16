@@ -1,5 +1,5 @@
 from frformat import set_format
-from frformat.geo.code_commune_insee_frozenset import (
+from frformat.formats.code_commune_insee_frozenset import (
     CODES_COMMUNES_INSEE_COG_2023,
     CODES_COMMUNES_INSEE_COG_2024,
 )

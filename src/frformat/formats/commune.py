@@ -1,5 +1,5 @@
 from frformat import set_format
-from frformat.geo.commune_frozenset import COMMUNES_COG_2023, COMMUNES_COG_2024
+from frformat.formats.commune_frozenset import COMMUNES_COG_2023, COMMUNES_COG_2024
 from frformat.set_format import Millesime
 from frformat.versioned_set import VersionedSet
 

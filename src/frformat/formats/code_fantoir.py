@@ -1,8 +1,8 @@
 import string
 
 from frformat import CustomStrFormat, Metadata
+from frformat.formats.code_fantoir_frozenset import PARTIAL_CODE_FANTOIR
 from frformat.formatter import Formatter
-from frformat.geo.code_fantoir_frozenset import PARTIAL_CODE_FANTOIR
 
 name = "Code fantoir"
 description = "Vérifie les codes fantoirs valides"

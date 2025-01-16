@@ -1,5 +1,5 @@
 from frformat import set_format
-from frformat.geo.code_pays_frozenset import (
+from frformat.formats.code_pays_frozenset import (
     CODES_PAYS_ISO2_COG_2023,
     CODES_PAYS_ISO2_COG_2024,
     CODES_PAYS_ISO3_COG_2023,

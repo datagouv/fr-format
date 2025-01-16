@@ -1,5 +1,5 @@
 from frformat import CustomNumericFormat, Metadata
-from frformat.geo.latitude_l93 import UnitFormatter
+from frformat.formats.latitude_l93 import UnitFormatter
 
 name = "Longitude en Lambert 93"
 description = "Vérifie que la longitude en France métropolitaine donnée est une longitude en lambert 93"

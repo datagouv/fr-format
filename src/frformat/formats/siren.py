@@ -3,7 +3,7 @@ import stdnum.fr.siren
 from frformat.common import NNBSP
 from frformat.formatter import Formatter
 
-from . import CustomStrFormat, Metadata
+from .. import CustomStrFormat, Metadata
 
 name = "SIREN"
 description = (

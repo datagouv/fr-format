@@ -1,5 +1,5 @@
 from frformat import set_format
-from frformat.geo.pays_frozenset import PAYS_COG_2024
+from frformat.formats.pays_frozenset import PAYS_COG_2024
 from frformat.set_format import Millesime
 from frformat.versioned_set import VersionedSet
 

@@ -1,5 +1,5 @@
 from frformat import set_format
-from frformat.geo.canton_frozenset import CANTON_COG_2023, CANTON_COG_2024
+from frformat.formats.canton_frozenset import CANTON_COG_2023, CANTON_COG_2024
 from frformat.set_format import Millesime
 from frformat.versioned_set import VersionedSet
 
