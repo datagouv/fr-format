@@ -94,6 +94,3 @@ Before submitting your code, run `make lint` to check for linting issues and fix
 By contributing to `fr-format`, you agree that your contributions will be licensed under the project's open-source license: MIT.
 
 Thank you for your contribution !
-
-
-
