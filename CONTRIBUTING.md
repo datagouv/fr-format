@@ -35,7 +35,6 @@ See the [specific section](#implementing-a-new-french-format) below for guidelin
 ## Improving and adding documentation
 
 All documentation files are located in [docs folder](./docs).\
-If your changes include complex logic or functionality, add clear and concise doc comments to explain them.
 Also, if you identify areas for improvement in the documentation, please contribute!
 
 ## Enhancing code
@@ -53,6 +52,7 @@ See the [developper documentation](./docs/dev_documentation.md) for details on h
 3. Document your changes:
    - Provide a clear explanation in your pull request description.
    - Add comments to your code if necessary.
+   - If your changes include new features, please document them in the ["./docs"](./docs) folder. New formats' documentation are automatically generated (see below).
 4. Finally, submit your pull request.
 
 ### Implementing a new French format
