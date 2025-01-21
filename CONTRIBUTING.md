@@ -6,7 +6,7 @@ Thank you for taking the time to contribute to the `fr-format` project! Your hel
 
 We welcome all forms of contributions: 
 
-* Reporting Issues or suggesting improvements
+* Reporting issues or suggesting improvements
 * Improving or adding documentation
 * Enhancing code
 
@@ -14,7 +14,7 @@ In all cases, ensure you are working with the latest version of the project.
 
 For more details, follow the sections below.
 
-## Reporting Issues or suggesting improvements
+## Reporting issues or suggesting improvements
 
 If you encounter a bug or have a suggestion, please:
 
