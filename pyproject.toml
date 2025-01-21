@@ -6,7 +6,7 @@ authors = [
   "Pierre Camilleri <22995923+pierrecamilleri@users.noreply.github.com>",
   "Amélie Rondot"
 ]
-license = "AGPL-3.0"
+license = "MIT"
 readme = "README.md"
 packages = [
   {include = "frformat", from = "src"}
