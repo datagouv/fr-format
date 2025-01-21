@@ -7,7 +7,7 @@ Thank you for taking the time to contribute to the `fr-format` project! Your hel
 We welcome all forms of contributions: 
 
 * Reporting issues or suggesting improvements
-* Improving or adding documentation
+* Improving and adding documentation
 * Enhancing code
 
 In all cases, ensure you are working with the latest version of the project.
