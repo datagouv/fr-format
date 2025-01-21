@@ -4,10 +4,11 @@ Thank you for taking the time to contribute to the `fr-format` project! Your hel
 
 ## How to Contribute ?
 
-We welcome all forms of contributions,they are highly encouraged: 
+We welcome all forms of contributions: 
 
-* Submitting Pull Requests (Enhancing code, Improving or adding documentation)
 * Reporting Issues or suggesting improvements
+* Improving or adding documentation
+* Enhancing code
 
 In all cases, ensure you are working with the latest version of the project.
 
@@ -30,6 +31,12 @@ If you want to propose a new format, please verify:
 2. that the new format is relevant. The scope of fr-format is _exclusively_ specifically French formats. 
 
 See the [specific section](#implementing-a-new-french-format) below for guidelines on implementing a new format.
+
+## Improving and adding documentation
+
+All documentation files are located in [docs folder](./docs).\
+If your changes include complex logic or functionality, add clear and concise doc comments to explain them.
+Also, if you identify areas for improvement in the documentation, please contribute!
 
 ## Enhancing code
 
@@ -57,12 +64,6 @@ After verification, these are the steps to add it:
 3. Fix Linting problems running `make lint-fix`.
 4. Import the format inside `./src/frformat/__init__` and add it to the `all_formats` list. 
 5. Run `make generate-docs` to update the format documentation. 
-
-## Improving and adding documentation
-
-All documentation files are located in [docs folder](./docs).\
-If your changes include complex logic or functionality, add clear and concise doc comments to explain them.
-Also, if you identify areas for improvement in the documentation, please contribute!
 
 ## License
 
