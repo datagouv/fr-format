@@ -1,6 +1,13 @@
 # Fr-format
 
-A collection of validators to check data against french formats.
+The standard library `fr-format` has been developed for sharing validation functions between these two projects for now:
+
+* [validata](https://gitlab.com/validata-table)
+* [csv-detective](https://github.com/datagouv/csv-detective)
+
+It provides a collection of validators to check data against typical French formats.
+
+## Usage
 
 ## Installation
 
@@ -10,6 +17,11 @@ The package is published on PyPI. Install with :
 
 ## Usage 
 
+**User story**
+
+As a fr-format user, you want to validate a value according to a given French format. This allows you to easily check if the data provided by your project users is valid or not .
+
+Here's an example of how to use fr-format:
 ```python
 from frformat import Departement, Options, Millesime
 
