@@ -14,6 +14,13 @@ from frformat import (
 
 
 class ValidatorTest:
+    """
+    This class tests all INSEE geographical formats, versioned by the Millesime enum.
+
+    The __init__ function takes a cog parameter for the version,
+    which refers to the "Code officiel géographique" (Official Geographical Code).
+    """
+
     def __init__(self, cog, validTestCases, invalidTestCases, formatClass):
         self.cog = cog
         self.validTestCases = validTestCases
@@ -215,7 +222,10 @@ def test_all_validators_with_cog():
 
     for tc in test_cases:
         validatorTest = ValidatorTest(
-            tc["cog"], tc["validTestCases"], tc["invalidTestCases"], tc["formatClass"]
+            tc["cog"],
+            tc["validTestCases"],
+            tc["invalidTestCases"],
+            tc["formatClass"],
         )
         validatorTest.run_all_tests()
 

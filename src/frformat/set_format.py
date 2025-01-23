@@ -6,8 +6,6 @@ This module introduces utilities to efficiently create new set formats :
 
 - GenericSetFormat creates a validator with valid data passed on the fly
 - `new` creates specialized versions where data is tied to the class
-- `new_geo` creates an even more specialized version for geographical data
-  from INSEE
 """
 
 from enum import Enum
@@ -44,6 +42,28 @@ class GenericSetFormat(CustomStrFormat):
 
 
 V = TypeVar("V", bound="Version")
+
+
+@total_ordering
+class Millesime(Enum):
+    """Millesime class implements the `Version` protocol methods."""
+
+    M2023 = "2023"
+    M2024 = "2024"
+    LATEST = "latest"
+
+    def __eq__(self, other) -> bool:
+        return self.value == other.value
+
+    def __lt__(self, other) -> bool:
+        return self.value < other.value
+
+    def get_id(self) -> str:
+        return self.value
+
+    @classmethod
+    def is_sorted(cls) -> bool:
+        return True
 
 
 def new(
@@ -86,52 +106,3 @@ def new(
     specialized_set_format.metadata = Metadata(name, description)
 
     return specialized_set_format
-
-
-################################
-# Insee Geo format #############
-################################
-
-
-@total_ordering
-class Millesime(Enum):
-    """Millesime class implements the `Version` protocol methods."""
-
-    M2023 = "2023"
-    M2024 = "2024"
-    LATEST = "latest"
-
-    def __eq__(self, other) -> bool:
-        return self.value == other.value
-
-    def __lt__(self, other) -> bool:
-        return self.value < other.value
-
-    def get_id(self) -> str:
-        return self.value
-
-    @classmethod
-    def is_sorted(cls) -> bool:
-        return True
-
-
-def new_geo(
-    class_name: str, name: str, description: str, valid_data: VersionedSet[Millesime]
-) -> Type:
-    """A set format specialized on Insee geographical data, versioned by
-    the Millesime enum.
-
-    The main difference is that the __init__ function takes a "cog" parameter for the version,
-    which means "Code officiel géographique" (Official Geographical Code).
-
-    """
-    VersionedSetFormat = new(class_name, name, description, valid_data)
-
-    original_init = VersionedSetFormat.__init__
-
-    def new_init(self, cog: Union[Millesime, str], options=Options()):
-        original_init(self, cog, options)  # type: ignore
-
-    setattr(VersionedSetFormat, "__init__", new_init)
-
-    return VersionedSetFormat
