@@ -31,4 +31,10 @@ For better performance on big amounts of data, use in conjunction with numpy.
 
 ## Available formats
 
-Check out [this file](./docs/formats.md) for a list of available formats.
+Check out [this documentantion](./docs/formats.md) that lists all available formats.
+
+## Contributing
+
+Found a bug, want to propose a feature or a new format? See the [contribution guidelines](./CONTRIBUTING.md) on how to proceed!
+
+
