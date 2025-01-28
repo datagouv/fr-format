@@ -19,7 +19,7 @@ shapely = "^2.0.2"
 
 
 [tool.poetry.group.linting.dependencies]
-black = "^24.12.1"
+black = "^24.10"
 isort = "^5.13.2"
 pyright = "^1.1.369"
 flake8 = "^7.0.0"
