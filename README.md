@@ -7,7 +7,9 @@ It has been initially developed for sharing validation functions between these t
 * [validata](https://gitlab.com/validata-table)
 * [csv-detective](https://github.com/datagouv/csv-detective)
 
-## Usage
+## Available formats
+
+Check out [this file](./docs/formats.md) for a list of available formats.
 
 ## Installation
 
@@ -41,6 +43,3 @@ For more details, consult the [Options](./src/frformat/options.py) data class.
 
 For better performance on big amounts of data, use in conjunction with numpy.
 
-## Available formats
-
-Check out [this file](./docs/formats.md) for a list of available formats.
