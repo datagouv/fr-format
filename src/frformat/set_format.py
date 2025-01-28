@@ -41,14 +41,14 @@ class Millesime(Enum):
 
 
 class SingleSetFormat(CustomStrFormat):
-    """This format defines a closed list of valid values."""
+    """This format defines a closed list of valid values"""
 
-    _data: FrozenSet = frozenset()
+    _valid_values: FrozenSet = frozenset()
     """Dataset of valid values.
 
        Technical details:
 
-       Beware, child classes may define an instance `_data` attribute, which
+       Beware, child classes may define an instance `_valid_values` attribute, which
        will always take precedence over the class attribute for the validation.
     """
 
@@ -61,8 +61,8 @@ class SingleSetFormat(CustomStrFormat):
 
         self._normalized_values = {
             normalize_value(e, self._options)
-            for e in self._data
-            # in child classes, `self._data` can reference an instance
+            for e in self._valid_values
+            # in child classes, `self._valid_values` can reference an instance
             # attribute, if applicable ; otherwise the class attribute will
             # be used
         }.union(normalized_extra_values)
@@ -86,20 +86,20 @@ class VersionedSetFormat(SingleSetFormat, Generic[V]):
 
     Technical details:
 
-      - In the versioned set format, the _data attribute is an instance attribute,
+      - In the versioned set format, the `_valid_values` attribute is an instance attribute,
         which takes precedence over the class attribute of the mother class. The
         reason for this is that the exact valid values set is only known on instantiation.
     """
 
-    _versioned_data: VersionedSet = VersionedSet()
+    _versioned_valid_values: VersionedSet = VersionedSet()
 
     def __init__(self, version: Union[V, str], options: Options = Options()):
         version_id = version if isinstance(version, str) else version.get_id()
-        data = self._versioned_data.get_data(version_id)
+        data = self._versioned_valid_values.get_data(version_id)
         if data is None:
             raise ValueError(f"No data available for version: {version_id}")
 
-        self._data = data
+        self._valid_values = data
         super().__init__(options)
 
 
@@ -132,14 +132,14 @@ def new(
     if isinstance(valid_data, VersionedSet):
 
         class NewVersionedFormat(VersionedSetFormat):
-            _versioned_data = valid_data
+            _versioned_valid_values = valid_data
 
         specialized_set_format = NewVersionedFormat
 
     else:
 
         class NewFormat(SingleSetFormat):
-            _data = valid_data
+            _valid_values = valid_data
 
         specialized_set_format = NewFormat
 
