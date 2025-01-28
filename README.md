@@ -9,7 +9,7 @@ It has been initially developed for sharing validation functions between these t
 
 ## Available formats
 
-Check out [this file](./docs/formats.md) for a list of available formats.
+Check out [this documentantion](./docs/formats.md) that lists all available formats.
 
 ## Installation
 
@@ -42,4 +42,8 @@ Departement(Millesime.M2023, _options).is_valid("Canyon Cosmo")
 For more details, consult the [Options](./src/frformat/options.py) data class.
 
 For better performance on big amounts of data, use in conjunction with numpy.
+
+## Contributing
+
+Found a bug, want to propose a feature or a new format? See the [contribution guidelines](./CONTRIBUTING.md) on how to proceed!
 
