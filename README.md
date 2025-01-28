@@ -1,11 +1,11 @@
 # Fr-format
 
-The standard library `fr-format` has been developed for sharing validation functions between these two projects for now:
+The standard library `fr-format` provides a collection of validators to check data against typical French formats.
+
+It has been initially developed for sharing validation functions between these two projects:
 
 * [validata](https://gitlab.com/validata-table)
 * [csv-detective](https://github.com/datagouv/csv-detective)
-
-It provides a collection of validators to check data against typical French formats.
 
 ## Usage
 
