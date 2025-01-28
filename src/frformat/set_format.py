@@ -10,38 +10,12 @@ This module introduces utilities to efficiently create new set formats :
 
 from enum import Enum
 from functools import total_ordering
-from typing import FrozenSet, Type, TypeVar, Union
+from typing import FrozenSet, Generic, Type, TypeVar, Union, overload
 
 from frformat import CustomStrFormat, Metadata
 from frformat.common import normalize_value
 from frformat.options import Options
 from frformat.versioned_set import Version, VersionedSet
-
-
-class GenericSetFormat(CustomStrFormat):
-    """A format that checks if a value is among a set of valid values.
-
-    In the generic version, valid data is passed at object initialisation.
-    """
-
-    def __init__(self, valid_data: FrozenSet, options: Options = Options()):
-        self._options = options
-        self._data = valid_data
-
-        normalized_extra_values = {
-            normalize_value(e, self._options) for e in self._options.extra_valid_values
-        }
-
-        self._normalized_values = {
-            normalize_value(e, self._options) for e in self._data
-        }.union(normalized_extra_values)
-
-    def is_valid(self, value: str) -> bool:
-        normalized_value = normalize_value(value, self._options)
-        return normalized_value in self._normalized_values
-
-
-V = TypeVar("V", bound="Version")
 
 
 @total_ordering
@@ -66,12 +40,87 @@ class Millesime(Enum):
         return True
 
 
+class SingleSetFormat(CustomStrFormat):
+    """This format defines a closed list of valid values."""
+
+    _data: FrozenSet = frozenset()
+    """Dataset of valid values.
+
+       Technical details:
+
+       Beware, child classes may define an instance `_data` attribute, which
+       will always take precedence over the class attribute for the validation.
+    """
+
+    def __init__(self, options: Options = Options()):
+        self._options = options
+
+        normalized_extra_values = {
+            normalize_value(e, self._options) for e in self._options.extra_valid_values
+        }
+
+        self._normalized_values = {
+            normalize_value(e, self._options)
+            for e in self._data
+            # in child classes, `self._data` can reference an instance
+            # attribute, if applicable ; otherwise the class attribute will
+            # be used
+        }.union(normalized_extra_values)
+
+    def is_valid(self, value: str) -> bool:
+        normalized_value = normalize_value(value, self._options)
+        return normalized_value in self._normalized_values
+
+
+V = TypeVar("V", bound="Version")
+
+
+class VersionedSetFormat(SingleSetFormat, Generic[V]):
+    """This format defines a closed set of valid values, with different
+    versions to choose from.
+
+    Specific implementation details :
+
+    - the type will hint at which version class to use for initializing the format validator.
+    - a description of the format can be consulted with `MyClass.metadata.description` or at the top of `help(MyClass)`
+
+    Technical details:
+
+      - In the versioned set format, the _data attribute is an instance attribute,
+        which takes precedence over the class attribute of the mother class. The
+        reason for this is that the exact valid values set is only known on instantiation.
+    """
+
+    _versioned_data: VersionedSet = VersionedSet()
+
+    def __init__(self, version: Union[V, str], options: Options = Options()):
+        version_id = version if isinstance(version, str) else version.get_id()
+        data = self._versioned_data.get_data(version_id)
+        if data is None:
+            raise ValueError(f"No data available for version: {version_id}")
+
+        self._data = data
+        super().__init__(options)
+
+
+@overload
+def new(
+    class_name: str, name: str, description: str, valid_data: VersionedSet[V]
+) -> Type[VersionedSetFormat[V]]: ...
+
+
+@overload
+def new(
+    class_name: str, name: str, description: str, valid_data: FrozenSet
+) -> Type[SingleSetFormat]: ...
+
+
 def new(
     class_name: str,
     name: str,
     description: str,
     valid_data: Union[VersionedSet[V], FrozenSet[str]],
-) -> Type:
+) -> Union[Type[VersionedSetFormat[V]], Type[SingleSetFormat]]:
     """Utility function to create a specialized version of a SetFormat.
 
     The returned class is a fully featured format that once initialized
@@ -82,27 +131,24 @@ def new(
     """
     if isinstance(valid_data, VersionedSet):
 
-        class VersionedSetFormat(GenericSetFormat):
-            def __init__(self, version: Union[V, str], options: Options = Options()):
-                version_id = version if isinstance(version, str) else version.get_id()
-                data = valid_data.get_data(version_id)
-                if data is None:
-                    raise ValueError(f"No data available for version: {version_id}")
+        class NewVersionedFormat(VersionedSetFormat):
+            _versioned_data = valid_data
 
-                super().__init__(data, options)
-
-        specialized_set_format = VersionedSetFormat
+        specialized_set_format = NewVersionedFormat
 
     else:
 
-        class SingleSetFormat(GenericSetFormat):
-            def __init__(self, options: Options = Options()):
-                super().__init__(valid_data, options)
+        class NewFormat(SingleSetFormat):
+            _data = valid_data
 
-        specialized_set_format = SingleSetFormat
+        specialized_set_format = NewFormat
 
     specialized_set_format.__name__ = class_name
     specialized_set_format.__qualname__ = class_name
+    specialized_set_format.__doc__ = (
+        f"{description}\n\n{specialized_set_format.__doc__}"
+    )
+
     specialized_set_format.metadata = Metadata(name, description)
 
     return specialized_set_format
