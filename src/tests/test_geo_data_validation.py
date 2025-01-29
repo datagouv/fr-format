@@ -54,4 +54,4 @@ def test_geo_data_format():
             test_format = FormatTest(tc["version"])
             assert (
                 test_format.is_valid(tc["value_to_test"]) == tc["expected_valid"]
-            ), f'Error on geo data format definition with version { tc["expected_version"] } and value { tc["value_to_test"] }'
+            ), f'Error on geo data format definition with version { tc["version"] } and value { tc["value_to_test"] }'

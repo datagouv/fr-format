@@ -7,8 +7,7 @@ ValueType = TypeVar("ValueType", str, float, int, contravariant=True)
 
 
 class Formatter(Protocol, Generic[ValueType]):
-    def format(self, value: ValueType) -> str:
-        ...
+    def format(self, value: ValueType) -> str: ...
 
 
 class DefaultFormatter(Generic[ValueType]):
