@@ -71,6 +71,9 @@ class SingleSetFormat(CustomStrFormat):
         normalized_value = normalize_value(value, self._options)
         return normalized_value in self._normalized_values
 
+    def get_valid_values_set(self) -> FrozenSet[str]:
+        return self._valid_values
+
 
 V = TypeVar("V", bound="Version")
 
