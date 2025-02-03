@@ -103,15 +103,22 @@ class VersionedSetFormat(SingleSetFormat, Generic[V]):
         super().__init__(options)
 
 
+INSEE_SOURCE = "https://www.insee.fr/fr/information/2560452"
+
+
 @overload
 def new(
-    class_name: str, name: str, description: str, valid_data: VersionedSet[V]
+    class_name: str,
+    name: str,
+    description: str,
+    source: str,
+    valid_data: VersionedSet[V],
 ) -> Type[VersionedSetFormat[V]]: ...
 
 
 @overload
 def new(
-    class_name: str, name: str, description: str, valid_data: FrozenSet
+    class_name: str, name: str, description: str, source: str, valid_data: FrozenSet
 ) -> Type[SingleSetFormat]: ...
 
 
@@ -119,6 +126,7 @@ def new(
     class_name: str,
     name: str,
     description: str,
+    source: str,
     valid_data: Union[VersionedSet[V], FrozenSet[str]],
 ) -> Union[Type[VersionedSetFormat[V]], Type[SingleSetFormat]]:
     """Utility function to create a specialized version of a SetFormat.
@@ -149,6 +157,6 @@ def new(
         f"{description}\n\n{specialized_set_format.__doc__}"
     )
 
-    specialized_set_format.metadata = Metadata(name, description)
+    specialized_set_format.metadata = Metadata(name, description, source)
 
     return specialized_set_format

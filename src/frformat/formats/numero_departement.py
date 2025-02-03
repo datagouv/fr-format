@@ -1,5 +1,5 @@
 from frformat import set_format
-from frformat.set_format import Millesime
+from frformat.set_format import INSEE_SOURCE, Millesime
 from frformat.versioned_set import VersionedSet
 
 NUMEROS_DEPARTEMENTS_COG_2023 = frozenset(
@@ -14,7 +14,7 @@ NUMEROS_DEPARTEMENTS_COG_2024 = NUMEROS_DEPARTEMENTS_COG_2023
 
 name = "Numéro du département"
 description = "Vérifie que le numéro de département correspond bien à un numéro de département français, collectivités et territoires d'outre-mer pour un Code Officiel Géographique donné"
-
+source = INSEE_SOURCE
 
 numero_departement_versioned_data = VersionedSet[Millesime]()
 numero_departement_versioned_data.add_version(
@@ -25,5 +25,5 @@ numero_departement_versioned_data.add_version(
 )
 
 NumeroDepartement = set_format.new(
-    "NumeroDepartement", name, description, numero_departement_versioned_data
+    "NumeroDepartement", name, description, source, numero_departement_versioned_data
 )

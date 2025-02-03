@@ -9,6 +9,7 @@ from frformat.formatter import DefaultFormatter, Formatter
 class Metadata:
     name: str
     description: str
+    source: str = ""
 
 
 ValueType = TypeVar("ValueType", str, float, int, contravariant=True)
