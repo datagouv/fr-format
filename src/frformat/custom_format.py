@@ -19,8 +19,7 @@ class CustomFormat(ABC, Generic[ValueType]):
     formatter: Formatter = DefaultFormatter[ValueType]()
 
     @abstractmethod
-    def is_valid(self, value: ValueType) -> bool:
-        ...
+    def is_valid(self, value: ValueType) -> bool: ...
 
     def format(self, value: ValueType) -> str:
         if not self.is_valid(value):
