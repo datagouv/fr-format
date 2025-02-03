@@ -257,32 +257,38 @@ class Insee_geo_format(unittest.TestCase):
 
         assert code_commune_insee_cog_2024.format(cog_2024_value) == cog_2024_value
 
-    def test_formats_valid_values_set_with_versioned_set(self):
-        name = "Validator name"
-        description = "Validator description"
-
-        validator_versioned_data = VersionedSet[Millesime]()
-        validator_versioned_data.add_version(
+    def test_formats_valid_values(self):
+        validator_with_versioned_data = VersionedSet[Millesime]()
+        validator_with_versioned_data.add_version(
             Millesime.M2024, frozenset({"Paris", "Lyon"})
         )
+        test_cases = [
+            {
+                "validator_data": validator_with_versioned_data,
+                "version": "2024",
+                "expected_result": frozenset({"Paris", "Lyon"}),
+            },
+            {
+                "validator_data": frozenset({"Nomandie", "Nice"}),
+                "version": None,
+                "expected_result": frozenset({"Nomandie", "Nice"}),
+            },
+        ]
 
-        validator = set_format.new(
-            "Validator", name, description, validator_versioned_data
-        )
-
-        assert validator("2024").get_valid_values_set() == frozenset({"Paris", "Lyon"})
-
-    def test_formats_valid_values_set_with_single_set(self):
         name = "Validator name"
         description = "Validator description"
 
-        validator_valid_values_single_set = frozenset({"Nomandie", "Nice"})
-
-        validator = set_format.new(
-            "Validator", name, description, validator_valid_values_single_set
-        )
-
-        assert validator().get_valid_values_set() == frozenset({"Nomandie", "Nice"})
+        for tc in test_cases:
+            validator = set_format.new(
+                "Validator", name, description, tc["validator_data"]
+            )
+            if tc["version"]:
+                assert (
+                    validator(tc["version"]).get_valid_values_set()
+                    == tc["expected_result"]
+                )
+            else:
+                assert validator().get_valid_values_set() == tc["expected_result"]
 
 
 class Geo_format(unittest.TestCase):
