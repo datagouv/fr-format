@@ -22,7 +22,7 @@ from frformat.common import NBSP, NNBSP
 from frformat.versioned_set import VersionedSet
 
 
-class Insee_geo_format(unittest.TestCase):
+class InseeGeoFormat(unittest.TestCase):
     class ValidatorTest:
         """
         This class tests all INSEE geographical formats, versioned by the Millesime enum.
@@ -264,12 +264,12 @@ class Insee_geo_format(unittest.TestCase):
         )
         test_cases = [
             {
-                "validator_data": validator_with_versioned_data,
+                "valid_data": validator_with_versioned_data,
                 "version": "2024",
                 "expected_result": frozenset({"Paris", "Lyon"}),
             },
             {
-                "validator_data": frozenset({"Nomandie", "Nice"}),
+                "valid_data": frozenset({"Nomandie", "Nice"}),
                 "version": None,
                 "expected_result": frozenset({"Nomandie", "Nice"}),
             },
@@ -279,19 +279,19 @@ class Insee_geo_format(unittest.TestCase):
         description = "Validator description"
 
         for tc in test_cases:
-            validator = set_format.new(
-                "Validator", name, description, tc["validator_data"]
-            )
+            validator = set_format.new("Validator", name, description, tc["valid_data"])
             if tc["version"]:
                 assert (
                     validator(tc["version"]).get_valid_values_set()
                     == tc["expected_result"]
-                )
+                ), f"Check that the returned data is not equal to {tc['expected_result']} when the valid_data is {tc['valid_data']} and the version is equal to {tc['version']}"
             else:
-                assert validator().get_valid_values_set() == tc["expected_result"]
+                assert (
+                    validator().get_valid_values_set() == tc["expected_result"]
+                ), f"Check that the returned data is not equal to {tc['expected_result']} when the valid_data is {tc['valid_data']} and the version is equal to {tc['version']}"
 
 
-class Geo_format(unittest.TestCase):
+class GeoFormat(unittest.TestCase):
     """This method tests geographical formats, which does not belong to the Official Geographic Code."""
 
     def test_code_fantoir(self):
