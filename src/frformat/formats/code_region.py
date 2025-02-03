@@ -1,7 +1,6 @@
 from frformat import set_format
+from frformat.set_format import INSEE_SOURCE, Millesime
 from frformat.versioned_set import VersionedSet
-
-from ..set_format import INSEE_SOURCE, Millesime
 
 CODES_REGIONS_COG_2023 = frozenset(
     {
