@@ -20,7 +20,7 @@ The package is published on PyPI. Install with :
 ## Usage 
 
 **User story**
-As a `fr-format` user, specifically a developer, you may need to validate a value (which must be of type number(integer/float) or string) according to a given French format. This feature enables you to easily verify whether the data provided by your project users is valid or not.\
+As a `fr-format` user, specifically a developer or data scientist, you may need to validate a value according to a given French format. This feature enables you to easily verify whether your data  is valid or not.\
 Additionally, this project allows you to retrieve the entire set of valid values, depending on the format and the version(if it exists) used. This can be particularly useful in your frontend, for example, to display the complete set.
 
 Here's an example of how to use fr-format:
