@@ -256,13 +256,13 @@ class TestInseeGeoFormat:
         assert code_commune_insee_cog_2024.format(cog_2024_value) == cog_2024_value
 
     def test_formats_valid_values(self):
-        validator_with_versioned_data = VersionedSet[Millesime]()
-        validator_with_versioned_data.add_version(
+        versioned_data = VersionedSet[Millesime]()
+        versioned_data.add_version(
             Millesime.M2024, frozenset({"Paris", "Lyon"})
         )
         test_cases = [
             {
-                "valid_data": validator_with_versioned_data,
+                "valid_data": versioned_data,
                 "version": "2024",
                 "expected_result": frozenset({"Paris", "Lyon"}),
             },
