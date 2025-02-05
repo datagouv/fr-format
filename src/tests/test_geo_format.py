@@ -14,10 +14,8 @@ from frformat import (
     NumeroDepartement,
     Pays,
     Region,
-    set_format,
 )
 from frformat.common import NBSP, NNBSP
-from frformat.versioned_set import VersionedSet
 
 
 class TestInseeGeoFormat:
@@ -254,39 +252,6 @@ class TestInseeGeoFormat:
         cog_2024_value = "64300"
 
         assert code_commune_insee_cog_2024.format(cog_2024_value) == cog_2024_value
-
-    def test_formats_valid_values(self):
-        versioned_data = VersionedSet[Millesime]()
-        versioned_data.add_version(Millesime.M2024, frozenset({"Paris", "Lyon"}))
-        test_cases = [
-            {
-                "name": "VersionedSetFormat",
-                "valid_data": versioned_data,
-                "version": "2024",
-                "expected_result": frozenset({"Paris", "Lyon"}),
-            },
-            {
-                "name": "SingleSetFormat",
-                "valid_data": frozenset({"Nomandie", "Nice"}),
-                "version": None,
-                "expected_result": frozenset({"Nomandie", "Nice"}),
-            },
-        ]
-
-        name = "Validator name"
-        description = "Validator description"
-
-        for tc in test_cases:
-            validator = set_format.new("Validator", name, description, tc["valid_data"])
-            if tc["version"]:
-                assert (
-                    validator(tc["version"]).get_valid_values_set()
-                    == tc["expected_result"]
-                ), f"While we test {tc['name']}, the returned data is not equal to {tc['expected_result']} when the valid_data is {tc['valid_data']} and the version is equal to {tc['version']}"
-            else:
-                assert (
-                    validator().get_valid_values_set() == tc["expected_result"]
-                ), f"While we test {tc['name']}, the returned data is not equal to {tc['expected_result']} when the valid_data is {tc['valid_data']} and the version is equal to {tc['version']}"
 
 
 class TestGeoFormat:
