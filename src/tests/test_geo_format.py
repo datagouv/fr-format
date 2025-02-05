@@ -257,9 +257,7 @@ class TestInseeGeoFormat:
 
     def test_formats_valid_values(self):
         versioned_data = VersionedSet[Millesime]()
-        versioned_data.add_version(
-            Millesime.M2024, frozenset({"Paris", "Lyon"})
-        )
+        versioned_data.add_version(Millesime.M2024, frozenset({"Paris", "Lyon"}))
         test_cases = [
             {
                 "valid_data": versioned_data,
