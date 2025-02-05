@@ -7,7 +7,11 @@ def test_validator():
     )
 
     Validator = set_format.new(
-        "Validator", "validator", "Test validator", valid_values_enum
+        "Validator",
+        "validator",
+        "Test validator",
+        "source validator",
+        valid_values_enum,
     )
 
     test_cases = [

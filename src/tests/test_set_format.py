@@ -15,7 +15,11 @@ def test_format_validation():
     versioned_data.add_version(Millesime.M2024, frozenset({"Arandas"}))
 
     FormatTest = new(
-        "Versionned format", "Versionned format", "Versionned format", versioned_data
+        "Versionned format",
+        "Versionned format name",
+        "Versionned format description",
+        "Versionned format source",
+        versioned_data,
     )
 
     test_cases = [
@@ -78,9 +82,12 @@ def test_formats_valid_values():
 
     name = "Validator name"
     description = "Validator description"
+    source = "Validator source"
 
     for tc in test_cases:
-        validator = set_format.new("Validator", name, description, tc["valid_data"])
+        validator = set_format.new(
+            "Validator", name, description, source, tc["valid_data"]
+        )
         if tc["version"]:
             assert (
                 validator(tc["version"]).get_valid_values_set() == tc["expected_result"]
