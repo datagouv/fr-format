@@ -18,7 +18,7 @@ from frformat import (
 from frformat.common import NBSP, NNBSP
 
 
-def test_insee_geo_format():
+class TestInseeGeoFormat:
     class ValidatorTest:
         """
         This class tests all INSEE geographical formats, versioned by the Millesime enum.
@@ -49,7 +49,7 @@ def test_insee_geo_format():
             self.test_valid_cases()
             self.test_invalid_cases()
 
-    def test_all_validators_with_cog():
+    def test_all_fomats_validation(self):
         test_cases = [
             {
                 "name": "code_region_millesime2023",
@@ -234,7 +234,7 @@ def test_insee_geo_format():
         ]
 
         for tc in test_cases:
-            validatorTest = ValidatorTest(
+            validatorTest = self.ValidatorTest(
                 tc["cog"],
                 tc["validTestCases"],
                 tc["invalidTestCases"],
@@ -242,7 +242,7 @@ def test_insee_geo_format():
             )
             validatorTest.run_all_tests()
 
-    def test_code_commune_insee_format():
+    def test_code_commune_insee_format(self):
         code_commune_insee_cog_2023 = CodeCommuneInsee(Millesime.M2023)
         code_commune_insee_cog_2024 = CodeCommuneInsee(Millesime.M2024)
 
@@ -254,10 +254,10 @@ def test_insee_geo_format():
         assert code_commune_insee_cog_2024.format(cog_2024_value) == cog_2024_value
 
 
-def test_geo_format():
+class TestGeoFormat:
     """This method tests geographical formats, which does not belong to the Official Geographic Code."""
 
-    def test_code_fantoir():
+    def test_code_fantoir(self):
         fantoir_valid = "ZB03A"
         fantoir_invalid = ["1000", "zB03A"]
 
@@ -266,7 +266,7 @@ def test_geo_format():
         for fi in fantoir_invalid:
             assert not code_fantoir.is_valid(fi)
 
-    def test_code_postal():
+    def test_code_postal(self):
         value = "05560"
         code_postal = CodePostal()
         assert code_postal.is_valid(value)
@@ -275,7 +275,7 @@ def test_geo_format():
         for cpi in codes_postales_invalides:
             assert not code_postal.is_valid(cpi)
 
-    def test_longitude_l93():
+    def test_longitude_l93(self):
         longitudel93 = LongitudeL93()
         assert longitudel93.format(224234) == "224" + NNBSP + "234" + NBSP + "m"
         assert longitudel93.format(224234.0) == "224" + NNBSP + "234,00" + NBSP + "m"
@@ -290,7 +290,7 @@ def test_geo_format():
         for tc in valid_test_cases:
             assert longitudel93.is_valid(tc)
 
-    def test_latitude_l93():
+    def test_latitude_l93(self):
         latitudel93 = LatitudeL93()
         assert (
             latitudel93.format(6757121)
