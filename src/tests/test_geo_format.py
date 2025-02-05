@@ -286,7 +286,7 @@ class TestInseeGeoFormat:
             else:
                 assert (
                     validator().get_valid_values_set() == tc["expected_result"]
-                ), f"Check that the returned data is not equal to {tc['expected_result']} when the valid_data is {tc['valid_data']} and the version is equal to {tc['version']}"
+                ), f"The returned data is not equal to {tc['expected_result']} when the valid_data is {tc['valid_data']} and the version is equal to {tc['version']}"
 
 
 class TestGeoFormat:
