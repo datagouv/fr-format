@@ -1,5 +1,3 @@
-import unittest
-
 from frformat import (
     Canton,
     CodeCommuneInsee,
@@ -22,7 +20,7 @@ from frformat.common import NBSP, NNBSP
 from frformat.versioned_set import VersionedSet
 
 
-class InseeGeoFormat(unittest.TestCase):
+class TestInseeGeoFormat:
     class ValidatorTest:
         """
         This class tests all INSEE geographical formats, versioned by the Millesime enum.
@@ -291,7 +289,7 @@ class InseeGeoFormat(unittest.TestCase):
                 ), f"Check that the returned data is not equal to {tc['expected_result']} when the valid_data is {tc['valid_data']} and the version is equal to {tc['version']}"
 
 
-class GeoFormat(unittest.TestCase):
+class TestGeoFormat:
     """This method tests geographical formats, which does not belong to the Official Geographic Code."""
 
     def test_code_fantoir(self):
