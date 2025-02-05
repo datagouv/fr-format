@@ -72,6 +72,12 @@ class SingleSetFormat(CustomStrFormat):
         return normalized_value in self._normalized_values
 
     def get_valid_values_set(self) -> FrozenSet[str]:
+    """Returns the canonical set of valid values. 
+    
+    In the case of  versioned data, it will only return the valid values for the version the validator has been initialized with.
+    
+    Validation options have no impact on the output - in particular, extra user-defined valid values will not be part of the result.
+    """
         return self._valid_values
 
 
