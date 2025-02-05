@@ -260,11 +260,13 @@ class TestInseeGeoFormat:
         versioned_data.add_version(Millesime.M2024, frozenset({"Paris", "Lyon"}))
         test_cases = [
             {
+                "name": "VersionedSetFormat",
                 "valid_data": versioned_data,
                 "version": "2024",
                 "expected_result": frozenset({"Paris", "Lyon"}),
             },
             {
+                "name": "SingleSetFormat",
                 "valid_data": frozenset({"Nomandie", "Nice"}),
                 "version": None,
                 "expected_result": frozenset({"Nomandie", "Nice"}),
@@ -280,11 +282,11 @@ class TestInseeGeoFormat:
                 assert (
                     validator(tc["version"]).get_valid_values_set()
                     == tc["expected_result"]
-                ), f"The returned data is not equal to {tc['expected_result']} when the valid_data is {tc['valid_data']} and the version is equal to {tc['version']}"
+                ), f"While we test {tc['name']}, the returned data is not equal to {tc['expected_result']} when the valid_data is {tc['valid_data']} and the version is equal to {tc['version']}"
             else:
                 assert (
                     validator().get_valid_values_set() == tc["expected_result"]
-                ), f"The returned data is not equal to {tc['expected_result']} when the valid_data is {tc['valid_data']} and the version is equal to {tc['version']}"
+                ), f"While we test {tc['name']}, the returned data is not equal to {tc['expected_result']} when the valid_data is {tc['valid_data']} and the version is equal to {tc['version']}"
 
 
 class TestGeoFormat:
