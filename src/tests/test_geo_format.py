@@ -10,12 +10,12 @@ from frformat import (
     Departement,
     LatitudeL93,
     LongitudeL93,
-    Millesime,
     NumeroDepartement,
     Pays,
     Region,
 )
 from frformat.common import NBSP, NNBSP
+from frformat.versions import Millesime
 
 
 class TestInseeGeoFormat:
