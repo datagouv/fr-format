@@ -52,6 +52,20 @@ class TestInseeGeoFormat:
     def test_all_fomats_validation(self):
         test_cases = [
             {
+                "name": "code_region_millesime2015",
+                "cog": Millesime.M2015,
+                "formatClass": CodeRegion,
+                "validTestCases": ["21", "23"],
+                "invalidTestCases": ["27", "44"],
+            },
+            {
+                "name": "code_region_millesime2016",
+                "cog": Millesime.M2016,
+                "formatClass": CodeRegion,
+                "validTestCases": ["32", "76"],
+                "invalidTestCases": ["31", "42"],
+            },
+            {
                 "name": "code_region_millesime2023",
                 "cog": Millesime.M2023,
                 "formatClass": CodeRegion,
