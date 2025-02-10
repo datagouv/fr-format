@@ -22,6 +22,8 @@ from frformat.versioned_set import Version, VersionedSet
 class Millesime(Enum):
     """Millesime class implements the `Version` protocol methods."""
 
+    M2015 = "2015"
+    M2016 = "2016"
     M2023 = "2023"
     M2024 = "2024"
     LATEST = "latest"
