@@ -17,36 +17,40 @@ CODES_REGION_REPETES = frozenset(
         "94",
     }
 )
-CODES_REGIONS_COG_2015 = CODES_REGION_REPETES.union(frozenset(
-            {
-                "21",
-                "22",
-                "23",
-                "25",
-                "26",
-                "31",
-                "41",
-                "42",
-                "43",
-                "54",
-                "72",
-                "73",
-                "74",
-                "83",
-                "91",
-            }
-        ))
-CODES_REGIONS_COG_2016 = CODES_REGION_REPETES.union( frozenset(
-            {
-                "27",
-                "28",
-                "32",
-                "44",
-                "75",
-                "76",
-                "84",
-            }
-        ))
+CODES_REGIONS_COG_2015 = CODES_REGION_REPETES.union(
+    frozenset(
+        {
+            "21",
+            "22",
+            "23",
+            "25",
+            "26",
+            "31",
+            "41",
+            "42",
+            "43",
+            "54",
+            "72",
+            "73",
+            "74",
+            "83",
+            "91",
+        }
+    )
+)
+CODES_REGIONS_COG_2016 = CODES_REGION_REPETES.union(
+    frozenset(
+        {
+            "27",
+            "28",
+            "32",
+            "44",
+            "75",
+            "76",
+            "84",
+        }
+    )
+)
 CODES_REGIONS_COG_2023 = CODES_REGIONS_COG_2016
 CODES_REGIONS_COG_2024 = CODES_REGIONS_COG_2016
 
