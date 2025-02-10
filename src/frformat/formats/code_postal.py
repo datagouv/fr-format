@@ -6,7 +6,7 @@ from frformat.versions import Semestre
 name = "Code postal"
 description = "Vérifie que le code postal est bien un code postal français pour un semestre bien déterminé donné"
 source = "https://datanova.laposte.fr/datasets/laposte-hexasmal"
-last_update = "08/01/2025"
+last_update = "08/02/2025"
 
 code_postal_versioned_data = VersionedSet[Semestre]()
 code_postal_versioned_data.add_version(Semestre.S1_2025, CODES_POSTAUX_SEMESTRE1_2025)
