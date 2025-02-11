@@ -4,7 +4,9 @@ from frformat.versioned_set import VersionedSet
 from frformat.versions import Semestre
 
 name = "Code postal"
-description = "Vérifie que le code postal est bien un code postal français pour un semestre bien déterminé donné"
+description = (
+    "Vérifie que le code postal est bien un code postal français pour un semestre donné"
+)
 source = "https://datanova.laposte.fr/datasets/laposte-hexasmal"
 last_update = "08/02/2025"
 
