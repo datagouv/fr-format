@@ -55,7 +55,7 @@ CODES_REGIONS_COG_2023 = CODES_REGIONS_COG_2016
 CODES_REGIONS_COG_2024 = CODES_REGIONS_COG_2016
 
 name = "Code région"
-description = "Vérifie qu'il s'agit d'un code région selon le Code Officiel Géographique (cog) donné, sachant qu'à partir du Millesime 2016 la liste des régions française change suite à plusieurs fusions"
+description = "Vérifie qu'il s'agit d'un code région selon le Code Officiel Géographique (cog) donné. À partir du Millesime 2016 la liste des régions françaises change suite à plusieurs fusions"
 source = INSEE_SOURCE
 
 code_region_versioned_data = VersionedSet[Millesime]()

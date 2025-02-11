@@ -8,7 +8,7 @@
 | CodePaysISO2 | Codes ISO2 Pays | Code ISO 2 de pays pour un Code Officiel Géographique donné |
 | CodePaysISO3 | Codes ISO3 Pays | Code ISO 3 de pays pour un Code Officiel Géographique donné |
 | CodePostal | Code postal | Vérifie que le code postal est bien un code postal français |
-| CodeRegion | Code région | Vérifie qu'il s'agit d'un code région selon le Code Officiel Géographique (cog) donné, sachant qu'à partir du Millesime 2016 la liste des régions française change suite à plusieurs fusions |
+| CodeRegion | Code région | Vérifie qu'il s'agit d'un code région selon le Code Officiel Géographique (cog) donné. À partir du Millesime 2016 la liste des régions françaises change suite à plusieurs fusions |
 | Commune | Nom de commune | Vérifie que le nom correspond à un nom de commune française pour un Code Officiel Géographique donné(ne vérifie pas l'accentuation, la casse, la ponctuation) |
 | CoordonneesGPSFrancaises | Coordonnées GPS françaises | Check that GPS coordinates are in a bounding box approximating France (including DOM) |
 | Departement | Nom de département | Vérifie les départements français, collectivités et territoires d'outre-mer valides pour un Code Officiel Géographique donné |
