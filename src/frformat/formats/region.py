@@ -9,7 +9,7 @@ from frformat.versioned_set import VersionedSet
 
 name = "Nom de région"
 description = (
-    "Vérifie les régions françaises valides pour un Code Officiel Géographique donné"
+    "Vérifie les régions françaises valides pour un Code Officiel Géographique donné. Depuis 2017, la liste des régions françaises n'a pas changé !"
 )
 source = INSEE_SOURCE
 versions = [

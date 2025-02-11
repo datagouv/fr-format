@@ -15,7 +15,7 @@
 | NomenclatureActe | Nomenclature des actes | Document de référence dans les spécifications SCDL :<br>        http://www.moselle.gouv.fr/content/download/1107/7994/file/nomenclature.pdf<br><br>        Dans la nomenclature Actes, les valeurs avant le '/' sont :<br><br>        Commande publique<br>        Urbanisme<br>        Domaine et patrimoine<br>        Fonction publique<br>        Institutions et vie politique<br>        Libertés publiques et pouvoirs de police<br>        Finances locales<br>        Domaines de compétences par thèmes<br>        Autres domaines de compétences<br><br>        La validation devra accepter minuscules et majuscules, accents et sans accents ... |
 | NumeroDepartement | Numéro du département | Vérifie que le numéro de département correspond bien à un numéro de département français, collectivités et territoires d'outre-mer pour un Code Officiel Géographique donné |
 | Pays | Pays et territoires étrangers | Nom de pays et territoires étrangers pour un Code Officiel Géographique donné |
-| Region | Nom de région | Vérifie les régions françaises valides pour un Code Officiel Géographique donné |
+| Region | Nom de région | Vérifie les régions françaises valides pour un Code Officiel Géographique donné. Depuis 2017, la liste des régions françaises n'a pas changé ! |
 | Siren | SIREN | Check french SIREN number validity, but does not check if SIREN number exists. |
 | Siret | SIRET | Check french SIRET number validity, but does not check if SIRET number exists. |
 
