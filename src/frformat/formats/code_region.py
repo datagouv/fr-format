@@ -38,7 +38,7 @@ CODES_REGIONS_COG_2015 = CODES_REGION_REPETES.union(
         }
     )
 )
-CODES_REGIONS_COG_2016 = CODES_REGION_REPETES.union(
+CODES_REGIONS_SINCE_2016 = CODES_REGION_REPETES.union(
     frozenset(
         {
             "27",
@@ -51,18 +51,27 @@ CODES_REGIONS_COG_2016 = CODES_REGION_REPETES.union(
         }
     )
 )
-CODES_REGIONS_COG_2023 = CODES_REGIONS_COG_2016
-CODES_REGIONS_COG_2024 = CODES_REGIONS_COG_2016
 
 name = "Code région"
 description = "Vérifie qu'il s'agit d'un code région selon le Code Officiel Géographique (cog) donné. À partir du Millesime 2016 la liste des régions françaises change suite à plusieurs fusions"
 source = INSEE_SOURCE
+versions = [
+    Millesime.M2016,
+    Millesime.M2017,
+    Millesime.M2018,
+    Millesime.M2019,
+    Millesime.M2020,
+    Millesime.M2021,
+    Millesime.M2022,
+    Millesime.M2023,
+    Millesime.M2024,
+]
 
 code_region_versioned_data = VersionedSet[Millesime]()
 code_region_versioned_data.add_version(Millesime.M2015, CODES_REGIONS_COG_2015)
-code_region_versioned_data.add_version(Millesime.M2016, CODES_REGIONS_COG_2016)
-code_region_versioned_data.add_version(Millesime.M2023, CODES_REGIONS_COG_2023)
-code_region_versioned_data.add_version(Millesime.M2024, CODES_REGIONS_COG_2024)
+
+for v in versions:
+    code_region_versioned_data.add_version(v, CODES_REGIONS_SINCE_2016)
 
 CodeRegion = set_format.new(
     "CodeRegion", name, description, source, code_region_versioned_data
