@@ -22,7 +22,7 @@ from .formats.region import Region as Region
 from .formats.siren import Siren as Siren
 from .formats.siret import Siret as Siret
 from .options import Options as Options
-from .set_format import Millesime as Millesime
+from .versions import Millesime as Millesime
 
 all_formats = [
     Canton,

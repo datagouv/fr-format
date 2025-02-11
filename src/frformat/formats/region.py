@@ -1,7 +1,8 @@
 from frformat import set_format
 from frformat.formats.region_frozenset import REGIONS_COG_2023, REGIONS_COG_2024
-from frformat.set_format import INSEE_SOURCE, Millesime
+from frformat.set_format import INSEE_SOURCE
 from frformat.versioned_set import VersionedSet
+from frformat.versions import Millesime
 
 name = "Nom de région"
 description = (

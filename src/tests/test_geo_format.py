@@ -10,12 +10,12 @@ from frformat import (
     Departement,
     LatitudeL93,
     LongitudeL93,
-    Millesime,
     NumeroDepartement,
     Pays,
     Region,
 )
 from frformat.common import NBSP, NNBSP
+from frformat.versions import Millesime, Semestre
 
 
 class TestInseeGeoFormat:
@@ -268,12 +268,12 @@ class TestGeoFormat:
 
     def test_code_postal(self):
         value = "05560"
-        code_postal = CodePostal()
-        assert code_postal.is_valid(value)
-        assert code_postal.format(value) == value
+        code_postal_semestre1_2025 = CodePostal(Semestre.S1_2025)
+        assert code_postal_semestre1_2025.is_valid(value)
+        assert code_postal_semestre1_2025.format(value) == value
         codes_postales_invalides = ["77777", "2B002"]
         for cpi in codes_postales_invalides:
-            assert not code_postal.is_valid(cpi)
+            assert not code_postal_semestre1_2025.is_valid(cpi)
 
     def test_longitude_l93(self):
         longitudel93 = LongitudeL93()

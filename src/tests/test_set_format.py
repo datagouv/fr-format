@@ -1,8 +1,9 @@
 import pytest
 
 from frformat import set_format
-from frformat.set_format import Millesime, new
+from frformat.set_format import new
 from frformat.versioned_set import VersionedSet
+from frformat.versions import Millesime
 
 
 def test_format_validation():

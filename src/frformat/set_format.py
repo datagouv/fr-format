@@ -8,36 +8,12 @@ This module introduces utilities to efficiently create new set formats :
 - `new` creates specialized versions where data is tied to the class
 """
 
-from enum import Enum
-from functools import total_ordering
 from typing import FrozenSet, Generic, Type, TypeVar, Union, overload
 
 from frformat import CustomStrFormat, Metadata
 from frformat.common import normalize_value
 from frformat.options import Options
 from frformat.versioned_set import Version, VersionedSet
-
-
-@total_ordering
-class Millesime(Enum):
-    """Millesime class implements the `Version` protocol methods."""
-
-    M2023 = "2023"
-    M2024 = "2024"
-    LATEST = "latest"
-
-    def __eq__(self, other) -> bool:
-        return self.value == other.value
-
-    def __lt__(self, other) -> bool:
-        return self.value < other.value
-
-    def get_id(self) -> str:
-        return self.value
-
-    @classmethod
-    def is_sorted(cls) -> bool:
-        return True
 
 
 class SingleSetFormat(CustomStrFormat):
