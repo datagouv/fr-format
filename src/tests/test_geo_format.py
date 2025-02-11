@@ -52,6 +52,20 @@ class TestInseeGeoFormat:
     def test_all_fomats_validation(self):
         test_cases = [
             {
+                "name": "code_region_millesime2015",
+                "cog": Millesime.M2015,
+                "formatClass": CodeRegion,
+                "validTestCases": ["21", "23"],
+                "invalidTestCases": ["27", "44"],
+            },
+            {
+                "name": "code_region_millesime2016",
+                "cog": Millesime.M2016,
+                "formatClass": CodeRegion,
+                "validTestCases": ["32", "76"],
+                "invalidTestCases": ["31", "42"],
+            },
+            {
                 "name": "code_region_millesime2023",
                 "cog": Millesime.M2023,
                 "formatClass": CodeRegion,
@@ -59,15 +73,34 @@ class TestInseeGeoFormat:
                 "invalidTestCases": ["AA", "00", "7 5"],
             },
             {
-                "name": "code_region_millesime2024",
-                "cog": Millesime.M2024,
-                "formatClass": CodeRegion,
-                "validTestCases": ["01", "75"],
-                "invalidTestCases": ["AA", "00", "7 5"],
+                "name": "region_millesime2015",
+                "cog": Millesime.M2015,
+                "formatClass": Region,
+                "validTestCases": [
+                    "Picardie",
+                    "Haute-Normandie",
+                ],
+                "invalidTestCases": [
+                    "Normandie",
+                    "Nord-Pas-de-Calais-Picardie",
+                ],
             },
             {
-                "name": "region_millesime2023",
-                "cog": Millesime.M2023,
+                "name": "region_millesime2016",
+                "cog": Millesime.M2016,
+                "formatClass": Region,
+                "validTestCases": [
+                    "Normandie",
+                    "Nord-Pas-de-Calais-Picardie",
+                ],
+                "invalidTestCases": [
+                    "Midi-Pyrénées",
+                    "Limousin",
+                ],
+            },
+            {
+                "name": "region_millesime2017",
+                "cog": Millesime.M2017,
                 "formatClass": Region,
                 "validTestCases": ["Centre-Val de Loire", "La Réunion", "Corse"],
                 "invalidTestCases": [
@@ -79,16 +112,13 @@ class TestInseeGeoFormat:
                 ],
             },
             {
-                "name": "region_millesime2024",
-                "cog": Millesime.M2024,
+                "name": "region_millesime2023",
+                "cog": Millesime.M2023,
                 "formatClass": Region,
                 "validTestCases": ["Centre-Val de Loire", "La Réunion", "Corse"],
                 "invalidTestCases": [
-                    "Beleriand",
-                    "Canyon Cosmo",
-                    "corse",
-                    "Centre val de Loire",
-                    "la reunion",
+                    "Languedoc-Roussillon-Midi-Pyrénées",
+                    "Alsace-Champagne-Ardenne-Lorraine",
                 ],
             },
             {
