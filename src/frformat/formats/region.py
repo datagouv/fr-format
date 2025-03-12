@@ -8,7 +8,7 @@ from frformat.set_format import INSEE_SOURCE, Millesime
 from frformat.versioned_set import VersionedSet
 
 name = "Nom de région"
-description = "Vérifie les régions françaises valides pour un Code Officiel Géographique donné. Depuis 2017, la liste des régions françaises n'a pas changé !"
+description = "Vérifie les régions françaises valides pour un Code Officiel Géographique donné. Depuis 2017, la liste des régions françaises n'a pas changé."
 source = INSEE_SOURCE
 versions = [
     Millesime.M2017,
