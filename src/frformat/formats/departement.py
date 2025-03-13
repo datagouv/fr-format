@@ -3,8 +3,9 @@ from frformat.formats.departement_frozenset import (
     DEPARTEMENTS_COG_2023,
     DEPARTEMENTS_COG_2024,
 )
-from frformat.set_format import INSEE_SOURCE, Millesime
+from frformat.set_format import INSEE_SOURCE
 from frformat.versioned_set import VersionedSet
+from frformat.versions import Millesime
 
 name = "Nom de département"
 description = "Vérifie les départements français, collectivités et territoires d'outre-mer valides pour un Code Officiel Géographique donné"
