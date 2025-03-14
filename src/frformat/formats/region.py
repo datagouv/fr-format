@@ -4,8 +4,9 @@ from frformat.formats.region_frozenset import (
     REGIONS_COG_2016,
     REGIONS_SINCE_2017,
 )
-from frformat.set_format import INSEE_SOURCE, Millesime
+from frformat.set_format import INSEE_SOURCE
 from frformat.versioned_set import VersionedSet
+from frformat.versions import Millesime
 
 name = "Nom de région"
 description = "Vérifie les régions françaises valides pour un Code Officiel Géographique donné. Depuis 2017, la liste des régions françaises n'a pas changé."

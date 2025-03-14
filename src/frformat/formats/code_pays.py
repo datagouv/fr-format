@@ -5,8 +5,9 @@ from frformat.formats.code_pays_frozenset import (
     CODES_PAYS_ISO3_COG_2023,
     CODES_PAYS_ISO3_COG_2024,
 )
-from frformat.set_format import INSEE_SOURCE, Millesime
+from frformat.set_format import INSEE_SOURCE
 from frformat.versioned_set import VersionedSet
+from frformat.versions import Millesime
 
 name = "Codes ISO2 Pays"
 description = "Code ISO 2 de pays pour un Code Officiel Géographique donné"

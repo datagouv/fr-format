@@ -1,7 +1,8 @@
 from frformat import set_format
 from frformat.formats.pays_frozenset import PAYS_COG_2024
-from frformat.set_format import INSEE_SOURCE, Millesime
+from frformat.set_format import INSEE_SOURCE
 from frformat.versioned_set import VersionedSet
+from frformat.versions import Millesime
 
 name = "Pays et territoires étrangers"
 description = (
