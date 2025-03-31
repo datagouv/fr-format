@@ -1,7 +1,8 @@
 from frformat import set_format
 from frformat.formats.canton_frozenset import CANTON_COG_2023, CANTON_COG_2024
-from frformat.set_format import INSEE_SOURCE, Millesime
+from frformat.set_format import INSEE_SOURCE
 from frformat.versioned_set import VersionedSet
+from frformat.versions import Millesime
 
 name = "Nom de canton"
 description = "Vérifie que le nom de canton est un canton ou pseudo-canton français valide pour un Code Officiel Géographique donné"
