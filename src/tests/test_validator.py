@@ -14,7 +14,8 @@ def test_get_valid_values_with_local_file():
 
 def test_get_valid_values_with_url():
     valid_values = get_valid_values(
-        "https://cdn.wsform.com/wp-content/uploads/2021/04/month.csv","Name",
+        "https://cdn.wsform.com/wp-content/uploads/2021/04/month.csv",
+        "Name",
     )
     assert valid_values == frozenset(
         {
