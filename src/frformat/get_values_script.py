@@ -31,7 +31,7 @@ def get_valid_values(path: str, column: str) -> frozenset[str]:
     with csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            print(row)
+            # print(row)
             if column in row:
                 valid_values.append(row[column])
             else:
