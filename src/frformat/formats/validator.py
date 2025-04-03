@@ -10,7 +10,7 @@ source = "source1"
 validator_versioned_data = VersionedSet[Millesime]()
 
 valid_values = get_valid_values(
-"https://www.insee.fr/fr/statistiques/fichier/8377162/v_commune_2025.csv", "COM"
+    "https://www.insee.fr/fr/statistiques/fichier/8377162/v_commune_2025.csv", "COM"
 )
 validator_versioned_data.add_version(Millesime.M2023, valid_values)
 
