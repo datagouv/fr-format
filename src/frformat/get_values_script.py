@@ -5,7 +5,7 @@ import urllib.parse
 import urllib.request
 
 
-def get_valid_values(path: str, column: str) -> frozenset:
+def get_valid_values(path: str, column: str) -> frozenset[str]:
 
     parsed_url = urllib.parse.urlparse(path)
     is_url = parsed_url.scheme in ("http", "https")
@@ -31,9 +31,10 @@ def get_valid_values(path: str, column: str) -> frozenset:
     with csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
+            print(row)
             if column in row:
                 valid_values.append(row[column])
             else:
-                raise ValueError("CSV file is missing the {column} column.")
+                raise ValueError(f"CSV file is missing the {column} column.")
 
     return frozenset(valid_values)
