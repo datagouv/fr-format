@@ -21,10 +21,12 @@ from .formats.pays import Pays as Pays
 from .formats.region import Region as Region
 from .formats.siren import Siren as Siren
 from .formats.siret import Siret as Siret
+from .formats.validator import Validator as Validator
 from .options import Options as Options
 from .versions import Millesime as Millesime
 
 all_formats = [
+    Validator,
     Canton,
     CodeCommuneInsee,
     CodeFantoir,
