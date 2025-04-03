@@ -26,6 +26,7 @@ from .options import Options as Options
 from .versions import Millesime as Millesime
 
 all_formats = [
+    Validator,
     Canton,
     CodeCommuneInsee,
     CodeFantoir,
