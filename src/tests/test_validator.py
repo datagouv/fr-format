@@ -25,7 +25,8 @@ def test_get_valid_values_with_local_file():
     with pytest.raises(ValueError, match="CSV file is missing the Link column."):
         valid_values = get_valid_values("src/tests/test_files_data/values.csv", "Link")
 
-# mocking ? 
+
+# mocking ?
 """ def test_get_valid_values_with_url():
     valid_values = get_valid_values(
         "https://cdn.wsform.com/wp-content/uploads/2021/04/month.csv",
