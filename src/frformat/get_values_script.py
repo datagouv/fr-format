@@ -3,7 +3,6 @@ import io
 import os
 import urllib.parse
 import urllib.request
-from socket import timeout
 
 
 def get_valid_values(path: str, column: str) -> frozenset[str]:
@@ -17,12 +16,9 @@ def get_valid_values(path: str, column: str) -> frozenset[str]:
         try:
             response = urllib.request.urlopen(path)
             csvfile = io.StringIO(response.read().decode("utf-8"))
-        except ConnectionResetError:
-            print("==> ConnectionResetError")
-            pass
-        except timeout:
-            print("==> Timeout")
-            pass
+        except Exception as e:
+            raise ValueError(f"Failed to fetch CSV from URL: {e} .")
+
     elif os.path.isfile(path):
         splitted_path = path.split(".")
         if splitted_path[len(splitted_path) - 1] == "csv":
@@ -36,8 +32,8 @@ def get_valid_values(path: str, column: str) -> frozenset[str]:
     else:
         raise ValueError(f"Invalid path: {path}.It must be a URL or existing csv file.")
 
-    with csvfile:  # type: ignore
-        reader = csv.DictReader(csvfile)  # type: ignore
+    with csvfile:
+        reader = csv.DictReader(csvfile)
         for row in reader:
             if column in row:
                 valid_values.append(row[column])
