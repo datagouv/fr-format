@@ -20,11 +20,15 @@ def get_valid_values(path: str, column: str) -> frozenset[str]:
             raise ValueError(f"Failed to fetch CSV from URL: {e} .")
 
     elif os.path.isfile(path):
-        try:
-            csvfile = open(path, newline="", encoding="utf-8")
+        splitted_path = path.split(".")
+        if splitted_path[len(splitted_path) - 1] == "csv":
+            try:
+                csvfile = open(path, newline="", encoding="utf-8")
 
-        except Exception as e:
-            raise ValueError(f"Failed to open local CSV file: {e} .")
+            except Exception as e:
+                raise ValueError(f"Failed to open local CSV file: {e} .")
+        else:
+            raise ValueError("The given path must be referenced to a csv file.")
     else:
         raise ValueError(f"Invalid path: {path}.It must be a URL or existing csv file.")
 
