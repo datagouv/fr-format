@@ -10,7 +10,9 @@ def test_validator():
 
 
 def test_get_valid_values_with_local_file():
-    valid_values = get_valid_values("src/tests/test_files_data/values.csv", "First name")
+    valid_values = get_valid_values(
+        "src/tests/test_files_data/values.csv", "First name"
+    )
     assert valid_values == frozenset({"Rachel", "Laura"})
 
     with pytest.raises(

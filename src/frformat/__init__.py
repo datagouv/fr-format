@@ -1,6 +1,5 @@
 # flake8: noqa
 from .custom_format import *  # isort:skip
-from .formats.validator import Validator as Validator
 from .formats.canton import Canton as Canton
 from .formats.code_commune_insee import CodeCommuneInsee as CodeCommuneInsee
 from .formats.code_fantoir import CodeFantoir as CodeFantoir
@@ -22,6 +21,7 @@ from .formats.pays import Pays as Pays
 from .formats.region import Region as Region
 from .formats.siren import Siren as Siren
 from .formats.siret import Siret as Siret
+from .formats.validator import Validator as Validator
 from .options import Options as Options
 from .versions import Millesime as Millesime
 
