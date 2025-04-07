@@ -1,3 +1,5 @@
+import pytest
+
 from frformat import Millesime, Validator
 from frformat.get_values_script import get_valid_values
 
@@ -10,6 +12,14 @@ def test_validator():
 def test_get_valid_values_with_local_file():
     valid_values = get_valid_values("src/frformat/formats/values.csv", "First name")
     assert valid_values == frozenset({"Rachel", "Laura"})
+
+    with pytest.raises(
+        ValueError, match="The given path must be referenced to a csv file."
+    ):
+        valid_values = get_valid_values("src/tests/text_file.odt", "coucou")
+
+    with pytest.raises(ValueError, match="CSV file is missing the Link column."):
+        valid_values = get_valid_values("src/frformat/formats/values.csv", "Link")
 
 
 def test_get_valid_values_with_url():
@@ -33,3 +43,11 @@ def test_get_valid_values_with_url():
             "December",
         }
     )
+
+    with pytest.raises(
+        ValueError, match="Failed to fetch CSV from URL: HTTP Error 403: Forbidden ."
+    ):
+        valid_values = get_valid_values(
+            "https://cd.wsform.com/wp-content/uploads/2021/04/month.csv",
+            "Name",
+        )
