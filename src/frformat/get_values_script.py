@@ -1,7 +1,6 @@
 import csv
 import io
 import os
-from socket import timeout
 import urllib.parse
 import urllib.request
 
@@ -20,7 +19,7 @@ def get_valid_values(path: str, column: str) -> frozenset[str]:
         except ConnectionResetError:
             print("==> ConnectionResetError")
             pass
-        except timeout: 
+        except timeout:
             print("==> Timeout")
             pass
     elif os.path.isfile(path):
@@ -36,8 +35,8 @@ def get_valid_values(path: str, column: str) -> frozenset[str]:
     else:
         raise ValueError(f"Invalid path: {path}.It must be a URL or existing csv file.")
 
-    with csvfile:
-        reader = csv.DictReader(csvfile)
+    with csvfile:  # type: ignore
+        reader = csv.DictReader(csvfile)  # type: ignore
         for row in reader:
             if column in row:
                 valid_values.append(row[column])
