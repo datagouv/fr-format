@@ -48,10 +48,8 @@ def test_get_valid_values_with_url():
         }
     )
 
-    """ with pytest.raises(
-        ValueError, match="Failed to fetch CSV from URL: HTTP Error 403: Forbidden ."
-    ):
+    with pytest.raises(ValueError):
         valid_values = get_valid_values(
-            "https://cd.wsform.com/wp-content/uploads/2021/04/month.csv",
+            "https://coucou.csv/",
             "Name",
-        ) """
+        )
