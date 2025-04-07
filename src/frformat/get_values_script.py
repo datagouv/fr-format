@@ -3,6 +3,7 @@ import io
 import os
 import urllib.parse
 import urllib.request
+from socket import timeout
 
 
 def get_valid_values(path: str, column: str) -> frozenset[str]:
