@@ -17,21 +17,24 @@ def get_valid_values(path: str, column: str) -> frozenset[str]:
             response = urllib.request.urlopen(path)
             csvfile = io.StringIO(response.read().decode("utf-8"))
         except Exception as e:
-            raise ValueError(f"Failed to fetch CSV from URL: {e}")
+            raise ValueError(f"Failed to fetch CSV from URL: {e} .")
 
     elif os.path.isfile(path):
-        try:
-            csvfile = open(path, newline="", encoding="utf-8")
-        except Exception as e:
-            raise ValueError(f"Failed to open local CSV file: {e}")
+        splitted_path = path.split(".")
+        if splitted_path[len(splitted_path) - 1] == "csv":
+            try:
+                csvfile = open(path, newline="", encoding="utf-8")
 
+            except Exception as e:
+                raise ValueError(f"Failed to open local CSV file: {e} .")
+        else:
+            raise ValueError("The given path must be referenced to a csv file.")
     else:
-        raise ValueError(f"Invalid path: {path}. Must be a URL or existing file.")
+        raise ValueError(f"Invalid path: {path}.It must be a URL or existing csv file.")
 
     with csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            # print(row)
             if column in row:
                 valid_values.append(row[column])
             else:
