@@ -1,6 +1,7 @@
 import csv
 import io
 import os
+from socket import timeout
 import urllib.parse
 import urllib.request
 
@@ -16,9 +17,12 @@ def get_valid_values(path: str, column: str) -> frozenset[str]:
         try:
             response = urllib.request.urlopen(path)
             csvfile = io.StringIO(response.read().decode("utf-8"))
-        except Exception as e:
-            raise ValueError(f"Failed to fetch CSV from URL: {e} .")
-
+        except ConnectionResetError:
+            print("==> ConnectionResetError")
+            pass
+        except timeout: 
+            print("==> Timeout")
+            pass
     elif os.path.isfile(path):
         splitted_path = path.split(".")
         if splitted_path[len(splitted_path) - 1] == "csv":
