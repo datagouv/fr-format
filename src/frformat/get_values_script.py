@@ -1,6 +1,7 @@
 import csv
 import io
 import os
+import time
 import urllib.parse
 import urllib.request
 
@@ -15,6 +16,7 @@ def get_valid_values(path: str, column: str) -> frozenset[str]:
     if is_url:
         try:
             response = urllib.request.urlopen(path)
+            time.sleep(1)
             csvfile = io.StringIO(response.read().decode("utf-8"))
         except Exception as e:
             raise ValueError(f"Failed to fetch CSV from URL: {e} .")
