@@ -29,10 +29,10 @@ def get_valid_values_from_csv(path: str, column: str) -> frozenset[str]:
 
     valid_values = []
 
-    parsed_url = urllib.parse.urlparse(path)
-    is_url = parsed_url.scheme in ("http", "https")
+    parsed_uri = urllib.parse.urlparse(path)
+    is_remote = parsed_uri.scheme in ("http", "https")
 
-    if is_url:
+    if is_remote:
         csvfile = _get_valid_values_from_remote_csv(path)
 
     elif os.path.isfile(path):
