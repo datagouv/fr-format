@@ -5,7 +5,7 @@ from frformat.get_values_script import get_valid_values_from_csv
 
 
 def test_validator():
-    isvalid = Validator(Millesime.M2023).is_valid("01001")
+    isvalid = Validator(Millesime.M2023).is_valid("booker12")
     assert isvalid is True
 
 
