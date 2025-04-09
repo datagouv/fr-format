@@ -1,7 +1,7 @@
 import pytest
 
 from frformat import Millesime, Validator
-from frformat.get_values_script import get_valid_values
+from frformat.get_values_script import get_valid_values_from_csv
 
 
 def test_validator():
@@ -10,7 +10,7 @@ def test_validator():
 
 
 def test_get_valid_values_with_local_file():
-    valid_values = get_valid_values(
+    valid_values = get_valid_values_from_csv(
         "src/tests/test_files_data/values.csv", "First name"
     )
     assert valid_values == frozenset({"Rachel", "Laura"})
@@ -18,12 +18,14 @@ def test_get_valid_values_with_local_file():
     with pytest.raises(
         ValueError, match="The given path must be referenced to a csv file."
     ):
-        valid_values = get_valid_values(
+        valid_values = get_valid_values_from_csv(
             "src/tests/test_files_data/text_file.odt", "coucou"
         )
 
     with pytest.raises(ValueError, match="CSV file is missing the Link column."):
-        valid_values = get_valid_values("src/tests/test_files_data/values.csv", "Link")
+        valid_values = get_valid_values_from_csv(
+            "src/tests/test_files_data/values.csv", "Link"
+        )
 
 
 # mocking ?

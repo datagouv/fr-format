@@ -5,7 +5,7 @@ import urllib.parse
 import urllib.request
 
 
-def get_valid_values(path: str, column: str) -> frozenset[str]:
+def get_valid_values_from_csv(path: str, column: str) -> frozenset[str]:
 
     parsed_url = urllib.parse.urlparse(path)
     is_url = parsed_url.scheme in ("http", "https")

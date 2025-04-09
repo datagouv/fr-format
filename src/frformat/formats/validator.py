@@ -1,5 +1,5 @@
 from frformat import set_format
-from frformat.get_values_script import get_valid_values
+from frformat.get_values_script import get_valid_values_from_csv
 from frformat.versioned_set import VersionedSet
 from frformat.versions import Millesime
 
@@ -9,7 +9,7 @@ source = "source1"
 
 validator_versioned_data = VersionedSet[Millesime]()
 
-valid_values_2023 = get_valid_values(
+valid_values_2023 = get_valid_values_from_csv(
     "https://www.insee.fr/fr/statistiques/fichier/8377162/v_commune_2025.csv", "COM"
 )
 validator_versioned_data.add_version(Millesime.M2023, valid_values_2023)
