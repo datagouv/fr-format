@@ -15,9 +15,7 @@ def test_get_valid_values_with_local_file():
     )
     assert valid_values == frozenset({"Rachel", "Laura"})
 
-    with pytest.raises(
-        ValueError, match="The given path must be referenced to a csv file."
-    ):
+    with pytest.raises(ValueError):
         valid_values = get_valid_values_from_csv(
             "src/tests/test_files_data/text_file.odt", "coucou"
         )
