@@ -49,6 +49,7 @@ def get_valid_values_from_csv(path: str, column: str) -> frozenset[str]:
                     valid_values.append(row[column])
                 else:
                     raise ValueError(f"CSV file is missing the {column} column.")
+
         except UnicodeDecodeError as e:
             print(f"Failed to convert the csv file to python dictionnary: {e}")
             raise e
