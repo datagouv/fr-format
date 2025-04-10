@@ -18,5 +18,6 @@
 | Region | Nom de région | Vérifie les régions françaises valides pour un Code Officiel Géographique donné. Depuis 2017, la liste des régions françaises n'a pas changé. |
 | Siren | SIREN | Check french SIREN number validity, but does not check if SIREN number exists. |
 | Siret | SIRET | Check french SIRET number validity, but does not check if SIRET number exists. |
+| Validator | Nom de validateur | Vérification si la valeur donnée est bien valide selon des valeurs valides récupérées |
 
 [If you want to add a new French Format, click here!](../CONTRIBUTING.md#implementing-a-new-french-format)
