@@ -25,6 +25,11 @@ def test_get_valid_values_with_local_file():
             "src/tests/test_files_data/values.csv", "Link"
         )
 
+    with pytest.raises(ValueError):
+        valid_values = get_valid_values_from_csv(
+            "src/tests/test_files_data/non_existed_file.csv", "DEP"
+        )
+
 
 # mocking ?
 """ def test_get_valid_values_with_url():
