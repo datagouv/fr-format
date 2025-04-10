@@ -42,11 +42,15 @@ def get_valid_values_from_csv(path: str, column: str) -> frozenset[str]:
         raise ValueError(f"Invalid path: {path}.It must be a URL or existing csv file.")
 
     with csvfile:
-        reader = csv.DictReader(csvfile)
-        for row in reader:
-            if column in row:
-                valid_values.append(row[column])
-            else:
-                raise ValueError(f"CSV file is missing the {column} column.")
+        try:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                if column in row:
+                    valid_values.append(row[column])
+                else:
+                    raise ValueError(f"CSV file is missing the {column} column.")
+        except UnicodeDecodeError as e:
+            print(f"Failed to convert the csv file to python dictionnary: {e}")
+            raise e
 
     return frozenset(valid_values)
