@@ -25,6 +25,27 @@ def _get_valid_values_from_local_csv(path: str) -> io.TextIOWrapper:
 
 
 def get_valid_values_from_csv(path: str, column: str) -> frozenset[str]:
+    """
+    Extract all valid values from a given column in a well-formatted CSV file
+    located either locally or remotely.
+
+    Supported sources:
+    - Local files without a URI scheme.
+    - Remote files using 'http', 'https', 'file' schemes.
+    - Unsupported schemes such as 'ftp' are not allowed.
+
+    Args:
+        path (str): The path or URL to the CSV file.
+        column (str): The name of the column from which to extract values.
+
+    Raises:
+        ValueError: If the file is missing, the column is not found, or the path uses
+                    an unsupported scheme.
+        UnicodeError: If the file cannot be parsed as a valid CSV.
+
+    Returns:
+        frozenset[str]: A frozenset containing the values found in the specified column.
+    """
 
     try:
         valid_values = []
@@ -34,7 +55,7 @@ def get_valid_values_from_csv(path: str, column: str) -> frozenset[str]:
 
         if not is_remote and not os.path.isfile(path):
             raise ValueError(
-                f"Invalid path: {path}.It must be a URL or existing csv file."
+                f"Invalid path: {path}.The URI must use one of the following schemes: http, https, or file or it must be existing csv file."
             )
 
         if is_remote:
@@ -53,7 +74,7 @@ def get_valid_values_from_csv(path: str, column: str) -> frozenset[str]:
                         raise ValueError(f"CSV file is missing the {column} column.")
             except UnicodeError as e:
                 # print(e.__class__.__name__)
-                raise UnicodeError(f"the csv file is not well formatted: {e}")
+                raise UnicodeError(f"The file is not well csv formatted: {e}")
 
         return frozenset(valid_values)
     except Exception as e:
