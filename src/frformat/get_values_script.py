@@ -13,7 +13,6 @@ def _get_valid_values_from_remote_csv(path: str) -> io.StringIO:
 
 def _get_valid_values_from_local_csv(path: str) -> io.TextIOWrapper:
     csvfile = open(path, newline="", encoding="utf-8")
-    print(csvfile)
     return csvfile
 
 
@@ -22,7 +21,7 @@ def get_valid_values_from_csv(path: str, column: str) -> frozenset[str]:
     valid_values = []
 
     parsed_uri = urllib.parse.urlparse(path)
-    is_remote = parsed_uri.scheme in ("http", "https")
+    is_remote = parsed_uri.scheme in ("http", "https", "file")
 
     if not is_remote and not os.path.isfile(path):
         raise ValueError(f"Invalid path: {path}.It must be a URL or existing csv file.")
@@ -42,7 +41,7 @@ def get_valid_values_from_csv(path: str, column: str) -> frozenset[str]:
                 else:
                     raise ValueError(f"CSV file is missing the {column} column.")
         except UnicodeError as e:
-            print(e.__class__.__name__)
+            # print(e.__class__.__name__)
             raise UnicodeError(f"the csv file is not well formatted: {e}")
 
     return frozenset(valid_values)

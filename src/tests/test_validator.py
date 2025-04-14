@@ -31,9 +31,21 @@ def test_get_valid_values_with_local_file():
         )
 
 
-# mocking ?
-""" def test_get_valid_values_with_url():
-    valid_values = get_valid_values(
+def test_get_valid_values_with_remote_csv():
+    valid_values = get_valid_values_from_csv(
+        "file:///home/sarraba/multi/multi_projects_inter/fr-format/src/tests/test_files_data/values.csv",
+        "First name",
+    )
+    assert valid_values == frozenset({"Rachel", "Laura"})
+
+    with pytest.raises(ValueError):
+        valid_values = get_valid_values_from_csv(
+            "ftp:///home/sarraba/multi/multi_projects_inter/fr-format/src/tests/test_files_data/values.csv",
+            "First name",
+        )
+
+
+""" valid_values = get_valid_values(
         "https://cdn.wsform.com/wp-content/uploads/2021/04/month.csv",
         "Name",
     )
@@ -58,5 +70,4 @@ def test_get_valid_values_with_local_file():
         valid_values = get_valid_values(
             "https://coucou.csv/",
             "Name",
-        )
- """
+        ) """
