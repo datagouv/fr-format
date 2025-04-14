@@ -35,7 +35,6 @@ def get_valid_values_from_csv(path: str, column: str) -> frozenset[str]:
 
     with csvfile:
         reader = csv.DictReader(csvfile)
-        ## error when it isn't a csv well formatted
         try:
             for row in reader:
                 if column in row:
