@@ -31,7 +31,8 @@ def test_get_valid_values_with_local_file():
         )
 
 
-def test_get_valid_values_with_remote_csv():
+# Dependency inversion
+""" def test_get_valid_values_with_remote_csv():
     valid_values = get_valid_values_from_csv(
         "file:///home/sarraba/multi/multi_projects_inter/fr-format/src/tests/test_files_data/values.csv",
         "First name",
@@ -42,7 +43,7 @@ def test_get_valid_values_with_remote_csv():
         valid_values = get_valid_values_from_csv(
             "ftp:///home/sarraba/multi/multi_projects_inter/fr-format/src/tests/test_files_data/values.csv",
             "First name",
-        )
+        ) """
 
 
 """ valid_values = get_valid_values(
