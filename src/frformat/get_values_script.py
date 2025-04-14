@@ -13,6 +13,7 @@ def _get_valid_values_from_remote_csv(path: str) -> io.StringIO:
 
 def _get_valid_values_from_local_csv(path: str) -> io.TextIOWrapper:
     csvfile = open(path, newline="", encoding="utf-8")
+    print(csvfile)
     return csvfile
 
 
@@ -34,10 +35,15 @@ def get_valid_values_from_csv(path: str, column: str) -> frozenset[str]:
 
     with csvfile:
         reader = csv.DictReader(csvfile)
-        for row in reader:
-            if column in row:
-                valid_values.append(row[column])
-            else:
-                raise ValueError(f"CSV file is missing the {column} column.")
+        ## error when it isn't a csv well formatted
+        try:
+            for row in reader:
+                if column in row:
+                    valid_values.append(row[column])
+                else:
+                    raise ValueError(f"CSV file is missing the {column} column.")
+        except UnicodeError as e:
+            print(e.__class__.__name__)
+            raise UnicodeError(f"the csv file is not well formatted: {e}")
 
     return frozenset(valid_values)
