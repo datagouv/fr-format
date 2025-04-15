@@ -73,7 +73,6 @@ def get_valid_values_from_csv(path: str, column: str) -> frozenset[str]:
                     else:
                         raise ValueError(f"CSV file is missing the {column} column.")
             except UnicodeError as e:
-                # print(e.__class__.__name__)
                 raise UnicodeError(f"The file is not well csv formatted: {e}")
 
         return frozenset(valid_values)
