@@ -1,7 +1,7 @@
 import pytest
 
 from frformat import Millesime, Validator
-from frformat.get_values_script import get_valid_values_from_csv
+from frformat.get_values import get_values_from_csv
 
 
 def test_validator():
@@ -10,37 +10,37 @@ def test_validator():
 
 
 def test_get_valid_values_with_local_file():
-    valid_values = get_valid_values_from_csv(
+    valid_values = get_values_from_csv(
         "src/tests/test_files_data/values.csv", "First name"
     )
     assert valid_values == frozenset({"Rachel", "Laura"})
 
     with pytest.raises(UnicodeError):
-        valid_values = get_valid_values_from_csv(
+        valid_values = get_values_from_csv(
             "src/tests/test_files_data/text_file.odt", "coucou"
         )
 
     with pytest.raises(ValueError):
-        valid_values = get_valid_values_from_csv(
+        valid_values = get_values_from_csv(
             "src/tests/test_files_data/values.csv", "Link"
         )
 
     with pytest.raises(ValueError):
-        valid_values = get_valid_values_from_csv(
+        valid_values = get_values_from_csv(
             "src/tests/test_files_data/non_existed_file.csv", "DEP"
         )
 
 
 # Dependency inversion
 """ def test_get_valid_values_with_remote_csv():
-    valid_values = get_valid_values_from_csv(
+    valid_values = get_values_from_csv(
         "file:///home/sarraba/multi/multi_projects_inter/fr-format/src/tests/test_files_data/values.csv",
         "First name",
     )
     assert valid_values == frozenset({"Rachel", "Laura"})
 
     with pytest.raises(ValueError):
-        valid_values = get_valid_values_from_csv(
+        valid_values = get_values_from_csv(
             "ftp:///home/sarraba/multi/multi_projects_inter/fr-format/src/tests/test_files_data/values.csv",
             "First name",
         ) """
