@@ -11,8 +11,7 @@ def _get_values_from_remote_csv(path: str) -> io.StringIO:
         csvfile: io.StringIO = io.StringIO(response.read().decode("utf-8"))
         return csvfile
     except Exception as e:
-        print(f"An error is occured: {e}")
-        raise
+        raise Exception(f"An error is occured: {e}")
 
 
 def _get_values_from_local_csv(path: str) -> io.TextIOWrapper:
@@ -20,8 +19,7 @@ def _get_values_from_local_csv(path: str) -> io.TextIOWrapper:
         csvfile: io.TextIOWrapper = open(path, newline="", encoding="utf-8")
         return csvfile
     except Exception as e:
-        print(f"An error is occured: {e}")
-        raise
+        raise Exception(f"An error is occured: {e}")
 
 
 def get_values_from_csv(path: str, column: str) -> frozenset[str]:
@@ -77,5 +75,5 @@ def get_values_from_csv(path: str, column: str) -> frozenset[str]:
 
         return frozenset(values)
     except Exception as e:
-        print(f"An error is occured where getting valid values from csv: {e}")
+        print(f"An error is occured where getting values from csv: {e}")
         raise
