@@ -2,27 +2,17 @@ import csv
 import io
 import os
 import urllib.parse
-import urllib.request
+from typing import Protocol
 
 
-def _get_values_from_remote_csv(path: str) -> io.StringIO:
-    try:
-        response: urllib.request._UrlopenRet = urllib.request.urlopen(path)
-        csvfile: io.StringIO = io.StringIO(response.read().decode("utf-8"))
-        return csvfile
-    except Exception as e:
-        raise Exception(f"An error is occured: {e}")
+class IFileReader(Protocol):
+
+    def read_file(self, path: str) -> io.StringIO | io.TextIOWrapper: ...
 
 
-def _get_values_from_local_csv(path: str) -> io.TextIOWrapper:
-    try:
-        csvfile: io.TextIOWrapper = open(path, newline="", encoding="utf-8")
-        return csvfile
-    except Exception as e:
-        raise Exception(f"An error is occured: {e}")
-
-
-def get_values_from_csv(path: str, column: str) -> frozenset[str]:
+def get_values_from_csv(
+    path: str, column: str, remote_reader: IFileReader, local_reader: IFileReader
+) -> frozenset[str]:
     """
     Extract all values from a given column in a well-formatted CSV file
     located either locally or remotely.
@@ -57,10 +47,10 @@ def get_values_from_csv(path: str, column: str) -> frozenset[str]:
             )
 
         if is_remote:
-            csvfile = _get_values_from_remote_csv(path)
+            csvfile = remote_reader.read_file(path)
 
         else:
-            csvfile = _get_values_from_local_csv(path)
+            csvfile = local_reader.read_file(path)
 
         with csvfile:
             reader: csv.DictReader[str] = csv.DictReader(csvfile)

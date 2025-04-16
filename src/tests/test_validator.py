@@ -2,6 +2,7 @@ import pytest
 
 from frformat import Millesime, Validator
 from frformat.get_values import get_values_from_csv
+from frformat.infra_file_reader import LocalReader, RemoteReader
 
 
 def test_validator():
@@ -9,46 +10,49 @@ def test_validator():
     assert isvalid is True
 
 
+local_reader = LocalReader()
+remote_reader = RemoteReader()
+
+
 def test_get_valid_values_with_local_file():
     valid_values = get_values_from_csv(
-        "src/tests/test_files_data/values.csv", "First name"
+        "src/tests/test_files_data/values.csv",
+        "First name",
+        remote_reader,
+        local_reader,
     )
     assert valid_values == frozenset({"Rachel", "Laura"})
 
     with pytest.raises(UnicodeError):
-        valid_values = get_values_from_csv(
-            "src/tests/test_files_data/text_file.odt", "coucou"
+        get_values_from_csv(
+            "src/tests/test_files_data/text_file.odt",
+            "coucou",
+            remote_reader,
+            local_reader,
         )
 
     with pytest.raises(ValueError):
-        valid_values = get_values_from_csv(
-            "src/tests/test_files_data/values.csv", "Link"
+        get_values_from_csv(
+            "src/tests/test_files_data/values.csv", "Link", remote_reader, local_reader
         )
 
     with pytest.raises(ValueError):
-        valid_values = get_values_from_csv(
-            "src/tests/test_files_data/non_existed_file.csv", "DEP"
+        get_values_from_csv(
+            "src/tests/test_files_data/non_existed_file.csv",
+            "DEP",
+            remote_reader,
+            local_reader,
         )
 
 
-# Dependency inversion
+# Dependency inversion remote paths
 """ def test_get_valid_values_with_remote_csv():
+
     valid_values = get_values_from_csv(
-        "file:///home/sarraba/multi/multi_projects_inter/fr-format/src/tests/test_files_data/values.csv",
-        "First name",
-    )
-    assert valid_values == frozenset({"Rachel", "Laura"})
-
-    with pytest.raises(ValueError):
-        valid_values = get_values_from_csv(
-            "ftp:///home/sarraba/multi/multi_projects_inter/fr-format/src/tests/test_files_data/values.csv",
-            "First name",
-        ) """
-
-
-""" valid_values = get_valid_values(
         "https://cdn.wsform.com/wp-content/uploads/2021/04/month.csv",
         "Name",
+        remote_reader,
+        local_reader,
     )
     assert valid_values == frozenset(
         {
@@ -68,7 +72,25 @@ def test_get_valid_values_with_local_file():
     )
 
     with pytest.raises(ValueError):
-        valid_values = get_valid_values(
+        valid_values = get_values_from_csv(
             "https://coucou.csv/",
             "Name",
+            remote_reader,
+            local_reader,
+        )
+
+    valid_values = get_values_from_csv(
+        "file:///home/sarraba/multi/multi_projects_inter/fr-format/src/tests/test_files_data/values.csv",
+        "First name",
+        remote_reader,
+        local_reader,
+    )
+    assert valid_values == frozenset({"Rachel", "Laura"})
+
+    with pytest.raises(ValueError):
+        get_values_from_csv(
+            "ftp:///home/sarraba/multi/multi_projects_inter/fr-format/src/tests/test_files_data/values.csv",
+            "First name",
+            remote_reader,
+            local_reader,
         ) """
