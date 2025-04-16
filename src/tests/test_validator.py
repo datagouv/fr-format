@@ -25,7 +25,7 @@ def test_get_valid_values_with_local_file():
 
     with pytest.raises(UnicodeError):
         get_values_from_csv(
-            "src/tests/test_files_data/text_file.odt",
+            "src/tests/test_files_data/not_formatted_file.csv",
             "coucou",
             remote_reader,
             local_reader,
