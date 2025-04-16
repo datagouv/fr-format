@@ -2,12 +2,12 @@ import csv
 import io
 import os
 import urllib.parse
-from typing import Protocol
+from typing import Protocol, Union
 
 
 class IFileReader(Protocol):
 
-    def read_file(self, path: str) -> io.StringIO | io.TextIOWrapper: ...
+    def read_file(self, path: str) -> Union[io.StringIO, io.TextIOWrapper]: ...
 
 
 def get_values_from_csv(
