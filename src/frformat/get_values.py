@@ -33,35 +33,31 @@ def get_values_from_csv(
         A frozenset containing the values found in the specified column.
     """
 
-    try:
-        values: list[str] = []
+    values: list[str] = []
 
-        parsed_uri: urllib.parse.ParseResult = urllib.parse.urlparse(path)
-        is_valid_scheme: bool = parsed_uri.scheme in ("http", "https", "file")
+    parsed_uri: urllib.parse.ParseResult = urllib.parse.urlparse(path)
+    is_valid_scheme: bool = parsed_uri.scheme in ("http", "https", "file")
 
-        if not is_valid_scheme and not os.path.isfile(path):
-            raise ValueError(
-                f"Invalid path: {path}.The URI must use one of the following schemes: http, https, or file or it must be existing csv file."
-            )
+    if not is_valid_scheme and not os.path.isfile(path):
+        raise ValueError(
+            f"Invalid path: {path}.The URI must use one of the following schemes: http, https, or file or it must be existing csv file."
+        )
 
-        if is_valid_scheme:
-            csvfile = remote_reader.read_file(path)
+    if is_valid_scheme:
+        csvfile = remote_reader.read_file(path)
 
-        else:
-            csvfile = local_reader.read_file(path)
+    else:
+        csvfile = local_reader.read_file(path)
 
-        with csvfile:
-            reader: csv.DictReader[str] = csv.DictReader(csvfile)
-            try:
-                for row in reader:
-                    if column in row:
-                        values.append(row[column])
-                    else:
-                        raise ValueError(f"CSV file is missing the {column} column.")
-            except ValueError as e:
-                raise ValueError(f"The file is not well csv formatted: {e}")
+    with csvfile:
+        reader: csv.DictReader[str] = csv.DictReader(csvfile)
+        try:
+            for row in reader:
+                if column in row:
+                    values.append(row[column])
+                else:
+                    raise ValueError(f"CSV file is missing the {column} column.")
+        except ValueError as e:
+            raise ValueError(f"The file is not well csv formatted: {e}")
 
-        return frozenset(values)
-    except Exception as e:
-        print(f"An error is occured where getting values from csv: {e}")
-        raise
+    return frozenset(values)

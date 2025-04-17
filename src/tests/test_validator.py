@@ -87,10 +87,4 @@ def test_get_valid_values_with_local_file():
     )
     assert valid_values == frozenset({"Rachel", "Laura"})
 
-    with pytest.raises(ValueError):
-        get_values_from_csv(
-            "ftp:///home/sarraba/multi/multi_projects_inter/fr-format/src/tests/test_files_data/values.csv",
-            "First name",
-            remote_reader,
-            local_reader,
-        ) """
+    """
