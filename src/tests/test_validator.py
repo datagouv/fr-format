@@ -23,7 +23,7 @@ def test_get_valid_values_with_local_file():
     )
     assert valid_values == frozenset({"Rachel", "Laura"})
 
-    with pytest.raises(UnicodeError):
+    with pytest.raises(ValueError):
         get_values_from_csv(
             "src/tests/test_files_data/not_formatted_file.csv",
             "coucou",

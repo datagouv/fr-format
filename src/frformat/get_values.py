@@ -18,21 +18,19 @@ def get_values_from_csv(
     located either locally or remotely.
 
     Supported sources:
-    - Local files without a URI scheme.
-    - Remote files using 'http', 'https', 'file' schemes.
-    - Unsupported scheme: 'ftp' is not allowed.
+    - Local files and file with 'file' scheme.
+    - Remote files using 'http'and 'https' schemes.
 
     Args:
-        path (string type): The path or URL to the CSV file.
-        column (string type): The name of the column from which to extract values.
+        path: The path or URL to the CSV file.
+        column: The name of the column from which to extract values.
 
     Raises:
-        ValueError: If the file is missing, the column is not found, or the path uses
-                    an unsupported scheme.
-        UnicodeError: If the file cannot be parsed as a valid CSV.
+        ValueError: If the file is missing, the column is not found, the path uses
+                    an unsupported scheme or the file cannot be parsed as a valid CSV.
 
     Returns:
-        frozenset[str]: A frozenset containing the values found in the specified column.
+        A frozenset containing the values found in the specified column.
     """
 
     try:
@@ -60,8 +58,8 @@ def get_values_from_csv(
                         values.append(row[column])
                     else:
                         raise ValueError(f"CSV file is missing the {column} column.")
-            except UnicodeError as e:
-                raise UnicodeError(f"The file is not well csv formatted: {e}")
+            except ValueError as e:
+                raise ValueError(f"The file is not well csv formatted: {e}")
 
         return frozenset(values)
     except Exception as e:
