@@ -38,16 +38,13 @@ def get_values_from_csv(
     parsed_uri: urllib.parse.ParseResult = urllib.parse.urlparse(path)
     is_valid_scheme: bool = parsed_uri.scheme in ("http", "https", "file")
 
-    if not is_valid_scheme and not os.path.isfile(path):
-        raise ValueError(
-            f"Invalid path: {path}.The URI must use one of the following schemes: http, https, or file or it must be existing csv file."
-        )
-
-    if is_valid_scheme:
+    if is_valid_scheme or os.path.isfile(path):
         csvfile = remote_reader.read_file(path)
 
     else:
-        csvfile = local_reader.read_file(path)
+        raise ValueError(
+            f"Invalid path: {path}.The URI must use one of the following schemes: http, https, or file or it must be existing csv file."
+        )
 
     with csvfile:
         reader: csv.DictReader[str] = csv.DictReader(csvfile)
