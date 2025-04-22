@@ -2,12 +2,12 @@ import csv
 import io
 import os
 import urllib.parse
-from typing import Protocol, Union
+from typing import Protocol
 
 
 class IFileReader(Protocol):
 
-    def read_file(self, path: str) -> Union[io.StringIO, io.TextIOWrapper]: ...
+    def read_file(self, path: str) -> io.TextIOBase: ...
 
 
 def get_values_from_csv(
@@ -38,13 +38,16 @@ def get_values_from_csv(
     parsed_uri: urllib.parse.ParseResult = urllib.parse.urlparse(path)
     is_valid_scheme: bool = parsed_uri.scheme in ("http", "https", "file")
 
-    if is_valid_scheme or os.path.isfile(path):
-        csvfile = remote_reader.read_file(path)
-
-    else:
+    if not is_valid_scheme and not os.path.isfile(path):
         raise ValueError(
             f"Invalid path: {path}.The URI must use one of the following schemes: http, https, or file or it must be existing csv file."
         )
+
+    if is_valid_scheme:
+        csvfile = remote_reader.read_file(path)
+
+    else:
+        csvfile = local_reader.read_file(path)
 
     with csvfile:
         reader: csv.DictReader[str] = csv.DictReader(csvfile)
