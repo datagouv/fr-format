@@ -20,7 +20,7 @@ class FakeFileReader(IFileReader):
         return StringIO(self._data)
 
 
-def test_get_values_with_local_file():
+def test_get_values_from_local_file():
 
     csv_data: str = (
         "Username,Email\nbooker1,booker12@example.com\ngrey7,grey07@example.com"
@@ -39,6 +39,31 @@ def test_get_values_with_local_file():
 
     assert valid_values == frozenset({"booker1", "grey7"})
 
+    values = get_values_from_csv(
+        "src/tests/test_files_data/values.csv", "Link", remote_reader, local_reader
+    )
+    assert values == frozenset({})
+
+
+def test_get_values_from_not_well_formatted_local_file():
+    csv_data: str = "xff�Name,Age\nJohn,30"
+
+    local_reader = FakeFileReader(csv_data)
+
+    remote_reader = RemoteReader()
+    values = get_values_from_csv(
+        "src/tests/test_files_data/values.csv",
+        "coucou",
+        remote_reader,
+        local_reader,
+    )
+    assert values == frozenset({})
+
+
+def test_invalid_path_file():
+    remote_reader = RemoteReader()
+    local_reader = LocalReader()
+
     with pytest.raises(
         ValueError,
         match="Invalid path: src/tests/test_files_data/non_existed_file.csv.The URI must use one of the following schemes: http, https, or file or it must be existing csv file.",
@@ -50,21 +75,8 @@ def test_get_values_with_local_file():
             local_reader,
         )
 
-    values = get_values_from_csv(
-        "src/tests/test_files_data/not_formatted_file.csv",
-        "coucou",
-        remote_reader,
-        local_reader,
-    )
-    assert values == frozenset({})
 
-    values = get_values_from_csv(
-        "src/tests/test_files_data/values.csv", "Link", remote_reader, local_reader
-    )
-    assert values == frozenset({})
-
-
-def test_get_valid_values_with_remote_csv():
+def test_get_values_from_remote_csv():
     csv_data: str = "Age,RegionCode\n23,7653\n22,5498"
 
     remote_reader = FakeFileReader(csv_data)
@@ -79,6 +91,15 @@ def test_get_valid_values_with_remote_csv():
     )
 
     assert valid_values == frozenset({"23", "22"})
+
+    valid_values = get_values_from_csv(
+        "https://some.fake.url/values.csv",
+        "Name",
+        remote_reader,
+        local_reader,
+    )
+
+    assert valid_values == frozenset({})
 
     valid_values = get_values_from_csv(
         "file:///fakedata/values.csv",
