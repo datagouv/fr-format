@@ -1,7 +1,9 @@
+from io import StringIO, TextIOBase
+
 import pytest
 
 from frformat import Millesime, Validator
-from frformat.get_values import get_values_from_csv
+from frformat.get_values import IFileReader, get_values_from_csv
 from frformat.infra_file_reader import LocalReader, RemoteReader
 
 
@@ -10,33 +12,37 @@ def test_validator():
     assert isvalid is True
 
 
-local_reader = LocalReader()
-remote_reader = RemoteReader()
+class FakeFileReader(IFileReader):
+    def __init__(self, data: str):
+        self._data = data
+
+    def read_file(self, path: str) -> TextIOBase:
+        return StringIO(self._data)
 
 
-def test_get_valid_values_with_local_file():
+def test_get_values_with_local_file():
+
+    csv_data: str = (
+        "Username,Email\nbooker1,booker12@example.com\ngrey7,grey07@example.com"
+    )
+
+    local_reader = FakeFileReader(csv_data)
+
+    remote_reader = RemoteReader()
+
     valid_values = get_values_from_csv(
         "src/tests/test_files_data/values.csv",
-        "First name",
+        "Username",
         remote_reader,
         local_reader,
     )
-    assert valid_values == frozenset({"Rachel", "Laura"})
 
-    with pytest.raises(ValueError):
-        get_values_from_csv(
-            "src/tests/test_files_data/not_formatted_file.csv",
-            "coucou",
-            remote_reader,
-            local_reader,
-        )
+    assert valid_values == frozenset({"booker1", "grey7"})
 
-    with pytest.raises(ValueError):
-        get_values_from_csv(
-            "src/tests/test_files_data/values.csv", "Link", remote_reader, local_reader
-        )
-
-    with pytest.raises(ValueError):
+    with pytest.raises(
+        ValueError,
+        match="Invalid path: src/tests/test_files_data/non_existed_file.csv.The URI must use one of the following schemes: http, https, or file or it must be existing csv file.",
+    ):
         get_values_from_csv(
             "src/tests/test_files_data/non_existed_file.csv",
             "DEP",
@@ -44,47 +50,40 @@ def test_get_valid_values_with_local_file():
             local_reader,
         )
 
-
-# Dependency inversion remote paths
-""" def test_get_valid_values_with_remote_csv():
-
-    valid_values = get_values_from_csv(
-        "https://cdn.wsform.com/wp-content/uploads/2021/04/month.csv",
-        "Name",
+    values = get_values_from_csv(
+        "src/tests/test_files_data/not_formatted_file.csv",
+        "coucou",
         remote_reader,
         local_reader,
     )
-    assert valid_values == frozenset(
-        {
-            "January",
-            "Feburary",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-            "November",
-            "December",
-        }
-    )
+    assert values == frozenset({})
 
-    with pytest.raises(ValueError):
-        valid_values = get_values_from_csv(
-            "https://coucou.csv/",
-            "Name",
-            remote_reader,
-            local_reader,
-        )
+    values = get_values_from_csv(
+        "src/tests/test_files_data/values.csv", "Link", remote_reader, local_reader
+    )
+    assert values == frozenset({})
+
+
+def test_get_valid_values_with_remote_csv():
+    csv_data: str = "Age,RegionCode\n23,7653\n22,5498"
+
+    remote_reader = FakeFileReader(csv_data)
+
+    local_reader = LocalReader()
 
     valid_values = get_values_from_csv(
-        "file:///home/sarraba/multi/multi_projects_inter/fr-format/src/tests/test_files_data/values.csv",
-        "First name",
+        "https://some.fake.url/values.csv",
+        "Age",
         remote_reader,
         local_reader,
     )
-    assert valid_values == frozenset({"Rachel", "Laura"})
 
-    """
+    assert valid_values == frozenset({"23", "22"})
+
+    valid_values = get_values_from_csv(
+        "file:///fakedata/values.csv",
+        "RegionCode",
+        remote_reader,
+        local_reader,
+    )
+    assert valid_values == frozenset({"7653", "5498"})

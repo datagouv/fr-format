@@ -1,5 +1,6 @@
 import csv
 import io
+import logging
 import os
 import urllib.parse
 from typing import Protocol
@@ -35,7 +36,12 @@ def get_values_from_csv(
 
     values: list[str] = []
 
-    parsed_uri: urllib.parse.ParseResult = urllib.parse.urlparse(path)
+    try:
+        parsed_uri: urllib.parse.ParseResult = urllib.parse.urlparse(path)
+    except ValueError:
+        logging.error(f"An error is occured while parsing url using this path: {path}")
+        return frozenset({})
+
     is_valid_scheme: bool = parsed_uri.scheme in ("http", "https", "file")
 
     if not is_valid_scheme and not os.path.isfile(path):
@@ -43,11 +49,17 @@ def get_values_from_csv(
             f"Invalid path: {path}.The URI must use one of the following schemes: http, https, or file or it must be existing csv file."
         )
 
-    if is_valid_scheme:
-        csvfile = remote_reader.read_file(path)
+    try:
+        if is_valid_scheme:
+            csvfile = remote_reader.read_file(path)
 
-    else:
-        csvfile = local_reader.read_file(path)
+        else:
+            csvfile = local_reader.read_file(path)
+    except Exception as e:
+        logging.error(
+            f"While reading the file getted from this path: {path} there is this exception: {e}"
+        )
+        return frozenset({})
 
     with csvfile:
         reader: csv.DictReader[str] = csv.DictReader(csvfile)
@@ -56,8 +68,12 @@ def get_values_from_csv(
                 if column in row:
                     values.append(row[column])
                 else:
-                    raise ValueError(f"CSV file is missing the {column} column.")
-        except ValueError as e:
-            raise ValueError(f"The file is not well csv formatted: {e}")
+                    logging.error(f"CSV file is missing the {column} column.")
+                    return frozenset({})
+        except ValueError:
+            logging.error(
+                f"The file associated to this path: {path} is not well csv formatted"
+            )
+            return frozenset({})
 
     return frozenset(values)
