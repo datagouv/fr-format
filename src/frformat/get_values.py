@@ -1,0 +1,79 @@
+import csv
+import io
+import logging
+import os
+import urllib.parse
+from typing import Protocol
+
+
+class IFileReader(Protocol):
+
+    def read_file(self, path: str) -> io.TextIOBase: ...
+
+
+def get_values_from_csv(
+    path: str, column: str, remote_reader: IFileReader, local_reader: IFileReader
+) -> frozenset[str]:
+    """
+    Extract all values from a given column in a well-formatted CSV file
+    located either locally or remotely.
+
+    Supported sources:
+    - Local files and file with 'file' scheme.
+    - Remote files using 'http'and 'https' schemes.
+
+    Args:
+        path: The path or URL to the CSV file.
+        column: The name of the column from which to extract values.
+
+    Raises:
+        ValueError: If the file is missing, the column is not found, the path uses
+                    an unsupported scheme or the file cannot be parsed as a valid CSV.
+
+    Returns:
+        A frozenset containing the values found in the specified column.
+    """
+
+    values: list[str] = []
+
+    try:
+        parsed_uri: urllib.parse.ParseResult = urllib.parse.urlparse(path)
+    except ValueError:
+        logging.error(f"An error is occured while parsing url using this path: {path}")
+        return frozenset({})
+
+    is_valid_scheme: bool = parsed_uri.scheme in ("http", "https", "file")
+
+    if not is_valid_scheme and not os.path.isfile(path):
+        raise ValueError(
+            f"Invalid path: {path}.The URI must use one of the following schemes: http, https, or file or it must be existing csv file."
+        )
+
+    try:
+        if is_valid_scheme:
+            csvfile = remote_reader.read_file(path)
+
+        else:
+            csvfile = local_reader.read_file(path)
+    except Exception as e:
+        logging.error(
+            f"While reading the file getted from this path: {path} there is this exception: {e}"
+        )
+        return frozenset({})
+
+    with csvfile:
+        reader: csv.DictReader[str] = csv.DictReader(csvfile)
+        try:
+            for row in reader:
+                if column in row:
+                    values.append(row[column])
+                else:
+                    logging.error(f"CSV file is missing the {column} column.")
+                    return frozenset({})
+        except ValueError:
+            logging.error(
+                f"The file associated to this path: {path} is not well csv formatted"
+            )
+            return frozenset({})
+
+    return frozenset(values)
