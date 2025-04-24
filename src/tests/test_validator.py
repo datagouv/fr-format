@@ -5,6 +5,7 @@ import pytest
 from frformat import Millesime, Validator
 from frformat.get_values import IFileReader, get_values_from_csv
 from frformat.infra_file_reader import LocalReader, RemoteReader
+from frformat.set_format import SingleSetFormat
 
 
 def test_validator():
@@ -26,21 +27,18 @@ def test_get_values_from_local_file():
         "Username,Email\nbooker1,booker12@example.com\ngrey7,grey07@example.com"
     )
 
-    local_reader = FakeFileReader(csv_data)
+    SingleSetFormat.local_reader = FakeFileReader(csv_data)
 
-    remote_reader = RemoteReader()
+    SingleSetFormat.remote_reader = RemoteReader()
 
-    valid_values = get_values_from_csv(
-        "src/tests/test_files_data/values.csv",
-        "Username",
-        remote_reader,
-        local_reader,
+    valid_values = SingleSetFormat.get_values_from_csv(
+        "src/tests/test_files_data/values.csv", "Username"
     )
 
     assert valid_values == frozenset({"booker1", "grey7"})
 
-    values = get_values_from_csv(
-        "src/tests/test_files_data/values.csv", "Link", remote_reader, local_reader
+    values = SingleSetFormat.get_values_from_csv(
+        "src/tests/test_files_data/values.csv", "Link"
     )
     assert values == frozenset({})
 
@@ -51,6 +49,7 @@ def test_get_values_from_not_well_formatted_local_file():
     local_reader = FakeFileReader(csv_data)
 
     remote_reader = RemoteReader()
+
     values = get_values_from_csv(
         "src/tests/test_files_data/values.csv",
         "coucou",
