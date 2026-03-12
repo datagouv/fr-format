@@ -18,12 +18,8 @@ description = "Vérifie que le numéro de département correspond bien à un num
 source = INSEE_SOURCE
 
 numero_departement_versioned_data = VersionedSet[Millesime]()
-numero_departement_versioned_data.add_version(
-    Millesime.M2023, NUMEROS_DEPARTEMENTS_COG_2023
-)
-numero_departement_versioned_data.add_version(
-    Millesime.M2024, NUMEROS_DEPARTEMENTS_COG_2024
-)
+numero_departement_versioned_data.add_version(Millesime.M2023, NUMEROS_DEPARTEMENTS_COG_2023)
+numero_departement_versioned_data.add_version(Millesime.M2024, NUMEROS_DEPARTEMENTS_COG_2024)
 
 NumeroDepartement = set_format.new(
     "NumeroDepartement", name, description, source, numero_departement_versioned_data

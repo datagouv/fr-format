@@ -57,9 +57,7 @@ class VersionedSet(Generic[V]):
 
     def ls(self) -> List[V]:
         """List all available versions"""
-        return [
-            self._versionned_data[id][0] for id in sorted(self._versionned_data.keys())
-        ]
+        return [self._versionned_data[id][0] for id in sorted(self._versionned_data.keys())]
 
     def add_version(self, new_version: V, data: Data):
         """Adds a version of data

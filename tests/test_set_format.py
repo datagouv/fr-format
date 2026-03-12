@@ -58,9 +58,9 @@ def test_format_validation():
                 FormatTest(tc["version"])
         else:
             test_format = FormatTest(tc["version"])
-            assert (
-                test_format.is_valid(tc["value_to_test"]) == tc["expected_valid"]
-            ), f'Error on data format definition with version { tc["version"] } and value { tc["value_to_test"] }'
+            assert test_format.is_valid(tc["value_to_test"]) == tc["expected_valid"], (
+                f"Error on data format definition with version {tc['version']} and value {tc['value_to_test']}"
+            )
 
 
 def test_formats_valid_values():
@@ -86,14 +86,12 @@ def test_formats_valid_values():
     source = "Validator source"
 
     for tc in test_cases:
-        validator = set_format.new(
-            "Validator", name, description, source, tc["valid_data"]
-        )
+        validator = set_format.new("Validator", name, description, source, tc["valid_data"])
         if tc["version"]:
-            assert (
-                validator(tc["version"]).get_valid_values_set() == tc["expected_result"]
-            ), f"While we test {tc['name']}, the returned data is not equal to {tc['expected_result']} when the valid_data is {tc['valid_data']} and the version is equal to {tc['version']}"
+            assert validator(tc["version"]).get_valid_values_set() == tc["expected_result"], (
+                f"While we test {tc['name']}, the returned data is not equal to {tc['expected_result']} when the valid_data is {tc['valid_data']} and the version is equal to {tc['version']}"
+            )
         else:
-            assert (
-                validator().get_valid_values_set() == tc["expected_result"]
-            ), f"While we test {tc['name']}, the returned data is not equal to {tc['expected_result']} when the valid_data is {tc['valid_data']} and the version is equal to {tc['version']}"
+            assert validator().get_valid_values_set() == tc["expected_result"], (
+                f"While we test {tc['name']}, the returned data is not equal to {tc['expected_result']} when the valid_data is {tc['valid_data']} and the version is equal to {tc['version']}"
+            )

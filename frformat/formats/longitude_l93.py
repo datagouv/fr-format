@@ -2,7 +2,9 @@ from frformat import CustomNumericFormat, Metadata
 from frformat.formats.latitude_l93 import UnitFormatter
 
 name = "Longitude en Lambert 93"
-description = "Vérifie que la longitude en France métropolitaine donnée est une longitude en lambert 93"
+description = (
+    "Vérifie que la longitude en France métropolitaine donnée est une longitude en lambert 93"
+)
 
 
 class LongitudeL93(CustomNumericFormat):

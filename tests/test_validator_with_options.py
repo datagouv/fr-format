@@ -2,9 +2,7 @@ from frformat import Options, set_format
 
 
 def test_validator():
-    valid_values_enum = frozenset(
-        {"Bonjour", "Réunion", "Plane!", "Fly   ", "La liste"}
-    )
+    valid_values_enum = frozenset({"Bonjour", "Réunion", "Plane!", "Fly   ", "La liste"})
 
     Validator = set_format.new(
         "Validator",
@@ -36,9 +34,7 @@ def test_validator():
             "invalid_cases": ["fly  "],
         },
         {
-            "options": Options(
-                ignore_case=True, extra_valid_values=frozenset({"Hello"})
-            ),
+            "options": Options(ignore_case=True, extra_valid_values=frozenset({"Hello"})),
             "valid_cases": ["hello", "Réunion"],
             "invalid_cases": ["Hello!!", " réunion"],
         },
@@ -79,11 +75,11 @@ def test_validator():
         valid_c = tc["valid_cases"]
 
         for valid_ele in valid_c:
-            assert Validator(tc["options"]).is_valid(
-                valid_ele
-            ), f"Check that {valid_ele} is not valid"
+            assert Validator(tc["options"]).is_valid(valid_ele), (
+                f"Check that {valid_ele} is not valid"
+            )
 
         for invalid_ele in invalid_c:
-            assert not Validator(tc["options"]).is_valid(
-                invalid_ele
-            ), f"Check that {invalid_ele} is valid"
+            assert not Validator(tc["options"]).is_valid(invalid_ele), (
+                f"Check that {invalid_ele} is valid"
+            )

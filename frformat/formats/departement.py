@@ -14,6 +14,4 @@ departement_versioned_data = VersionedSet[Millesime]()
 departement_versioned_data.add_version(Millesime.M2023, DEPARTEMENTS_COG_2023)
 departement_versioned_data.add_version(Millesime.M2024, DEPARTEMENTS_COG_2024)
 
-Departement = set_format.new(
-    "Departement", name, description, source, departement_versioned_data
-)
+Departement = set_format.new("Departement", name, description, source, departement_versioned_data)

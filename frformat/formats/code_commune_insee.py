@@ -12,12 +12,8 @@ description = "Vérifie que le code commune correspond bien à un code commune I
 source = INSEE_SOURCE
 
 code_commune_insee_versioned_data = VersionedSet[Millesime]()
-code_commune_insee_versioned_data.add_version(
-    Millesime.M2023, CODES_COMMUNES_INSEE_COG_2023
-)
-code_commune_insee_versioned_data.add_version(
-    Millesime.M2024, CODES_COMMUNES_INSEE_COG_2024
-)
+code_commune_insee_versioned_data.add_version(Millesime.M2023, CODES_COMMUNES_INSEE_COG_2023)
+code_commune_insee_versioned_data.add_version(Millesime.M2024, CODES_COMMUNES_INSEE_COG_2024)
 
 CodeCommuneInsee = set_format.new(
     "CodeCommuneInsee", name, description, source, code_commune_insee_versioned_data

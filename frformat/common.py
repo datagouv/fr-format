@@ -2,8 +2,8 @@ import re
 
 from frformat.options import Options
 
-NBSP = "\u00A0"  # Non-breaking space
-NNBSP = "\u202F"  # Narrow non-breaking space
+NBSP = "\u00a0"  # Non-breaking space
+NNBSP = "\u202f"  # Narrow non-breaking space
 
 
 def normalize_value(val: str, options: Options) -> str:

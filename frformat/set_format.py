@@ -138,9 +138,7 @@ def new(
 
     specialized_set_format.__name__ = class_name
     specialized_set_format.__qualname__ = class_name
-    specialized_set_format.__doc__ = (
-        f"{description}\n\n{specialized_set_format.__doc__}"
-    )
+    specialized_set_format.__doc__ = f"{description}\n\n{specialized_set_format.__doc__}"
 
     specialized_set_format.metadata = Metadata(name, description, source)
 
