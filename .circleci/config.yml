@@ -65,6 +65,11 @@ jobs:
             apt-get install -y locales
             locale-gen fr_FR.UTF-8
       - run:
+          name: Debug locale
+          command: |
+            locale
+            locale -a
+      - run:
           name: Run tests
           command: uv run pytest -s tests/ --junitxml=reports/python/tests.xml -p no:sugar --color=yes
       - store_test_results:
