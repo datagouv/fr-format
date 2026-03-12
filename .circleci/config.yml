@@ -63,7 +63,8 @@ jobs:
           command: |
             apt-get update
             apt-get install -y locales
-            locale-gen fr_FR.UTF-8
+            echo "fr_FR.UTF-8 UTF-8" >> /etc/locale.gen
+            locale-gen
       - run:
           name: Debug locale
           command: |
