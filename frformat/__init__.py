@@ -12,6 +12,7 @@ from .formats.coordonnees_gps_francaises import (
     CoordonneesGPSFrancaises as CoordonneesGPSFrancaises,
 )
 from .formats.departement import Departement as Departement
+from .formats.id_rnb import IdRNB as IdRNB
 from .formats.latitude_l93 import LatitudeL93 as LatitudeL93
 from .formats.longitude_l93 import LongitudeL93 as LongitudeL93
 from .formats.nomenclature_acte_format import NomenclatureActe as NomenclatureActe
@@ -34,6 +35,7 @@ all_formats = [
     Commune,
     CoordonneesGPSFrancaises,
     Departement,
+    IdRNB,
     NumeroDepartement,
     Pays,
     Region,
