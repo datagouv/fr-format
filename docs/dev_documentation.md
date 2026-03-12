@@ -23,6 +23,8 @@ ruff format .
 
 ### Release
 
+> **Note**: A new `.dev` version is published on Pypi by the CI after each commit on the `main` branch.
+
 The release process uses the [`tag_version.sh`](/tag_version.sh) script to create git tags and update [CHANGELOG.md](/CHANGELOG.md) and [pyproject.toml](/pyproject.toml) automatically.
 
 **Prerequisites**: [GitHub CLI](https://cli.github.com/) (`gh`) must be installed and authenticated, and you must be on the main branch with a clean working directory.
