@@ -62,7 +62,7 @@ After verification, these are the steps to add it:
 1. Create a new file in `frformat/formats` to implement the format validation logic. The most generic format interface is `CustomFormat`, but look out for helper functions (e.g. in `set_format.py`) for specific cases. (You can take examples from the existing code.)
 2. Write tests for it!
 3. Fix Linting problems running `uv run ruff check  --select I --fix && uv run ruff format`.
-4. Import the format inside `./src/frformat/__init__` and add it to the `all_formats` list. 
+4. Import the format inside `./frformat/__init__` and add it to the `all_formats` list. 
 5. Run `uv run python .utils/generate_docs.py` to update the format documentation. 
 
 ## License

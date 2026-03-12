@@ -1,4 +1,4 @@
-from typing import List, Literal, Tuple, Union
+from typing import Literal
 
 from frformat import CustomStrFormat, Metadata
 from frformat.common import normalize_value
@@ -25,8 +25,8 @@ def INVALID_PREFIX(prefix: str) -> str:
     return f"le préfixe de nomenclature Actes {prefix!r} n'est pas reconnu"
 
 
-ValidWithoutDetails = Tuple[Literal[True], None]
-InvalidWithDetails = Tuple[Literal[False], List[str]]
+ValidWithoutDetails = tuple[Literal[True], None]
+InvalidWithDetails = tuple[Literal[False], list[str]]
 
 
 name = "Nomenclature des actes"
@@ -73,7 +73,7 @@ class NomenclatureActe(CustomStrFormat):
         # Nomenclature reconnue et pas d'espace après l'oblique
         return "/ " not in value and normalized_nomenc in self._normalized_autho_values
 
-    def is_valid_with_details(self, value: str) -> Union[ValidWithoutDetails, InvalidWithDetails]:
+    def is_valid_with_details(self, value: str) -> ValidWithoutDetails | InvalidWithDetails:
         """Check the validity, and return details if value is invalid"""
 
         details = []

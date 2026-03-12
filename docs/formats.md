@@ -16,7 +16,7 @@
 | NumeroDepartement | Numéro du département | Vérifie que le numéro de département correspond bien à un numéro de département français, collectivités et territoires d'outre-mer pour un Code Officiel Géographique donné |
 | Pays | Pays et territoires étrangers | Nom de pays et territoires étrangers pour un Code Officiel Géographique donné |
 | Region | Nom de région | Vérifie les régions françaises valides pour un Code Officiel Géographique donné. Depuis 2017, la liste des régions françaises n'a pas changé. |
-| Siren | SIREN | Check french SIREN number validity, but does not check if SIREN number exists. |
-| Siret | SIRET | Check french SIRET number validity, but does not check if SIRET number exists. |
+| Siren | SIREN | Check French SIREN number validity, but does not check if SIREN number exists. |
+| Siret | SIRET | Check French SIRET number validity, but does not check if SIRET number exists. |
 
 [If you want to add a new French Format, click here!](../CONTRIBUTING.md#implementing-a-new-french-format)
