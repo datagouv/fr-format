@@ -4,43 +4,44 @@ This documentation is aimed at developpers that want to contribute or maintain f
 
 ## Setup the project
 
-This project uses [poetry](https://python-poetry.org/) as a dependency manager. 
+This project uses [uv](https://docs.astral.sh/uv/) as a dependency manager. 
 
 Please follow these steps to contribute effectively to the project:
 
 1. Clone the project repository and navigate to `fr-format` folder.
-2. Insure you have Poetry installed by running `poetry --version`. If not, [install Poetry](https://pypi.org/project/poetry/).
+2. Insure you have uv installed by running `uv --version`. If not, [install uv](https://docs.astral.sh/uv/#installation).
 3. Check your Python version matches the required version specified in `pyproject.toml`.
-4. Run `poetry install --all-groups` to create a virtual environment and install all dependencies.
-5. Activate the virtual environment using `poetry shell`.
+4. Run `uv sync --all-extras` to create a virtual environment and install all dependencies.
 
-## Task Runner
+## Linting
 
-The project uses a Makefile to manage common tasks. The command `make` or `make help` will show available tasks.
+Remember to format, lint, and sort imports with [Ruff](https://docs.astral.sh/ruff/) before committing (checks will remind you anyway):
+```bash
+pip install .[dev]
+ruff check --fix .
+ruff format .
+```
 
-## Code Style Guidelines
+### Release
 
-`fr format` project uses the following linting and formatting dependencies:
+The release process uses the [`tag_version.sh`](tag_version.sh) script to create git tags and update [CHANGELOG.md](CHANGELOG.md) and [pyproject.toml](pyproject.toml) automatically.
 
-- [black](https://black.readthedocs.io/en/stable/)
-- [isort](https://pycqa.github.io/isort/)
-- [flake8](https://flake8.pycqa.org/)
-- [pyright](https://github.com/microsoft/pyright)
+**Prerequisites**: [GitHub CLI](https://cli.github.com/) (`gh`) must be installed and authenticated, and you must be on the main branch with a clean working directory.
 
-These tools are can be installed with the `linting` group (`poetry install --with linting`).
+```bash
+# Create a new release
+./tag_version.sh <version>
 
-## Publishing process
+# Example
+./tag_version.sh 2.5.0
 
-This project uses git tags associated with [continuous deployment](../.github/workflows/publish.yaml) to manage version bumps and Pypi publication. 
+# Dry run to see what would happen
+./tag_version.sh 2.5.0 --dry-run
+```
 
-Here is the full process to publish a new version :
-
-- Check which version to publish. We use [semantic versionning](https://semver.org/).
-- `git checkout main && git pull`
-- Update [CHANGELOG.md](../CHANGELOG.md) and push changes on main.
-- `git tag vX.Y.Z`
-- `git push --tags`
-- Check that CD pipeline has succeeded
-
-
-
+The script automatically:
+- Updates the version in `pyproject.toml`
+- Extracts commits since the last tag and formats them for `CHANGELOG.md`
+- Identifies breaking changes (commits with `!:` in the subject)
+- Creates a git tag and pushes it to the remote repository
+- Creates a GitHub release with the changelog content
