@@ -17,7 +17,6 @@ Please follow these steps to contribute effectively to the project:
 
 Remember to format, lint, and sort imports with [Ruff](https://docs.astral.sh/ruff/) before committing (checks will remind you anyway):
 ```bash
-pip install .[dev]
 ruff check --fix .
 ruff format .
 ```
