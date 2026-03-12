@@ -53,9 +53,7 @@ description = """Document de référence dans les spécifications SCDL :
 class NomenclatureActe(CustomStrFormat):
     metadata = Metadata(name, description)
 
-    def __init__(
-        self, options: Options = Options(ignore_accents=True, ignore_case=True)
-    ):
+    def __init__(self, options: Options = Options(ignore_accents=True, ignore_case=True)):
         """Initializes the `NomenclatureActe` class with customizable validation options.
         By default, the validation is case-insensitive and accent-insensitive, ensuring that values and authorized_values are normalized
         accordingly before comparison.
@@ -75,9 +73,7 @@ class NomenclatureActe(CustomStrFormat):
         # Nomenclature reconnue et pas d'espace après l'oblique
         return "/ " not in value and normalized_nomenc in self._normalized_autho_values
 
-    def is_valid_with_details(
-        self, value: str
-    ) -> Union[ValidWithoutDetails, InvalidWithDetails]:
+    def is_valid_with_details(self, value: str) -> Union[ValidWithoutDetails, InvalidWithDetails]:
         """Check the validity, and return details if value is invalid"""
 
         details = []

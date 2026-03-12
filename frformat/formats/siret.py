@@ -6,14 +6,12 @@ from frformat.formatter import Formatter
 from .. import CustomStrFormat, Metadata
 
 name = "SIRET"
-description = (
-    "Check french SIRET number validity, but does not check if SIRET number exists."
-)
+description = "Check french SIRET number validity, but does not check if SIRET number exists."
 
 
 class SiretFormatter(Formatter):
     def format(self, value: str) -> str:
-        return f"{value[0:9]}{ NNBSP }{value[9:]}"
+        return f"{value[0:9]}{NNBSP}{value[9:]}"
 
 
 class Siret(CustomStrFormat):

@@ -74,6 +74,4 @@ code_region_versioned_data.add_version(Millesime.M2015, CODES_REGIONS_COG_2015)
 for v in versions:
     code_region_versioned_data.add_version(v, CODES_REGIONS_SINCE_2016)
 
-CodeRegion = set_format.new(
-    "CodeRegion", name, description, source, code_region_versioned_data
-)
+CodeRegion = set_format.new("CodeRegion", name, description, source, code_region_versioned_data)

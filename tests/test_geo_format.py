@@ -35,15 +35,15 @@ class TestInseeGeoFormat:
 
         def test_valid_cases(self):
             for tc in self.validTestCases:
-                assert self.formatClass(self.cog).is_valid(
-                    tc
-                ), f"Check that {tc} is not valid when the class format is {self.formatClass} and the cog is equal to {self.cog}"
+                assert self.formatClass(self.cog).is_valid(tc), (
+                    f"Check that {tc} is not valid when the class format is {self.formatClass} and the cog is equal to {self.cog}"
+                )
 
         def test_invalid_cases(self):
             for tc in self.invalidTestCases:
-                assert not self.formatClass(self.cog).is_valid(
-                    tc
-                ), f"Check that {tc} is valid when the class format is {self.formatClass} and the cog is equal to {self.cog}."
+                assert not self.formatClass(self.cog).is_valid(tc), (
+                    f"Check that {tc} is valid when the class format is {self.formatClass} and the cog is equal to {self.cog}."
+                )
 
         def run_all_tests(self):
             self.test_valid_cases()
@@ -322,13 +322,9 @@ class TestGeoFormat:
 
     def test_latitude_l93(self):
         latitudel93 = LatitudeL93()
+        assert latitudel93.format(6757121) == "6" + NNBSP + "757" + NNBSP + "121" + NBSP + "m"
         assert (
-            latitudel93.format(6757121)
-            == "6" + NNBSP + "757" + NNBSP + "121" + NBSP + "m"
-        )
-        assert (
-            latitudel93.format(6757121.337)
-            == "6" + NNBSP + "757" + NNBSP + "121,34" + NBSP + "m"
+            latitudel93.format(6757121.337) == "6" + NNBSP + "757" + NNBSP + "121,34" + NBSP + "m"
         )
 
         assert latitudel93.is_valid(6544234.2)

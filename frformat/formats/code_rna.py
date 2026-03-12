@@ -9,7 +9,7 @@ description = "Vérifie les codes RNA (Répertoire National des Associations) va
 
 class RNAFormatter(Formatter):
     def format(self, value: str) -> str:
-        return f"{value[0:4]}{ NNBSP }{value[4:7]}{ NNBSP }{value[7:]}"
+        return f"{value[0:4]}{NNBSP}{value[4:7]}{NNBSP}{value[7:]}"
 
 
 class CodeRNA(CustomStrFormat):

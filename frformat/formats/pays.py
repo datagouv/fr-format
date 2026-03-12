@@ -5,9 +5,7 @@ from frformat.versioned_set import VersionedSet
 from frformat.versions import Millesime
 
 name = "Pays et territoires étrangers"
-description = (
-    "Nom de pays et territoires étrangers pour un Code Officiel Géographique donné"
-)
+description = "Nom de pays et territoires étrangers pour un Code Officiel Géographique donné"
 source = INSEE_SOURCE
 
 pays_versioned_data = VersionedSet[Millesime]()
