@@ -27,8 +27,7 @@ jobs:
             - << pipeline.parameters.cache-prefix >>-{{ arch }}-{{ checksum "pyproject.toml" }}
       - run:
           name: Install Python dependencies and dev dependencies
-          command: |
-            uv sync --frozen
+          command: uv sync --frozen
       - save_cache:
           key: << pipeline.parameters.cache-prefix >>-{{ arch }}-{{ checksum "pyproject.toml" }}
           paths:
@@ -60,15 +59,14 @@ jobs:
       - attach_workspace:
           at: .
       - run:
-        - name: Set up locale
+          name: Set up locale
           command: |
             sudo apt-get update
             sudo apt-get install -y locales
             sudo locale-gen fr_FR.UTF-8
       - run:
           name: Run tests
-          command: |
-            uv run pytest -s tests/ --junitxml=reports/python/tests.xml -p no:sugar --color=yes
+          command: uv run pytest -s tests/ --junitxml=reports/python/tests.xml -p no:sugar --color=yes
       - store_test_results:
           path: reports/python
 
@@ -80,8 +78,7 @@ jobs:
           at: .
       - run:
           name: Check that documentation is up to date
-          command: |
-            uv run python ./utils/generate_docs.py && git add ./docs/formats.md && git diff --cached --exit-code
+          command: uv run python ./utils/generate_docs.py && git add ./docs/formats.md && git diff --cached --exit-code
       - store_test_results:
           path: reports/python
 
