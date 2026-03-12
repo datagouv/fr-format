@@ -8,7 +8,7 @@ This module introduces utilities to efficiently create new set formats :
 - `new` creates specialized versions where data is tied to the class
 """
 
-from typing import FrozenSet, Generic, Type, TypeVar, Union, overload
+from typing import Generic, TypeVar, overload
 
 from frformat import CustomStrFormat, Metadata
 from frformat.common import normalize_value
@@ -19,7 +19,7 @@ from frformat.versioned_set import Version, VersionedSet
 class SingleSetFormat(CustomStrFormat):
     """This format defines a closed list of valid values"""
 
-    _valid_values: FrozenSet = frozenset()
+    _valid_values: frozenset = frozenset()
     """Dataset of valid values.
 
        Technical details:
@@ -47,7 +47,7 @@ class SingleSetFormat(CustomStrFormat):
         normalized_value = normalize_value(value, self._options)
         return normalized_value in self._normalized_values
 
-    def get_valid_values_set(self) -> FrozenSet[str]:
+    def get_valid_values_set(self) -> frozenset[str]:
         """Returns the canonical set of valid values.
 
         In the case of versioned data, it will only return the valid values for the version the validator has been initialized with.
@@ -78,7 +78,7 @@ class VersionedSetFormat(SingleSetFormat, Generic[V]):
 
     _versioned_valid_values: VersionedSet = VersionedSet()
 
-    def __init__(self, version: Union[V, str], options: Options = Options()):
+    def __init__(self, version: V | str, options: Options = Options()):
         version_id = version if isinstance(version, str) else version.get_id()
         data = self._versioned_valid_values.get_data(version_id)
         if data is None:
@@ -98,13 +98,13 @@ def new(
     description: str,
     source: str,
     valid_data: VersionedSet[V],
-) -> Type[VersionedSetFormat[V]]: ...
+) -> type[VersionedSetFormat[V]]: ...
 
 
 @overload
 def new(
-    class_name: str, name: str, description: str, source: str, valid_data: FrozenSet
-) -> Type[SingleSetFormat]: ...
+    class_name: str, name: str, description: str, source: str, valid_data: frozenset
+) -> type[SingleSetFormat]: ...
 
 
 def new(
@@ -112,8 +112,8 @@ def new(
     name: str,
     description: str,
     source: str,
-    valid_data: Union[VersionedSet[V], FrozenSet[str]],
-) -> Union[Type[VersionedSetFormat[V]], Type[SingleSetFormat]]:
+    valid_data: VersionedSet[V] | frozenset[str],
+) -> type[VersionedSetFormat[V]] | type[SingleSetFormat]:
     """Utility function to create a specialized version of a SetFormat.
 
     The returned class is a fully featured format that once initialized

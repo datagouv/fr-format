@@ -6,7 +6,7 @@ from frformat.formatter import Formatter
 from .. import CustomStrFormat, Metadata
 
 name = "SIREN"
-description = "Check french SIREN number validity, but does not check if SIREN number exists."
+description = "Check French SIREN number validity, but does not check if SIREN number exists."
 
 
 class SirenFormatter(Formatter):

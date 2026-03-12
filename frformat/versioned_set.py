@@ -1,17 +1,12 @@
 from typing import (
-    Dict,
-    FrozenSet,
     Generic,
-    List,
     Protocol,
-    Tuple,
     TypeVar,
-    Union,
     cast,
     runtime_checkable,
 )
 
-Data = FrozenSet
+Data = frozenset
 V = TypeVar("V", bound="Version")
 
 
@@ -53,9 +48,9 @@ class VersionedSet(Generic[V]):
     """
 
     def __init__(self):
-        self._versionned_data: Dict[str, Tuple[V, Data]] = {}
+        self._versionned_data: dict[str, tuple[V, Data]] = {}
 
-    def ls(self) -> List[V]:
+    def ls(self) -> list[V]:
         """List all available versions"""
         return [self._versionned_data[id][0] for id in sorted(self._versionned_data.keys())]
 
@@ -69,7 +64,7 @@ class VersionedSet(Generic[V]):
 
         self._versionned_data.update({new_version.get_id(): (new_version, data)})
 
-    def get_data(self, version_id: str) -> Union[Data, None]:
+    def get_data(self, version_id: str) -> Data | None:
         """
         Get the data associated with the given version ID.
 
@@ -85,7 +80,7 @@ class VersionedSet(Generic[V]):
 
             if version_id == "latest" and version_class.is_sorted():
                 if all(isinstance(v, _SortableVersion) for v in version_list):
-                    casted_version_list = cast(List[_SortableVersion], version_list)
+                    casted_version_list = cast(list[_SortableVersion], version_list)
                     latest_version = max(casted_version_list)
                     _, data = self._versionned_data[latest_version.get_id()]
                     return data

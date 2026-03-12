@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from typing import Generic, TypeVar, Union
+from typing import Generic, TypeVar
 
 from frformat.formatter import DefaultFormatter, Formatter
 
@@ -29,4 +29,4 @@ class CustomFormat(ABC, Generic[ValueType]):
 
 
 CustomStrFormat = CustomFormat[str]
-CustomNumericFormat = CustomFormat[Union[float, int]]
+CustomNumericFormat = CustomFormat[float | int]

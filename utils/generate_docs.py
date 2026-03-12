@@ -3,7 +3,7 @@ import jinja2
 from frformat import all_formats
 
 
-def generate_formats_documentation(all_formats):
+def generate_formats_documentation(all_formats: list) -> list:
     documentation = []
     for format in all_formats:
         doc = {
@@ -15,7 +15,7 @@ def generate_formats_documentation(all_formats):
     return documentation
 
 
-def description_formatting(description):
+def description_formatting(description: str) -> str:
     text_array = description.strip().splitlines()
 
     formatted_description = text_array[0] if len(text_array) > 0 else ""

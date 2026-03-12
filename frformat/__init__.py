@@ -1,5 +1,4 @@
-# flake8: noqa
-from .custom_format import *  # isort:skip
+from .custom_format import *
 from .formats.canton import Canton as Canton
 from .formats.code_commune_insee import CodeCommuneInsee as CodeCommuneInsee
 from .formats.code_fantoir import CodeFantoir as CodeFantoir
