@@ -1,5 +1,0 @@
-{
-  "venv":".venv",
-  "venvPath":".",
-  "ignore": ["./src/frformat/code_postal_set.py"]
-}

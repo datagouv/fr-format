@@ -1,0 +1,161 @@
+---
+version: 2.1
+
+parameters:
+  python-version:
+    type: string
+    default: "3.11"
+  publish-branch:
+    type: string
+    default: "main"
+    description: "Branch to publish to PyPI and trigger the Gitlab CI/CD pipeline when pushed to"
+  cache-prefix:
+    type: string
+    default: "py-cache"
+
+jobs:
+  install:
+    docker:
+      - image: ghcr.io/astral-sh/uv:python<< pipeline.parameters.python-version >>-bookworm
+    steps:
+      - checkout
+      - run:
+          name: Get the base reference branch
+          command: export BASE_BRANCH=$(base_branch)
+      - restore_cache:
+          keys:
+            - << pipeline.parameters.cache-prefix >>-{{ arch }}-{{ checksum "pyproject.toml" }}
+      - run:
+          name: Install Python dependencies and dev dependencies
+          command: |
+            uv sync --frozen
+      - save_cache:
+          key: << pipeline.parameters.cache-prefix >>-{{ arch }}-{{ checksum "pyproject.toml" }}
+          paths:
+            - .venv
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
+  lint:
+    docker:
+      - image: ghcr.io/astral-sh/uv:python<< pipeline.parameters.python-version >>-bookworm
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Lint and format code and sort imports
+          # ruff check . : check linting and imports sorting without fixing (to fix, use --fix)
+          # ruff format --check . : check code formatting without fixing (to fix, remove --check)
+          command: |
+            uv run ruff --version
+            uv run ruff check --select I .
+            uv run ruff format --check .
+
+  tests:
+    docker:
+      - image: ghcr.io/astral-sh/uv:python<< pipeline.parameters.python-version >>-bookworm
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+        - name: Set up locale
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y locales
+            sudo locale-gen fr_FR.UTF-8
+      - run:
+          name: Run tests
+          command: |
+            uv run pytest -s tests/ --junitxml=reports/python/tests.xml -p no:sugar --color=yes
+      - store_test_results:
+          path: reports/python
+
+  check-doc:
+    docker:
+      - image: ghcr.io/astral-sh/uv:python<< pipeline.parameters.python-version >>-bookworm
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Check that documentation is up to date
+          command: |
+            uv run python ./utils/generate_docs.py && git add ./docs/formats.md && git diff --cached --exit-code
+      - store_test_results:
+          path: reports/python
+
+  build:
+    docker:
+      - image: ghcr.io/astral-sh/uv:python<< pipeline.parameters.python-version >>-bookworm  # needs git for setuptools_scm
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Install build tools
+          command: |
+            uv pip install setuptools-scm
+      - run:
+          name: Compute RELEASE_VERSION via setuptools_scm
+          command: |
+            # derive from setuptools_scm or base version + build number
+            RELEASE_VERSION=$(uv run python -m setuptools_scm)
+            echo "export RELEASE_VERSION=$RELEASE_VERSION" > version.sh
+            chmod +x version.sh
+      - run:
+          name: Display build info for debugging
+          command: |
+            source version.sh
+            echo "Building a wheel release with version $RELEASE_VERSION"
+            echo "Build number: $CIRCLE_BUILD_NUM"
+            echo "Commit hash: ${CIRCLE_SHA1:0:7}"
+            echo "Git tag: $CIRCLE_TAG"
+      - run:
+          name: Build a distributable package as a wheel release
+          command: |
+            uv build --wheel
+      # Build already executed above; artifacts are in dist/
+      - store_artifacts:
+          path: dist
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+            - version.sh
+
+  publish:
+    docker:
+      - image: ghcr.io/astral-sh/uv:python<< pipeline.parameters.python-version >>-bookworm
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Publish on PyPI
+          command: |
+            uv publish --username "${PYPI_USERNAME}" --password "${PYPI_PASSWORD}" dist/*
+
+workflows:
+  build-deploy-publish:
+    jobs:
+      - install
+      - lint:
+          requires:
+            - install
+      - tests:
+          requires:
+            - install
+      - check-doc:
+          requires:
+            - install
+      - build:
+          requires:
+            - tests
+            - lint
+            - check-doc
+      - publish:
+          requires:
+            - build
+          filters:
+            branches:
+              only: << pipeline.parameters.publish-branch >>
+          context: org-global
