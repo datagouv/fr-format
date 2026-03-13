@@ -54,7 +54,7 @@ CODES_REGIONS_SINCE_2016 = CODES_REGION_REPETES.union(
 )
 
 name = "Code région"
-description = "Vérifie qu'il s'agit d'un code région selon le Code Officiel Géographique (cog) donné. À partir du Millesime 2016 la liste des régions françaises change suite à plusieurs fusions"
+description = "Code région pour un Code Officiel Géographique donné. À partir du Millesime 2016 la liste des régions françaises change suite à plusieurs fusions"
 source = INSEE_SOURCE
 versions = [
     Millesime.M2016,

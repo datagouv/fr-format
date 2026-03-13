@@ -8,7 +8,7 @@ from frformat.versioned_set import VersionedSet
 from frformat.versions import Millesime
 
 name = "Code commune INSEE"
-description = "Vérifie que le code commune correspond bien à un code commune INSEE pour un Code Officiel Géographique donné"
+description = "Code commune INSEE pour un Code Officiel Géographique donné"
 source = INSEE_SOURCE
 
 code_commune_insee_versioned_data = VersionedSet[Millesime]()

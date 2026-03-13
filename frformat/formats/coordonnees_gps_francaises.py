@@ -5,7 +5,7 @@ from frformat import Metadata
 
 name = "Coordonnées GPS françaises"
 description = (
-    """Check that GPS coordinates are in a bounding box approximating France (including DOM)"""
+    "Coordonnées GPS compris dans les polygones (approximés) du territoire français, DOM compris"
 )
 
 FRANCE_BOUNDING_BOXES = [

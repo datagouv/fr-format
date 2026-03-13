@@ -8,7 +8,7 @@ from frformat.versioned_set import VersionedSet
 from frformat.versions import Millesime
 
 name = "Nom de département"
-description = "Vérifie les départements français, collectivités et territoires d'outre-mer valides pour un Code Officiel Géographique donné"
+description = "Nom de départements français, collectivités et territoires d'outre-mer pour un Code Officiel Géographique donné"
 source = INSEE_SOURCE
 departement_versioned_data = VersionedSet[Millesime]()
 departement_versioned_data.add_version(Millesime.M2023, DEPARTEMENTS_COG_2023)

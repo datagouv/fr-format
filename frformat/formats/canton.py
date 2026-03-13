@@ -5,7 +5,7 @@ from frformat.versioned_set import VersionedSet
 from frformat.versions import Millesime
 
 name = "Nom de canton"
-description = "Vérifie que le nom de canton est un canton ou pseudo-canton français valide pour un Code Officiel Géographique donné"
+description = "Canton ou pseudo-canton français pour un Code Officiel Géographique donné"
 source = INSEE_SOURCE
 
 canton_versioned_data = VersionedSet[Millesime]()

@@ -1,7 +1,7 @@
 from .. import CustomStrFormat, Metadata
 
 name = "ID-RNB"
-description = "Check ID-RNB validity (from Référentiel National des Bâtiments), but does not check if the id exists."
+description = "Identifiant du Référentiel National des Bâtiments (vérifie la validité intrinsèque, mais pas l'attribution de l'identifiant)"
 source = "https://github.com/fab-geocommuns/RNB-coeur/blob/main/app/batid/services/rnb_id.py"
 
 
