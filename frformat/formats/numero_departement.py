@@ -14,7 +14,7 @@ NUMEROS_DEPARTEMENTS_COG_2023 = frozenset(
 NUMEROS_DEPARTEMENTS_COG_2024 = NUMEROS_DEPARTEMENTS_COG_2023
 
 name = "Numéro du département"
-description = "Vérifie que le numéro de département correspond bien à un numéro de département français, collectivités et territoires d'outre-mer pour un Code Officiel Géographique donné"
+description = "Numéro de département français, collectivités et territoires d'outre-mer pour un Code Officiel Géographique donné"
 source = INSEE_SOURCE
 
 numero_departement_versioned_data = VersionedSet[Millesime]()

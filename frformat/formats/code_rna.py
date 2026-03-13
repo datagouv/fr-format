@@ -4,7 +4,7 @@ from frformat import CustomStrFormat, Formatter, Metadata
 from frformat.common import NNBSP
 
 name = "Code RNA"
-description = "Vérifie les codes RNA (Répertoire National des Associations) valides"
+description = "Code du Répertoire National des Associations"
 
 
 class RNAFormatter(Formatter):

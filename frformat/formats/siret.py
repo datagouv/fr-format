@@ -6,7 +6,7 @@ from frformat.formatter import Formatter
 from .. import CustomStrFormat, Metadata
 
 name = "SIRET"
-description = "Check French SIRET number validity, but does not check if SIRET number exists."
+description = "Numéro SIRET (vérifie la validité intrinsèque, mais pas l'attribution du SIRET)"
 
 
 class SiretFormatter(Formatter):

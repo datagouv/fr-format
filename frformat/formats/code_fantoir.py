@@ -5,7 +5,7 @@ from frformat.formats.code_fantoir_frozenset import PARTIAL_CODE_FANTOIR
 from frformat.formatter import Formatter
 
 name = "Code fantoir"
-description = "Vérifie les codes fantoirs valides"
+description = "Code fantoir"
 
 UPPER_LETTERS = string.ascii_uppercase
 

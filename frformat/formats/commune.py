@@ -6,8 +6,8 @@ from frformat.versions import Millesime
 
 name = "Nom de commune"
 description = (
-    "Vérifie que le nom correspond à un nom de commune française pour un Code Officiel Géographique donné"
-    "(ne vérifie pas l'accentuation, la casse, la ponctuation)"
+    "Nom de commune française pour un Code Officiel Géographique donné"
+    " (ne vérifie pas l'accentuation, la casse, la ponctuation)"
 )
 source = INSEE_SOURCE
 commune_versioned_data = VersionedSet[Millesime]()
