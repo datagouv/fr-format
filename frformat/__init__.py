@@ -16,7 +16,7 @@ from .formats.id_rnb import IdRNB as IdRNB
 from .formats.latitude_l93 import LatitudeL93 as LatitudeL93
 from .formats.longitude_l93 import LongitudeL93 as LongitudeL93
 from .formats.nomenclature_acte_format import NomenclatureActe as NomenclatureActe
-from .formats.numero_departement import NumeroDepartement as NumeroDepartement
+from .formats.code_departement import CodeDepartement as CodeDepartement
 from .formats.pays import Pays as Pays
 from .formats.region import Region as Region
 from .formats.siren import Siren as Siren
@@ -27,6 +27,7 @@ from .versions import Millesime as Millesime
 all_formats = [
     Canton,
     CodeCommuneInsee,
+    CodeDepartement,
     CodeFantoir,
     CodePaysISO2,
     CodePaysISO3,
@@ -36,7 +37,6 @@ all_formats = [
     CoordonneesGPSFrancaises,
     Departement,
     IdRNB,
-    NumeroDepartement,
     Pays,
     Region,
     NomenclatureActe,

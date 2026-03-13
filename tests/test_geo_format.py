@@ -1,6 +1,7 @@
 from frformat import (
     Canton,
     CodeCommuneInsee,
+    CodeDepartement,
     CodeFantoir,
     CodePaysISO2,
     CodePaysISO3,
@@ -11,7 +12,6 @@ from frformat import (
     LatitudeL93,
     LongitudeL93,
     Millesime,
-    NumeroDepartement,
     Pays,
     Region,
 )
@@ -234,16 +234,16 @@ class TestInseeGeoFormat:
                 "invalidTestCases": ["L'Eldorado", "Zubrowska", "Pays Bas", "france"],
             },
             {
-                "name": "numero_departement_millesime2023",
+                "name": "code_departement_millesime2023",
                 "cog": Millesime.M2023,
-                "formatClass": NumeroDepartement,
+                "formatClass": CodeDepartement,
                 "validTestCases": ["05", "2B", "974"],
                 "invalidTestCases": ["99", "051", "2b", "  97 4"],
             },
             {
-                "name": "numero_departement_millesime2024",
+                "name": "code_departement_millesime2024",
                 "cog": Millesime.M2024,
-                "formatClass": NumeroDepartement,
+                "formatClass": CodeDepartement,
                 "validTestCases": ["05", "2B", "974"],
                 "invalidTestCases": ["99", "051", "2b", "  97 4"],
             },
