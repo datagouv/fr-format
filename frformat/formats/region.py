@@ -1,10 +1,9 @@
-from frformat import set_format
 from frformat.formats.region_frozenset import (
     REGIONS_COG_2015,
     REGIONS_COG_2016,
     REGIONS_SINCE_2017,
 )
-from frformat.set_format import INSEE_SOURCE
+from frformat.set_format import INSEE_SOURCE, new
 from frformat.versioned_set import VersionedSet
 from frformat.versions import Millesime
 
@@ -29,4 +28,4 @@ region_versioned_data.add_version(Millesime.M2016, REGIONS_COG_2016)
 for v in versions:
     region_versioned_data.add_version(v, REGIONS_SINCE_2017)
 
-Region = set_format.new("Region", name, description, source, region_versioned_data)
+Region = new("Region", name, description, source, region_versioned_data)

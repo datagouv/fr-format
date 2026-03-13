@@ -1,5 +1,4 @@
-from frformat import set_format
-from frformat.set_format import INSEE_SOURCE
+from frformat.set_format import INSEE_SOURCE, new
 from frformat.versioned_set import VersionedSet
 from frformat.versions import Millesime
 
@@ -74,4 +73,4 @@ code_region_versioned_data.add_version(Millesime.M2015, CODES_REGIONS_COG_2015)
 for v in versions:
     code_region_versioned_data.add_version(v, CODES_REGIONS_SINCE_2016)
 
-CodeRegion = set_format.new("CodeRegion", name, description, source, code_region_versioned_data)
+CodeRegion = new("CodeRegion", name, description, source, code_region_versioned_data)
