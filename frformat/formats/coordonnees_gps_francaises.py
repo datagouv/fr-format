@@ -4,7 +4,9 @@ from shapely.geometry.base import BaseGeometry
 from frformat import Metadata
 
 name = "Coordonnées GPS françaises"
-description = "Coordonnées GPS compris dans les polygones (approximés) du territoire français, DOM compris"
+description = (
+    "Coordonnées GPS compris dans les polygones (approximés) du territoire français, DOM compris"
+)
 
 FRANCE_BOUNDING_BOXES = [
     {
