@@ -1,6 +1,7 @@
 from .custom_format import *
 from .formats.canton import Canton as Canton
 from .formats.code_commune_insee import CodeCommuneInsee as CodeCommuneInsee
+from .formats.code_departement import CodeDepartement as CodeDepartement
 from .formats.code_fantoir import CodeFantoir as CodeFantoir
 from .formats.code_pays import CodePaysISO2 as CodePaysISO2
 from .formats.code_pays import CodePaysISO3 as CodePaysISO3
@@ -16,7 +17,6 @@ from .formats.id_rnb import IdRNB as IdRNB
 from .formats.latitude_l93 import LatitudeL93 as LatitudeL93
 from .formats.longitude_l93 import LongitudeL93 as LongitudeL93
 from .formats.nomenclature_acte_format import NomenclatureActe as NomenclatureActe
-from .formats.code_departement import CodeDepartement as CodeDepartement
 from .formats.pays import Pays as Pays
 from .formats.region import Region as Region
 from .formats.siren import Siren as Siren
