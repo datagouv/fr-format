@@ -1,5 +1,4 @@
-from frformat import set_format
-from frformat.set_format import INSEE_SOURCE
+from frformat.set_format import INSEE_SOURCE, new
 from frformat.versioned_set import VersionedSet
 from frformat.versions import Millesime
 
@@ -21,6 +20,4 @@ code_departement_versioned_data = VersionedSet[Millesime]()
 code_departement_versioned_data.add_version(Millesime.M2023, CODES_DEPARTEMENTS_COG_2023)
 code_departement_versioned_data.add_version(Millesime.M2024, CODES_DEPARTEMENTS_COG_2024)
 
-CodeDepartement = set_format.new(
-    "CodeDepartement", name, description, source, code_departement_versioned_data
-)
+CodeDepartement = new("CodeDepartement", name, description, source, code_departement_versioned_data)

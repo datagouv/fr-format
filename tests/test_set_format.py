@@ -1,6 +1,5 @@
 import pytest
 
-from frformat import set_format
 from frformat.set_format import new
 from frformat.versioned_set import VersionedSet
 from frformat.versions import Millesime
@@ -86,7 +85,7 @@ def test_formats_valid_values():
     source = "Validator source"
 
     for tc in test_cases:
-        validator = set_format.new("Validator", name, description, source, tc["valid_data"])
+        validator = new("Validator", name, description, source, tc["valid_data"])
         if tc["version"]:
             assert validator(tc["version"]).get_valid_values_set() == tc["expected_result"], (
                 f"While we test {tc['name']}, the returned data is not equal to {tc['expected_result']} when the valid_data is {tc['valid_data']} and the version is equal to {tc['version']}"
