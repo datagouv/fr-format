@@ -5,7 +5,7 @@ from frformat.formats.code_fantoir_frozenset import PARTIAL_CODE_FANTOIR
 from frformat.formatter import Formatter
 
 name = "Code fantoir"
-description = "Code fantoir"
+description = "Code du Fichier annuaire topographique initialisé réduit (déprécié en 2023)"
 
 UPPER_LETTERS = string.ascii_uppercase
 

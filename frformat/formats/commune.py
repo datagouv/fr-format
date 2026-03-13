@@ -5,10 +5,7 @@ from frformat.versioned_set import VersionedSet
 from frformat.versions import Millesime
 
 name = "Nom de commune"
-description = (
-    "Nom de commune française pour un Code Officiel Géographique donné"
-    " (ne vérifie pas l'accentuation, la casse, la ponctuation)"
-)
+description = "Nom de commune française pour un Code Officiel Géographique donné (ne vérifie pas l'accentuation, la casse, la ponctuation)"
 source = INSEE_SOURCE
 commune_versioned_data = VersionedSet[Millesime]()
 commune_versioned_data.add_version(Millesime.M2023, COMMUNES_COG_2023)
